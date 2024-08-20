@@ -18,7 +18,7 @@ class Passenger {
 
         //Setter methods
         void setPassengerRateScore(const double& passengerRateScore);
-        //void settBooking(const std::vector<Trip>& booking);
+        //void setBooking(const std::vector<Trip>& booking);
 
         //Member function
         void bookCarpool();

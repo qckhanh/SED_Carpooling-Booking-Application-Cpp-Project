@@ -27,6 +27,6 @@ class BankAccount {
         void setBankAccountName(const std::string& bankAccountName);
         void setBankAccountNumber(const std::string& bankAccountNumber);
         void setCVV(const int& CVV);
-        void setAccountBalance(const float& accountBalance);
+        void setAccountBalance(const double& accountBalance);
         //void setExpireDate(const Date& expireDate);
 };
