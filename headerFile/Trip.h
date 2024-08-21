@@ -9,6 +9,8 @@
 #include "Vehicle.h"
 #include "Date.h"
 
+class Passenger;
+
 class Trip {
 private:
     Driver driver;
@@ -28,7 +30,7 @@ public:
 
     //destructor
     ~Trip();
-    
+
     // Setters
     void setDriver(const Driver &driver);
     void setPassenger(const std::vector<Passenger> &passenger);

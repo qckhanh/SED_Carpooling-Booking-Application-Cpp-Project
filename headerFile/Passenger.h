@@ -1,6 +1,9 @@
 #pragma once
 #include <vector>
-#include "../headerFile/Trip.h"
+#include "Trip.h"
+
+class Trip;
+
 class Passenger {
     private:
         double passengerRateScore;

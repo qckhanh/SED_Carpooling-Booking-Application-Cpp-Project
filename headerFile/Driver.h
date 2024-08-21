@@ -1,7 +1,11 @@
 #pragma once
+#include "Vehicle.h"
 #include <vector>
-#include "../headerFile/Vehicle.h"
-#include "../headerFile/Trip.h"
+// #include "Vehicle.h"
+// #include "Trip.h"
+
+class Trip;
+class Vehicle;
 
 using namespace std;
 class Driver {
