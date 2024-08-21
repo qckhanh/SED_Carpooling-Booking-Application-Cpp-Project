@@ -12,7 +12,7 @@ std::string BankAccount::getBankAccountName() const { return bankAccountName; }
 std::string BankAccount::getBankAccountNumber() const { return bankAccountNumber; }
 int BankAccount::getCVV() const { return CVV; }
 double BankAccount::getAccountBalance() const { return accountBalance; }
-//Date BankAccount::getExpireDate() const { return expireDate; }
+Date BankAccount::getExpireDate() const { return expireDate; }
 
 //Setter methods
 void BankAccount::setBankAccountName(const std::string& bankAccountName) { this->bankAccountName = bankAccountName; }

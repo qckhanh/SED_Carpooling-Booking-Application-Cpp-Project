@@ -1,4 +1,5 @@
 #include "../headerFile/Driver.h"
+#include "../headerFile/Trip.h"
 #include <vector>
 
 //Constructor
@@ -9,15 +10,15 @@ Driver::~Driver() {}
 
 //Getter methods
 double Driver::getDriverRateScore() const { return driverRateScore; }
-//const std::vector<Vehicle>& Driver::getDriverVehicles() const { return driverVehicles; }
-//const std::vector<Trip>& Driver::getCarpoolList() const { return carpoolList }
-//const std::vector<Trip>& Driver::getRequests() const { return requests; }
+const std::vector<Vehicle>& Driver::getDriverVehicles() const { return driverVehicles; }
+const std::vector<Trip>& Driver::getCarpoolList() const { return carpoolList; }
+const std::vector<Trip>& Driver::getRequests() const { return requests; }
 
 //Setter methoods
 void Driver::setDriverRateScore(const double& driverRateScore) { this->driverRateScore = driverRateScore; }
-//void Driver::setDriverVehicles(const vector<Vehicle>& driverVehicles) { this->driverVehicles = driverVehicles; }
-//void Driver::setCarpoolList(const vector<Trip>& carpoolList) { this->carpoolList = carpoolList; }
-//void Driver::setRequests(const vector<Trip>& requests) { this-> requests = requests; }
+void Driver::setDriverVehicles(const std::vector<Vehicle>& driverVehicles) { this->driverVehicles = driverVehicles; }
+void Driver::setCarpoolList(const std::vector<Trip>& carpoolList) { this->carpoolList = carpoolList; }
+void Driver::setRequests(const std::vector<Trip>& requests) { this-> requests = requests; }
 
 //Member functions
 

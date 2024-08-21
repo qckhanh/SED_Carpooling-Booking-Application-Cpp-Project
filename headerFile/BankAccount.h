@@ -1,13 +1,13 @@
 #pragma once
 #include <string>
-
+#include "Date.h"
 class BankAccount {
     private:
         std::string bankAccountName;
         std::string bankAccountNumber;
         int CVV;
         double accountBalance;
-        //Date expireDate;
+        Date expireDate;
 
     public:
         //Constructor
@@ -21,12 +21,12 @@ class BankAccount {
         std::string getBankAccountNumber() const;
         int getCVV() const;
         double getAccountBalance() const;
-        //Date getExpireDate() const;
+        Date getExpireDate() const;
 
         //Setter methods
         void setBankAccountName(const std::string& bankAccountName);
         void setBankAccountNumber(const std::string& bankAccountNumber);
         void setCVV(const int& CVV);
         void setAccountBalance(const double& accountBalance);
-        //void setExpireDate(const Date& expireDate);
+        void setExpireDate(const Date& expireDate);
 };

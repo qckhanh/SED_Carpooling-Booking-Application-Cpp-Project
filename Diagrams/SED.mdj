@@ -6739,7 +6739,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGRVEMAa+J4iTo="
 							},
-							"name": "endLocation"
+							"name": "endLocation",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",

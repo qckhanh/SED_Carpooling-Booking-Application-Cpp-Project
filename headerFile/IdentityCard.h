@@ -1,11 +1,9 @@
 #pragma once
-#ifndef IDENTIFYCARD_H
-#define IDENTIFYCARD_H
 
 #include <string>
 #include "Date.h" // Assuming Date is defined in a separate header file
 
-class IdentifyCard {
+class IdentityCard {
 private:
     std::string name;
     Date DOB;
@@ -17,10 +15,10 @@ private:
 
 public:
     //constructor:
-    IdentifyCard();
+    IdentityCard();
 
     //destructor:
-    ~IdentifyCard();
+    ~IdentityCard();
 
     // Setters
     void setName(const std::string &name);
@@ -41,4 +39,3 @@ public:
     Date getExpireDate() const;
 };
 
-#endif // IDENTIFYCARD_H

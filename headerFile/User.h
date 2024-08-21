@@ -1,12 +1,14 @@
 #pragma once
 #include <string>
-
+#include "Date.h"
+#include "BankAccount.h"
+#include "IdentityCard.h"
 class User {
 private:
     std::string username;
     std::string password;
     std::string fullName;
-    // Date DOB; 
+    Date DOB; 
     std::string phoneNumber;
     std::string address;
     std::string email;
@@ -14,8 +16,8 @@ private:
     std::string idNumber;
     float creditPoint;
     bool isVerified;
-    // BankAccount bankAccount; 
-    // IdentityCard card; 
+    BankAccount bankAccount; 
+    IdentityCard card; 
 
 public:
     // Constructor
@@ -28,7 +30,7 @@ public:
     std::string getUsername() const;
     std::string getPassword() const;
     std::string getFullName() const;
-    // Date getDOB() const;
+    Date getDOB() const;
     std::string getPhoneNumber() const;
     std::string getAddress() const;
     std::string getEmail() const;
@@ -36,14 +38,14 @@ public:
     std::string getIdNumber() const;
     float getCreditPoint() const;
     bool getIsVerified() const;
-    // BankAccount getBankAccount() const;
-    // IdentityCard getCard() const;
+    BankAccount getBankAccount() const;
+    IdentityCard getCard() const;
 
     // Setters
     void setUsername(const std::string& username);
     void setPassword(const std::string& password);
     void setFullName(const std::string& fullName);
-    // void setDOB(const Date& DOB);
+    void setDOB(const Date& DOB);
     void setPhoneNumber(const std::string& phoneNumber);
     void setAddress(const std::string& address);
     void setEmail(const std::string& email);
@@ -51,8 +53,8 @@ public:
     void setIdNumber(const std::string& idNumber);
     void setCreditPoint(float creditPoint);
     void setIsVerified(bool isVerified);
-    // void setBankAccount(const BankAccount& bankAccount);
-    // void setCard(const IdentityCard& card);
+    void setBankAccount(const BankAccount& bankAccount);
+    void setCard(const IdentityCard& card);
 
     // Member functions
     void search();
