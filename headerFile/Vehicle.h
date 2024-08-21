@@ -12,6 +12,12 @@ private:
     int totalSeat;
 
 public:
+    //constructor:
+    Vehicle();
+    
+    //destructor:
+    ~Vehicle();
+    
     // Setters
     void setModel(const std::string &model);
     void setColor(const std::string &color);

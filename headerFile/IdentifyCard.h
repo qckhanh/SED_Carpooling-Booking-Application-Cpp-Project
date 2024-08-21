@@ -16,6 +16,12 @@ private:
     Date expireDate;
 
 public:
+    //constructor:
+    IdentifyCard();
+
+    //destructor:
+    ~IdentifyCard();
+
     // Setters
     void setName(const std::string &name);
     void setDOB(const Date &DOB);

@@ -23,6 +23,12 @@ private:
     std::string referenceID;
 
 public:
+    //constructor
+    Trip();
+
+    //destructor
+    ~Trip();
+    
     // Setters
     void setDriver(const Driver &driver);
     void setPassenger(const std::vector<Passenger> &passenger);
