@@ -1,6 +1,4 @@
 #pragma once
-#ifndef VEHICLE_H
-#define VEHICLE_H
 
 #include <string>
 
@@ -30,5 +28,3 @@ public:
     std::string getPlateNumber() const;
     int getTotalSeat() const;
 };
-
-#endif // VEHICLE_H
