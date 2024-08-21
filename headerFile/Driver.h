@@ -1,5 +1,8 @@
 #pragma once
 #include <vector>
+#include "../headerFile/Vehicle.h"
+#include "../headerFile/Trip.h"
+
 using namespace std;
 class Driver {
     private:

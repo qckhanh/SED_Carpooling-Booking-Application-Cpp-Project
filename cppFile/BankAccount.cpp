@@ -19,4 +19,4 @@ void BankAccount::setBankAccountName(const std::string& bankAccountName) { this-
 void BankAccount::setBankAccountNumber(const std::string& bankAccountNumber) { this->bankAccountNumber = bankAccountNumber; }
 void BankAccount::setCVV(const int& CVV) {this->CVV = CVV;}
 void BankAccount::setAccountBalance(const double& accountBalance) { this-> accountBalance = accountBalance;}
-//void BankAccount::setExpireDate(const Date& expireDate) { this->expireDate = expireDate; }
+void BankAccount::setExpireDate(const Date& expireDate) { this->expireDate = expireDate; }
