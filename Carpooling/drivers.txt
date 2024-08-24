@@ -1,0 +1,6 @@
+Khong Quoc Khanh,admin,9999,11,2,2005,0948865333,Hanoi,abc@example.com,CCCD,111xxx
+Khong Quoc Khanh,quockhanh,1102,11,2,2005,0948865333,Hanoi,abc@example.com,CCCD,111xxx
+Khong Quoc Khanh,quockhanh,1102,11,2,2005,0948865333,Hanoi,abc@example.com,CCCD,111xxx
+Khong Quoc Khanh,quockhanh,1102,11,2,2005,0948865333,Hanoi,abc@example.com,CCCD,111xxx
+Khong Quoc Khanh,quockhanh,1102,11,2,2005,0948865333,Hanoi,abc@example.com,CCCD,111xxx
+Khong Quoc Khanh,quockhanh,1102,11,2,2005,0948865333,Hanoi,abc@example.com,CCCD,111xxx

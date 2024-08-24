@@ -1,7 +1,7 @@
 #include "../headerFile/Vehicle.h"
 
 // Constructor
-Vehicle::Vehicle() : model(""), color(""), plateNumber(""), totalSeat(0) {}
+Vehicle::Vehicle(string model, string color, string plateNumber, int totalSeat) : model(model), color(color), plateNumber(plateNumber), totalSeat(totalSeat) {}
 
 // Destructor
 Vehicle::~Vehicle() {}

@@ -1,5 +1,9 @@
 #include "../headerFile/Date.h"
-
+#include <sstream>  // Include for std::ostringstream
+#include <iomanip>
+#include<iostream>
+#include<string>
+using namespace std;
 // Constructor implementation
 Date::Date(int hour, int minute, int second, int day, int month, int year)
     : hour(hour), minute(minute), second(second), day(day), month(month), year(year) {}
@@ -19,3 +23,8 @@ void Date::setSecond(int second) { this->second = second; }
 void Date::setDay(int day) { this->day = day; }
 void Date::setMonth(int month) { this->month = month; }
 void Date::setYear(int year) { this->year = year; }
+
+//method
+
+
+

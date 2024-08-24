@@ -1,6 +1,9 @@
 #include "../headerFile/Passenger.h"
 #include "../headerFile/Trip.h"
 #include <vector>
+#include<iostream>
+#include<utility>
+using namespace std;
 
 //Constructor
 Passenger::Passenger() : passengerRateScore(0.0f) {}
@@ -10,14 +13,15 @@ Passenger::~Passenger() {};
 
 //Getter methods
 double Passenger::getPassengerRateScore() const { return passengerRateScore; }
-const std::vector<Trip>& Passenger::getBooking() const { return booking; }
+const std::vector<Trip*>& Passenger::getBooking() const { return totalCarPoolBooking; }
 
 //Setter methods
 void Passenger::setPassengerRateScore(const double& passengerRateScore) { this->passengerRateScore = passengerRateScore; }
-void Passenger::setBooking(const std::vector<Trip>& booking) { this->booking = booking; }
 
 //Member functions
-void Passenger::bookCarpool() {
+void Passenger::bookACarPool(Trip* trip) {
+    trip->addPassengerToTrip(*this);
+    this->totalCarPoolBooking.push_back(trip);
     //Implementation
 }
 

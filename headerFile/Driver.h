@@ -1,42 +1,39 @@
 #pragma once
 #include "Vehicle.h"
 #include <vector>
+#include "../Ra"
 // #include "Vehicle.h"
 // #include "Trip.h"
-
+#include "User.h"
 class Trip;
 class Vehicle;
-
+#include<iostream>
 using namespace std;
-class Driver {
+class Driver: public User{
     private:
         double driverRateScore;
         std::vector<Vehicle> driverVehicles;
-        std::vector<Trip> carpoolList;
-        std::vector<Trip> requests;
+        std::vector<Trip*> running_carpool;
     public:
         //Constructor
         Driver();
-
+        
         //Destrctor
         ~Driver();
 
         //Getter methods
         double getDriverRateScore() const;
         const std::vector<Vehicle>& getDriverVehicles() const;
-        const std::vector<Trip>& getCarpoolList() const;
-        const std::vector<Trip>& getRequests() const;
+        std::vector<Trip*>& getRunningCarpool() ;
 
         //Setter methods
         void setDriverRateScore(const double& driverRateScore);
         void setDriverVehicles(const vector<Vehicle>& driverVehicles);
-        void setCarpoolList(const vector<Trip>& carpoolList);
-        void setRequests(const vector<Trip>& requests);
+        void addActiveTrip( Trip *trip);
 
         // Member functions
-        void manageRequest();
-        void createCarpool();
+        void changeStatusOfPassengerInTrip(int tripIndex, int passengerIndex, int value);
         void viewCarpool();
-        void deleteCarpool();
+        void deleteCarpool(int index);
         void updateCarpool();
 };

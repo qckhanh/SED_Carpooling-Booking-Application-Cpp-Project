@@ -4,10 +4,10 @@
 
 class Trip;
 
-class Passenger {
+class Passenger: public User{
     private:
         double passengerRateScore;
-        std::vector<Trip> booking;
+        std::vector<Trip*> totalCarPoolBooking;
     public:
         //Constructor
         Passenger();
@@ -17,13 +17,12 @@ class Passenger {
 
         //Getter methods
         double getPassengerRateScore() const;
-        const std::vector<Trip>& getBooking() const;
+        const std::vector<Trip*>& getBooking() const;
 
         //Setter methods
         void setPassengerRateScore(const double& passengerRateScore);
-        void setBooking(const std::vector<Trip>& booking);
 
         //Member function
-        void bookCarpool();
+        void bookACarPool(Trip* trip);
         void cancelBooking();
 };

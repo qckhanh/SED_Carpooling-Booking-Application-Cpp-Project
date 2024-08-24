@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-
+using namespace std;
 class Vehicle {
 private:
     std::string model;
@@ -11,7 +11,8 @@ private:
 
 public:
     //constructor:
-    Vehicle();
+    Vehicle(): totalSeat(0) {}
+    Vehicle(string model, string color, string plateNumber, int totalSeat);
     
     //destructor:
     ~Vehicle();

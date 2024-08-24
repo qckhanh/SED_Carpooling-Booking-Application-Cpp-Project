@@ -1,4 +1,6 @@
 #include "../headerFile/User.h"
+#include <sstream>  // Include for std::ostringstream
+#include <iostream> // Include for std::cout
 
 // Constructor
 User::User() : creditPoint(0.0f), isVerified(false) {}
@@ -52,3 +54,4 @@ void User::verifyAccount() {
 void User::manageInfo() {
     // Implementation goes here
 }
+

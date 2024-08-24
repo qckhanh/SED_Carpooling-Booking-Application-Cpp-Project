@@ -3,8 +3,10 @@
 #include "Date.h"
 #include "BankAccount.h"
 #include "IdentityCard.h"
+#include<iostream>
+using namespace std;
 class User {
-private:
+protected:
     std::string username;
     std::string password;
     std::string fullName;
@@ -24,7 +26,7 @@ public:
     User();
 
     // Destructor
-    ~User();
+    virtual ~User();
 
     // Getters
     std::string getUsername() const;
@@ -61,4 +63,21 @@ public:
     void rating();
     void verifyAccount();
     void manageInfo();
+    void toString() const {
+
+        cout << "Full Name: " << fullName << "\n";
+        cout << "Username: " << username << "\n";
+        cout << "Password: " << password << "\n";
+        cout << "Date of Birth: " << DOB.getDay() << DOB.getMonth() << DOB.getYear() << "\n";
+        cout << "Phone Number: " << phoneNumber << "\n";
+        cout << "Address: " << address << "\n";
+        cout << "Email: " << email << "\n";
+        cout << "ID Type: " << idType << "\n";
+        cout << "ID Number: " << idNumber << "\n";
+        cout << "Credit Point: " << creditPoint << "\n";
+        cout << "Verified: " << (isVerified ? "Yes" : "No") << "\n";
+            //<< "Bank Account: " << bankAccount.toString() << "\n"
+            //<< "Identity Card: " << card.toString() << "\n";
+
+    }
 };
