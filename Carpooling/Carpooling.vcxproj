@@ -139,7 +139,7 @@
     <ClInclude Include="..\headerFile\Vehicle.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="Database.h" />
-    <ClInclude Include="Rate.h" />
+    <ClInclude Include="Feedback.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\cppFile\Admin.cpp" />
@@ -155,12 +155,16 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Rate.cpp" />
+    <ClCompile Include="Feedback.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="admins.txt" />
     <Text Include="drivers.txt" />
+    <Text Include="feedbacks.txt" />
     <Text Include="passenger.txt" />
+    <Text Include="trips.txt" />
     <Text Include="userLoginData.txt" />
+    <Text Include="vehicles.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

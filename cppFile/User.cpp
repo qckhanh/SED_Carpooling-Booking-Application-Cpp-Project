@@ -22,9 +22,14 @@ float User::getCreditPoint() const { return creditPoint; }
 bool User::getIsVerified() const { return isVerified; }
 BankAccount User::getBankAccount() const { return bankAccount; }
 IdentityCard User::getCard() const { return card; }
-
+double User::getRateScore() {
+    return this->feedbacks.getAverageRate();
+}
 // Setters
-void User::setUsername(const std::string& username) { this->username = username; }
+void User::setUsername(const std::string& username) { 
+    this->username = username; 
+    this->feedbacks.setOwner_username(username);
+}
 void User::setPassword(const std::string& password) { this->password = password; }
 void User::setFullName(const std::string& fullName) { this->fullName = fullName; }
 void User::setDOB(const Date& DOB) { this->DOB = DOB; }
@@ -37,7 +42,7 @@ void User::setCreditPoint(float creditPoint) { this->creditPoint = creditPoint; 
 void User::setIsVerified(bool isVerified) { this->isVerified = isVerified; }
 void User::setBankAccount(const BankAccount& bankAccount) { this->bankAccount = bankAccount; }
 void User::setCard(const IdentityCard& card) { this->card = card; }
-
+void User::setFeedback(const Feedback& feedback) { this->feedbacks = feedback; }
 // Member functions
 void User::search() {
     // Implementation goes here

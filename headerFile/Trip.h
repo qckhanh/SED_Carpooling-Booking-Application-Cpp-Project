@@ -8,56 +8,62 @@
 #include "Passenger.h"
 #include "Vehicle.h"
 #include "Date.h"
-#include<utility>
+#include <utility>
 #include <sstream> // Include for stringstream
 
 class Passenger;
 
 class Trip {
 private:
-    Driver *driver;
-    Vehicle *vehicle;
+    std::string driver_username;
+    std::string vehicle_plate;
     Date start;
     Date end;
     std::string startLocation;
     std::string endLocation;
     int availableSeat;
-    std::vector<std::pair<Passenger, int>> passengers;
+    std::vector<std::pair<std::string, int>> passengers; // Stores <passenger_username, status>
     std::string referenceID;
 
 public:
-    //constructor
+    // Constructor
     Trip();
 
-    //destructor
+    // Destructor
     ~Trip();
 
     // Setters
-    void setDriver( Driver *driver);
-    void setVehicle( Vehicle* vehicle);
-    void setStart(const Date &start);
-    void setEnd(const Date &end);
-    void setStartLocation(const std::string &startLocation);
-    void setEndLocation(const std::string &endLocation);
+    void setDriver(const std::string& driver_username);
+    void setVehicle(const std::string& vehicle_plate);
+    void setStart(const Date& start);
+    void setEnd(const Date& end);
+    void setStartLocation(const std::string& startLocation);
+    void setEndLocation(const std::string& endLocation);
     void setAvailableSeat(int availableSeat);
-    void setPassengers(const std::pair<Passenger, int>& passengers);
-    void setReferenceID(const std::string &referenceID);
+    void setPassengers(const std::vector<std::pair<std::string, int>>& passengers);
+    void setReferenceID(const std::string& referenceID);
+
+    // New Setter for Specific Passenger Status
+    void setPassengerStatus(const std::string& passenger_username, int status);
 
     // Getters
-    Driver* getDriver() ;
-    Vehicle* getVehicle();
+    std::string getDriver() const;
+    std::string getVehicle() const;
     Date getStart() const;
     Date getEnd() const;
     std::string getStartLocation() const;
     std::string getEndLocation() const;
     int getAvailableSeat() const;
-    std::vector<std::pair<Passenger, int>>& getPassengers();
+    std::vector<std::pair<std::string, int>>& getPassengers();
     std::string getReferenceID() const;
 
-    //methods
-    void addPassengerToTrip(Passenger& passenger);
+    // New Getter for Specific Passenger Status
+    int getPassengerStatus(const std::string& passenger_username) const;
+
+    // Methods
+    void addPassengerToTrip(const std::string& passenger_username, int status);
     void changeStatusPassenger(int index, int value);
-    string toString();
+    std::string toString();
 
 };
 

@@ -4,6 +4,7 @@
 #include "BankAccount.h"
 #include "IdentityCard.h"
 #include<iostream>
+#include "../Carpooling/Feedback.h"
 using namespace std;
 class User {
 protected:
@@ -19,7 +20,9 @@ protected:
     float creditPoint;
     bool isVerified;
     BankAccount bankAccount; 
-    IdentityCard card; 
+    IdentityCard card;
+    Feedback feedbacks;
+
 
 public:
     // Constructor
@@ -42,6 +45,8 @@ public:
     bool getIsVerified() const;
     BankAccount getBankAccount() const;
     IdentityCard getCard() const;
+    double getRateScore();
+
 
     // Setters
     void setUsername(const std::string& username);
@@ -57,6 +62,7 @@ public:
     void setIsVerified(bool isVerified);
     void setBankAccount(const BankAccount& bankAccount);
     void setCard(const IdentityCard& card);
+    void setFeedback(const Feedback& feedback);
 
     // Member functions
     void search();
@@ -65,17 +71,17 @@ public:
     void manageInfo();
     void toString() const {
 
-        cout << "Full Name: " << fullName << "\n";
-        cout << "Username: " << username << "\n";
-        cout << "Password: " << password << "\n";
-        cout << "Date of Birth: " << DOB.getDay() << DOB.getMonth() << DOB.getYear() << "\n";
-        cout << "Phone Number: " << phoneNumber << "\n";
-        cout << "Address: " << address << "\n";
-        cout << "Email: " << email << "\n";
-        cout << "ID Type: " << idType << "\n";
-        cout << "ID Number: " << idNumber << "\n";
-        cout << "Credit Point: " << creditPoint << "\n";
-        cout << "Verified: " << (isVerified ? "Yes" : "No") << "\n";
+        cout << "Full Name: " << fullName << " -- ";
+        cout << "Username: " << username << " -- ";
+        cout << "Password: " << password << " -- ";
+        cout << "Date of Birth: " << DOB.getDay() << DOB.getMonth() << DOB.getYear() << " -- ";
+        cout << "Phone Number: " << phoneNumber << " -- ";
+        cout << "Address: " << address << " -- ";
+        cout << "Email: " << email << " -- ";
+        cout << "ID Type: " << idType << " -- ";
+        cout << "ID Number: " << idNumber << " -- ";
+        cout << "Credit Point: " << creditPoint << " -- ";
+        cout << "Verified: " << (isVerified ? "Yes" : "No") <<endl;
             //<< "Bank Account: " << bankAccount.toString() << "\n"
             //<< "Identity Card: " << card.toString() << "\n";
 

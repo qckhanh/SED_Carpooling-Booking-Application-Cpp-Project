@@ -4,9 +4,11 @@
 class Application
 {
 private:
+	User* currentUser;
 	Driver* driver;
 	Passenger* passenger;
 	Database db;
+	string userType;
 public:
 
 	Application();
@@ -16,4 +18,9 @@ public:
 	bool signIn();
 	void viewAsGuest();
 	void viewDriver();
+	void deleteDriver(int index);
+	void menu_Driver();
+	void menu_Passenger();
+	void menu_Admin();
+	void menu_Guest();
 };

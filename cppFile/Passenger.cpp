@@ -6,25 +6,28 @@
 using namespace std;
 
 //Constructor
-Passenger::Passenger() : passengerRateScore(0.0f) {}
+Passenger::Passenger(){
+}
 
 //Destructor
 Passenger::~Passenger() {};
 
 //Getter methods
-double Passenger::getPassengerRateScore() const { return passengerRateScore; }
-const std::vector<Trip*>& Passenger::getBooking() const { return totalCarPoolBooking; }
+
+const std::vector<Trip>& Passenger::getBooking() const { return totalCarPoolBooking; }
 
 //Setter methods
-void Passenger::setPassengerRateScore(const double& passengerRateScore) { this->passengerRateScore = passengerRateScore; }
 
 //Member functions
-void Passenger::bookACarPool(Trip* trip) {
-    trip->addPassengerToTrip(*this);
-    this->totalCarPoolBooking.push_back(trip);
-    //Implementation
+void Passenger::bookACarPool(Trip trip) {
+    trip.addPassengerToTrip(username, 0);
+    setTotalCarPoolBooking(trip);
 }
 
 void Passenger::cancelBooking() {
     //Implementation
+}
+
+void Passenger::setTotalCarPoolBooking(Trip trip) {
+    totalCarPoolBooking.push_back(trip);
 }

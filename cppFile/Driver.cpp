@@ -5,36 +5,43 @@
 #include<utility>
 using namespace std;
 //Constructor
-Driver::Driver() : driverRateScore(0.0f) {}
+Driver::Driver(){
+    this->feedbacks.setOwner_username(this->username);
+}
 
 //Destructor
 Driver::~Driver() {}
 
 //Getter methods
-double Driver::getDriverRateScore() const { return driverRateScore; }
 const std::vector<Vehicle>& Driver::getDriverVehicles() const { return driverVehicles; }
- std::vector<Trip*>& Driver::getRunningCarpool()  { return running_carpool; }
-
+ std::vector<Trip>& Driver::getRunningCarpool()  { return running_carpool; }
+ Vehicle& Driver::getVehicleFromIndex(int index) {
+     return driverVehicles[index];
+ }
 //Setter methoods
-void Driver::setDriverRateScore(const double& driverRateScore) { this->driverRateScore = driverRateScore; }
-void Driver::setDriverVehicles(const std::vector<Vehicle>& driverVehicles) { this->driverVehicles = driverVehicles; }
-
-void Driver::addActiveTrip(Trip *trip) { 
-    trip->setDriver(this);
-    running_carpool.push_back(trip);
+void Driver::setDriverVehicles(const Vehicle& vehicles) { driverVehicles.push_back(vehicles); }
+void Driver::addActiveTrip(Trip trip) { 
+    trip.setDriver(username);
+    setRunningCarpool(trip);
 }
 
+void Driver::setRunningCarpool(Trip trip) {
+    this->running_carpool.push_back(trip);
+}
 //Member functions
 
 void Driver::changeStatusOfPassengerInTrip(int tripIndex, int passengerIndex, int value) {
-    this->running_carpool[tripIndex]->changeStatusPassenger(passengerIndex, value);
+    running_carpool[tripIndex].changeStatusPassenger(passengerIndex, value);
+}
+
+void Driver::viewVehicle() {
+    for (auto& x : driverVehicles) x.toString();
 }
 
 
-
 void Driver::viewCarpool() {
-    for (const auto& currentCarpool : running_carpool) {
-        cout << currentCarpool->toString() << endl;
+    for ( auto currentCarpool : running_carpool) {
+        cout << currentCarpool.toString() << endl;
     }
 }
 

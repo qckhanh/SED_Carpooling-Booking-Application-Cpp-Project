@@ -51,7 +51,7 @@
     <ClInclude Include="Database.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Rate.h">
+    <ClInclude Include="Feedback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -95,7 +95,7 @@
     <ClCompile Include="Database.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Rate.cpp">
+    <ClCompile Include="Feedback.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -107,6 +107,18 @@
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="passenger.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="admins.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="trips.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="vehicles.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="feedbacks.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

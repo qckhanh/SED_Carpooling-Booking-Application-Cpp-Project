@@ -1,89 +1,138 @@
 #include "../headerFile/Trip.h"
-#include<utility>
-#include<iostream>
-using namespace std;
+#include <iostream>
+
 // Constructor
-Trip::Trip()
-    : availableSeat(0), startLocation(""), endLocation(""), referenceID(""), driver(nullptr), vehicle(nullptr) {}
+Trip::Trip() : availableSeat(0) {}
 
 // Destructor
 Trip::~Trip() {}
 
-// Setter methods
-void Trip::setDriver( Driver* driver) { 
-    this->driver = driver;
+// Setters
+void Trip::setDriver(const std::string& driver_username) {
+    this->driver_username = driver_username;
 }
-void Trip::setVehicle( Vehicle* vehicle) { 
-    this->availableSeat = vehicle->getTotalSeat();
-    this->vehicle = vehicle; 
-}
-void Trip::setStart(const Date &start) { this->start = start; }
-void Trip::setEnd(const Date &end) { this->end = end; }
-void Trip::setStartLocation(const std::string &startLocation) { this->startLocation = startLocation; }
-void Trip::setEndLocation(const std::string &endLocation) { this->endLocation = endLocation; }
-void Trip::setAvailableSeat(int availableSeat) { this->availableSeat = availableSeat; }
-void Trip::setPassengers(const pair<Passenger, int> &passengers) { 
-    this->passengers.push_back(passengers);
-}
-void Trip::setReferenceID(const std::string &referenceID) { this->referenceID = referenceID; }
 
-// Getter methods
-Driver* Trip::getDriver()  { return driver; }
-Vehicle* Trip::getVehicle() { return vehicle; }
-Date Trip::getStart() const { return start; }
-Date Trip::getEnd() const { return end; }
-std::string Trip::getStartLocation() const { return startLocation; }
-std::string Trip::getEndLocation() const { return endLocation; }
-int Trip::getAvailableSeat() const { return availableSeat; }
-std::vector<std::pair<Passenger, int>>& Trip::getPassengers() { return passengers; }
-std::string Trip::getReferenceID() const { return referenceID; }
-
-
-void Trip::addPassengerToTrip(Passenger& passenger) {
-    this->passengers.push_back(make_pair(passenger, 0));
-    this->availableSeat--;
+void Trip::setVehicle(const std::string& vehicle_plate) {
+    this->vehicle_plate = vehicle_plate;
 }
+
+void Trip::setStart(const Date& start) {
+    this->start = start;
+}
+
+void Trip::setEnd(const Date& end) {
+    this->end = end;
+}
+
+void Trip::setStartLocation(const std::string& startLocation) {
+    this->startLocation = startLocation;
+}
+
+void Trip::setEndLocation(const std::string& endLocation) {
+    this->endLocation = endLocation;
+}
+
+void Trip::setAvailableSeat(int availableSeat) {
+    this->availableSeat = availableSeat;
+}
+
+void Trip::setPassengers(const std::vector<std::pair<std::string, int>>& passengers) {
+    this->passengers = passengers;
+}
+
+void Trip::setReferenceID(const std::string& referenceID) {
+    this->referenceID = referenceID;
+}
+
+// New Setter for Specific Passenger Status
+void Trip::setPassengerStatus(const std::string& passenger_username, int status) {
+    for (auto& passenger : passengers) {
+        if (passenger.first == passenger_username) {
+            passenger.second = status;
+            return;
+        }
+    }
+    std::cerr << "Passenger not found: " << passenger_username << std::endl;
+}
+
+// Getters
+std::string Trip::getDriver() const {
+    return driver_username;
+}
+
+std::string Trip::getVehicle() const {
+    return vehicle_plate;
+}
+
+Date Trip::getStart() const {
+    return start;
+}
+
+Date Trip::getEnd() const {
+    return end;
+}
+
+std::string Trip::getStartLocation() const {
+    return startLocation;
+}
+
+std::string Trip::getEndLocation() const {
+    return endLocation;
+}
+
+int Trip::getAvailableSeat() const {
+    return availableSeat;
+}
+
+std::vector<std::pair<std::string, int>>& Trip::getPassengers() {
+    return passengers;
+}
+
+std::string Trip::getReferenceID() const {
+    return referenceID;
+}
+
+// New Getter for Specific Passenger Status
+int Trip::getPassengerStatus(const std::string& passenger_username) const {
+    for (const auto& passenger : passengers) {
+        if (passenger.first == passenger_username) {
+            return passenger.second;
+        }
+    }
+    std::cerr << "Passenger not found: " << passenger_username << std::endl;
+    return -1; // Return a special value indicating that the passenger was not found
+}
+
+// Methods
+void Trip::addPassengerToTrip(const std::string& passenger_username, int status) {
+    passengers.push_back(std::make_pair(passenger_username, status));
+}
+
 void Trip::changeStatusPassenger(int index, int value) {
-    passengers[index].second = value;
+    if (index >= 0 && index < passengers.size()) {
+        passengers[index].second = value;
+    }
+    else {
+        std::cerr << "Invalid index: " << index << std::endl;
+    }
 }
-string Trip::toString() {
-        std::ostringstream oss;
 
-        // Driver information
-        if (driver != nullptr) {
-            oss << "Driver: " << driver->getFullName() << " (" << driver->getUsername() << ")\n";
-        }
-        else {
-            oss << "Driver: Not assigned\n";
-        }
+std::string Trip::toString() {
+    std::stringstream ss;
+    ss << "Trip [Driver: " << driver_username
+        << ", Vehicle: " << vehicle_plate
+    /*    << ", Start: " << start.toString()
+        << ", End: " << end.toString()*/
+        << ", Start Location: " << startLocation
+        << ", End Location: " << endLocation
+        << ", Available Seats: " << availableSeat
+        << ", Reference ID: " << referenceID
+        << ", Passengers: [";
 
-        // Vehicle information
-        if (vehicle != nullptr) {
-            oss << "Vehicle: " << vehicle->getModel() << " (" << vehicle->getPlateNumber() << ")\n";
-        }
-        else {
-            oss << "Vehicle: Not assigned\n";
-        }
+    for (const auto& passenger : passengers) {
+        ss << "(" << passenger.first << ", " << passenger.second << "), ";
+    }
 
-        // Date information
-        oss << "Start Date: " << start.getDay() << "\n"; // Assuming Date has a toString method
-        oss << "End Date: " << end.getDay() << "\n";
-
-        // Location information
-        oss << "Start Location: " << startLocation << "\n";
-        oss << "End Location: " << endLocation << "\n";
-
-        // Available seats
-        oss << "Available Seats: " << availableSeat << "\n";
-
-        // Passenger information
-        oss << "Passengers:\n";
-        for (const pair<Passenger, int> & p : passengers) {
-            oss << "  - " << p.first.getFullName() << " (Status: " << p.second << ")\n"; // Assuming Passenger has a getName method
-        }
-
-        // Reference ID
-        oss << "Reference ID: " << referenceID << "\n";
-
-        return oss.str();
+    ss << "]]";
+    return ss.str();
 }

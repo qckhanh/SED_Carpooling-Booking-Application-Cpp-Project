@@ -8,9 +8,11 @@ int main(){
 	
 	
 	Application CarPoolSystem;
-
-	system("cls");
-	cout << "Welcome";
+	
+	/*CarPoolSystem.viewDriver();
+	CarPoolSystem.deleteDriver(0);
+	cout << "Delete";
+	CarPoolSystem.viewDriver();*/
 
 	//CarPoolSystem.viewDriver();
 	

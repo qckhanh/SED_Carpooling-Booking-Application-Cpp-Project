@@ -1,7 +1,7 @@
 #pragma once
 #include "Vehicle.h"
 #include <vector>
-#include "../Ra"
+#include "../Carpooling/Feedback.h"
 // #include "Vehicle.h"
 // #include "Trip.h"
 #include "User.h"
@@ -11,9 +11,8 @@ class Vehicle;
 using namespace std;
 class Driver: public User{
     private:
-        double driverRateScore;
         std::vector<Vehicle> driverVehicles;
-        std::vector<Trip*> running_carpool;
+        std::vector<Trip> running_carpool;
     public:
         //Constructor
         Driver();
@@ -22,18 +21,19 @@ class Driver: public User{
         ~Driver();
 
         //Getter methods
-        double getDriverRateScore() const;
         const std::vector<Vehicle>& getDriverVehicles() const;
-        std::vector<Trip*>& getRunningCarpool() ;
+        std::vector<Trip>& getRunningCarpool();
+        Vehicle& getVehicleFromIndex(int index);
 
         //Setter methods
-        void setDriverRateScore(const double& driverRateScore);
-        void setDriverVehicles(const vector<Vehicle>& driverVehicles);
-        void addActiveTrip( Trip *trip);
+        void setDriverVehicles(const Vehicle& vehicles);
+        void addActiveTrip( Trip trip);
+        void setRunningCarpool(Trip trip);
 
         // Member functions
         void changeStatusOfPassengerInTrip(int tripIndex, int passengerIndex, int value);
         void viewCarpool();
+        void viewVehicle();
         void deleteCarpool(int index);
         void updateCarpool();
 };

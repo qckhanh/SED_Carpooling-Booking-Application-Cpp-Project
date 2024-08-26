@@ -14,32 +14,34 @@
 #include <vector>
 using namespace std;
 
-class Database
-{
+class Database {
 private:
-    vector<Passenger> passengers;
-    vector<Driver> drivers;
-    vector<Admin> admins;
-    vector<Vehicle> vehicles;
-    vector<Trip> trips;
+    std::vector<Passenger> passengers;
+    std::vector<Driver> drivers;
+    std::vector<Admin> admins;
+    std::vector<Vehicle> vehicles;
+    std::vector<Trip> trips;
+    std::vector<Feedback> feedbacks;
 
 public:
     // Constructor
     Database();
-  
+
     // Getters
-    vector<Passenger>& getPassengers();
-    vector<Driver>& getDrivers();
-    vector<Admin>& getAdmins();
-    vector<Vehicle>& getVehicles();
-    vector<Trip>& getTrips();
+    std::vector<Passenger>& getPassengers();
+    std::vector<Driver>& getDrivers();
+    std::vector<Admin>& getAdmins();
+    std::vector<Vehicle>& getVehicles();
+    std::vector<Trip>& getTrips();
+    std::vector<Feedback>& getFeedbacks(); // New getter for Feedbacks
 
     // Setters
-    void setPassengers(const vector<Passenger>& newPassengers);
-    void setDrivers(const vector<Driver>& newDrivers);
-    void setAdmins(const vector<Admin>& newAdmins);
-    void setVehicles(const vector<Vehicle>& newVehicles);
-    void setTrips(const vector<Trip>& newTrips);
+    void setPassengers(const std::vector<Passenger>& newPassengers);
+    void setDrivers(const std::vector<Driver>& newDrivers);
+    void setAdmins(const std::vector<Admin>& newAdmins);
+    void setVehicles(const std::vector<Vehicle>& newVehicles);
+    void setTrips(const std::vector<Trip>& newTrips);
+    void setFeedbacks(const std::vector<Feedback>& newFeedbacks); // New setter for Feedbacks
 
     // CRUD operations for Passengers
     void addPassenger(const Passenger& passenger);
@@ -71,6 +73,15 @@ public:
     bool updateTrip(int index, const Trip& updatedTrip);
     bool deleteTrip(int index);
 
+    // CRUD operations for Feedbacks
+    void addFeedback(const Feedback& feedback);
+    Feedback* getFeedbackByIndex(int index);
+    bool updateFeedback(int index, const Feedback& updatedFeedback);
+    bool deleteFeedback(int index);
+
     //methods
-    void loadData();
+    void loadDriver();
+    void loadVehicles();
+    void loadTrips();
+    void loadPassenger();
 };
