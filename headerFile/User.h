@@ -21,7 +21,7 @@ protected:
     bool isVerified;
     BankAccount bankAccount; 
     IdentityCard card;
-    Feedback feedbacks;
+    Feedback* feedbacks;
 
 
 public:
@@ -46,6 +46,7 @@ public:
     BankAccount getBankAccount() const;
     IdentityCard getCard() const;
     double getRateScore();
+    Feedback* getFeedback();
 
 
     // Setters
@@ -62,7 +63,7 @@ public:
     void setIsVerified(bool isVerified);
     void setBankAccount(const BankAccount& bankAccount);
     void setCard(const IdentityCard& card);
-    void setFeedback(const Feedback& feedback);
+    void setFeedback(Feedback* feedback);
 
     // Member functions
     void search();

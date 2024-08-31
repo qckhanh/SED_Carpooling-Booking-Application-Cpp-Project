@@ -8,6 +8,9 @@ Trip::Trip() : availableSeat(0) {}
 Trip::~Trip() {}
 
 // Setters
+void Trip::setStatus(const int status) {
+    this->status = status;
+}
 void Trip::setDriver(const std::string& driver_username) {
     this->driver_username = driver_username;
 }
@@ -44,6 +47,14 @@ void Trip::setReferenceID(const std::string& referenceID) {
     this->referenceID = referenceID;
 }
 
+void Trip::setCost(const float cost) {
+    this->cost = cost;
+}
+
+void Trip::setMinRate(const float minRate) {
+    this->minRate = minRate;
+}
+
 // New Setter for Specific Passenger Status
 void Trip::setPassengerStatus(const std::string& passenger_username, int status) {
     for (auto& passenger : passengers) {
@@ -56,6 +67,9 @@ void Trip::setPassengerStatus(const std::string& passenger_username, int status)
 }
 
 // Getters
+int Trip::getStatus() const {
+    return status;
+}
 std::string Trip::getDriver() const {
     return driver_username;
 }
@@ -92,6 +106,14 @@ std::string Trip::getReferenceID() const {
     return referenceID;
 }
 
+float Trip::getCost() const {
+    return cost;
+}
+
+float Trip::getMinRate() const {
+    return minRate;
+}
+
 // New Getter for Specific Passenger Status
 int Trip::getPassengerStatus(const std::string& passenger_username) const {
     for (const auto& passenger : passengers) {
@@ -121,11 +143,13 @@ std::string Trip::toString() {
     std::stringstream ss;
     ss << "Trip [Driver: " << driver_username
         << ", Vehicle: " << vehicle_plate
-    /*    << ", Start: " << start.toString()
-        << ", End: " << end.toString()*/
+        //<< ", Start: " << start.toString();
+        //<< ", End: " << end.toString()
         << ", Start Location: " << startLocation
         << ", End Location: " << endLocation
         << ", Available Seats: " << availableSeat
+        << ", Min Rate: " << minRate
+        << ", Cost: " << cost
         << ", Reference ID: " << referenceID
         << ", Passengers: [";
 

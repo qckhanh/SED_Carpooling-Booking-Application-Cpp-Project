@@ -1,76 +1,76 @@
 #include "Database.h"
-#include "../headerFile/Date.h"
+
 // Constructor
 Database::Database() {}
 
 // Getters
-std::vector<Passenger>& Database::getPassengers() {
+std::vector<Passenger*>& Database::getPassengers() {
     return passengers;
 }
 
-std::vector<Driver>& Database::getDrivers() {
+std::vector<Driver*>& Database::getDrivers() {
     return drivers;
 }
 
-std::vector<Admin>& Database::getAdmins() {
+std::vector<Admin*>& Database::getAdmins() {
     return admins;
 }
 
-std::vector<Vehicle>& Database::getVehicles() {
+std::vector<Vehicle*>& Database::getVehicles() {
     return vehicles;
 }
 
-std::vector<Trip>& Database::getTrips() {
+std::vector<Trip*>& Database::getTrips() {
     return trips;
 }
 
-std::vector<Feedback>& Database::getFeedbacks() {
+std::vector<Feedback*>& Database::getFeedbacks() {
     return feedbacks;
 }
 
 // Setters
-void Database::setPassengers(const std::vector<Passenger>& newPassengers) {
+void Database::setPassengers(const std::vector<Passenger*>& newPassengers) {
     passengers = newPassengers;
 }
 
-void Database::setDrivers(const std::vector<Driver>& newDrivers) {
+void Database::setDrivers(const std::vector<Driver*>& newDrivers) {
     drivers = newDrivers;
 }
 
-void Database::setAdmins(const std::vector<Admin>& newAdmins) {
+void Database::setAdmins(const std::vector<Admin*>& newAdmins) {
     admins = newAdmins;
 }
 
-void Database::setVehicles(const std::vector<Vehicle>& newVehicles) {
+void Database::setVehicles(const std::vector<Vehicle*>& newVehicles) {
     vehicles = newVehicles;
 }
 
-void Database::setTrips(const std::vector<Trip>& newTrips) {
+void Database::setTrips(const std::vector<Trip*>& newTrips) {
     trips = newTrips;
 }
 
-void Database::setFeedbacks(const std::vector<Feedback>& newFeedbacks) {
+void Database::setFeedbacks(const std::vector<Feedback*>& newFeedbacks) {
     feedbacks = newFeedbacks;
 }
 
 // CRUD operations for Passengers
-void Database::addPassenger(const Passenger& passenger) {
+void Database::addPassenger(Passenger* passenger) {
     passengers.push_back(passenger);
 }
 
 Passenger* Database::getPassengerByIndex(int index) {
     if (index >= 0 && index < passengers.size()) {
-        return &passengers[index];
+        return passengers[index];
     }
-    return nullptr; // Return nullptr if index is out of range
+    return nullptr;
 }
 
-bool Database::updatePassenger(int index, const Passenger& updatedPassenger) {
+bool Database::updatePassenger(int index, Passenger* updatedPassenger) {
     if (index >= 0 && index < passengers.size()) {
         passengers[index] = updatedPassenger;
         return true;
     }
-    return false; // Return false if index is out of range
+    return false;
 }
 
 bool Database::deletePassenger(int index) {
@@ -78,27 +78,27 @@ bool Database::deletePassenger(int index) {
         passengers.erase(passengers.begin() + index);
         return true;
     }
-    return false; // Return false if index is out of range
+    return false;
 }
 
 // CRUD operations for Drivers
-void Database::addDriver(const Driver& driver) {
+void Database::addDriver(Driver* driver) {
     drivers.push_back(driver);
 }
 
 Driver* Database::getDriverByIndex(int index) {
     if (index >= 0 && index < drivers.size()) {
-        return &drivers[index];
+        return drivers[index];
     }
-    return nullptr; // Return nullptr if index is out of range
+    return nullptr;
 }
 
-bool Database::updateDriver(int index, const Driver& updatedDriver) {
+bool Database::updateDriver(int index, Driver* updatedDriver) {
     if (index >= 0 && index < drivers.size()) {
         drivers[index] = updatedDriver;
         return true;
     }
-    return false; // Return false if index is out of range
+    return false;
 }
 
 bool Database::deleteDriver(int index) {
@@ -106,27 +106,27 @@ bool Database::deleteDriver(int index) {
         drivers.erase(drivers.begin() + index);
         return true;
     }
-    return false; // Return false if index is out of range
+    return false;
 }
 
 // CRUD operations for Admins
-void Database::addAdmin(const Admin& admin) {
+void Database::addAdmin(Admin* admin) {
     admins.push_back(admin);
 }
 
 Admin* Database::getAdminByIndex(int index) {
     if (index >= 0 && index < admins.size()) {
-        return &admins[index];
+        return admins[index];
     }
-    return nullptr; // Return nullptr if index is out of range
+    return nullptr;
 }
 
-bool Database::updateAdmin(int index, const Admin& updatedAdmin) {
+bool Database::updateAdmin(int index, Admin* updatedAdmin) {
     if (index >= 0 && index < admins.size()) {
         admins[index] = updatedAdmin;
         return true;
     }
-    return false; // Return false if index is out of range
+    return false;
 }
 
 bool Database::deleteAdmin(int index) {
@@ -134,27 +134,27 @@ bool Database::deleteAdmin(int index) {
         admins.erase(admins.begin() + index);
         return true;
     }
-    return false; // Return false if index is out of range
+    return false;
 }
 
 // CRUD operations for Vehicles
-void Database::addVehicle(const Vehicle& vehicle) {
+void Database::addVehicle(Vehicle* vehicle) {
     vehicles.push_back(vehicle);
 }
 
 Vehicle* Database::getVehicleByIndex(int index) {
     if (index >= 0 && index < vehicles.size()) {
-        return &vehicles[index];
+        return vehicles[index];
     }
-    return nullptr; // Return nullptr if index is out of range
+    return nullptr;
 }
 
-bool Database::updateVehicle(int index, const Vehicle& updatedVehicle) {
+bool Database::updateVehicle(int index, Vehicle* updatedVehicle) {
     if (index >= 0 && index < vehicles.size()) {
         vehicles[index] = updatedVehicle;
         return true;
     }
-    return false; // Return false if index is out of range
+    return false;
 }
 
 bool Database::deleteVehicle(int index) {
@@ -162,55 +162,66 @@ bool Database::deleteVehicle(int index) {
         vehicles.erase(vehicles.begin() + index);
         return true;
     }
-    return false; // Return false if index is out of range
+    return false;
 }
 
 // CRUD operations for Trips
-void Database::addTrip(const Trip& trip) {
+void Database::addTrip(Trip* trip) {
     trips.push_back(trip);
 }
 
-Trip* Database::getTripByIndex(int index) {
+Trip* Database::getTripByIndex(int index, int statusValue) {
     if (index >= 0 && index < trips.size()) {
-        return &trips[index];
+        int indexFind = 0;
+        for (auto& tmp : trips) {
+            if (tmp->getStatus() == statusValue) {
+                if (indexFind == index) {
+                    return tmp;
+                }
+                indexFind++;
+            }
+        }
+        return nullptr;
     }
-    return nullptr; // Return nullptr if index is out of range
+    return nullptr;
 }
 
-bool Database::updateTrip(int index, const Trip& updatedTrip) {
+bool Database::updateTrip(int index, Trip* updatedTrip) {
     if (index >= 0 && index < trips.size()) {
         trips[index] = updatedTrip;
         return true;
     }
-    return false; // Return false if index is out of range
+    return false;
 }
 
-bool Database::deleteTrip(int index) {
-    if (index >= 0 && index < trips.size()) {
-        trips.erase(trips.begin() + index);
-        return true;
+bool Database::deleteTrip(Trip* trip) {
+    for (int i = 0; i < (int)trips.size(); i++) {
+        if (trip == trips[i]) {
+            trips.erase(trips.begin() + i);  // Erase only the element at index i
+            return true;
+        }
     }
-    return false; // Return false if index is out of range
+    return false;
 }
 
 // CRUD operations for Feedbacks
-void Database::addFeedback(const Feedback& feedback) {
+void Database::addFeedback(Feedback* feedback) {
     feedbacks.push_back(feedback);
 }
 
 Feedback* Database::getFeedbackByIndex(int index) {
     if (index >= 0 && index < feedbacks.size()) {
-        return &feedbacks[index];
+        return feedbacks[index];
     }
-    return nullptr; // Return nullptr if index is out of range
+    return nullptr;
 }
 
-bool Database::updateFeedback(int index, const Feedback& updatedFeedback) {
+bool Database::updateFeedback(int index, Feedback* updatedFeedback) {
     if (index >= 0 && index < feedbacks.size()) {
         feedbacks[index] = updatedFeedback;
         return true;
     }
-    return false; // Return false if index is out of range
+    return false;
 }
 
 bool Database::deleteFeedback(int index) {
@@ -218,7 +229,7 @@ bool Database::deleteFeedback(int index) {
         feedbacks.erase(feedbacks.begin() + index);
         return true;
     }
-    return false; // Return false if index is out of range
+    return false;
 }
 
 void Database::loadDriver() {
@@ -229,24 +240,26 @@ void Database::loadDriver() {
         std::string item;
         std::vector<std::string> tokens;
 
-        // Split the line by comma and store in vector
-        Driver tmpDriver;
+        // Split the line by commas and store in vector
         while (std::getline(ss, item, ',')) {
             tokens.push_back(item);
         }
 
         if (tokens.size() >= 15) {
+            // Create a new Driver object
+            Driver* tmpDriver = new Driver();
+
             // Extract and set basic user information
-            tmpDriver.setFullName(tokens[0]);
-            tmpDriver.setUsername(tokens[1]);
-            tmpDriver.setPassword(tokens[2]);
+            tmpDriver->setFullName(tokens[0]);
+            tmpDriver->setUsername(tokens[1]);
+            tmpDriver->setPassword(tokens[2]);
             Date tmpDOB(-1, -1, -1, stoi(tokens[3]), stoi(tokens[4]), stoi(tokens[5]));
-            tmpDriver.setDOB(tmpDOB);
-            tmpDriver.setPhoneNumber(tokens[6]);
-            tmpDriver.setAddress(tokens[7]);
-            tmpDriver.setEmail(tokens[8]);
-            tmpDriver.setIdType(tokens[9]);
-            tmpDriver.setIdNumber(tokens[10]);
+            tmpDriver->setDOB(tmpDOB);
+            tmpDriver->setPhoneNumber(tokens[6]);
+            tmpDriver->setAddress(tokens[7]);
+            tmpDriver->setEmail(tokens[8]);
+            tmpDriver->setIdType(tokens[9]);
+            tmpDriver->setIdNumber(tokens[10]);
             BankAccount bankAccount;
             bankAccount.setBankAccountName(tokens[11]);
             bankAccount.setBankAccountNumber(tokens[12]);
@@ -254,18 +267,19 @@ void Database::loadDriver() {
             bankAccount.setAccountBalance(stod(tokens[14]));
             Date expireDate(-1, -1, -1, stoi(tokens[15]), stoi(tokens[16]), stoi(tokens[17]));
             bankAccount.setExpireDate(expireDate);
-            tmpDriver.setBankAccount(bankAccount);
+            tmpDriver->setBankAccount(bankAccount);
 
             // Add the driver to the list of drivers
             drivers.push_back(tmpDriver);
-            
-            cout << "ADDED: " << tmpDriver.getFullName();
+            //cout << tmpDriver->getUsername() << endl;
+
+            //cout << "ADDED: " << tmpDriver->getFullName() << endl;
         }
         else {
             cout << "Error: Incorrect format in line: " << line << endl;
         }
-        cout << std::endl;
     }
+    loadDriver.close();
 }
 
 void Database::loadVehicles() {
@@ -276,30 +290,24 @@ void Database::loadVehicles() {
         std::string item;
         std::vector<std::string> tokens;
 
-        // Split the line by comma and store in vector
-        Vehicle tmpVehicle;
-
+        // Split the line by commas and store in vector
         while (std::getline(ss, item, ',')) {
             tokens.push_back(item);
         }
 
         if (tokens.size() >= 5) {
-            // Extract and set vehicle information
-            tmpVehicle.setOwner_username(tokens[0]); // First token is the owner username
-            tmpVehicle.setModel(tokens[1]);
-            tmpVehicle.setColor(tokens[2]);
-            tmpVehicle.setPlateNumber(tokens[3]);
-            tmpVehicle.setTotalSeat(stoi(tokens[4]));
+            // Create a new Vehicle object
+            Vehicle* tmpVehicle = new Vehicle(tokens[0], tokens[1], tokens[2], tokens[3], stoi(tokens[4]));
 
             // Assign the vehicle to the correct driver based on username
             for (auto& driver : drivers) {
-                if (driver.getUsername() == tmpVehicle.getOwner_username()) {
-                    driver.setDriverVehicles(tmpVehicle);
+                if (driver->getUsername() == tmpVehicle->getOwner_username()) {
+                    driver->addVehicle(tmpVehicle);
                     break;
                 }
             }
             vehicles.push_back(tmpVehicle);
-            cout << "ADDED: " << tmpVehicle.getModel() << " (" << tmpVehicle.getPlateNumber() << ")" << endl;
+            //cout << "ADDED: " << tmpVehicle->getModel() << " (" << tmpVehicle->getPlateNumber() << ")" << endl;
         }
         else {
             cout << "Error: Incorrect format in line: " << line << endl;
@@ -307,36 +315,39 @@ void Database::loadVehicles() {
     }
     loadVehicle.close();
 }
+
 void Database::loadPassenger() {
     fstream loadPassenger("passenger.txt", ios::in);
     string line;
     if (!loadPassenger.is_open()) {
-                std::cerr << "Error opening file: " << "passenger.txt" << std::endl;
-                return;
-     }
+        std::cerr << "Error opening file: " << "passenger.txt" << std::endl;
+        return;
+    }
     while (std::getline(loadPassenger, line)) {
         std::stringstream ss(line);
         std::string item;
         std::vector<std::string> tokens;
 
-        // Split the line by comma and store in vector
-        Passenger tmpPassenger;
+        // Split the line by commas and store in vector
         while (std::getline(ss, item, ',')) {
             tokens.push_back(item);
         }
 
         if (tokens.size() >= 15) {
+            // Create a new Passenger object
+            Passenger* tmpPassenger = new Passenger();
+
             // Extract and set basic user information
-            tmpPassenger.setFullName(tokens[0]);
-            tmpPassenger.setUsername(tokens[1]);
-            tmpPassenger.setPassword(tokens[2]);
+            tmpPassenger->setFullName(tokens[0]);
+            tmpPassenger->setUsername(tokens[1]);
+            tmpPassenger->setPassword(tokens[2]);
             Date tmpDOB(-1, -1, -1, stoi(tokens[3]), stoi(tokens[4]), stoi(tokens[5]));
-            tmpPassenger.setDOB(tmpDOB);
-            tmpPassenger.setPhoneNumber(tokens[6]);
-            tmpPassenger.setAddress(tokens[7]);
-            tmpPassenger.setEmail(tokens[8]);
-            tmpPassenger.setIdType(tokens[9]);
-            tmpPassenger.setIdNumber(tokens[10]);
+            tmpPassenger->setDOB(tmpDOB);
+            tmpPassenger->setPhoneNumber(tokens[6]);
+            tmpPassenger->setAddress(tokens[7]);
+            tmpPassenger->setEmail(tokens[8]);
+            tmpPassenger->setIdType(tokens[9]);
+            tmpPassenger->setIdNumber(tokens[10]);
             BankAccount bankAccount;
             bankAccount.setBankAccountName(tokens[11]);
             bankAccount.setBankAccountNumber(tokens[12]);
@@ -344,17 +355,78 @@ void Database::loadPassenger() {
             bankAccount.setAccountBalance(stod(tokens[14]));
             Date expireDate(-1, -1, -1, stoi(tokens[15]), stoi(tokens[16]), stoi(tokens[17]));
             bankAccount.setExpireDate(expireDate);
-            tmpPassenger.setBankAccount(bankAccount);
+            tmpPassenger->setBankAccount(bankAccount);
 
-            // Add the driver to the list of drivers
+            // Add the passenger to the list of passengers
             passengers.push_back(tmpPassenger);
-            cout << "ADDED: " << tmpPassenger.getFullName();
+
+            //cout << "ADDED: " << tmpPassenger->getFullName() << endl;
         }
         else {
             cout << "Error: Incorrect format in line: " << line << endl;
         }
-        cout << std::endl;
     }
+    loadPassenger.close();
+}
+
+void Database::loadFeedback() {
+    fstream loadPassenger("feedbacks.txt", ios::in);
+    string line;
+    if (!loadPassenger.is_open()) {
+        std::cerr << "Error opening file: " << "feedbacks.txt" << std::endl;
+        return;
+    }
+    while (std::getline(loadPassenger, line)) {
+        std::stringstream ss(line);
+        std::string item;
+        std::vector<std::string> tokens;
+
+        // Split the line by commas and store in vector
+        while (std::getline(ss, item, '~')) {
+            tokens.push_back(item);
+        }
+
+        if (tokens.size() >= 0) {
+            // Create a new Passenger object
+            Feedback* tmpFeedback = new Feedback();
+
+            tmpFeedback->setOwner_username(tokens[0]);
+            tmpFeedback->setAvgRate(-1.0);
+
+            for (int i = 2; i < (int)tokens.size(); i++) {
+                std::stringstream strstr(tokens[i]);
+                std::string item;
+                std::vector<string> cmt;
+                while (std::getline(strstr, item, '*')) {
+                    cmt.push_back(item);
+                    cout << item << "///";
+                }
+                cout << endl;
+                tmpFeedback->addFeedback(cmt[0], cmt[1], std::stoi(cmt[2]));
+            }
+            
+            feedbacks.push_back(tmpFeedback);
+            for (auto& tmp : drivers) {
+                if (tmp->getUsername() == tokens[0]) {
+                    tmp->setFeedback(tmpFeedback);
+                    continue;
+                }
+            }
+            for (auto& tmp : passengers) {
+                if (tmp->getUsername() == tokens[0]) {
+                    tmp->setFeedback(tmpFeedback);
+                    continue;
+
+                }
+            }
+
+            //cout << "ADDED: " << tmpPassenger->getFullName() << endl;
+        }
+        else {
+            cout << "Error: Incorrect format in line: " << line << endl;
+        }
+    }
+    loadPassenger.close();
 }
 
 void Database::loadTrips() {
@@ -377,76 +449,233 @@ void Database::loadTrips() {
 
         if (tokens.size() >= 12) {
             // Create a new Trip object
-            Trip trip;
+            Trip* trip = new Trip();
 
             // Set basic trip information
-            trip.setDriver(tokens[0]);
-            trip.setVehicle(tokens[1]);
-            Date startDate(-1, -1, -1, std::stoi(tokens[2]), std::stoi(tokens[3]), std::stoi(tokens[4]));
-            trip.setStart(startDate);
-            Date endDate(-1, -1, -1, std::stoi(tokens[5]), std::stoi(tokens[6]), std::stoi(tokens[7]));
-            trip.setEnd(endDate);
-            trip.setStartLocation(tokens[8]);
-            trip.setEndLocation(tokens[9]);
-            trip.setAvailableSeat(std::stoi(tokens[10]));
-            trip.setReferenceID(tokens[11]);
+            trip->setStatus(std::stoi(tokens[0]));
+            trip->setDriver(tokens[1]);
+            trip->setVehicle(tokens[2]);
+            Date startDate(-1, -1, -1, std::stoi(tokens[3]), std::stoi(tokens[4]), std::stoi(tokens[5]));
+            trip->setStart(startDate);
+            Date endDate(-1, -1, -1, std::stoi(tokens[6]), std::stoi(tokens[7]), std::stoi(tokens[8]));
+            trip->setEnd(endDate);
+            trip->setStartLocation(tokens[9]);
+            trip->setEndLocation(tokens[10]);
+            trip->setAvailableSeat(std::stoi(tokens[11]));
+            trip->setMinRate(std::stof(tokens[12]));
+            trip->setCost(std::stof(tokens[13]));
+            trip->setReferenceID(tokens[14]);
 
             // Process passengers (if any)
             std::vector<std::pair<std::string, int>> passengers;
-            if (tokens.size() > 12) {
-                std::string passengerData = tokens[12];
-                size_t pos = 0;
-                while ((pos = passengerData.find(',')) != std::string::npos) {
-                    std::string entry = passengerData.substr(0, pos);
-                    size_t colonPos = entry.find(':');
-                    if (colonPos != std::string::npos) {
-                        std::string passenger_username = entry.substr(0, colonPos);
-                        int status = std::stoi(entry.substr(colonPos + 1));
-                        passengers.push_back(std::make_pair(passenger_username, status));
+            if (tokens.size() > 14) {
+                for (int i = 15; i < (int)tokens.size(); i++){
+                    std::string passengerData = tokens[i];
+                    size_t pos = 0;
+                    while ((pos = passengerData.find(',')) != std::string::npos) {
+                        std::string entry = passengerData.substr(0, pos);
+                        size_t colonPos = entry.find(':');
+                        if (colonPos != std::string::npos) {
+                            std::string passenger_username = entry.substr(0, colonPos);
+                            int status = std::stoi(entry.substr(colonPos + 1));
+                            passengers.push_back(std::make_pair(passenger_username, status));
+                        }
+                        passengerData.erase(0, pos + 1);
                     }
-                    passengerData.erase(0, pos + 1);
-                }
-                // Process last entry if it exists
-                if (!passengerData.empty()) {
-                    size_t colonPos = passengerData.find(':');
-                    if (colonPos != std::string::npos) {
-                        std::string passenger_username = passengerData.substr(0, colonPos);
-                        int status = std::stoi(passengerData.substr(colonPos + 1));
-                        passengers.push_back(std::make_pair(passenger_username, status));
+                    // Process last entry if it exists
+                    if (!passengerData.empty()) {
+                        size_t colonPos = passengerData.find(':');
+                        if (colonPos != std::string::npos) {
+                            std::string passenger_username = passengerData.substr(0, colonPos);
+                            int status = std::stoi(passengerData.substr(colonPos + 1));
+                            passengers.push_back(std::make_pair(passenger_username, status));
+                        }
                     }
                 }
             }
-            trip.setPassengers(passengers);
-            trips.push_back(trip);
+            trip->setPassengers(passengers);
+
             // Add the trip to the list of trips
             trips.push_back(trip);
-
+            cout << trip->getReferenceID() << endl;
             // Update the totalCarPoolBooking for the respective passengers
-            for (const auto& currentPassenger : passengers) {
+            for (auto& currentPassenger : passengers) {
                 for (auto& tmpPassenger : this->passengers) {
-                    if (tmpPassenger.getUsername() == currentPassenger.first) {
-                        tmpPassenger.setTotalCarPoolBooking(trip);
-                        cout << tmpPassenger.getUsername() << " " << trip.getReferenceID() << endl;
+                    if (tmpPassenger->getUsername() == currentPassenger.first) {
+                        tmpPassenger->addToTotalCarPoolBooking(trip);
                     }
                 }
             }
 
-            cout << "ADDED TRIP: " << trip.getReferenceID() << endl;
+            //cout << "ADDED TRIP: " << trip->getReferenceID() << endl;
+
+            // Update driver's running carpool
             for (auto& tmpDriver : this->drivers) {
-                if (tmpDriver.getUsername() == trip.getDriver()) {
-                    tmpDriver.setRunningCarpool(trip);
+                if (tmpDriver->getUsername() == trip->getDriver()) {
+                    tmpDriver->setRunningCarpool(trip);
                 }
             }
-            
         }
         else {
-            std::cerr << "Error: Incorrect format in linexx: " << line << std::endl;
+            std::cerr << "Error: Incorrect format in line: " << line << std::endl;
         }
     }
-
     file.close();
 }
 
+void Database::saveDrivers() {
+    std::ofstream saveDriver("drivers.txt", std::ios::out);
+    if (!saveDriver.is_open()) {
+        std::cerr << "Error opening file: drivers.txt" << std::endl;
+        return;
+    }
 
+    for (auto& driver : drivers) {
+            saveDriver << driver->getFullName() << ","
+            << driver->getUsername() << ","
+            << driver->getPassword() << ","
+            << driver->getDOB().getDay() << ","
+            << driver->getDOB().getMonth() << ","
+            << driver->getDOB().getYear() << ","
+            << driver->getPhoneNumber() << ","
+            << driver->getAddress() << ","
+            << driver->getEmail() << ","
+            << driver->getIdType() << ","
+            << driver->getIdNumber() << ","
+            << driver->getBankAccount().getBankAccountName() << ","
+            << driver->getBankAccount().getBankAccountNumber() << ","
+            << driver->getBankAccount().getCVV() << ","
+            << driver->getBankAccount().getAccountBalance() << ","
+            << driver->getBankAccount().getExpireDate().getDay() << ","
+            << driver->getBankAccount().getExpireDate().getMonth() << ","
+            << driver->getBankAccount().getExpireDate().getYear()
+            << std::endl;
+            
 
+    }
+    saveDriver.close();
 
+}
+
+void Database::saveVehicles() {
+    std::ofstream saveVehicle("vehicles.txt", std::ios::out);
+    if (!saveVehicle.is_open()) {
+        std::cerr << "Error opening file: vehicles.txt" << std::endl;
+        return;
+    }
+
+    for (const auto& vehicle : vehicles) {
+        saveVehicle << vehicle->getOwner_username() << ","
+            << vehicle->getModel() << ","
+            << vehicle->getColor() << ","
+            << vehicle->getPlateNumber() << ","
+            << vehicle->getTotalSeat()
+            << std::endl;
+    }
+    saveVehicle.close();
+}
+
+void Database::savePassengers() {
+    std::ofstream savePassenger("passenger.txt", std::ios::out);
+    if (!savePassenger.is_open()) {
+        std::cerr << "Error opening file: passenger.txt" << std::endl;
+        return;
+    }
+
+    for (auto& passenger : passengers) {
+        savePassenger << passenger->getFullName() << ","
+            << passenger->getUsername() << ","
+            << passenger->getPassword() << ","
+            << passenger->getDOB().getDay() << ","
+            << passenger->getDOB().getMonth() << ","
+            << passenger->getDOB().getYear() << ","
+            << passenger->getPhoneNumber() << ","
+            << passenger->getAddress() << ","
+            << passenger->getEmail() << ","
+            << passenger->getIdType() << ","
+            << passenger->getIdNumber() << ","
+            << passenger->getBankAccount().getBankAccountName() << ","
+            << passenger->getBankAccount().getBankAccountNumber() << ","
+            << passenger->getBankAccount().getCVV() << ","
+            << passenger->getBankAccount().getAccountBalance() << ","
+            << passenger->getBankAccount().getExpireDate().getDay() << ","
+            << passenger->getBankAccount().getExpireDate().getMonth() << ","
+            << passenger->getBankAccount().getExpireDate().getYear()
+            << std::endl;
+
+    }
+    savePassenger.close();
+}
+
+void Database::saveTrips() {
+    std::ofstream saveTrip("trips.txt", std::ios::out);
+    if (!saveTrip.is_open()) {
+        std::cerr << "Error opening file: trips.txt" << std::endl;
+        return;
+    }
+
+    for (const auto& trip : trips) {
+   saveTrip << trip->getStatus() <<","
+            << trip->getDriver() << ","
+            << trip->getVehicle() << ","
+            << trip->getStart().getDay() << ","
+            << trip->getStart().getMonth() << ","
+            << trip->getStart().getYear() << ","
+            << trip->getEnd().getDay() << ","
+            << trip->getEnd().getMonth() << ","
+            << trip->getEnd().getYear() << ","
+            << trip->getStartLocation() << ","
+            << trip->getEndLocation() << ","
+            << trip->getAvailableSeat() << ","
+            << trip->getMinRate() << ","
+            << trip->getCost() << ","
+            << trip->getReferenceID();
+
+        // Save passengers and their status (if any)
+        const auto& passengers = trip->getPassengers();
+        if (!passengers.empty()) {
+            saveTrip << ",";
+            for (const auto& passenger : passengers) {
+                saveTrip << passenger.first << ":" << passenger.second << ",";
+            }
+            saveTrip.seekp(-1, std::ios_base::end); // Remove the last comma
+        }
+
+        saveTrip << std::endl;
+    }
+    saveTrip.close();
+}
+
+void Database::saveDataToFile() {
+    saveDrivers();
+    savePassengers();
+    saveVehicles();
+    saveTrips();
+    saveFeedback();
+}
+
+void Database::saveFeedback() {
+    std::ofstream saveFeedbacks("feedbacks.txt", std::ios::out);
+
+    for (auto& tmp : passengers) {
+        saveFeedbacks << tmp->getUsername() << "~"
+            << tmp->getRateScore() << "~";
+
+        for (auto& tmpComment : tmp->getFeedback()->getComments()) {
+            saveFeedbacks << tmpComment.username << "*" << tmpComment.comment << "*" << tmpComment.score << "~";
+        }
+        saveFeedbacks << endl;
+    }
+
+    for (auto& tmp : drivers) {
+        saveFeedbacks << tmp->getUsername() << "~"
+            << tmp->getRateScore() << "~";
+
+        for (auto& tmpComment : tmp->getFeedback()->getComments()) {
+            saveFeedbacks << tmpComment.username << "*" << tmpComment.comment << "*" << tmpComment.score << "~";
+        }
+        saveFeedbacks << endl;
+    }
+    
+    saveFeedbacks.close();
+}

@@ -15,6 +15,7 @@ class Feedback
 {
 private:
 	string owner_username;
+	float avgRate;
 	vector<Comment> feedbacks;
 public:
 	Feedback(string owner_username);
@@ -23,8 +24,9 @@ public:
 	void setOwner_username(const string& username);
 	string getOwner_username();
 	void addFeedback(string username, string comment, int score);
-	vector<Comment>& getFeedbacks();
-	void updateFeedback(string username, string cmt, int score);
-	float getAverageRate();
+	vector<Comment>& getComments();
+	void updateAverageRate();
+	void setAvgRate(float avgRate);
+	float getAvgRate();
 };
 

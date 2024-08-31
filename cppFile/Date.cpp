@@ -25,6 +25,13 @@ void Date::setMonth(int month) { this->month = month; }
 void Date::setYear(int year) { this->year = year; }
 
 //method
-
+void Date::toString() {
+    cout << ((hour == -1) ? 0 : hour) << ":"
+        << ((minute == -1) ? 0 : hour) << ":"
+        << ((second == -1) ? 0 : hour) << ":, "
+        << ((day == -1) ? 0 : hour) << " - "
+        << ((month == -1) ? 0 : hour) << " - "
+        << ((year == -1) ? 0 : hour);
+}
 
 

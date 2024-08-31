@@ -14,7 +14,8 @@
 class Passenger;
 
 class Trip {
-private:
+private:    
+    int status;
     std::string driver_username;
     std::string vehicle_plate;
     Date start;
@@ -22,6 +23,8 @@ private:
     std::string startLocation;
     std::string endLocation;
     int availableSeat;
+    float minRate;
+    float cost;
     std::vector<std::pair<std::string, int>> passengers; // Stores <passenger_username, status>
     std::string referenceID;
 
@@ -33,6 +36,7 @@ public:
     ~Trip();
 
     // Setters
+    void setStatus(const int status);
     void setDriver(const std::string& driver_username);
     void setVehicle(const std::string& vehicle_plate);
     void setStart(const Date& start);
@@ -42,11 +46,13 @@ public:
     void setAvailableSeat(int availableSeat);
     void setPassengers(const std::vector<std::pair<std::string, int>>& passengers);
     void setReferenceID(const std::string& referenceID);
-
+    void setMinRate(const float minRate);
+    void setCost(const float cost);
     // New Setter for Specific Passenger Status
     void setPassengerStatus(const std::string& passenger_username, int status);
 
     // Getters
+    int getStatus() const;
     std::string getDriver() const;
     std::string getVehicle() const;
     Date getStart() const;
@@ -56,7 +62,8 @@ public:
     int getAvailableSeat() const;
     std::vector<std::pair<std::string, int>>& getPassengers();
     std::string getReferenceID() const;
-
+    float getMinRate() const;
+    float getCost() const;
     // New Getter for Specific Passenger Status
     int getPassengerStatus(const std::string& passenger_username) const;
 

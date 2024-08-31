@@ -9,15 +9,8 @@ int main(){
 	
 	Application CarPoolSystem;
 	
-	/*CarPoolSystem.viewDriver();
-	CarPoolSystem.deleteDriver(0);
-	cout << "Delete";
-	CarPoolSystem.viewDriver();*/
-
-	//CarPoolSystem.viewDriver();
+	CarPoolSystem.start();
 	
-
-
 	
 
 	return 0;

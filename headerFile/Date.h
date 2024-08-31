@@ -33,4 +33,5 @@ public:
     void setYear(int year);
 
     //methods
+    void toString();
 };

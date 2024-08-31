@@ -2,6 +2,7 @@
 
 Feedback::Feedback(string owner_username) {
 	this->owner_username = owner_username;
+	this->avgRate = -1.0;
 }
 void Feedback::setOwner_username(const string& username) {
 	this->owner_username = username;
@@ -10,18 +11,23 @@ void Feedback::setOwner_username(const string& username) {
 string Feedback::getOwner_username() {
 	return owner_username;
 }
-void Feedback::updateFeedback(string username, string cmt, int score) {
-	feedbacks.push_back({ username, cmt, score });
-}
-
 void Feedback::addFeedback(string username, string comment, int score){
 	feedbacks.push_back({ username, comment, score });
+	updateAverageRate();
 }
-vector<Comment>& Feedback::getFeedbacks() {
+vector<Comment>& Feedback::getComments() {
 	return feedbacks;
 }
-float Feedback::getAverageRate() {
-	int sum = 0;
+void Feedback::updateAverageRate() {
+	int sum = 0.0;
 	for (int i = 0; i < (int)feedbacks.size(); i++) sum += feedbacks[i].score;
-	return (float)sum / (int)feedbacks.size();
+	this->avgRate = (float)sum / feedbacks.size();
+}
+
+void Feedback::setAvgRate(float avgRate) {
+	this->avgRate = avgRate;
+}
+
+float Feedback::getAvgRate() {
+	return avgRate;
 }

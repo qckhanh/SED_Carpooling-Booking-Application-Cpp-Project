@@ -1,27 +1,28 @@
 #pragma once
 #include <vector>
 #include "Trip.h"
-#include "../Carpooling/Feedback.h";
+#include "../Carpooling/Feedback.h"
 
 class Trip;
 
-class Passenger: public User{
-    private:
-        std::vector<Trip> totalCarPoolBooking;
-    public:
-        //Constructor
-        Passenger();
+class Passenger : public User {
+private:
+    std::vector<Trip*> totalCarPoolBooking;
 
-        //Destructor
-        ~Passenger();
+public:
+    // Constructor
+    Passenger();
 
-        //Getter methods
+    // Destructor
+    ~Passenger();
 
-        const std::vector<Trip>& getBooking() const;
+    // Getter methods
+    const std::vector<Trip*>& getBooking() const;
 
-        //Setter methods
-        void setTotalCarPoolBooking(Trip trip);
-        //Member function
-        void bookACarPool(Trip trip);
-        void cancelBooking();
+    // Setter methods
+    void addToTotalCarPoolBooking(Trip* trip);
+
+    // Member functions
+    void bookACarPool(Trip* trip);
+    void cancelBooking(int index);
 };

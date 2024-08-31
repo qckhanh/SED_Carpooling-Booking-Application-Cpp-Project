@@ -1,8 +1,2 @@
-﻿  Application.cpp
-  Database.cpp
-C:\Users\LENOVO LEGION\Desktop\Workspace\SED_Carpooling_GroupProject\headerFile\Passenger.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\LENOVO LEGION\Desktop\Workspace\SED_Carpooling_GroupProject\headerFile\Passenger.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  main.cpp
-C:\Users\LENOVO LEGION\Desktop\Workspace\SED_Carpooling_GroupProject\headerFile\Passenger.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Generating Code...
+﻿  Trip.cpp
   Carpooling.vcxproj -> C:\Users\LENOVO LEGION\Desktop\Workspace\SED_Carpooling_GroupProject\Carpooling\x64\Debug\Carpooling.exe
