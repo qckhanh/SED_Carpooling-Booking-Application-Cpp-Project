@@ -15,111 +15,111 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\headerFile\Admin.h">
+    <ClInclude Include="headerFile\Admin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\headerFile\BankAccount.h">
+    <ClInclude Include="headerFile\Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\headerFile\Date.h">
+    <ClInclude Include="headerFile\BankAccount.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\headerFile\Driver.h">
+    <ClInclude Include="headerFile\Database.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\headerFile\IdentityCard.h">
+    <ClInclude Include="headerFile\Date.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\headerFile\NonMember.h">
+    <ClInclude Include="headerFile\Driver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\headerFile\Passenger.h">
+    <ClInclude Include="headerFile\Feedback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\headerFile\Trip.h">
+    <ClInclude Include="headerFile\IdentityCard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\headerFile\Vehicle.h">
+    <ClInclude Include="headerFile\NonMember.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\headerFile\User.h">
+    <ClInclude Include="headerFile\Passenger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Application.h">
+    <ClInclude Include="headerFile\Trip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Database.h">
+    <ClInclude Include="headerFile\User.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Feedback.h">
+    <ClInclude Include="headerFile\Vehicle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\cppFile\Admin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cppFile\BankAccount.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cppFile\Date.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cppFile\Driver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cppFile\IdentityCard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cppFile\NonMember.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cppFile\Passenger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cppFile\Trip.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cppFile\User.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cppFile\Vehicle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Application.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Database.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Feedback.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <Text Include="Data\admins.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Data\drivers.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Data\feedbacks.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Data\passenger.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Data\trips.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Data\userLoginData.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Data\vehicles.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="userLoginData.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="drivers.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="passenger.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="admins.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="trips.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="vehicles.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="feedbacks.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
+    <ClCompile Include="cppFile\Admin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cppFile\Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cppFile\BankAccount.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cppFile\Database.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cppFile\Date.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cppFile\Driver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cppFile\Feedback.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cppFile\IdentityCard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cppFile\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cppFile\NonMember.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cppFile\Passenger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cppFile\Trip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cppFile\User.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cppFile\Vehicle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

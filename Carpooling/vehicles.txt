@@ -1,5 +1,0 @@
-lamdao, Toyota Camry,Red,ABCXXXX,5
-quockhanh, Honda Civic,Blue,XYZ5678,4
-quockhanh, Ford Explorer,Black,JKL9012,7
-lamdao, Chevrolet Tahoe,White,DEF3456,8
-quockhanh, Nissan Altima,Silver,GHI7890,5

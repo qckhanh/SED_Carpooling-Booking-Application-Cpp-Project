@@ -18,6 +18,46 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="headerFile\Admin.h" />
+    <ClInclude Include="headerFile\Application.h" />
+    <ClInclude Include="headerFile\BankAccount.h" />
+    <ClInclude Include="headerFile\Database.h" />
+    <ClInclude Include="headerFile\Date.h" />
+    <ClInclude Include="headerFile\Driver.h" />
+    <ClInclude Include="headerFile\Feedback.h" />
+    <ClInclude Include="headerFile\IdentityCard.h" />
+    <ClInclude Include="headerFile\NonMember.h" />
+    <ClInclude Include="headerFile\Passenger.h" />
+    <ClInclude Include="headerFile\Trip.h" />
+    <ClInclude Include="headerFile\User.h" />
+    <ClInclude Include="headerFile\Vehicle.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Data\admins.txt" />
+    <Text Include="Data\drivers.txt" />
+    <Text Include="Data\feedbacks.txt" />
+    <Text Include="Data\passenger.txt" />
+    <Text Include="Data\trips.txt" />
+    <Text Include="Data\userLoginData.txt" />
+    <Text Include="Data\vehicles.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="cppFile\Admin.cpp" />
+    <ClCompile Include="cppFile\Application.cpp" />
+    <ClCompile Include="cppFile\BankAccount.cpp" />
+    <ClCompile Include="cppFile\Database.cpp" />
+    <ClCompile Include="cppFile\Date.cpp" />
+    <ClCompile Include="cppFile\Driver.cpp" />
+    <ClCompile Include="cppFile\Feedback.cpp" />
+    <ClCompile Include="cppFile\IdentityCard.cpp" />
+    <ClCompile Include="cppFile\main.cpp" />
+    <ClCompile Include="cppFile\NonMember.cpp" />
+    <ClCompile Include="cppFile\Passenger.cpp" />
+    <ClCompile Include="cppFile\Trip.cpp" />
+    <ClCompile Include="cppFile\User.cpp" />
+    <ClCompile Include="cppFile\Vehicle.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -126,46 +166,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="..\headerFile\Admin.h" />
-    <ClInclude Include="..\headerFile\BankAccount.h" />
-    <ClInclude Include="..\headerFile\Date.h" />
-    <ClInclude Include="..\headerFile\Driver.h" />
-    <ClInclude Include="..\headerFile\IdentityCard.h" />
-    <ClInclude Include="..\headerFile\NonMember.h" />
-    <ClInclude Include="..\headerFile\Passenger.h" />
-    <ClInclude Include="..\headerFile\Trip.h" />
-    <ClInclude Include="..\headerFile\User.h" />
-    <ClInclude Include="..\headerFile\Vehicle.h" />
-    <ClInclude Include="Application.h" />
-    <ClInclude Include="Database.h" />
-    <ClInclude Include="Feedback.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\cppFile\Admin.cpp" />
-    <ClCompile Include="..\cppFile\BankAccount.cpp" />
-    <ClCompile Include="..\cppFile\Date.cpp" />
-    <ClCompile Include="..\cppFile\Driver.cpp" />
-    <ClCompile Include="..\cppFile\IdentityCard.cpp" />
-    <ClCompile Include="..\cppFile\NonMember.cpp" />
-    <ClCompile Include="..\cppFile\Passenger.cpp" />
-    <ClCompile Include="..\cppFile\Trip.cpp" />
-    <ClCompile Include="..\cppFile\User.cpp" />
-    <ClCompile Include="..\cppFile\Vehicle.cpp" />
-    <ClCompile Include="Application.cpp" />
-    <ClCompile Include="Database.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Feedback.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="admins.txt" />
-    <Text Include="drivers.txt" />
-    <Text Include="feedbacks.txt" />
-    <Text Include="passenger.txt" />
-    <Text Include="trips.txt" />
-    <Text Include="userLoginData.txt" />
-    <Text Include="vehicles.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
