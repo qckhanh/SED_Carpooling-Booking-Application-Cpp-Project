@@ -19,8 +19,8 @@ protected:
     std::string idNumber;
     float creditPoint;
     bool isVerified;
-    BankAccount bankAccount; 
-    IdentityCard card;
+    BankAccount* bankAccount; 
+    IdentityCard* card;
     Feedback* feedbacks;
 
 
@@ -43,8 +43,8 @@ public:
     std::string getIdNumber() const;
     float getCreditPoint() const;
     bool getIsVerified() const;
-    BankAccount getBankAccount() const;
-    IdentityCard getCard() const;
+    BankAccount* getBankAccount();
+    IdentityCard* getCard();
     double getRateScore();
     Feedback* getFeedback();
 
@@ -61,8 +61,8 @@ public:
     void setIdNumber(const std::string& idNumber);
     void setCreditPoint(float creditPoint);
     void setIsVerified(bool isVerified);
-    void setBankAccount(const BankAccount& bankAccount);
-    void setCard(const IdentityCard& card);
+    void setBankAccount(BankAccount* bankAccount);
+    void setCard(IdentityCard* card);
     void setFeedback(Feedback* feedback);
 
     // Member functions
@@ -70,6 +70,8 @@ public:
     void rating();
     void verifyAccount();
     void manageInfo();
+    void receiveCredit(float creditAmount);
+    void useCredit(float creditAmount);
     void toString() const {
 
         cout << "Full Name: " << fullName << " -- ";

@@ -83,12 +83,14 @@ void Application::createNewAccount(string type) {
     cout << "Enter CVV: ";
     cin >> CVV;
 
-    cout << "Enter account balance: ";
-    cin >> accountBalance;
+    /*cout << "Enter account balance: ";
+    cin >> accountBalance;*/
+    accountBalance = 1000;
 
     cout << "Enter bank account expiration date (day month year): ";
     cin >> day >> month >> year;
     expireDate = Date(-1, -1, -1, day, month, year);
+
 
     if (type == "passenger") {
         currentUser = new Passenger();
@@ -110,22 +112,22 @@ void Application::createNewAccount(string type) {
         currentUser->setIdType(idType);
         currentUser->setIdNumber(idNumber);
 
-        BankAccount bankAccount;
-        bankAccount.setBankAccountName(bankAccountName);
-        bankAccount.setBankAccountNumber(bankAccountNumber);
-        bankAccount.setCVV(CVV);
-        bankAccount.setAccountBalance(accountBalance);
-        bankAccount.setExpireDate(expireDate);
+        BankAccount* bankAccount = new BankAccount();
+        bankAccount->setBankAccountName(bankAccountName);
+        bankAccount->setBankAccountNumber(bankAccountNumber);
+        bankAccount->setCVV(CVV);
+        bankAccount->setAccountBalance(accountBalance);
+        bankAccount->setExpireDate(expireDate);
 
         currentUser->setBankAccount(bankAccount);
-
+        buyCredit(currentUser, 1);
         // Add the user to the database
         if (type == "passenger") {
             Passenger* passenger = dynamic_cast<Passenger*>(currentUser);
             if (passenger) {
                 db.addPassenger(passenger);
-                fstream fout("passenger.txt", ios::out | ios::app);
-                fout << fullName << ","
+                //fstream fout("passenger.txt", ios::out | ios::app);
+                /*fout << fullName << ","
                     << userName << ","
                     << password << ","
                     << DOB.getDay() << "," << DOB.getMonth() << "," << DOB.getYear() << ","
@@ -140,14 +142,15 @@ void Application::createNewAccount(string type) {
                     << accountBalance << ","
                     << expireDate.getDay() << "," << expireDate.getMonth() << "," << expireDate.getYear()
                     << std::endl;
-                fout.close();
+                fout.close();*/
+                db.savePassengers();
             }
         }
         else if (type == "driver") {
             Driver* driver = dynamic_cast<Driver*>(currentUser);
             if (driver) {
                 db.addDriver(driver);
-                fstream fout("drivers.txt", ios::out | ios::app);
+                /*fstream fout("drivers.txt", ios::out | ios::app);
                 fout << fullName << ","
                     << userName << ","
                     << password << ","
@@ -163,7 +166,8 @@ void Application::createNewAccount(string type) {
                     << accountBalance << ","
                     << expireDate.getDay() << "," << expireDate.getMonth() << "," << expireDate.getYear()
                     << std::endl;
-                fout.close();
+                fout.close();*/
+                db.saveDrivers();
             }
         }
     }
@@ -322,6 +326,7 @@ void Application::menu_Passenger() {
         cout << "1. Book a carpool" << endl;
         cout << "2. Manage my request" << endl;
         cout << "3. Edit my profile" << endl;
+        cout << "4. Buy credit" << endl;
         cout << "0.Exit app" << endl;
 
         int option;
@@ -340,6 +345,10 @@ void Application::menu_Passenger() {
             passenger->bookACarPool(db.getTripByIndex(index, 1));
             cout << "BOOKED" << endl;
             pauseDisplay;
+        }
+
+        if (option == 4) {
+            buyCredit(passenger, 0);
         }
     }
 }
@@ -468,4 +477,28 @@ void Application::viewCarpool(float myRate, float myCredit) {
             cout << tmpTrip->toString() << endl;
         }
     }
+}
+
+void Application::buyCredit(User* user, bool isFirstTime) {
+    float buyAmount;
+    if (isFirstTime) {
+        buyAmount = 10.0;
+        cout << "Entry fee is " << buyAmount << endl;
+        if (user->getBankAccount()->getAccountBalance() < buyAmount) {
+            cout << "Not enough. too poor" << endl;
+            return;
+        }
+        user->receiveCredit(buyAmount);
+        user->getBankAccount()->setAccountBalance(user->getBankAccount()->getAccountBalance() - buyAmount);
+        return;
+    }
+    cout << "Enter your amount: ";
+    cin >> buyAmount;
+    if (user->getBankAccount()->getAccountBalance() < buyAmount) {
+        cout << "Not enough." << endl;
+        return;
+    }
+    user->receiveCredit(buyAmount);
+    user->getBankAccount()->setAccountBalance(user->getBankAccount()->getAccountBalance() - buyAmount);
+    return;
 }
