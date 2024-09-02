@@ -1,2 +1,3 @@
-﻿  Database.cpp
+﻿  Application.cpp
+C:\Users\LENOVO LEGION\Desktop\Workspace\SED_Carpooling_GroupProject\cppFile\Application.cpp(339,48): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   SED_tmp.vcxproj -> C:\Users\LENOVO LEGION\Desktop\Workspace\SED_Carpooling_GroupProject\SED_tmp\x64\Debug\SED_tmp.exe

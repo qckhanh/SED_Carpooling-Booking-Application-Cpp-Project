@@ -70,6 +70,8 @@ public:
     void rating();
     void verifyAccount();
     void manageInfo();
+    void receiveCredit(float creditAmount);
+    void useCredit(float creditAmount);
     void toString() const {
 
         cout << "Full Name: " << fullName << " -- ";

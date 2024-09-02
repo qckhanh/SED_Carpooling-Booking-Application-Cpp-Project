@@ -124,46 +124,15 @@ void Application::createNewAccount(string type) {
             Passenger* passenger = dynamic_cast<Passenger*>(currentUser);
             if (passenger) {
                 db.addPassenger(passenger);
-                fstream fout("passenger.txt", ios::out | ios::app);
-                fout << fullName << ","
-                    << userName << ","
-                    << password << ","
-                    << DOB.getDay() << "," << DOB.getMonth() << "," << DOB.getYear() << ","
-                    << phoneNumber << ","
-                    << address << ","
-                    << email << ","
-                    << idType << ","
-                    << idNumber << ","
-                    << bankAccountName << ","
-                    << bankAccountNumber << ","
-                    << CVV << ","
-                    << accountBalance << ","
-                    << expireDate.getDay() << "," << expireDate.getMonth() << "," << expireDate.getYear()
-                    << std::endl;
-                fout.close();
+                db.savePassengers();
             }
         }
         else if (type == "driver") {
             Driver* driver = dynamic_cast<Driver*>(currentUser);
             if (driver) {
                 db.addDriver(driver);
-                fstream fout("drivers.txt", ios::out | ios::app);
-                fout << fullName << ","
-                    << userName << ","
-                    << password << ","
-                    << DOB.getDay() << "," << DOB.getMonth() << "," << DOB.getYear() << ","
-                    << phoneNumber << ","
-                    << address << ","
-                    << email << ","
-                    << idType << ","
-                    << idNumber << ","
-                    << bankAccountName << ","
-                    << bankAccountNumber << ","
-                    << CVV << ","
-                    << accountBalance << ","
-                    << expireDate.getDay() << "," << expireDate.getMonth() << "," << expireDate.getYear()
-                    << std::endl;
-                fout.close();
+                db.saveDrivers();
+
             }
         }
     }
@@ -230,7 +199,7 @@ void Application::start() {
 void Application::menu_Driver() {
     while (true) {
         clearDisplay;
-        cout << "Welcome " << driver->getFullName() << "/ Score: " << driver->getRateScore() << endl;
+        welcomeScreen(driver);
 
         cout << "0. Exit " << endl;
         cout << "1. Trip Management " << endl;
@@ -317,7 +286,8 @@ void Application::menu_Driver() {
 void Application::menu_Passenger() {
 
     while (1) {
-        clearDisplay;
+        welcomeScreen(passenger);
+
         cout << "Welcome " << passenger->getFullName() << "Score: " << passenger->getRateScore() << endl;
         cout << "1. Book a carpool" << endl;
         cout << "2. Manage my request" << endl;
@@ -419,6 +389,8 @@ void Application::FinishCarpool() {
         feedbackUser(tmp.first, driver->getUsername());
     }
     
+    float amount = driver->getCarpoolFromIndex(index, 2)->getCost();
+    driver->receiveCredit(amount);
     driver->changeStatusCarpool(index, 2);
     driver->viewCarpool(2);
     cout << "FINISHED" << endl;
@@ -468,4 +440,11 @@ void Application::viewCarpool(float myRate, float myCredit) {
             cout << tmpTrip->toString() << endl;
         }
     }
+}
+
+void Application::welcomeScreen(User* user) {
+    clearDisplay;
+    cout << "============ RENTAL CARSYSTEM===========" << endl;
+    cout << "Hello, " << user->getFullName() << "\t\t" << "Credit: " << user->getCreditPoint() << "/ Rate: " << user->getRateScore() << endl;
+    cout << "==============WELCOME======================" << endl;
 }
