@@ -555,8 +555,6 @@ void Database::saveDrivers() {
             << driver->getBankAccount()->getExpireDate().getMonth() << ","
             << driver->getBankAccount()->getExpireDate().getYear()
             << std::endl;
-            
-
     }
     saveDriver.close();
 

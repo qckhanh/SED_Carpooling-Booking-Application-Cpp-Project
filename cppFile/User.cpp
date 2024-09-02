@@ -46,7 +46,7 @@ void User::setIsVerified(bool isVerified) { this->isVerified = isVerified; }
 void User::setBankAccount(BankAccount* bankAccount) { this->bankAccount = bankAccount; }
 void User::setCard(IdentityCard* card) { this->card = card; }
 void User::setFeedback( Feedback* feedback) { this->feedbacks = feedback; }
-void User::useCredit(float creditAmount) { this->creditPoint -= creditAmount;}
+void User::useCredit(float creditAmount) { this->creditPoint -= creditAmount; }
 void User::receiveCredit(float creditAmount) { this->creditPoint += creditAmount; }
 // Member functions
 void User::search() {
