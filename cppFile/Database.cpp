@@ -271,6 +271,7 @@ void Database::loadDriver() {
             bankAccount->setCVV(stoi(tokens[13]));
             bankAccount->setAccountBalance(stod(tokens[14]));
             Date expireDate(-1, -1, -1, stoi(tokens[15]), stoi(tokens[16]), stoi(tokens[17]));
+            tmpDriver->setCreditPoint(stof(tokens[18]));
 
             bankAccount->setExpireDate(expireDate);
             tmpDriver->setBankAccount(bankAccount);
@@ -282,7 +283,39 @@ void Database::loadDriver() {
     }
     loadDriver.close();
 }
+void Database::loadAdmins() {
+    fstream loadAdmin("../Data/admins.txt", ios::in);
+    if (!loadAdmin.is_open()) {
+        std::cerr << "Error opening file: " << "admins.txt" << std::endl;
+        return;
+    }
 
+    string line;
+    while (std::getline(loadAdmin, line)) {
+        std::stringstream ss(line);
+        std::string item;
+        std::vector<std::string> tokens;
+
+        // Split the line by commas and store in vector
+        while (std::getline(ss, item, ',')) {
+            tokens.push_back(item);
+        }
+
+        if (tokens.size() == 3) {
+            // Create a new Driver object
+            Admin* tmp = new Admin();
+
+            tmp->setUsername(tokens[0]);
+            tmp->setFullName(tokens[1]);
+            tmp->setPassword(tokens[2]);
+            admins.push_back(tmp);
+        }
+        else {
+            cout << "Error: Incorrect format in line: " << line << endl;
+        }
+    }
+    loadAdmin.close();
+}
 void Database::loadVehicles() {
     fstream loadVehicle("../Data/vehicles.txt", ios::in);
     if (!loadVehicle.is_open()) {
@@ -359,6 +392,7 @@ void Database::loadPassenger() {
             bankAccount->setCVV(stoi(tokens[13]));
             bankAccount->setAccountBalance(stod(tokens[14]));
             Date expireDate(-1, -1, -1, stoi(tokens[15]), stoi(tokens[16]), stoi(tokens[17]));
+            tmpPassenger->setCreditPoint(stof(tokens[18]));
             bankAccount->setExpireDate(expireDate);
             tmpPassenger->setBankAccount(bankAccount);
 
@@ -553,7 +587,9 @@ void Database::saveDrivers() {
             << driver->getBankAccount()->getAccountBalance() << ","
             << driver->getBankAccount()->getExpireDate().getDay() << ","
             << driver->getBankAccount()->getExpireDate().getMonth() << ","
-            << driver->getBankAccount()->getExpireDate().getYear()
+            << driver->getBankAccount()->getExpireDate().getYear() << ","
+            << driver->getCreditPoint()
+
             << std::endl;
     }
     saveDriver.close();
@@ -603,7 +639,8 @@ void Database::savePassengers() {
             << passenger->getBankAccount()->getAccountBalance() << ","
             << passenger->getBankAccount()->getExpireDate().getDay() << ","
             << passenger->getBankAccount()->getExpireDate().getMonth() << ","
-            << passenger->getBankAccount()->getExpireDate().getYear()
+            << passenger->getBankAccount()->getExpireDate().getYear() << ","
+            << passenger->getCreditPoint()
             << std::endl;
 
     }

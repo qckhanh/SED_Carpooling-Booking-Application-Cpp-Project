@@ -3,3 +3,5 @@ quockhanh, Honda Civic,Blue,XYZ5678,4
 quockhanh, Ford Explorer,Black,JKL9012,7
 lamdao, Chevrolet Tahoe,White,DEF3456,8
 quockhanh, Nissan Altima,Silver,GHI7890,5
+lamdao,Camry,Black,88A-02836,4
+lamdao,BMW,Green,29C1-9999,4

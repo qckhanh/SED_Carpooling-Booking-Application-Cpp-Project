@@ -1,6 +1,8 @@
 #include "../headerFile/Application.h"
 #include "../headerFile/Passenger.h"
 #include "../headerFile/Driver.h"
+#include "../headerFile/Admin.h"
+#include "../headerFile/NonMember.h"
 #include <string>
 #include <fstream>
 #include <iostream>
@@ -8,14 +10,21 @@
 #define clearDisplay system("cls")
 using namespace std;
 
-Application::Application() : currentUser(nullptr), driver(nullptr), passenger(nullptr) {
+Application::Application(){
+    this->currentUser = nullptr;
+    this->driver = nullptr;
+    this->passenger = nullptr;
+    this-> admin = nullptr;
+    this->guest = nullptr;
+
     db.loadPassenger();
     db.loadDriver();
+    db.loadAdmins();
     db.loadVehicles();
     db.loadTrips();
     db.loadFeedback();
 
-     this->isLoggin = this->signIn();
+     this->isLoggin = this->logIn();
     if (isLoggin) {
         if (userType == "driver") {
             driver = dynamic_cast<Driver*>(currentUser);
@@ -23,9 +32,15 @@ Application::Application() : currentUser(nullptr), driver(nullptr), passenger(nu
         else if (userType == "passenger") {
             passenger = dynamic_cast<Passenger*>(currentUser);
         }
+        else if (userType == "admin") {
+            admin = dynamic_cast<Admin*>(currentUser);
+        }
+        else if (userType == "guest") {
+            guest = dynamic_cast<NonMember*>(currentUser);
+        }
     }
     else {
-        this->createNewAccount("driver");
+        this->createNewAccount(userType);
     }
 }
 Application::~Application() {
@@ -94,11 +109,9 @@ void Application::createNewAccount(string type) {
 
     if (type == "passenger") {
         currentUser = new Passenger();
-        cout << "Signed Up Passenger!" << endl;
     }
     else if (type == "driver") {
         currentUser = new Driver();
-        cout << "Signed Up Driver!" << endl;
     }
 
     if (currentUser) {
@@ -127,6 +140,8 @@ void Application::createNewAccount(string type) {
             if (passenger) {
                 db.addPassenger(passenger);
                 db.savePassengers();
+                cout << "Signed Up Passenger!" << endl;
+
             }
         }
         else if (type == "driver") {
@@ -134,13 +149,18 @@ void Application::createNewAccount(string type) {
             if (driver) {
                 db.addDriver(driver);
                 db.saveDrivers();
+                cout << "Signed Up Driver!" << endl;
+
 
             }
         }
     }
 }
-bool Application::signIn() {
-    cout << "1. Driver\n2. Passenger\n3. Admin\n";
+bool Application::logIn() {
+    cout << "1. Driver" << endl;
+    cout << "2. Passenger" << endl;
+    cout << "3. Admin" << endl;
+    cout << "4. Guest" << endl;
     int opt;
     cout << "Enter your option: ";
     cin >> opt;
@@ -148,6 +168,7 @@ bool Application::signIn() {
     if (opt == 1) userType = "driver";
     if (opt == 2) userType = "passenger";
     if (opt == 3) userType = "admin";
+    if (opt == 4) userType = "guest";
 
     string username, password;
     cout << "Enter your username: ";
@@ -182,6 +203,10 @@ bool Application::signIn() {
         }
         return false;
     }
+    else if (userType == "guest") {
+        currentUser = new User();
+        return true;
+    }
     return false;
 }
 Driver* Application::getDriver() {
@@ -197,7 +222,47 @@ void Application::start() {
     }
     if (userType == "driver") menu_Driver();
     if (userType == "passenger") menu_Passenger();
+    if (userType == "admin") menu_Admin();
+    if (userType == "guest") menu_Guest();
 }
+void Application::menu_Admin() {
+    
+    while (1) {
+        welcomeScreen(admin);
+        cout << "1. View all drivers" << endl;
+        cout << "2. View all carpools" << endl;
+        cout << "3. View all vehicles" << endl;
+        
+        int opt;        
+        cout << "Enter your option: ";
+        cin >> opt;
+        clearDisplay;
+        if (opt == 1) {
+            cout << "All Drivers: " << endl;
+            for (const auto& tmp : db.getDrivers()) tmp->toString();
+            cout << "\n";
+            cout << "All Passenger: " << endl;
+            for (const auto& tmp : db.getPassengers()) tmp->toString();
+        }
+        else if (opt == 2) {
+            cout << "All Carpools: " << endl;
+            for (const auto& tmp : db.getTrips()) cout << tmp->toString() << endl;
+        }
+        else if (opt == 3) {
+            cout << "All Vehicles: " << endl;
+            for (const auto& tmp : db.getVehicles()) tmp->toString();
+        }
+        pauseDisplay;
+        
+    }
+
+
+}
+void Application::menu_Guest() {
+    welcomeScreen(guest);
+
+}
+
 void Application::menu_Driver() {
     while (true) {
         clearDisplay;
@@ -208,6 +273,8 @@ void Application::menu_Driver() {
         cout << "2. Request Management" << endl;
         cout << "3. My profile" << endl;
         cout << "4. My Feedback" << endl;
+        cout << "5. Buy credit " << endl;
+        cout << "6. Vehicle Management" << endl;
 
         int opt;
         cout << "Enter your option: ";
@@ -232,7 +299,6 @@ void Application::menu_Driver() {
 
             pauseDisplay;
         }
-
         if (opt == 2) {
             clearDisplay;
 
@@ -259,7 +325,6 @@ void Application::menu_Driver() {
                 
             }
         }
-        
         if (opt == 3) {
             clearDisplay;
 
@@ -272,10 +337,24 @@ void Application::menu_Driver() {
 
 
         }
-
         if (opt == 4) {
             clearDisplay;
-            viewFeeback(driver);
+            viewMyFeedback(driver);
+        }
+        if (opt == 5) {
+            buyCredit(driver, 0);
+        }
+        if (opt == 6) {
+            clearDisplay;
+            cout << "1. Add Vehicle" << endl;
+            cout << "2. Delete Vehicle" << endl;
+            cout << "3. Edit vehicle" << endl;
+
+            int opt2;
+            cout << "Enter your option: ";
+            cin >> opt2;
+            if (opt2 == 1) addVehicle(driver);
+            if (opt2 == 2) deleteVehicle(driver);
         }
         if (opt == 0) {
             db.saveDataToFile();
@@ -305,7 +384,7 @@ void Application::menu_Passenger() {
             exit(0);
         }
         if (option == 1) {
-            viewCarpool(passenger->getRateScore(), passenger->getCreditPoint());
+            viewAvailableCarpools(passenger->getRateScore(), passenger->getCreditPoint());
             int index;
             cout << "Enter your trip you want to choose";
             cin >> index;
@@ -393,7 +472,7 @@ void Application::FinishCarpool() {
     cout << "Passenger: " << endl;
     for (auto& tmp : driver->getCarpoolFromIndex(index, 1)->getPassengers()) {
         cout << tmp.first << endl;
-        feedbackUser(tmp.first, driver->getUsername());
+        doFeedbackUser(tmp.first, driver->getUsername());
     }
     
     float amount = driver->getCarpoolFromIndex(index, 2)->getCost();
@@ -404,7 +483,7 @@ void Application::FinishCarpool() {
 
 
 }
-void Application::viewFeeback(User* user) {
+void Application::viewMyFeedback(User* user) {
     cout << "Your name: " << user->getFullName() << endl;
     cout << "Your rate: " << user->getRateScore() << endl;
     cout << "Comment: " << endl;
@@ -415,7 +494,7 @@ void Application::viewFeeback(User* user) {
         cout << "---------------------------" << endl;
     }
 }
-void Application::feedbackUser(string username, string owner) {
+void Application::doFeedbackUser(string username, string owner) {
     int rate;
     string comment;
     cin.ignore();
@@ -439,7 +518,7 @@ void Application::feedbackUser(string username, string owner) {
         }
     }
 }
-void Application::viewCarpool(float myRate, float myCredit) {
+void Application::viewAvailableCarpools(float myRate, float myCredit) {
     for (const auto& tmpTrip : db.getTrips()) {
         float trip_minRate = tmpTrip->getMinRate();
         float trip_requireCost = tmpTrip->getCost();
@@ -470,6 +549,7 @@ void Application::buyCredit(User* user, bool isFirstTime) {
         user->getBankAccount()->setAccountBalance(user->getBankAccount()->getAccountBalance() - buyAmount);
         return;
     }
+    clearDisplay;
     cout << "Enter your amount: ";
     cin >> buyAmount;
     if (user->getBankAccount()->getAccountBalance() < buyAmount) {
@@ -478,5 +558,71 @@ void Application::buyCredit(User* user, bool isFirstTime) {
     }
     user->receiveCredit(buyAmount);
     user->getBankAccount()->setAccountBalance(user->getBankAccount()->getAccountBalance() - buyAmount);
+    cout << "Transaction done! ";
     return;
+}
+bool Application::confirmMessage(const string& message) {
+    cout << message << endl;
+    cout << "1. Yes | 0.No ? ";
+    int ans; 
+    cin >> ans;
+    return ans;
+}
+void Application::addVehicle(Driver* driver) {
+    clearDisplay;
+
+    string model, plateNumber, seats, color;
+    cout << "Enter the vehicel's brand: ";
+    cin >> model;
+    cout << "Enter the vehicle's color: ";
+    cin >> color;
+    cout << "Enter the vehicle's plate: ";
+    cin >> plateNumber;
+    cout << "Enter the vehicle' seat number: ";
+    cin >> seats;
+
+    for (const auto& tmp : db.getVehicles()) {
+        if (tmp->getPlateNumber() == plateNumber) {
+            cout << "Sorry! This vehicles has already added! ";
+            return;
+        }
+    }
+    Vehicle* tmpVehicle = new Vehicle();
+    tmpVehicle->setOwner_username(driver->getUsername());
+    tmpVehicle->setModel(model);
+    tmpVehicle->setColor(color);
+    tmpVehicle->setPlateNumber(plateNumber);
+    tmpVehicle->setTotalSeat(stoi(seats));
+    cout << "Preview: " << endl;
+    tmpVehicle->toString();
+    bool isConfirmed = confirmMessage("Do you want to add vehicle? ");
+    if (isConfirmed == 1) {
+        driver->addVehicle(tmpVehicle);
+        db.addVehicle(tmpVehicle);
+        cout << "Add vehicle successfully! " << endl;
+    }
+    else {
+        return;
+    }
+}
+
+void Application::deleteVehicle(Driver* driver) {
+    int index = 0;
+    for (const auto& tmp : driver->getDriverVehicles()) {
+        cout << index << ": ";
+        tmp->toString();
+        index++;
+    }
+    int vehicleIndex;
+    cout << "Enter the vehicle' index: ";
+    cin >> vehicleIndex;
+   /* Vehicle* tmp = driver->getVehicleFromIndex(index);
+    int i = 0;
+    for (auto& tmp : driver->getDriverVehicles()) {
+        if(tmp == driver->getVehicleFromIndex(index)) dr
+    }*/
+    
+    
+
+    
 }

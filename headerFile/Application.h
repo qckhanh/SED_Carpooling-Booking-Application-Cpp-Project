@@ -1,12 +1,16 @@
 #pragma once
 #include "User.h"
 #include "Database.h"
+#include "NonMember.h"
 
 class Application {
 private:
     User* currentUser;
     Driver* driver;
     Passenger* passenger;
+    Admin* admin;
+    NonMember* guest;
+    
     Database db;
     string userType;
     bool isLoggin;
@@ -21,27 +25,28 @@ public:
 
     void start();
     void createNewAccount(string type);
-    bool signIn();
+    bool logIn();
 
-    void viewAsGuest(); // xoa
     void menu_Driver();
     void menu_Passenger();
     void menu_Admin();
     void menu_Guest();
 
-    //actions
+    //Common
+    void viewMyFeedback(User* user);
+    void doFeedbackUser(string username, string owner);
+    void viewAvailableCarpools(float myRate, float myCredit);
+    void welcomeScreen(User* user);
+    void buyCredit(User* user, bool isFirstTime);
+    bool confirmMessage(const string& message);
+    //Driver
     void addCarpool();
     void cancelACarpool();
     void Carpool_History();
     void FinishCarpool();
-
-    void viewFeeback(User* user);
-    void feedbackUser(string username, string owner);
-
-    void viewCarpool(float myRate, float myCredit);
-    void welcomeScreen(User* user);
-    
-    void buyCredit(User* user, bool isFirstTime);
+    void addVehicle(Driver* driver);
+    void deleteVehicle(Driver* driver);
+    //passenger
     
 
 };
