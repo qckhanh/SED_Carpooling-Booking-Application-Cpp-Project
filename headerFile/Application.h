@@ -41,6 +41,7 @@ public:
     void viewCarpool(float myRate, float myCredit);
     void welcomeScreen(User* user);
     
+    void buyCredit(User* user, bool isFirstTime);
     
 
 };

@@ -265,14 +265,14 @@ void Database::loadDriver() {
             tmpDriver->setEmail(tokens[8]);
             tmpDriver->setIdType(tokens[9]);
             tmpDriver->setIdNumber(tokens[10]);
-            BankAccount bankAccount;
-            bankAccount.setBankAccountName(tokens[11]);
-            bankAccount.setBankAccountNumber(tokens[12]);
-            bankAccount.setCVV(stoi(tokens[13]));
-            bankAccount.setAccountBalance(stod(tokens[14]));
+            BankAccount* bankAccount = new BankAccount();
+            bankAccount->setBankAccountName(tokens[11]);
+            bankAccount->setBankAccountNumber(tokens[12]);
+            bankAccount->setCVV(stoi(tokens[13]));
+            bankAccount->setAccountBalance(stod(tokens[14]));
             Date expireDate(-1, -1, -1, stoi(tokens[15]), stoi(tokens[16]), stoi(tokens[17]));
 
-            bankAccount.setExpireDate(expireDate);
+            bankAccount->setExpireDate(expireDate);
             tmpDriver->setBankAccount(bankAccount);
             drivers.push_back(tmpDriver);
         }
@@ -353,13 +353,13 @@ void Database::loadPassenger() {
             tmpPassenger->setEmail(tokens[8]);
             tmpPassenger->setIdType(tokens[9]);
             tmpPassenger->setIdNumber(tokens[10]);
-            BankAccount bankAccount;
-            bankAccount.setBankAccountName(tokens[11]);
-            bankAccount.setBankAccountNumber(tokens[12]);
-            bankAccount.setCVV(stoi(tokens[13]));
-            bankAccount.setAccountBalance(stod(tokens[14]));
+            BankAccount* bankAccount = new BankAccount();
+            bankAccount->setBankAccountName(tokens[11]);
+            bankAccount->setBankAccountNumber(tokens[12]);
+            bankAccount->setCVV(stoi(tokens[13]));
+            bankAccount->setAccountBalance(stod(tokens[14]));
             Date expireDate(-1, -1, -1, stoi(tokens[15]), stoi(tokens[16]), stoi(tokens[17]));
-            bankAccount.setExpireDate(expireDate);
+            bankAccount->setExpireDate(expireDate);
             tmpPassenger->setBankAccount(bankAccount);
 
             // Add the passenger to the list of passengers
@@ -547,13 +547,13 @@ void Database::saveDrivers() {
             << driver->getEmail() << ","
             << driver->getIdType() << ","
             << driver->getIdNumber() << ","
-            << driver->getBankAccount().getBankAccountName() << ","
-            << driver->getBankAccount().getBankAccountNumber() << ","
-            << driver->getBankAccount().getCVV() << ","
-            << driver->getBankAccount().getAccountBalance() << ","
-            << driver->getBankAccount().getExpireDate().getDay() << ","
-            << driver->getBankAccount().getExpireDate().getMonth() << ","
-            << driver->getBankAccount().getExpireDate().getYear()
+            << driver->getBankAccount()->getBankAccountName() << ","
+            << driver->getBankAccount()->getBankAccountNumber() << ","
+            << driver->getBankAccount()->getCVV() << ","
+            << driver->getBankAccount()->getAccountBalance() << ","
+            << driver->getBankAccount()->getExpireDate().getDay() << ","
+            << driver->getBankAccount()->getExpireDate().getMonth() << ","
+            << driver->getBankAccount()->getExpireDate().getYear()
             << std::endl;
             
 
@@ -599,13 +599,13 @@ void Database::savePassengers() {
             << passenger->getEmail() << ","
             << passenger->getIdType() << ","
             << passenger->getIdNumber() << ","
-            << passenger->getBankAccount().getBankAccountName() << ","
-            << passenger->getBankAccount().getBankAccountNumber() << ","
-            << passenger->getBankAccount().getCVV() << ","
-            << passenger->getBankAccount().getAccountBalance() << ","
-            << passenger->getBankAccount().getExpireDate().getDay() << ","
-            << passenger->getBankAccount().getExpireDate().getMonth() << ","
-            << passenger->getBankAccount().getExpireDate().getYear()
+            << passenger->getBankAccount()->getBankAccountName() << ","
+            << passenger->getBankAccount()->getBankAccountNumber() << ","
+            << passenger->getBankAccount()->getCVV() << ","
+            << passenger->getBankAccount()->getAccountBalance() << ","
+            << passenger->getBankAccount()->getExpireDate().getDay() << ","
+            << passenger->getBankAccount()->getExpireDate().getMonth() << ","
+            << passenger->getBankAccount()->getExpireDate().getYear()
             << std::endl;
 
     }

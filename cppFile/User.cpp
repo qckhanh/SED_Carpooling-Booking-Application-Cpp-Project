@@ -22,8 +22,8 @@ std::string User::getIdType() const { return idType; }
 std::string User::getIdNumber() const { return idNumber; }
 float User::getCreditPoint() const { return creditPoint; }
 bool User::getIsVerified() const { return isVerified; }
-BankAccount User::getBankAccount() const { return bankAccount; }
-IdentityCard User::getCard() const { return card; }
+BankAccount* User::getBankAccount() { return bankAccount; }
+IdentityCard* User::getCard() { return card; }
 double User::getRateScore() {
     return this->feedbacks->getAvgRate();
 }
@@ -43,9 +43,11 @@ void User::setIdType(const std::string& idType) { this->idType = idType; }
 void User::setIdNumber(const std::string& idNumber) { this->idNumber = idNumber; }
 void User::setCreditPoint(float creditPoint) { this->creditPoint = creditPoint; }
 void User::setIsVerified(bool isVerified) { this->isVerified = isVerified; }
-void User::setBankAccount(const BankAccount& bankAccount) { this->bankAccount = bankAccount; }
-void User::setCard(const IdentityCard& card) { this->card = card; }
+void User::setBankAccount(BankAccount* bankAccount) { this->bankAccount = bankAccount; }
+void User::setCard(IdentityCard* card) { this->card = card; }
 void User::setFeedback( Feedback* feedback) { this->feedbacks = feedback; }
+void User::useCredit(float creditAmount) { this->creditPoint -= creditAmount;}
+void User::receiveCredit(float creditAmount) { this->creditPoint += creditAmount; }
 // Member functions
 void User::search() {
     // Implementation goes here
