@@ -82,6 +82,7 @@ public:
     void loadDriver();
     void loadVehicles();
     void loadTrips();
+    void loadAdmins();
     void loadPassenger();
     void loadFeedback();
 

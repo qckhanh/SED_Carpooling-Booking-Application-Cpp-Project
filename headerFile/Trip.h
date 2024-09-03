@@ -12,7 +12,7 @@ class Passenger;
 
 class Trip {
 private:    
-    int status;
+    int status;  // 0: cancel, 1: active 2. finished
     std::string driver_username;
     std::string vehicle_plate;
     Date start;

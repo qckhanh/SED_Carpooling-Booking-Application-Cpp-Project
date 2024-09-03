@@ -19,9 +19,9 @@ std::string Vehicle::getPlateNumber() const { return plateNumber; }
 int Vehicle::getTotalSeat() const { return totalSeat; }
 std::string Vehicle::getOwner_username() const { return owner_username;  }
 void Vehicle::toString() const {
-    std::cout << "Owner Username: " << owner_username << std::endl;
-    std::cout << "Model: " << model << std::endl;
-    std::cout << "Color: " << color << std::endl;
-    std::cout << "Plate Number: " << plateNumber << std::endl;
-    std::cout << "Total Seats: " << totalSeat << std::endl;
+    std::cout << "Owner Username: " << owner_username << " | ";
+    std::cout << "Model: " << model << " | ";
+    std::cout << "Color: " << color << " | ";
+    std::cout << "Plate Number: " << plateNumber << " | ";
+    std::cout << "Total Seats: " << totalSeat << " | " << endl;
 }
