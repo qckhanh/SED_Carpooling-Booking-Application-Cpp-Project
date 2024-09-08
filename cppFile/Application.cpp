@@ -239,10 +239,10 @@ void Application::menu_Admin() {
         clearDisplay;
         if (opt == 1) {
             cout << "All Drivers: " << endl;
-            for (const auto& tmp : db.getDrivers()) tmp->toString();
+            for (const auto& tmp : db.getDrivers()) tmp->showInformation();
             cout << "\n";
             cout << "All Passenger: " << endl;
-            for (const auto& tmp : db.getPassengers()) tmp->toString();
+            for (const auto& tmp : db.getPassengers()) tmp->showInformation();
         }
         else if (opt == 2) {
             cout << "All Carpools: " << endl;
@@ -327,15 +327,8 @@ void Application::menu_Driver() {
         }
         if (opt == 3) {
             clearDisplay;
-
-            driver->toString();
-            
-            int option;
-            cin >> option;
-            cout << "Choose option you want to change";
-            if (option == 1) driver->setFullName("abc");
-
-
+            driver->showInformation();
+            editProfile(driver);
         }
         if (opt == 4) {
             clearDisplay;
@@ -527,15 +520,12 @@ void Application::viewAvailableCarpools(float myRate, float myCredit) {
         }
     }
 }
-
 void Application::welcomeScreen(User* user) {
     clearDisplay;
     cout << "============ RENTAL CARSYSTEM===========" << endl;
     cout << "Hello, " << user->getFullName() << "\t\t" << "Credit: " << user->getCreditPoint() << "/ Rate: " << user->getRateScore() << endl;
     cout << "==============WELCOME======================" << endl;
 }
-
-
 void Application::buyCredit(User* user, bool isFirstTime) {
     float buyAmount;
     if (isFirstTime) {
@@ -605,7 +595,6 @@ void Application::addVehicle(Driver* driver) {
         return;
     }
 }
-
 void Application::deleteVehicle(Driver* driver) {
     int index = 0;
     for (const auto& tmp : driver->getDriverVehicles()) {
@@ -626,3 +615,142 @@ void Application::deleteVehicle(Driver* driver) {
 
     
 }
+void Application::editProfile(User* user) {
+    cout << "1. Edit Full Name" << endl;
+    cout << "2. Edit Password" << endl;
+    cout << "3. Edit Date of Birth" << endl;
+    cout << "4. Edit Phone Number" << endl;
+    cout << "5. Edit Address" << endl;
+    cout << "6. Edit Email" << endl;
+    cout << "7. Edit ID Type" << endl;
+    cout << "8. Edit ID Number" << endl;
+    cout << "9. Edit Bank Account Information" << endl;
+    cout << "10. Verify Account" << endl;
+
+    int opt;
+    cout << "Enter your option: ";
+    cin >> opt;
+
+    if (opt == 1) {
+        string newName;
+        cout << "Enter your new name: ";
+        getline(cin >> ws, newName);
+
+        bool isConfirm = confirmMessage("Do you want to save changes?");
+        if (isConfirm) user->setFullName(newName);
+        cout << "Action done!" << endl;
+    }
+    else if (opt == 2) {
+        string newPassword;
+        cout << "Enter your new password: ";
+        cin >> newPassword;
+
+        bool isConfirm = confirmMessage("Do you want to save changes?");
+        if (isConfirm) user->setPassword(newPassword);
+        cout << "Action done!" << endl;
+    }
+    else if (opt == 3) {
+        int dd, mm, yyyy;
+        cout << "Enter your day of birth ";
+        cin >> dd;  
+        cout << "Enter your month of birth ";
+        cin >> mm;
+        cout << "Enter your year of birth ";
+        cin >> yyyy;
+        Date newDOB(-1, -1, -1, dd, mm, yyyy);
+
+
+        bool isConfirm = confirmMessage("Do you want to save changes?");
+        if (isConfirm) user->setDOB(newDOB);
+        cout << "Action done!" << endl;
+    }
+    else if (opt == 4) {
+        string newPhoneNumber;
+        cout << "Enter your new phone number: ";
+        cin >> newPhoneNumber;
+
+        bool isConfirm = confirmMessage("Do you want to save changes?");
+        if (isConfirm) user->setPhoneNumber(newPhoneNumber);
+        cout << "Action done!" << endl;
+    }
+    else if (opt == 5) {
+        string newAddress;
+        cout << "Enter your new address: ";
+        cin >> newAddress;
+
+        bool isConfirm = confirmMessage("Do you want to save changes?");
+        if (isConfirm) user->setAddress(newAddress);
+        cout << "Action done!" << endl;
+    }
+    else if (opt == 6) {
+        string newEmail;
+        cout << "Enter your new email: ";
+        cin >> newEmail;
+
+        bool isConfirm = confirmMessage("Do you want to save changes?");
+        if (isConfirm) user->setEmail(newEmail);
+        cout << "Action done!" << endl;
+    }
+    else if (opt == 7) {
+        string newIDType;
+        cout << "Enter your new ID type: ";
+        cin >> newIDType;
+
+        string newIDNumber;
+        cout << "Enter your new ID number: ";
+        cin >> newIDNumber;
+
+        bool isConfirm = confirmMessage("Do you want to save changes?");
+        if (isConfirm) {
+            driver->setIdType(newIDType);
+            driver->setIdNumber(newIDNumber);
+        }
+        cout << "Action done!" << endl;
+    }
+    else if (opt == 8) {
+        string newIDNumber;
+        cout << "Enter your new ID number: ";
+        cin >> newIDNumber;
+
+        bool isConfirm = confirmMessage("Do you want to save changes?");
+        if (isConfirm) driver->setIdNumber(newIDNumber);
+        cout << "Action done!" << endl;
+    }
+    else if (opt == 9) {
+        // Assuming you have a function to edit bank account info
+        string cardName, number, cvv;
+        cout << "Enter your carholder's name: ";
+        cin >> cardName;
+        cout << "Enter card's number: ";
+        cin >> number;
+        cout << "Enter card's CVV: ";
+        cin >> cvv;
+        int mm, yyyy;
+        cout << "Enter card's expire month: ";
+        cin >> mm;
+        cout << "Enter card's expire year: ";
+        cin >> yyyy;
+        bool isConfirm = confirmMessage("Do you want to save changes?");
+        if (isConfirm) {
+            Date tmp(-1, -1, -1, -1, mm, yyyy);
+            BankAccount* newAccount = new BankAccount();
+            newAccount->setBankAccountName(cardName);
+            newAccount->setBankAccountNumber(cardName);
+            newAccount->setCVV(stoi(cvv));
+            newAccount->setExpireDate(tmp);
+            newAccount->setAccountBalance(99999);
+            user->setBankAccount(newAccount);
+
+        }
+        cout << "Action done!" << endl;
+    }
+    else if (opt == 10) {
+        bool isConfirm = confirmMessage("Do you want to verify your account?");
+        if (isConfirm) user->verifyAccount();
+        cout << "Account verified!" << endl;
+    }
+    else {
+        cout << "Invalid option selected!" << endl;
+    }
+}
+

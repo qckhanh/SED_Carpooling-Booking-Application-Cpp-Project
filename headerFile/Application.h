@@ -46,6 +46,7 @@ public:
     void FinishCarpool();
     void addVehicle(Driver* driver);
     void deleteVehicle(Driver* driver);
+    void editProfile(User* user);
     //passenger
     
 

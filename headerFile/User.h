@@ -72,21 +72,26 @@ public:
     void manageInfo();
     void receiveCredit(float creditAmount);
     void useCredit(float creditAmount);
-    void toString() const {
+    void showInformation() const {
 
-        cout << "Full Name: " << fullName << " -- ";
-        cout << "Username: " << username << " -- ";
-        cout << "Password: " << password << " -- ";
-        cout << "Date of Birth: " << DOB.getDay() << DOB.getMonth() << DOB.getYear() << " -- ";
-        cout << "Phone Number: " << phoneNumber << " -- ";
-        cout << "Address: " << address << " -- ";
-        cout << "Email: " << email << " -- ";
-        cout << "ID Type: " << idType << " -- ";
-        cout << "ID Number: " << idNumber << " -- ";
-        cout << "Credit Point: " << creditPoint << " -- ";
-        cout << "Verified: " << (isVerified ? "Yes" : "No") <<endl;
-            //<< "Bank Account: " << bankAccount.toString() << "\n"
-            //<< "Identity Card: " << card.toString() << "\n";
+        cout << "Profile Information: " << endl;
+        cout << "---------------------------------" << endl;
+        cout << "Full Name     : " << fullName << endl;
+        cout << "Username      : " << username << endl;
+        cout << "Password      : " << password << endl;
+        cout << "Date of Birth : " << DOB.getDay() << "/" << DOB.getMonth() << "/" << DOB.getYear() << endl;
+        cout << "Phone Number  : " << phoneNumber << endl;
+        cout << "Address       : " << address << endl;
+        cout << "Email         : " << email << endl;
+        cout << "ID Type       : " << idType << endl;
+        cout << "ID Number     : " << idNumber << endl;
+        cout << "Credit Points : " << creditPoint << endl;
+        cout << "Verified      : " << (isVerified ? "Yes" : "No") << endl;
+        // Uncomment the following lines when you implement the toString methods
+        // cout << "Bank Account  : " << bankAccount->toString() << endl;
+        // cout << "Identity Card : " << card->toString() << endl;
+        cout << "---------------------------------" << endl;
+
 
     }
 };
