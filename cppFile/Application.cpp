@@ -6,11 +6,14 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <windows.h>
+#include <iomanip> // for setting width and alignment
 #define pauseDisplay system("pause")
 #define clearDisplay system("cls")
 using namespace std;
 
 Application::Application(){
+    ux.setDecoratorSymbol('=');
     this->currentUser = nullptr;
     this->driver = nullptr;
     this->passenger = nullptr;
@@ -40,7 +43,7 @@ Application::Application(){
         }
     }
     else {
-        this->createNewAccount(userType);
+        cout << "Good bye! " << endl;
     }
 }
 Application::~Application() {
@@ -49,165 +52,210 @@ Application::~Application() {
 bool Application::getLoginStatus() const {
     return isLoggin;
 }
-void Application::createNewAccount(string type) {
-    string fullName, userName, password, phoneNumber, address, email, idType, idNumber;
-    int day, month, year;
+void Application::createNewAccount() {
 
-    cout << "Enter full name: ";
-    cin.ignore();
-    getline(cin, fullName);
+    int opt = -1;
+    while (opt != 0) {
 
-    cout << "Enter username: ";
-    getline(cin, userName);
+        clearDisplay;
+        ux.printHeader("REGISTER");
+        ux.printOption(1, "I am Driver");
+        ux.printOption(2, "I am Passenger");
+        ux.printOption(0, "I want to leave!");
+        cout << "Enter your option: ";
+        cin >> opt;
+        string type;
+        if (opt == 1) {
+            type = "driver";
+            currentUser = new Driver();
+        }
+        else if (opt == 2) {
+            type = "passenger";
+            currentUser = new Passenger();
+        }
+        else if (opt == 0) return;
+        else {
+            cout << "Sorry! Invalid option! " << endl;
+            continue;
+        }
+        ux.printHeader("FILL IN THE FORM");
+        string fullName, userName, password, phoneNumber, address, email, idType, idNumber;
+        int day, month, year;
 
-    cout << "Enter password: ";
-    getline(cin, password);
+        cout << "Enter full name: ";
+        cin.ignore();
+        getline(cin>>ws, fullName);
 
-    cout << "Enter date of birth (day month year): ";
-    cin >> day >> month >> year;
-    Date DOB(-1, -1, -1, day, month, year);
+        cout << "Enter username: ";
+        getline(cin>>ws, userName);
 
-    cout << "Enter phone number: ";
-    cin.ignore();
-    getline(cin, phoneNumber);
+        cout << "Enter password: ";
+        getline(cin>>ws, password);
 
-    cout << "Enter address: ";
-    getline(cin, address);
+        cout << "Enter day of birth: ";
+        cin >> day;
+        cout << "Enter month of birth: ";
+        cin >> month;
+        cout << "Enter year of birth: ";
+        cin >> year;
+        Date DOB(-1, -1, -1, day, month, year);
 
-    cout << "Enter email: ";
-    getline(cin, email);
+        cout << "Enter phone number: ";
+        cin.ignore();
+        getline(cin>>ws, phoneNumber);
 
-    cout << "Enter ID type (e.g., CCCD): ";
-    getline(cin, idType);
+        cout << "Enter address: ";
+        getline(cin>>ws, address);
 
-    cout << "Enter ID number: ";
-    getline(cin, idNumber);
+        cout << "Enter email: ";
+        getline(cin>>ws, email);
 
-    // Bank account information
-    string bankAccountName, bankAccountNumber;
-    int CVV;
-    double accountBalance;
-    Date expireDate;
+        cout << "Enter ID type (e.g., CCCD): ";
+        getline(cin>>ws, idType);
 
-    cout << "Enter bank account name: ";
-    getline(cin, bankAccountName);
+        cout << "Enter ID number: ";
+        getline(cin>>ws, idNumber);
 
-    cout << "Enter bank account number: ";
-    getline(cin, bankAccountNumber);
+        // Bank account information
+        string bankAccountName, bankAccountNumber;
+        int CVV;
+        double accountBalance;
+        Date expireDate;
 
-    cout << "Enter CVV: ";
-    cin >> CVV;
+        cout << "Enter bank account name: ";
+        getline(cin>>ws, bankAccountName);
 
-    /*cout << "Enter account balance: ";
-    cin >> accountBalance;*/
-    accountBalance = 1000;
+        cout << "Enter bank account number: ";
+        getline(cin>>ws, bankAccountNumber);
 
-    cout << "Enter bank account expiration date (day month year): ";
-    cin >> day >> month >> year;
-    expireDate = Date(-1, -1, -1, day, month, year);
+        cout << "Enter CVV: ";
+        cin >> CVV;
 
+        accountBalance = 1000;
 
-    if (type == "passenger") {
-        currentUser = new Passenger();
-    }
-    else if (type == "driver") {
-        currentUser = new Driver();
-    }
+        cout << "Enter bank account month of expiration : ";
+        cin >> month;
+        cout << "Enter bank account year of expiration : ";
+        cin >> year;
+        expireDate = Date(-1, -1, -1, -1, month, year);
 
-    if (currentUser) {
-        currentUser->setFullName(fullName);
-        currentUser->setUsername(userName);
-        currentUser->setPassword(password);
-        currentUser->setAddress(address);
-        currentUser->setDOB(DOB);
-        currentUser->setPhoneNumber(phoneNumber);
-        currentUser->setEmail(email);
-        currentUser->setIdType(idType);
-        currentUser->setIdNumber(idNumber);
+        if (!ux.confirmMessage("Do you want to create account? ")) continue;
+        if (currentUser) {
+            currentUser->setFullName(fullName);
+            currentUser->setUsername(userName);
+            currentUser->setPassword(password);
+            currentUser->setAddress(address);
+            currentUser->setDOB(DOB);
+            currentUser->setPhoneNumber(phoneNumber);
+            currentUser->setEmail(email);
+            currentUser->setIdType(idType);
+            currentUser->setIdNumber(idNumber);
 
-        BankAccount* bankAccount = new BankAccount();
-        bankAccount->setBankAccountName(bankAccountName);
-        bankAccount->setBankAccountNumber(bankAccountNumber);
-        bankAccount->setCVV(CVV);
-        bankAccount->setAccountBalance(accountBalance);
-        bankAccount->setExpireDate(expireDate);
+            BankAccount* bankAccount = new BankAccount();
+            bankAccount->setBankAccountName(bankAccountName);
+            bankAccount->setBankAccountNumber(bankAccountNumber);
+            bankAccount->setCVV(CVV);
+            bankAccount->setAccountBalance(accountBalance);
+            bankAccount->setExpireDate(expireDate);
 
-        currentUser->setBankAccount(bankAccount);
-        buyCredit(currentUser, 1);
-        // Add the user to the database
-        if (type == "passenger") {
-            Passenger* passenger = dynamic_cast<Passenger*>(currentUser);
-            if (passenger) {
-                db.addPassenger(passenger);
-                db.savePassengers();
-                cout << "Signed Up Passenger!" << endl;
+            currentUser->setBankAccount(bankAccount);
+            buyCredit(currentUser, 1);
+            // Add the user to the database
+            if (type == "passenger") {
+                Passenger* passenger = dynamic_cast<Passenger*>(currentUser);
+                if (passenger) {
+                    db.addPassenger(passenger);
+                    db.savePassengers();
+                    cout << "Signed Up Passenger!" << endl;
 
+                }
+            }
+            else if (type == "driver") {
+                Driver* driver = dynamic_cast<Driver*>(currentUser);
+                if (driver) {
+                    db.addDriver(driver);
+                    db.saveDrivers();
+                    cout << "Signed Up Driver!" << endl;
+                }
             }
         }
-        else if (type == "driver") {
-            Driver* driver = dynamic_cast<Driver*>(currentUser);
-            if (driver) {
-                db.addDriver(driver);
-                db.saveDrivers();
-                cout << "Signed Up Driver!" << endl;
-
-
-            }
-        }
+        return;
     }
 }
 bool Application::logIn() {
-    cout << "1. Driver" << endl;
-    cout << "2. Passenger" << endl;
-    cout << "3. Admin" << endl;
-    cout << "4. Guest" << endl;
-    int opt;
-    cout << "Enter your option: ";
-    cin >> opt;
+    int opt = -1;
+    while (opt != 0) {
+        clearDisplay;
+        ux.printHeader("WELCOME");
+        ux.printOption(1, "I am Driver");
+        ux.printOption(2, "I am Passenger");
+        ux.printOption(3, "I am Admin");
+        ux.printOption(4, "I am Guest");
+        ux.printOption(5, "I want to create a new account");
+        ux.printOption(0, "I gotta go! ");
 
-    if (opt == 1) userType = "driver";
-    if (opt == 2) userType = "passenger";
-    if (opt == 3) userType = "admin";
-    if (opt == 4) userType = "guest";
+        cout << "Enter your option: ";
+        cin >> opt;
 
-    string username, password;
-    cout << "Enter your username: ";
-    cin >> username;
-    cout << "Enter your password: ";
-    cin >> password;
+        if (opt == 0) exit(0);
+        else if (opt == 1) userType = "driver";
+        else if (opt == 2) userType = "passenger";
+        else if (opt == 3) userType = "admin";
+        else if (opt == 4) userType = "guest";
+        else if (opt == 5) {
+            createNewAccount();
+            continue;
+        }
+        else {
+            cout << "Invalid option!" << endl;
+            continue;
+        }
 
-    if (userType == "driver") {
-        for (auto& tmp : db.getDrivers()) {
-            if (tmp->getUsername() == username && tmp->getPassword() == password) {
-                currentUser = tmp;
-                return true;
+        string username, password;
+        cout << "Enter your username: ";
+        cin >> username;
+        cout << "Enter your password: ";
+        cin >> password;
+
+        if (!ux.confirmMessage("Sign In? ")) continue;
+        if (userType == "driver") {
+            for (auto& tmp : db.getDrivers()) {
+                if (tmp->getUsername() == username && tmp->getPassword() == password) {
+                    currentUser = tmp;
+                    return true;
+                }
             }
+            cout << "Incorrect username or password!" << endl;
+            Sleep(3);
         }
-        return false;
-    }
-    else if (userType == "passenger") {
-        for (auto& tmp : db.getPassengers()) {
-            if (tmp->getUsername() == username && tmp->getPassword() == password) {
-                currentUser = tmp;
-                return true;
+        else if (userType == "passenger") {
+            for (auto& tmp : db.getPassengers()) {
+                if (tmp->getUsername() == username && tmp->getPassword() == password) {
+                    currentUser = tmp;
+                    return true;
+                }
             }
+            cout << "Incorrect username or password!" << endl;
+            Sleep(3);
+
         }
-        return false;
-    }
-    else if (userType == "admin") {
-        for (auto& tmp : db.getAdmins()) {
-            if (tmp->getUsername() == username && tmp->getPassword() == password) {
-                currentUser = tmp;
-                return true;
+        else if (userType == "admin") {
+            for (auto& tmp : db.getAdmins()) {
+                if (tmp->getUsername() == username && tmp->getPassword() == password) {
+                    currentUser = tmp;
+                    return true;
+                }
             }
+            cout << "Incorrect username or password!" << endl;
+            Sleep(3);
+
         }
-        return false;
+        else if (userType == "guest") {
+            currentUser = new User();
+            return true;
+        }
+        pauseDisplay;
     }
-    else if (userType == "guest") {
-        currentUser = new User();
-        return true;
-    }
-    return false;
 }
 Driver* Application::getDriver() {
     return driver;
@@ -239,10 +287,10 @@ void Application::menu_Admin() {
         clearDisplay;
         if (opt == 1) {
             cout << "All Drivers: " << endl;
-            for (const auto& tmp : db.getDrivers()) tmp->toString();
+            for (const auto& tmp : db.getDrivers()) tmp->showInformation();
             cout << "\n";
             cout << "All Passenger: " << endl;
-            for (const auto& tmp : db.getPassengers()) tmp->toString();
+            for (const auto& tmp : db.getPassengers()) tmp->showInformation();
         }
         else if (opt == 2) {
             cout << "All Carpools: " << endl;
@@ -262,107 +310,46 @@ void Application::menu_Guest() {
     welcomeScreen(guest);
 
 }
-
 void Application::menu_Driver() {
     while (true) {
         clearDisplay;
         welcomeScreen(driver);
 
-        cout << "0. Exit " << endl;
-        cout << "1. Trip Management " << endl;
-        cout << "2. Request Management" << endl;
-        cout << "3. My profile" << endl;
-        cout << "4. My Feedback" << endl;
-        cout << "5. Buy credit " << endl;
-        cout << "6. Vehicle Management" << endl;
+        ux.printOption(0, "Exit");
+        ux.printOption(1, "Trip Management");
+        ux.printOption(2, "Request Management");
+        ux.printOption(3, "My profile");
+        ux.printOption(4, "My Feedback");
+        ux.printOption(5, "Buy credit");
+        ux.printOption(6, "Vehicle Management");
 
         int opt;
         cout << "Enter your option: ";
         cin >> opt;
-        if (opt == 1) {
-            clearDisplay;
 
-            cout << "1. Add a Carpool" << endl;
-            cout << "2. Cancel a Carpool" << endl;
-            cout << "3. Finish a carppol" << endl;
-            cout << "4. History" << endl;
-            cout << "5. Back to menu" << endl;
-
-            int select;
-            cout << "Enter your option: ";
-            cin >> select;
-
-            if (select == 1) addCarpool();
-            else if (select == 2) cancelACarpool();
-            else if (select == 3) FinishCarpool();
-            else if (select == 4) Carpool_History();
-
-            pauseDisplay;
-        }
-        if (opt == 2) {
-            clearDisplay;
-
-            cout << "1. View a request\n2. Update status of a request\n";
-            int reqOption;
-            cout << "Enter your option: ";
-            cin >> reqOption;
-
-            if (reqOption == 1) {
-                system("cls");
-                driver->viewCarpool(1);
-                int tripID, passID, value;
-                cout << "Enter the trip ID";
-                cin >> tripID;
-                cout << "Enter the passenger id: ";
-                cin >> passID;
-                cout << "Enter the status value(0: Pending, 1: Accept, 2: Denied): ";
-                cin >> value;
-                driver->changeStatusOfPassengerInTrip(tripID, passID, value);      // already saved to databse
-
-                cout << "UPDATED" << endl;
-                for (auto x : db.getTrips()) cout << x->toString() << endl;
-
-                
-            }
-        }
-        if (opt == 3) {
-            clearDisplay;
-
-            driver->toString();
-            
-            int option;
-            cin >> option;
-            cout << "Choose option you want to change";
-            if (option == 1) driver->setFullName("abc");
-
-
-        }
-        if (opt == 4) {
-            clearDisplay;
-            viewMyFeedback(driver);
-        }
-        if (opt == 5) {
-            buyCredit(driver, 0);
-        }
-        if (opt == 6) {
-            clearDisplay;
-            cout << "1. Add Vehicle" << endl;
-            cout << "2. Delete Vehicle" << endl;
-            cout << "3. Edit vehicle" << endl;
-
-            int opt2;
-            cout << "Enter your option: ";
-            cin >> opt2;
-            if (opt2 == 1) addVehicle(driver);
-            if (opt2 == 2) deleteVehicle(driver);
-        }
+        clearDisplay;
+        if (opt == 1) TripManagement();
+        if (opt == 2) CustommerRequestManagement();
+        if (opt == 3) editProfile(driver);
+        if (opt == 4) viewMyFeedback(driver);
+        if (opt == 5) buyCredit(driver, 0);
+        if (opt == 6) VehiclesManagement();
         if (opt == 0) {
             db.saveDataToFile();
             exit(0);
         }
 
-        pauseDisplay;
     }
+}
+void Application::printHeader(const string& title) {
+    int width = 45; // Total width of the header, including borders
+    int padding = (width - title.length()) / 2; // Calculate padding for centering
+
+    cout << setfill('=') << setw(width) << "=" << endl;  // Top border
+    cout << setfill(' ') << setw(padding + title.length()) << title << endl;  // Title centered
+    cout << setfill('=') << setw(width) << "=" << endl;  // Bottom border
+    cout << setfill(' ') << left; // Reset formatting after the header
+
 }
 void Application::menu_Passenger() {
 
@@ -484,6 +471,8 @@ void Application::FinishCarpool() {
 
 }
 void Application::viewMyFeedback(User* user) {
+    ux.printHeader("CUSTOMER'S REVIEW ");
+    
     cout << "Your name: " << user->getFullName() << endl;
     cout << "Your rate: " << user->getRateScore() << endl;
     cout << "Comment: " << endl;
@@ -493,6 +482,7 @@ void Application::viewMyFeedback(User* user) {
         cout << "Comment: " << tmp.comment << endl;
         cout << "---------------------------" << endl;
     }
+    pauseDisplay;
 }
 void Application::doFeedbackUser(string username, string owner) {
     int rate;
@@ -518,7 +508,7 @@ void Application::doFeedbackUser(string username, string owner) {
         }
     }
 }
-void Application::viewAvailableCarpools(float myRate, float myCredit) {
+void Application::viewAvailableCarpools(double myRate, float myCredit) {
     for (const auto& tmpTrip : db.getTrips()) {
         float trip_minRate = tmpTrip->getMinRate();
         float trip_requireCost = tmpTrip->getCost();
@@ -527,16 +517,15 @@ void Application::viewAvailableCarpools(float myRate, float myCredit) {
         }
     }
 }
-
 void Application::welcomeScreen(User* user) {
-    clearDisplay;
-    cout << "============ RENTAL CARSYSTEM===========" << endl;
-    cout << "Hello, " << user->getFullName() << "\t\t" << "Credit: " << user->getCreditPoint() << "/ Rate: " << user->getRateScore() << endl;
-    cout << "==============WELCOME======================" << endl;
+    //clearDisplay;
+    ux.printHeader("RENTAL SYSTEM");
+    cout << "Hello, " << user->getFullName() << "\t\t" << "Credit: " << user->getCreditPoint() << "/ Rate: " << user->getRateScore() << endl << endl;
+
 }
-
-
 void Application::buyCredit(User* user, bool isFirstTime) {
+    ux.printHeader("CREDIT STORE");
+    
     float buyAmount;
     if (isFirstTime) {
         buyAmount = 10.0;
@@ -549,24 +538,44 @@ void Application::buyCredit(User* user, bool isFirstTime) {
         user->getBankAccount()->setAccountBalance(user->getBankAccount()->getAccountBalance() - buyAmount);
         return;
     }
-    clearDisplay;
-    cout << "Enter your amount: ";
-    cin >> buyAmount;
-    if (user->getBankAccount()->getAccountBalance() < buyAmount) {
-        cout << "Not enough." << endl;
-        return;
+    
+    int opt = -1;
+    while (opt != 0) {
+        clearDisplay;
+        ux.printHeader("CREDIT STORE");
+        cout << "You credit: " << user->getCreditPoint() << endl;
+        ux.printOption(1, "Buy Credit");
+        ux.printOption(0, "Back to menu");
+
+        cout << "Enter your option";
+        cin >> opt;
+        
+        if (opt == 0) return;
+        else {
+            cout << "Enter your amount: ";
+            cin >> buyAmount;
+            if (user->getBankAccount()->getAccountBalance() < buyAmount) {
+                cout << "Not enough." << endl;
+                return;
+            }
+            std::ostringstream stream;
+            stream << std::fixed << std::setprecision(2) << buyAmount;
+            std::string formattedAmount = stream.str();
+
+            std::string s = "Do you want to use $" + formattedAmount + " to purchase " + formattedAmount + " credit? ";
+            if (ux.confirmMessage(s)) {
+                user->receiveCredit(buyAmount);
+                user->getBankAccount()->setAccountBalance(user->getBankAccount()->getAccountBalance() - buyAmount);
+                cout << "Transaction done! " << endl;
+            }
+            else {
+                cout << "Cancel transaction! " << endl;
+            }
+            
+        }
+        pauseDisplay;
     }
-    user->receiveCredit(buyAmount);
-    user->getBankAccount()->setAccountBalance(user->getBankAccount()->getAccountBalance() - buyAmount);
-    cout << "Transaction done! ";
-    return;
-}
-bool Application::confirmMessage(const string& message) {
-    cout << message << endl;
-    cout << "1. Yes | 0.No ? ";
-    int ans; 
-    cin >> ans;
-    return ans;
+    
 }
 void Application::addVehicle(Driver* driver) {
     clearDisplay;
@@ -595,7 +604,7 @@ void Application::addVehicle(Driver* driver) {
     tmpVehicle->setTotalSeat(stoi(seats));
     cout << "Preview: " << endl;
     tmpVehicle->toString();
-    bool isConfirmed = confirmMessage("Do you want to add vehicle? ");
+    bool isConfirmed = ux.confirmMessage("Do you want to add vehicle? ");
     if (isConfirmed == 1) {
         driver->addVehicle(tmpVehicle);
         db.addVehicle(tmpVehicle);
@@ -605,7 +614,6 @@ void Application::addVehicle(Driver* driver) {
         return;
     }
 }
-
 void Application::deleteVehicle(Driver* driver) {
     int index = 0;
     for (const auto& tmp : driver->getDriverVehicles()) {
@@ -626,3 +634,230 @@ void Application::deleteVehicle(Driver* driver) {
 
     
 }
+void Application::editProfile(User* user) {
+    int opt = -1;
+    while (opt != 0) {
+        clearDisplay;
+        ux.printHeader("PROFILE MANAGEMENT");
+        driver->showInformation();
+        ux.printOption(1, "Edit Full Name");
+        ux.printOption(2, "Edit Password");
+        ux.printOption(3, "Edit Date of Birth");
+        ux.printOption(4, "Edit Phone Number");
+        ux.printOption(5, "Edit Address");
+        ux.printOption(6, "Edit Email");
+        ux.printOption(7, "Edit ID Type");
+        ux.printOption(8, "Edit ID Number");
+        ux.printOption(9, "View Credit Points");
+        ux.printOption(10, "Verify Account");
+        ux.printOption(0, "Back to memu");
+
+        cout << "Enter your option: ";
+        cin >> opt;
+
+        if (opt == 0) { return; }
+        else if (opt == 1) {
+            string newName;
+            cout << "Enter your new name: ";
+            getline(cin >> ws, newName);
+
+            bool isConfirm = ux.confirmMessage("Do you want to save changes?");
+            if (isConfirm) user->setFullName(newName);
+            cout << "Action done!" << endl;
+        }
+        else if (opt == 2) {
+            string newPassword;
+            cout << "Enter your new password: ";
+            cin >> newPassword;
+
+            bool isConfirm = ux.confirmMessage("Do you want to save changes?");
+            if (isConfirm) user->setPassword(newPassword);
+            cout << "Action done!" << endl;
+        }
+        else if (opt == 3) {
+            int dd, mm, yyyy;
+            cout << "Enter your day of birth ";
+            cin >> dd;
+            cout << "Enter your month of birth ";
+            cin >> mm;
+            cout << "Enter your year of birth ";
+            cin >> yyyy;
+            Date newDOB(-1, -1, -1, dd, mm, yyyy);
+
+
+            bool isConfirm = ux.confirmMessage("Do you want to save changes?");
+            if (isConfirm) user->setDOB(newDOB);
+            cout << "Action done!" << endl;
+        }
+        else if (opt == 4) {
+            string newPhoneNumber;
+            cout << "Enter your new phone number: ";
+            cin >> newPhoneNumber;
+
+            bool isConfirm = ux.confirmMessage("Do you want to save changes?");
+            if (isConfirm) user->setPhoneNumber(newPhoneNumber);
+            cout << "Action done!" << endl;
+        }
+        else if (opt == 5) {
+            string newAddress;
+            cout << "Enter your new address: ";
+            cin >> newAddress;
+
+            bool isConfirm = ux.confirmMessage("Do you want to save changes?");
+            if (isConfirm) user->setAddress(newAddress);
+            cout << "Action done!" << endl;
+        }
+        else if (opt == 6) {
+            string newEmail;
+            cout << "Enter your new email: ";
+            cin >> newEmail;
+
+            bool isConfirm = ux.confirmMessage("Do you want to save changes?");
+            if (isConfirm) user->setEmail(newEmail);
+            cout << "Action done!" << endl;
+        }
+        else if (opt == 7) {
+            string newIDType;
+            cout << "Enter your new ID type: ";
+            cin >> newIDType;
+
+            string newIDNumber;
+            cout << "Enter your new ID number: ";
+            cin >> newIDNumber;
+
+            bool isConfirm = ux.confirmMessage("Do you want to save changes?");
+            if (isConfirm) {
+                driver->setIdType(newIDType);
+                driver->setIdNumber(newIDNumber);
+            }
+            cout << "Action done!" << endl;
+        }
+        else if (opt == 8) {
+            string newIDNumber;
+            cout << "Enter your new ID number: ";
+            cin >> newIDNumber;
+
+            bool isConfirm = ux.confirmMessage("Do you want to save changes?");
+            if (isConfirm) driver->setIdNumber(newIDNumber);
+            cout << "Action done!" << endl;
+        }
+        else if (opt == 9) {
+            // Assuming you have a function to edit bank account info
+            string cardName, number, cvv;
+            cout << "Enter your carholder's name: ";
+            cin >> cardName;
+            cout << "Enter card's number: ";
+            cin >> number;
+            cout << "Enter card's CVV: ";
+            cin >> cvv;
+            int mm, yyyy;
+            cout << "Enter card's expire month: ";
+            cin >> mm;
+            cout << "Enter card's expire year: ";
+            cin >> yyyy;
+            bool isConfirm = ux.confirmMessage("Do you want to save changes?");
+            if (isConfirm) {
+                Date tmp(-1, -1, -1, -1, mm, yyyy);
+                BankAccount* newAccount = new BankAccount();
+                newAccount->setBankAccountName(cardName);
+                newAccount->setBankAccountNumber(cardName);
+                newAccount->setCVV(stoi(cvv));
+                newAccount->setExpireDate(tmp);
+                newAccount->setAccountBalance(99999);
+                user->setBankAccount(newAccount);
+
+            }
+            cout << "Action done!" << endl;
+        }
+        else if (opt == 10) {
+            bool isConfirm = ux.confirmMessage("Do you want to verify your account?");
+            if (isConfirm) user->verifyAccount();
+            cout << "Account verified!" << endl;
+        }
+        else {
+            cout << "Invalid option selected!" << endl;
+        }
+        pauseDisplay;
+    }
+    
+}
+void Application::TripManagement() {
+    int opt = -1;
+    while (opt != 0) {
+        clearDisplay;
+        ux.printHeader("TRIP MANAGEMENT");
+        ux.printOption(1, "Add a Carpool");
+        ux.printOption(2, "Cancel a Carpool");
+        ux.printOption(3, "Finish a carppol");
+        ux.printOption(4, "View History");
+        ux.printOption(0, "Back to menu");
+
+        cout << "Enter your option: ";
+        cin >> opt;
+
+        if (opt == 1) addCarpool();
+        else if (opt == 2) cancelACarpool();
+        else if (opt == 3) FinishCarpool();
+        else if (opt == 4) Carpool_History();
+        else if (opt == 0) return;
+        pauseDisplay;
+    }
+    
+}
+void Application::CustommerRequestManagement() {
+    int opt = -1;
+
+    while (opt != 0) {
+        clearDisplay;
+        ux.printHeader("REQUEST MANAGEMENT");
+        ux.printOption(1, "View Requests");
+        ux.printOption(2, "Change status's customer request");
+        ux.printOption(0, "Back to menu");
+
+        cout << "Enter your option: ";
+        cin >> opt;
+        if (opt == 0) return;
+        else if (opt == 1) {
+            driver->viewCarpool(1);
+        }
+        else if (opt == 2) {
+            system("cls");
+            driver->viewCarpool(1);
+            int tripID, passID, value;
+            cout << "Enter the trip ID";
+            cin >> tripID;
+            cout << "Enter the passenger id: ";
+            cin >> passID;
+            cout << "Enter the status value(0: Pending, 1: Accept, 2: Denied): ";
+            cin >> value;
+            driver->changeStatusOfPassengerInTrip(tripID, passID, value);      // already saved to databse
+
+            cout << "UPDATED" << endl;
+            for (auto x : db.getTrips()) cout << x->toString() << endl;
+        }
+        pauseDisplay;
+    }
+
+}
+void Application::VehiclesManagement() {
+    int opt = -1;
+    while (opt != 0) {
+        clearDisplay;
+        ux.printHeader("VEHICLE MANAGEMENT");
+
+        ux.printOption(1, "Add Vehicle");
+        ux.printOption(2, "Delete Vehicle");
+        ux.printOption(3, "Edit vehicle");
+        ux.printOption(0, "Back to menu");
+
+        cout << "Enter your option: ";
+        cin >> opt;
+        if (opt == 1) addVehicle(driver);
+        if (opt == 2) deleteVehicle(driver);
+        if (opt == 3) continue;
+        if (opt == 0) return;
+        pauseDisplay;
+    }
+
+}
+

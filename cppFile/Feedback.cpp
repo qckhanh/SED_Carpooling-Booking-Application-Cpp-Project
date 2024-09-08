@@ -19,8 +19,8 @@ vector<Comment>& Feedback::getComments() {
 	return feedbacks;
 }
 void Feedback::updateAverageRate() {
-	int sum = 0.0;
-	for (int i = 0; i < (int)feedbacks.size(); i++) sum += feedbacks[i].score;
+	double sum = 0.0;
+	for (int i = 0; i < (int)feedbacks.size(); i++) sum += (double)feedbacks[i].score;
 	this->avgRate = (float)sum / feedbacks.size();
 }
 
