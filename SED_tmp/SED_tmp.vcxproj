@@ -134,6 +134,7 @@
     <ClInclude Include="..\headerFile\Date.h" />
     <ClInclude Include="..\headerFile\Driver.h" />
     <ClInclude Include="..\headerFile\Feedback.h" />
+    <ClInclude Include="..\headerFile\UserExperience.h" />
     <ClInclude Include="..\headerFile\IdentityCard.h" />
     <ClInclude Include="..\headerFile\NonMember.h" />
     <ClInclude Include="..\headerFile\Passenger.h" />
@@ -164,6 +165,7 @@
     <ClCompile Include="..\cppFile\Passenger.cpp" />
     <ClCompile Include="..\cppFile\Trip.cpp" />
     <ClCompile Include="..\cppFile\User.cpp" />
+    <ClCompile Include="..\cppFile\UserExperience.cpp" />
     <ClCompile Include="..\cppFile\Vehicle.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
