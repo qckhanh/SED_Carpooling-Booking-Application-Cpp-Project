@@ -17,12 +17,7 @@ void UserExperience::displayLine(int length) {
     cout << setfill(decoratorSymbol) << setw(length) << decoratorSymbol << endl;
 }
 
-void UserExperience::displayHeader(const std::string& title) {
-    int width = title.length() + 20; // Dynamically set width based on title length
-    displayLine(width);
-    cout << setfill(' ') << setw((width + title.length()) / 2) << title << endl;
-    displayLine(width);
-}
+
 
 void UserExperience::handleError(const std::string& errorMessage) {
     string response;

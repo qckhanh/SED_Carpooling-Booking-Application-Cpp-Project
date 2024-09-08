@@ -39,15 +39,15 @@ public:
     void viewAvailableCarpools(double myRate, float myCredit);
     void welcomeScreen(User* user);
     void buyCredit(User* user, bool isFirstTime);
+    void editProfile(User* user);
+
     //Driver
     void addCarpool();
     void cancelACarpool();
     void Carpool_History();
     void FinishCarpool();
-    void addVehicle(Driver* driver);
-    void deleteVehicle(Driver* driver);
-    void editProfile(User* user);
-    void printHeader(const string& title);
+    void addVehicle();
+    void deleteVehicle();
     void TripManagement();
     void CustommerRequestManagement();
     void VehiclesManagement();

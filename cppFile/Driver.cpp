@@ -1,5 +1,6 @@
 #include "../headerFile/Driver.h"
 #include "../headerFile/Trip.h"
+#include "../headerFile/UserExperience.h"
 #include <iostream>
 #include <utility>
 
@@ -34,7 +35,7 @@ Vehicle* Driver::getVehicleFromIndex(int index) {
 }
 
 Trip* Driver::getCarpoolFromIndex(int index, int statusValue) {
-    int indexFind = 0;
+    int indexFind = 1;
     for (int i = 0; i < (int)carpools.size(); i++) {
         if (carpools[i]->getStatus() == statusValue) {
             if (indexFind == index) return carpools[i];
@@ -58,22 +59,35 @@ void Driver::setRunningCarpool(Trip* trip) {
 }
 
 // Member functions
-void Driver::changeStatusOfPassengerInTrip(int tripIndex, int passengerIndex, int value) {
-    carpools[tripIndex]->changeStatusPassenger(passengerIndex, value);
+void Driver::changeStatusOfPassengerInTrip(Trip* trip, int passengerIndex, int value) {
+    trip->changeStatusPassenger(passengerIndex, value);
 }
 
-void Driver::viewVehicle() const {
+void Driver::viewVehicle(UserExperience& ux) const {
+    int index = 1;
     for (const auto& vehicle : driverVehicles) {
-        vehicle->toString();
+        cout << "Index: " << index << endl;
+        vehicle->showInformation(ux);
     }
 }
 
-void Driver::viewCarpool(int statusValue) const {
-    int index = 0;
-    for (const auto& currentCarpool : carpools) {
-
+std::vector<Trip*> Driver::getCarpoolWithStatus(int statusValue) {
+    vector<Trip*> ans = {};
+    for (auto& currentCarpool : carpools) {
         if (currentCarpool->getStatus() == statusValue) {
-            cout << index <<": " <<  currentCarpool->toString() << endl;
+            ans.push_back(currentCarpool);
+        }
+    }
+    cout << ans.size() << endl;
+    return ans;
+}
+void Driver::viewCarpool(UserExperience& ux, int statusValue) {
+    int index = 1;
+    for (const auto& currentCarpool : carpools) {
+        if (currentCarpool->getStatus() == statusValue) {
+            cout << endl;
+            cout << index << ": " << currentCarpool->getReferenceID() << ": " << endl;
+            currentCarpool->showInformation(ux);
             index++;
         }
     }
@@ -83,7 +97,7 @@ void Driver::viewCarpool(int statusValue) const {
 
 void Driver::changeStatusCarpool(int index, int value) {
     
-    int FindIndex = 0;
+    int FindIndex = 1;
     for(int i = 0; i < (int)carpools.size(); i++){
         if (carpools[i]->getStatus() == 1) {
             if (FindIndex == index) {
