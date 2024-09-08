@@ -37,3 +37,14 @@ void Passenger::cancelBooking(int index) {
     delete totalCarPoolBooking[index]; // Free memory
     totalCarPoolBooking.erase(totalCarPoolBooking.begin() + index);
 }
+
+//std::vector<Trip*>& Passenger::getCarpool() {
+//    return carpools;
+//}
+
+//void Passenger::viewCarpool(int statusValue) const {
+//    int index = 0;
+//    for (const auto& currentCarpool : carpools) {
+//
+//    }
+//}

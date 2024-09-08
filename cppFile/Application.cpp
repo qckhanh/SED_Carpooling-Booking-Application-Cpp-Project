@@ -361,6 +361,7 @@ void Application::menu_Passenger() {
         cout << "2. Manage my request" << endl;
         cout << "3. Edit my profile" << endl;
         cout << "4. Buy credit" << endl;
+        cout << "5. View my feedback" << endl;
         cout << "0.Exit app" << endl;
 
         int option;
@@ -374,6 +375,7 @@ void Application::menu_Passenger() {
             viewAvailableCarpools(passenger->getRateScore(), passenger->getCreditPoint());
             int index;
             cout << "Enter your trip you want to choose";
+            //passenger->
             cin >> index;
 
             passenger->bookACarPool(db.getTripByIndex(index, 1));
@@ -383,6 +385,14 @@ void Application::menu_Passenger() {
 
         if (option == 4) {
             buyCredit(passenger, 0);
+            pauseDisplay;
+        }
+
+
+        if (option == 5) {
+            clearDisplay;
+            viewMyFeedback(passenger);
+            pauseDisplay;
         }
     }
 }
