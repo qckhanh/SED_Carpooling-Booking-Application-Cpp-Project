@@ -54,6 +54,9 @@
     <ClInclude Include="..\headerFile\Vehicle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\headerFile\UserExperience.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Data\admins.txt">
@@ -119,6 +122,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cppFile\Vehicle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cppFile\UserExperience.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -2,6 +2,7 @@
 #include "User.h"
 #include "Database.h"
 #include "NonMember.h"
+#include "UserExperience.h"
 
 class Application {
 private:
@@ -14,7 +15,7 @@ private:
     Database db;
     string userType;
     bool isLoggin;
-
+    UserExperience ux;
 public:
     Application();
     ~Application();
@@ -24,7 +25,7 @@ public:
     bool getLoginStatus() const;
 
     void start();
-    void createNewAccount(string type);
+    void createNewAccount();
     bool logIn();
 
     void menu_Driver();
@@ -35,10 +36,9 @@ public:
     //Common
     void viewMyFeedback(User* user);
     void doFeedbackUser(string username, string owner);
-    void viewAvailableCarpools(float myRate, float myCredit);
+    void viewAvailableCarpools(double myRate, float myCredit);
     void welcomeScreen(User* user);
     void buyCredit(User* user, bool isFirstTime);
-    bool confirmMessage(const string& message);
     //Driver
     void addCarpool();
     void cancelACarpool();
@@ -46,6 +46,11 @@ public:
     void FinishCarpool();
     void addVehicle(Driver* driver);
     void deleteVehicle(Driver* driver);
+    void editProfile(User* user);
+    void printHeader(const string& title);
+    void TripManagement();
+    void CustommerRequestManagement();
+    void VehiclesManagement();
     //passenger
     
 
