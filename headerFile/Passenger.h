@@ -25,4 +25,6 @@ public:
     // Member functions
     void bookACarPool(Trip* trip);
     void cancelBooking(int index);
+    /*std::vector<Trip*>& getCarpool();
+    void viewCarpool(int statusValue) const;*/
 };
