@@ -1,5 +1,6 @@
 #include "../headerFile/Trip.h"
 #include <iostream>
+#include <iomanip>
 
 // Constructor
 Trip::Trip() : availableSeat(0) {}
@@ -160,3 +161,30 @@ std::string Trip::toString() {
     ss << "]]";
     return ss.str();
 }
+
+void Trip::showInformation(UserExperience& ux) {
+    ux.printHeader("TRIP INFORMATION");
+
+    std::cout << std::left;
+    std::cout << std::setw(18) << "Driver" << ": " << driver_username << std::endl;
+    std::cout << std::setw(18) << "Vehicle" << ": " << vehicle_plate << std::endl;
+    // std::cout << std::setw(18) << "Start" << ": " << start.toString() << std::endl;
+    // std::cout << std::setw(18) << "End"   << ": " << end.toString() << std::endl;
+    std::cout << std::setw(18) << "Start Location" << ": " << startLocation << std::endl;
+    std::cout << std::setw(18) << "End Location" << ": " << endLocation << std::endl;
+    std::cout << std::setw(18) << "Available Seats" << ": " << availableSeat << std::endl;
+    std::cout << std::setw(18) << "Min Rate" << ": " << minRate << std::endl;
+    std::cout << std::setw(18) << "Cost" << ": " << cost << std::endl;
+    std::cout << std::setw(18) << "Reference ID" << ": " << referenceID << std::endl;
+
+    // Display the list of passengers
+    std::cout << std::setw(18) << "Passengers" << ": [";
+    for (const auto& passenger : passengers) {
+        std::cout << "(" << passenger.first << ", " << passenger.second << "), ";
+    }
+    std::cout << "]" << std::endl;
+
+
+}
+
+

@@ -7,6 +7,7 @@
 #include "Passenger.h"
 #include "Vehicle.h"
 #include "Date.h"
+#include "UserExperience.h"
 
 class Passenger;
 
@@ -68,6 +69,8 @@ public:
     void addPassengerToTrip(const std::string& passenger_username, int status);
     void changeStatusPassenger(int index, int value);
     std::string toString();
+    void showInformation(UserExperience& ux);
+    
 
 };
 
