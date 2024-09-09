@@ -1,11 +1,14 @@
 // UserExperience.h
-
-#ifndef USER_EXPERIENCE_H
-#define USER_EXPERIENCE_H
+#pragma once
 
 #include <iostream>
 #include <vector>
 #include <string>
+using namespace std;
+#define MAX_CARNUMBER_LENGTH 16
+#define VISA_NUMBER_START "4614"
+#define MASTERCARD_NUMBER_START "5565"
+#define IDENTITY_NUMBER_START "0012"
 
 class UserExperience {
 private:
@@ -15,27 +18,18 @@ private:
     void displayLine(int length);  // Helper function to print a line of decoratorSymbol
 
 public:
-    // Constructor
     UserExperience(const char symbol = '=');
-    void setDecoratorSymbol(const char symbol) { this->decoratorSymbol = symbol;  }
-
-    // Display a centered header
-    void displayHeader(const std::string& title);
-
-    // Handle errors with a retry mechanism
-    void handleError(const std::string& errorMessage);
-
-    // Validate input within a specified range
-    int validateInput(int min, int max);
-
-    // Confirm a message with Yes/No option
+    void setDecoratorSymbol(const char symbol) { this->decoratorSymbol = symbol; }
+    //decoration
     bool confirmMessage(const std::string& message);
-
-    // Print a decorative header
     void printHeader(const std::string& title);
-
-    // Print an option in a formatted way
     void printOption(int option, const std::string& description);
-};
 
-#endif
+    //error handling
+    void handleError(const std::string& errorMessage);
+    int validateInput(int min, int max);
+    bool isValidEmail(const std::string& email);
+    bool isValidPassportNumber(const std::string& passportNumber);
+    bool isValidIdentityNumber(const std::string& idNumber);
+    bool isValidCreditCard(const std::string& cardNumber, const std::string& cvv, const std::string& expiryDate);
+};

@@ -2,8 +2,10 @@
 
 #include "../headerFile/UserExperience.h"
 #include <iostream>
+#include <string>
 #include <iomanip>
 #include <limits>
+#include <regex>
 
 using namespace std;
 
@@ -17,12 +19,6 @@ void UserExperience::displayLine(int length) {
     cout << setfill(decoratorSymbol) << setw(length) << decoratorSymbol << endl;
 }
 
-void UserExperience::displayHeader(const std::string& title) {
-    int width = title.length() + 20; // Dynamically set width based on title length
-    displayLine(width);
-    cout << setfill(' ') << setw((width + title.length()) / 2) << title << endl;
-    displayLine(width);
-}
 
 void UserExperience::handleError(const std::string& errorMessage) {
     string response;
@@ -100,3 +96,87 @@ void UserExperience::printHeader(const std::string& title) {
 void UserExperience::printOption(int option, const std::string& description) {
     cout << "| " << setw(2) << right << option << " | " << setw(30) << left << description << " |" << endl;
 }
+
+
+
+bool UserExperience::isValidPassportNumber(const std::string& passportNumber) {
+    // Regular expression for validating a Vietnamese passport number
+    // One uppercase letter followed by 7 digits
+    const std::regex pattern(R"([A-Z]\d{7})");
+    return std::regex_match(passportNumber, pattern);
+}
+
+bool UserExperience::isValidEmail(const std::string& email) {
+    // Regular expression for validating an Email
+    const std::regex pattern(R"((\w+)(\.\w+)*@(\w+)(\.\w+)+)");
+    return std::regex_match(email, pattern);
+}
+
+bool UserExperience::isValidIdentityNumber(const std::string& idNumber) {
+    std::regex pattern("^(001|079)[0-3]([0-9]{2})[0-9]{6}$");
+    return std::regex_match(idNumber, pattern);
+
+    // Regex pattern explanation:
+    // ^                   : Start of the string
+    // (001|079)           : Province code for Hanoi (001) or Ho Chi Minh City (079)
+    // [0-3]               : Gender and century code (0,1 for 20th century, 2,3 for 21st century)
+    // (                   : Start of year group
+    //   ([0-9]{2})        : Any two digits for year
+    // )
+    // [0-9]{6}            : Six digits for the random part
+    // $                   : End of the string
+    //Reference: https://thuvienphapluat.vn/banan/tin-tuc/quy-dinh-ve-so-id-quoc-gia-the-nao-so-id-quoc-gia-viet-nam-la-gi-9266
+    // https://nhankiet.vn/vi/w2787/Ma-tinhthanh-pho-cua-so-can-cuoc-cong-dan-CCCD.html
+}
+
+bool UserExperience::isValidCreditCard(const std::string& cardNumber, const std::string& cvv, const std::string& expiryDate) {
+    // Regex patterns
+    std::regex cardPattern("^(4[0-9]{15}|5[1-5][0-9]{14})$");
+    std::regex cvvPattern("^[0-9]{3}$");
+    std::regex expiryPattern("^(0[1-9]|1[0-2])/[0-9]{2}$");
+
+    // Check card number format
+    if (!std::regex_match(cardNumber, cardPattern)) return false;
+    // Check CVV
+    if (!std::regex_match(cvv, cvvPattern)) return false;
+    // Check expiry date format and validity
+    if (!std::regex_match(expiryDate, expiryPattern)) return false;
+
+    // Parse expiry date
+    int month = std::stoi(expiryDate.substr(0, 2));
+    int year = std::stoi(expiryDate.substr(3, 2)) + 2000;
+
+    // Get current date
+    std::time_t t = std::time(nullptr);
+    std::tm now_tm;
+
+#if defined(_WIN32) || defined(_WIN64)
+    localtime_s(&now_tm, &t);
+#else
+    localtime_r(&t, &now_tm);
+#endif
+
+    int currentYear = now_tm.tm_year + 1900;
+    int currentMonth = now_tm.tm_mon + 1;
+
+    // Check if card is expired
+    if (year < currentYear || (year == currentYear && month < currentMonth)) return false;
+    return true;
+
+
+
+    //References:
+    //Stack Overflow - Regex credit card number tests
+    // https ://stackoverflow.com/questions/9315647/regex-credit-card-number-tests
+
+    //Regular - Expressions.info - Finding or Verifying Credit Card Numbers
+    //    https ://www.regular-expressions.info/creditcard.html
+
+    //Stack Overflow - Get the Credit Card Type based on Number
+    //    https ://stackoverflow.com/questions/9467896/get-the-credit-card-type-based-on-number
+
+    //Salesforce Trailblazer Community - Need to validate a proper credit card number
+    //    https ://trailhead.salesforce.com/trailblazer-community/feed/0D54S00000A7qWOSAZ
+}
+
+
