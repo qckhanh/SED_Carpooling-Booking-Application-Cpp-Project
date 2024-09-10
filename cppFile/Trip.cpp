@@ -139,7 +139,16 @@ void Trip::changeStatusPassenger(int index, int value) {
         std::cerr << "Invalid index: " << index << std::endl;
     }
 }
-
+void Trip::removePassenger(const std::string& passenger_username, int status) {
+    for (auto it = passengers.begin(); it != passengers.end(); ) {
+        if (it->first == passenger_username && it->second == status) {
+            it = passengers.erase(it);
+        }
+        else {
+            ++it;
+        }
+    }
+}
 std::string Trip::toString() {
     std::stringstream ss;
     ss << "Trip [Driver: " << driver_username
@@ -183,8 +192,6 @@ void Trip::showInformation(UserExperience& ux) {
         std::cout << "(" << passenger.first << ", " << passenger.second << "), ";
     }
     std::cout << "]" << std::endl;
-
-
 }
 
 
