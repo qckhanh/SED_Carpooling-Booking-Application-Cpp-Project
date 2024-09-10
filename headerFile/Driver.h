@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "Vehicle.h"
+#include "UserExperience.h"
 #include "Feedback.h"
 #include "User.h"
 
@@ -31,9 +32,10 @@ public:
     void setRunningCarpool(Trip* trip);
 
     // Member functions
-    void changeStatusOfPassengerInTrip(int tripIndex, int passengerIndex, int value);
-    void viewCarpool(int statusValue) const;
-    void viewVehicle() const;
+    void changeStatusOfPassengerInTrip(Trip* trip, int passengerIndex, int value);
+   vector<Trip*> getCarpoolWithStatus(int statusValue);
+    void viewVehicle(UserExperience& ux) const;
     void changeStatusCarpool(int index, int value);
     void updateCarpool();
+    void viewCarpool(UserExperience& ux, int statusValue);
 };

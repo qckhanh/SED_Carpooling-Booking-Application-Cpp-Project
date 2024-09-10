@@ -172,7 +172,7 @@ void Database::addTrip(Trip* trip) {
 
 Trip* Database::getTripByIndex(int index, int statusValue) {
     if (index >= 0 && index < trips.size()) {
-        int indexFind = 0;
+        int indexFind = 1;
         for (auto& tmp : trips) {
             if (tmp->getStatus() == statusValue) {
                 if (indexFind == index) {
@@ -333,10 +333,10 @@ void Database::loadVehicles() {
             tokens.push_back(item);
         }
 
-        if (tokens.size() >= 5) {
+        if (tokens.size() >= 6) {
             // Create a new Vehicle object
             Vehicle* tmpVehicle = new Vehicle(tokens[0], tokens[1], tokens[2], tokens[3], stoi(tokens[4]));
-
+            tmpVehicle->setStatus(stoi(tokens[5]));
             // Assign the vehicle to the correct driver based on username
             for (auto& driver : drivers) {
                 if (driver->getUsername() == tmpVehicle->getOwner_username()) {
@@ -481,12 +481,12 @@ void Database::loadTrips() {
         std::string token;
         std::vector<std::string> tokens;
 
-        // Split the line by commas and store in vector
+        // Split the line by commas and store it in a vector
         while (std::getline(ss, token, ',')) {
             tokens.push_back(token);
         }
 
-        if (tokens.size() >= 12) {
+        if (tokens.size() >= 18) { // Ensure at least enough data for a valid trip
             // Create a new Trip object
             Trip* trip = new Trip();
 
@@ -494,59 +494,47 @@ void Database::loadTrips() {
             trip->setStatus(std::stoi(tokens[0]));
             trip->setDriver(tokens[1]);
             trip->setVehicle(tokens[2]);
-            Date startDate(-1, -1, -1, std::stoi(tokens[3]), std::stoi(tokens[4]), std::stoi(tokens[5]));
-            trip->setStart(startDate);
-            Date endDate(-1, -1, -1, std::stoi(tokens[6]), std::stoi(tokens[7]), std::stoi(tokens[8]));
-            trip->setEnd(endDate);
-            trip->setStartLocation(tokens[9]);
-            trip->setEndLocation(tokens[10]);
-            trip->setAvailableSeat(std::stoi(tokens[11]));
-            trip->setMinRate(std::stof(tokens[12]));
-            trip->setCost(std::stof(tokens[13]));
-            trip->setReferenceID(tokens[14]);
 
-            // Process passengers (if any)
+            // Parse start date (hours, minutes, day, month, year)
+            Date startDate(std::stoi(tokens[3]), std::stoi(tokens[4]), -1, std::stoi(tokens[5]), std::stoi(tokens[6]), std::stoi(tokens[7]));
+            trip->setStart(startDate);
+
+            // Parse end date (hours, minutes, day, month, year)
+            Date endDate(std::stoi(tokens[8]), std::stoi(tokens[9]), -1, std::stoi(tokens[10]), std::stoi(tokens[11]), std::stoi(tokens[12]));
+            trip->setEnd(endDate);
+
+            // Set remaining trip data
+            trip->setStartLocation(tokens[13]);
+            trip->setEndLocation(tokens[14]);
+            trip->setAvailableSeat(std::stoi(tokens[15]));
+            trip->setMinRate(std::stof(tokens[16]));
+            trip->setCost(std::stof(tokens[17]));
+            trip->setReferenceID(tokens[18]);
+
+            // Process passengers (starting from index 19)
             std::vector<std::pair<std::string, int>> passengers;
-            if (tokens.size() > 14) {
-                for (int i = 15; i < (int)tokens.size(); i++){
-                    std::string passengerData = tokens[i];
-                    size_t pos = 0;
-                    while ((pos = passengerData.find(',')) != std::string::npos) {
-                        std::string entry = passengerData.substr(0, pos);
-                        size_t colonPos = entry.find(':');
-                        if (colonPos != std::string::npos) {
-                            std::string passenger_username = entry.substr(0, colonPos);
-                            int status = std::stoi(entry.substr(colonPos + 1));
-                            passengers.push_back(std::make_pair(passenger_username, status));
-                        }
-                        passengerData.erase(0, pos + 1);
-                    }
-                    // Process last entry if it exists
-                    if (!passengerData.empty()) {
-                        size_t colonPos = passengerData.find(':');
-                        if (colonPos != std::string::npos) {
-                            std::string passenger_username = passengerData.substr(0, colonPos);
-                            int status = std::stoi(passengerData.substr(colonPos + 1));
-                            passengers.push_back(std::make_pair(passenger_username, status));
-                        }
-                    }
+            for (int i = 19; i < (int)tokens.size(); i++) {
+                std::string passengerData = tokens[i];
+                size_t colonPos = passengerData.find(':');
+                if (colonPos != std::string::npos) {
+                    std::string passenger_username = passengerData.substr(0, colonPos);
+                    int status = std::stoi(passengerData.substr(colonPos + 1));
+                    passengers.push_back(std::make_pair(passenger_username, status));
                 }
             }
             trip->setPassengers(passengers);
 
             // Add the trip to the list of trips
             trips.push_back(trip);
-            //cout << trip->getReferenceID() << endl;
+
             // Update the totalCarPoolBooking for the respective passengers
-            for (auto& currentPassenger : passengers) {
+            for (const auto& currentPassenger : passengers) {
                 for (auto& tmpPassenger : this->passengers) {
                     if (tmpPassenger->getUsername() == currentPassenger.first) {
                         tmpPassenger->addToTotalCarPoolBooking(trip);
                     }
                 }
             }
-
-            //cout << "ADDED TRIP: " << trip->getReferenceID() << endl;
 
             // Update driver's running carpool
             for (auto& tmpDriver : this->drivers) {
@@ -561,6 +549,7 @@ void Database::loadTrips() {
     }
     file.close();
 }
+
 
 void Database::saveDrivers() {
     std::ofstream saveDriver("../Data/drivers.txt", std::ios::out);
@@ -608,7 +597,8 @@ void Database::saveVehicles() {
             << vehicle->getModel() << ","
             << vehicle->getColor() << ","
             << vehicle->getPlateNumber() << ","
-            << vehicle->getTotalSeat()
+            << vehicle->getTotalSeat() << ","
+            << vehicle->getStatus()
             << std::endl;
     }
     saveVehicle.close();
@@ -658,9 +648,13 @@ void Database::saveTrips() {
    saveTrip << trip->getStatus() <<","
             << trip->getDriver() << ","
             << trip->getVehicle() << ","
+            << trip->getStart().getHour() << ","
+            << trip->getStart().getMinute() << ","
             << trip->getStart().getDay() << ","
             << trip->getStart().getMonth() << ","
             << trip->getStart().getYear() << ","
+            << trip->getEnd().getHour() << ","
+            << trip->getEnd().getMinute() << ","
             << trip->getEnd().getDay() << ","
             << trip->getEnd().getMonth() << ","
             << trip->getEnd().getYear() << ","

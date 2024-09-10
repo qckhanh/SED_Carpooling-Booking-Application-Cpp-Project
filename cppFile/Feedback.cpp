@@ -2,7 +2,10 @@
 
 Feedback::Feedback(string owner_username) {
 	this->owner_username = owner_username;
-	this->avgRate = -1.0;
+	this->avgRate = 0.0;
+}
+Feedback::Feedback() {
+	this->avgRate = 0.0;
 }
 void Feedback::setOwner_username(const string& username) {
 	this->owner_username = username;
