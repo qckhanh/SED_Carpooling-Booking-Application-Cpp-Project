@@ -52,8 +52,12 @@ public:
     void CustommerRequestManagement();
     void VehiclesManagement();
     //passenger
+    void RequestManagement();
+    void cancelRequest();
+    void HistoryAndFeedback();
+    
 
-    void bookCarpool();
+
     void searchAndBook();
     void searchByDeparture(string departureLocation, int isGuest);
     string stringFormatSearch(string s);
