@@ -227,10 +227,6 @@ bool UserExperience::areSeatAvailable(int availableSeat, int requestedSeat) {
     return availableSeat >= requestedSeat;
 }
 
-bool UserExperience::canCancelBooking(const std::string &bookingStatus) {
-    return bookingStatus == "Pending";
-}
-
 //Ensures integer input is within a specified range.
 int getValidIntInput(const std::string& prompt, int min, int max) {
     int input;

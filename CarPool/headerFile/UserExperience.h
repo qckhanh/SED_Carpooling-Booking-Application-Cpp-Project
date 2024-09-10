@@ -42,7 +42,6 @@ public:
     bool isValidRatingScore(int score);
     bool isValidLocation(const std::string& location);
     bool areSeatAvailable(int availableSeat, int requestedSeat);
-    bool canCancelBooking(const std::string &bookingStatus);
     int getValidIntInput(const std::string& prompt, int min, int max);
     double getValidDoubleInput(const std::string& prompt, double min, double max);
     bool isValidUsername(const std::string& username);
