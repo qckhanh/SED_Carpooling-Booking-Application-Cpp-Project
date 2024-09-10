@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include "UserExperience.h"
+
 using namespace std;
 class Vehicle {
 private:
@@ -8,10 +10,11 @@ private:
     std::string color;
     std::string plateNumber;
     int totalSeat;
+    int status;
 
 public:
     //constructor:
-    Vehicle(): totalSeat(0) {}
+    Vehicle();
     Vehicle(string owner_username, string model, string color, string plateNumber, int totalSeat);
     
     //destructor:
@@ -23,6 +26,7 @@ public:
     void setColor(const std::string &color);
     void setPlateNumber(const std::string &plateNumber);
     void setTotalSeat(int totalSeat);
+    void setStatus(int status);
 
     // Getters
     std::string getOwner_username() const;
@@ -30,5 +34,6 @@ public:
     std::string getColor() const;
     std::string getPlateNumber() const;
     int getTotalSeat() const;
-    void toString() const;
+    void showInformation(UserExperience& ux) const;
+    int getStatus() const;
 };

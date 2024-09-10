@@ -5,6 +5,8 @@
 #include "BankAccount.h"
 #include "IdentityCard.h"
 #include "Feedback.h"
+#include "UserExperience.h"
+#include<iomanip>
 using namespace std;
 class User {
 protected:
@@ -72,26 +74,27 @@ public:
     void manageInfo();
     void receiveCredit(float creditAmount);
     void useCredit(float creditAmount);
-    void showInformation() const {
+    void showInformation(UserExperience& ux) const {
+        ux.printHeader("PROFILE INFORMATION");
 
-        cout << "Profile Information: " << endl;
-        cout << "---------------------------------" << endl;
-        cout << "Full Name     : " << fullName << endl;
-        cout << "Username      : " << username << endl;
-        cout << "Password      : " << password << endl;
-        cout << "Date of Birth : " << DOB.getDay() << "/" << DOB.getMonth() << "/" << DOB.getYear() << endl;
-        cout << "Phone Number  : " << phoneNumber << endl;
-        cout << "Address       : " << address << endl;
-        cout << "Email         : " << email << endl;
-        cout << "ID Type       : " << idType << endl;
-        cout << "ID Number     : " << idNumber << endl;
-        cout << "Credit Points : " << creditPoint << endl;
-        cout << "Verified      : " << (isVerified ? "Yes" : "No") << endl;
+        std::cout << std::left;
+        std::cout << std::setw(18) << "Full Name" << ": " << fullName << std::endl;
+        std::cout << std::setw(18) << "Username" << ": " << username << std::endl;
+        std::cout << std::setw(18) << "Password" << ": " << password << std::endl;
+        std::cout << std::setw(18) << "Date of Birth" << ": " << DOB.getDay() << "/" << DOB.getMonth() << "/" << DOB.getYear() << std::endl;
+        std::cout << std::setw(18) << "Phone Number" << ": " << phoneNumber << std::endl;
+        std::cout << std::setw(18) << "Address" << ": " << address << std::endl;
+        std::cout << std::setw(18) << "Email" << ": " << email << std::endl;
+        std::cout << std::setw(18) << "ID Type" << ": " << idType << std::endl;
+        std::cout << std::setw(18) << "ID Number" << ": " << idNumber << std::endl;
+        std::cout << std::setw(18) << "Credit Points" << ": " << creditPoint << std::endl;
+        std::cout << std::setw(18) << "Verified" << ": " << (isVerified ? "Yes" : "No") << std::endl;
+
         // Uncomment the following lines when you implement the toString methods
-        // cout << "Bank Account  : " << bankAccount->toString() << endl;
-        // cout << "Identity Card : " << card->toString() << endl;
-        cout << "---------------------------------" << endl;
+        // std::cout << std::setw(18) << "Bank Account"  << ": " << bankAccount->toString() << std::endl;
+        // std::cout << std::setw(18) << "Identity Card" << ": " << card->toString() << std::endl;
 
 
     }
+
 };

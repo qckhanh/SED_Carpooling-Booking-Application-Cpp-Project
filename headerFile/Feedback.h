@@ -19,7 +19,7 @@ private:
 	vector<Comment> feedbacks;
 public:
 	Feedback(string owner_username);
-	Feedback(){}
+	Feedback();
 	
 	void setOwner_username(const string& username);
 	string getOwner_username();
