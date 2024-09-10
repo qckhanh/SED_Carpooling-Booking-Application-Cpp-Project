@@ -1,14 +1,4 @@
-<<<<<<< Updated upstream
-1,lamdao,ABCXXXX,0,0,0,1,1,1,HN,SG,5,1,3,12XBAGF-1,hieuhehe:1
-1,lamdao,ABCXXXX,0,0,0,1,1,1,HN,SG,5,1,3,12XBAGF-2,dbn:0
-1,lamdao,ABCXXXX,0,0,0,1,1,1,HN,SG,5,1,3,12XBAGF-3
-0,lamdao,ABCXXXX,0,0,0,1,1,1,HN,SG,5,1,3,12XBAGF-4
-1,lamdao,ABCXXXX,0,0,0,1,1,1,HN,SG,5,1,3,12XBAGF-5
-0,lamdao,ABCXXXX,0,0,0,1,1,1,HN,SG,5,1,3,12XBAGF-6
-1,lamdao,ABCXXXX,0,0,0,1,1,1,HN,SG,5,1,3,12XBAGF-7
-1,lamdao,ABCXXXX,0,0,0,1,1,1,HN,SG,5,1,3,12XBAGF-8
-1,lamdao,ABCXXXX,0,0,0,1,1,1,HN,SG,5,1,3,12XBAGF-9
-=======
 2,lamdao,ABCXXXX,8,30,15,7,2024,9,30,15,7,2024,Ha noi,Sai Gon,5,2,20,1543DDFA,hieuheh:0,quockhanh:0
-1,lamdao,29C1-9999,15,7,1,1,2020,15,7,1,1,2023,ha noi,sai gon,4,1,200,1sdsdsd11111111
->>>>>>> Stashed changes
+1,lamdao,29C1-9909,15,7,1,1,2020,15,7,1,1,2023,ha noi,sai gon,4,1,200,1sdsdsd11111111,dbn:0,dbn:0
+1,lamdao,29C1-9919,15,7,1,1,2020,15,7,1,1,2023,saigon,hanoi,4,1,200,1sdsdsd11111111,dbn:0,dbn:0
+1,lamdao,29C1-9929,15,7,1,1,2020,15,7,1,1,2023,HANOI,sai gon,4,1,200,1sdsdsd11111111,dbn:0,dbn:0

@@ -350,15 +350,15 @@ void Application::menu_Driver() {
 void Application::menu_Passenger() {
 
     while (1) {
+        clearDisplay;
         welcomeScreen(passenger);
-
-        cout << "Welcome " << passenger->getFullName() << "Score: " << passenger->getRateScore() << endl;
-        cout << "1. Book a carpool" << endl;
-        cout << "2. Manage my request" << endl;
-        cout << "3. Edit my profile" << endl;
-        cout << "4. Buy credit" << endl;
-        cout << "5. View my feedback" << endl;
-        cout << "0.Exit app" << endl;
+        ux.printOption(1, "Book a carpool");
+        ux.printOption(2, "Manage my request");
+        ux.printOption(3, "Edit my profile");
+        ux.printOption(4, "Buy credit");
+        ux.printOption(5, "View my feedback");
+        ux.printOption(6, "Search and book");
+        ux.printOption(0, "Exit");
 
         int option;
         cout << "Enter your option: ";
@@ -368,27 +368,23 @@ void Application::menu_Passenger() {
             exit(0);
         }
         if (option == 1) {
-            viewAvailableCarpools(passenger->getRateScore(), passenger->getCreditPoint());
-            int index;
-            cout << "Enter your trip you want to choose";
-            //passenger->
-            cin >> index;
+            bookCarpool();
+        }
 
-            passenger->bookACarPool(db.getTripByIndex(index, 1));
-            cout << "BOOKED" << endl;
-            pauseDisplay;
+        if (option == 3) {
+            editProfile(passenger);
         }
 
         if (option == 4) {
             buyCredit(passenger, 0);
-            pauseDisplay;
         }
 
-
         if (option == 5) {
-            clearDisplay;
             viewMyFeedback(passenger);
-            pauseDisplay;
+        }
+
+        if (option == 6) {
+            searchAndBook();
         }
     }
 }
@@ -577,14 +573,16 @@ void Application::doFeedbackUser(string username, string owner) {
         }
     }
 }
-void Application::viewAvailableCarpools(double myRate, float myCredit) {
-    for (const auto& tmpTrip : db.getTrips()) {
+vector<Trip*> Application::getAvailableCarpools(double myRate, float myCredit) {
+    vector<Trip*> tmp;
+    for (auto& tmpTrip : db.getTrips()) {
         float trip_minRate = tmpTrip->getMinRate();
         float trip_requireCost = tmpTrip->getCost();
-        if (myRate >= trip_minRate && myCredit >= trip_requireCost) {
-            cout << tmpTrip->toString() << endl;
+        if ((myRate >= trip_minRate || myRate == -1) && myCredit >= trip_requireCost) {
+            tmp.push_back(tmpTrip);
         }
     }
+    return tmp;
 }
 void Application::welcomeScreen(User* user) {
     clearDisplay;
@@ -948,5 +946,69 @@ void Application::VehiclesManagement() {
         pauseDisplay;
     }
 
+}
+
+void Application::bookCarpool() {
+    clearDisplay;
+    ux.printHeader("BOOK A CARPOOL");
+    cout << "Carpool available: " << endl;
+    getAvailableCarpools(passenger->getRateScore(), passenger->getCreditPoint());
+    int index;
+    cout << "Enter your trip you want to choose";
+    cin >> index;
+    passenger->bookACarPool(db.getTripByIndex(index, 1));
+    cout << "BOOKED" << endl;
+    pauseDisplay;
+}
+
+void Application::searchAndBook() {
+    clearDisplay;
+    ux.printHeader("Search and Book");
+    ux.printOption(1, "Search by dept location");
+    ux.printOption(2, "Search by dest loocation");
+    ux.printOption(3, "Search by start date");
+    ux.printOption(4, "Search by end date");
+    ux.printOption(5, "Exit");
+
+    int opt;
+    cout << "Enter option" << endl;
+    cin >> opt;
+
+    if (opt == 1) {
+        string dest;
+        getline(cin >> ws, dest);
+        searchByDeparture(dest, 0);
+    }
+
+}
+
+
+void Application::searchByDeparture(string departureLocation, int isGuest) {
+    if (!isGuest) {
+        vector<Trip*> t = getAvailableCarpools(passenger->getRateScore(), passenger->getCreditPoint());
+        for (auto& it : t) {
+            if (stringFormatSearch(it->getStartLocation()) == stringFormatSearch(departureLocation)) {
+                it->showInformation(ux);
+            }
+            pauseDisplay;
+        }
+    }
+    else {
+        vector<Trip*> t = getAvailableCarpools(3.0, -1);
+        for (auto& it : t) {
+            if (stringFormatSearch(it->getStartLocation()) == stringFormatSearch(departureLocation)) {
+                it->showInformation(ux);
+            }
+            pauseDisplay;
+        }
+    }
+}
+
+string Application::stringFormatSearch(string s) {
+    s.erase(remove(s.begin(), s.end(), ' '), s.end());
+    for (auto& it : s) {
+        it = tolower(it);
+    }
+    return s;
 }
 

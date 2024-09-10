@@ -167,6 +167,7 @@ void Trip::showInformation(UserExperience& ux) {
 
     std::cout << std::left;
     std::cout << std::setw(18) << "Driver" << ": " << driver_username << std::endl;
+    //driver rate
     std::cout << std::setw(18) << "Vehicle" << ": " << vehicle_plate << std::endl;
     // std::cout << std::setw(18) << "Start" << ": " << start.toString() << std::endl;
     // std::cout << std::setw(18) << "End"   << ": " << end.toString() << std::endl;
@@ -183,7 +184,6 @@ void Trip::showInformation(UserExperience& ux) {
         std::cout << "(" << passenger.first << ", " << passenger.second << "), ";
     }
     std::cout << "]" << std::endl;
-
 
 }
 

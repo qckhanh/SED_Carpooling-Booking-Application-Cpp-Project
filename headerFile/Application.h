@@ -36,7 +36,7 @@ public:
     //Common
     void viewMyFeedback(User* user);
     void doFeedbackUser(string username, string owner);
-    void viewAvailableCarpools(double myRate, float myCredit);
+    vector<Trip*> getAvailableCarpools(double myRate, float myCredit);
     void welcomeScreen(User* user);
     void buyCredit(User* user, bool isFirstTime);
     void editProfile(User* user);
@@ -52,6 +52,9 @@ public:
     void CustommerRequestManagement();
     void VehiclesManagement();
     //passenger
-    
 
+    void bookCarpool();
+    void searchAndBook();
+    void searchByDeparture(string departureLocation, int isGuest);
+    string stringFormatSearch(string s);
 };
