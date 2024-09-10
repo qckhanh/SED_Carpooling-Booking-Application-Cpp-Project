@@ -3,10 +3,19 @@
   "WorkspaceRootPath": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\SED_tmp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\Application.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\UserExperience.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Date.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\UserExperience.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\UserExperience.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\Application.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\trips.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
@@ -15,16 +24,13 @@
       "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\Trip.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\Driver.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\UserExperience.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\Database.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Database.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Date.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\UserExperience.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\feedbacks.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
@@ -39,13 +45,16 @@
       "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\drivers.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\admins.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\BankAccount.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Driver.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\vehicles.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Vehicle.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Date.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\Vehicle.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
@@ -82,6 +91,9 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Application.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Driver.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -90,7 +102,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 496,
+          "DockedWidth": 1172,
           "SelectedChildIndex": 1,
           "Children": [
             {
@@ -100,12 +112,38 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Application.h",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Application.h",
+              "RelativeDocumentMoniker": "..\\headerFile\\Application.h",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Application.h",
+              "RelativeToolTip": "..\\headerFile\\Application.h",
+              "ViewState": "AQIAABwAAAAAAAAAAAAQwCkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-09-02T17:26:13.174Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "passenger.txt",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\passenger.txt",
+              "RelativeDocumentMoniker": "..\\Data\\passenger.txt",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\passenger.txt",
+              "RelativeToolTip": "..\\Data\\passenger.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-09-02T11:24:01.434Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "UserExperience.cpp",
               "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\UserExperience.cpp",
               "RelativeDocumentMoniker": "..\\cppFile\\UserExperience.cpp",
               "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\UserExperience.cpp",
               "RelativeToolTip": "..\\cppFile\\UserExperience.cpp",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABMAAAAAAAAA",
+              "ViewState": "AQIAAEgAAAAAAAAAAAAWwFcAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-09-08T09:05:09.422Z",
               "EditorCaption": ""
@@ -124,19 +162,43 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "feedbacks.txt",
-              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\feedbacks.txt",
-              "RelativeDocumentMoniker": "..\\Data\\feedbacks.txt",
-              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\feedbacks.txt",
-              "RelativeToolTip": "..\\Data\\feedbacks.txt",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-09-02T11:24:02.651Z"
+              "DocumentIndex": 6,
+              "Title": "UserExperience.h",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\UserExperience.h",
+              "RelativeDocumentMoniker": "..\\headerFile\\UserExperience.h",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\UserExperience.h",
+              "RelativeToolTip": "..\\headerFile\\UserExperience.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-09-08T09:02:58.614Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Feedback.cpp",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\Feedback.cpp",
+              "RelativeDocumentMoniker": "..\\cppFile\\Feedback.cpp",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\Feedback.cpp",
+              "RelativeToolTip": "..\\cppFile\\Feedback.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-08T09:11:51.934Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
+              "Title": "User.h",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\User.h",
+              "RelativeDocumentMoniker": "..\\headerFile\\User.h",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\User.h",
+              "RelativeToolTip": "..\\headerFile\\User.h",
+              "ViewState": "AQIAADIAAAAAAAAAAAAswEcAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-09-02T17:28:45.187Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "Driver.h",
               "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Driver.h",
               "RelativeDocumentMoniker": "..\\headerFile\\Driver.h",
@@ -148,19 +210,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Application.h",
-              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Application.h",
-              "RelativeDocumentMoniker": "..\\headerFile\\Application.h",
-              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Application.h",
-              "RelativeToolTip": "..\\headerFile\\Application.h",
-              "ViewState": "AQIAACQAAAAAAAAAAAAAAC0AAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-02T17:26:13.174Z"
+              "DocumentIndex": 13,
+              "Title": "vehicles.txt",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\vehicles.txt",
+              "RelativeDocumentMoniker": "..\\Data\\vehicles.txt",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\vehicles.txt",
+              "RelativeToolTip": "..\\Data\\vehicles.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-09-02T18:00:15.704Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
+              "Title": "Date.h",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Date.h",
+              "RelativeDocumentMoniker": "..\\headerFile\\Date.h",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Date.h",
+              "RelativeToolTip": "..\\headerFile\\Date.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-09-02T18:40:48.664Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "drivers.txt",
               "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\drivers.txt",
               "RelativeDocumentMoniker": "..\\Data\\drivers.txt",
@@ -172,7 +246,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 17,
               "Title": "Database.h",
               "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Database.h",
               "RelativeDocumentMoniker": "..\\headerFile\\Database.h",
@@ -184,115 +258,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "admins.txt",
-              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\admins.txt",
-              "RelativeDocumentMoniker": "..\\Data\\admins.txt",
-              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\admins.txt",
-              "RelativeToolTip": "..\\Data\\admins.txt",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-09-02T11:24:03.961Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Date.h",
-              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Date.h",
-              "RelativeDocumentMoniker": "..\\headerFile\\Date.h",
-              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Date.h",
-              "RelativeToolTip": "..\\headerFile\\Date.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAKAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-02T18:40:48.664Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Vehicle.h",
-              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Vehicle.h",
-              "RelativeDocumentMoniker": "..\\headerFile\\Vehicle.h",
-              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Vehicle.h",
-              "RelativeToolTip": "..\\headerFile\\Vehicle.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-02T17:28:46.639Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "vehicles.txt",
-              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\vehicles.txt",
-              "RelativeDocumentMoniker": "..\\Data\\vehicles.txt",
-              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\vehicles.txt",
-              "RelativeToolTip": "..\\Data\\vehicles.txt",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-09-02T18:00:15.704Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "Feedback.cpp",
-              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\Feedback.cpp",
-              "RelativeDocumentMoniker": "..\\cppFile\\Feedback.cpp",
-              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\Feedback.cpp",
-              "RelativeToolTip": "..\\cppFile\\Feedback.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAKAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-08T09:11:51.934Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "passenger.txt",
-              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\passenger.txt",
-              "RelativeDocumentMoniker": "..\\Data\\passenger.txt",
-              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\passenger.txt",
-              "RelativeToolTip": "..\\Data\\passenger.txt",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-09-02T11:24:01.434Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "Trip.h",
-              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Trip.h",
-              "RelativeDocumentMoniker": "..\\headerFile\\Trip.h",
-              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Trip.h",
-              "RelativeToolTip": "..\\headerFile\\Trip.h",
-              "ViewState": "AQIAADYAAAAAAAAAAAAAAEcAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-02T11:40:50.219Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "User.h",
-              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\User.h",
-              "RelativeDocumentMoniker": "..\\headerFile\\User.h",
-              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\User.h",
-              "RelativeToolTip": "..\\headerFile\\User.h",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAAwCAAAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-02T17:28:45.187Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "UserExperience.h",
-              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\UserExperience.h",
-              "RelativeDocumentMoniker": "..\\headerFile\\UserExperience.h",
-              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\UserExperience.h",
-              "RelativeToolTip": "..\\headerFile\\UserExperience.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-08T09:02:58.614Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 11,
               "Title": "BankAccount.h",
               "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\BankAccount.h",
               "RelativeDocumentMoniker": "..\\headerFile\\BankAccount.h",
@@ -304,7 +270,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 22,
+              "Title": "Vehicle.h",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Vehicle.h",
+              "RelativeDocumentMoniker": "..\\headerFile\\Vehicle.h",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Vehicle.h",
+              "RelativeToolTip": "..\\headerFile\\Vehicle.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-09-02T17:28:46.639Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
               "Title": "NonMember.h",
               "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\NonMember.h",
               "RelativeDocumentMoniker": "..\\headerFile\\NonMember.h",
@@ -316,7 +294,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 21,
               "Title": "Admin.h",
               "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Admin.h",
               "RelativeDocumentMoniker": "..\\headerFile\\Admin.h",
@@ -328,20 +306,69 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 16,
+              "Title": "admins.txt",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\admins.txt",
+              "RelativeDocumentMoniker": "..\\Data\\admins.txt",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\admins.txt",
+              "RelativeToolTip": "..\\Data\\admins.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-09-02T11:24:03.961Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "trips.txt",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\trips.txt",
+              "RelativeDocumentMoniker": "..\\Data\\trips.txt",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\trips.txt",
+              "RelativeToolTip": "..\\Data\\trips.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-09-02T11:41:49.224Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "feedbacks.txt",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\feedbacks.txt",
+              "RelativeDocumentMoniker": "..\\Data\\feedbacks.txt",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\Data\\feedbacks.txt",
+              "RelativeToolTip": "..\\Data\\feedbacks.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-09-02T11:24:02.651Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Trip.h",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Trip.h",
+              "RelativeDocumentMoniker": "..\\headerFile\\Trip.h",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Trip.h",
+              "RelativeToolTip": "..\\headerFile\\Trip.h",
+              "ViewState": "AQIAACQAAAAAAAAAAAAAAEIAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-09-02T11:40:50.219Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
               "Title": "Application.h",
               "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Application.h",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Application.h",
               "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Application.h",
               "RelativeToolTip": "..\\..\\..\\..\\..\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Application.h",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-02T09:37:27.488Z"
+              "WhenOpened": "2024-09-03T02:30:12.345Z",
+              "EditorCaption": ""
             }
           ]
         },
         {
-          "DockedWidth": 1592,
-          "SelectedChildIndex": 1,
+          "DockedWidth": 916,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
@@ -359,19 +386,57 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "UserExperience.cpp",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\UserExperience.cpp",
+              "RelativeDocumentMoniker": "..\\cppFile\\UserExperience.cpp",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\UserExperience.cpp",
+              "RelativeToolTip": "..\\cppFile\\UserExperience.cpp",
+              "ViewState": "AQIAAHIAAAAAAAAAAAAqwJYAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-08T09:05:09.422Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Application.cpp",
               "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\Application.cpp",
               "RelativeDocumentMoniker": "..\\cppFile\\Application.cpp",
               "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\Application.cpp",
               "RelativeToolTip": "..\\cppFile\\Application.cpp",
-              "ViewState": "AQIAANwBAAAAAAAAAAAgwPwBAAAFAAAA",
+              "ViewState": "AQIAALgAAAAAAAAAAAAAAGEBAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-09-02T11:21:59.814Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 2,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\main.cpp",
+              "RelativeDocumentMoniker": "..\\cppFile\\main.cpp",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\main.cpp",
+              "RelativeToolTip": "..\\cppFile\\main.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-02T18:50:01.394Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Feedback.h",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Feedback.h",
+              "RelativeDocumentMoniker": "..\\headerFile\\Feedback.h",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\headerFile\\Feedback.h",
+              "RelativeToolTip": "..\\headerFile\\Feedback.h",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAowBQAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-09-02T18:14:53.928Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
               "Title": "Vehicle.cpp",
               "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\Vehicle.cpp",
               "RelativeDocumentMoniker": "..\\cppFile\\Vehicle.cpp",
@@ -383,13 +448,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 19,
               "Title": "Driver.cpp",
-              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\Driver.cpp",
+              "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Driver.cpp",
               "RelativeDocumentMoniker": "..\\cppFile\\Driver.cpp",
-              "ToolTip": "C:\\Users\\LENOVO LEGION\\Desktop\\Workspace\\SED_Carpooling_GroupProject\\cppFile\\Driver.cpp",
+              "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Driver.cpp",
               "RelativeToolTip": "..\\cppFile\\Driver.cpp",
-              "ViewState": "AQIAADwAAAAAAAAAAAAvwFkAAAArAAAA",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-09-02T18:08:09.928Z"
             },
