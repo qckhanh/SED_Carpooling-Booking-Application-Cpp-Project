@@ -70,7 +70,7 @@ public:
     void removePassenger(const std::string& passenger_username, int status);
     void changeStatusPassenger(int index, int value);
     std::string toString();
-    void showInformation(UserExperience& ux);
+    void showInformation(UserExperience& ux); //isguest
     
     
 

@@ -1018,3 +1018,56 @@ void Application::cancelRequest() {
     }
     
 }
+
+
+void Application::searchAndBook() {
+    clearDisplay;
+    ux.printHeader("Search and Book");
+    ux.printOption(1, "Search by dept location");
+    ux.printOption(2, "Search by dest loocation");
+    ux.printOption(3, "Search by start date");
+    ux.printOption(4, "Search by end date");
+    ux.printOption(5, "Exit");
+
+    int opt;
+    cout << "Enter option" << endl;
+    cin >> opt;
+
+    if (opt == 1) {
+        string dest;
+        getline(cin >> ws, dest);
+        searchByDeparture(dest, 0);
+    }
+
+}
+
+
+void Application::searchByDeparture(string departureLocation, int isGuest) {
+    if (!isGuest) {
+        vector<Trip*> t = getAvailableCarpools(passenger->getRateScore(), passenger->getCreditPoint());
+        for (auto& it : t) {
+            if (stringFormatSearch(it->getStartLocation()) == stringFormatSearch(departureLocation)) {
+                it->showInformation(ux);
+            }
+            pauseDisplay;
+        }
+    }
+    else {
+        vector<Trip*> t = getAvailableCarpools(3.0, -1);
+        for (auto& it : t) {
+            if (stringFormatSearch(it->getStartLocation()) == stringFormatSearch(departureLocation)) {
+                it->showInformation(ux);
+            }
+            pauseDisplay;
+        }
+    }
+}
+
+string Application::stringFormatSearch(string s) {
+    s.erase(remove(s.begin(), s.end(), ' '), s.end());
+    for (auto& it : s) {
+        it = tolower(it);
+    }
+    return s;
+}
+

@@ -1,3 +1,4 @@
-2,lamdao,ABCXXXX,8,30,15,7,2024,9,30,15,7,2024,Ha noi,Sai Gon,5,2,20,1543DDFA,quockhanh:0,hieuhehe:0
-1,lamdao,29C1-9999,15,7,1,1,2020,15,7,1,1,2023,ha noi,sai gon,4,1,200,1sdsdsd11111111,hieuhehe:0
-1,lamdao,88A-02836,12,20,1,1,1,1,1,1,1,1,1,1,4,1,1,1,quockhhanh:0,hieuhehe:0
+2,lamdao,ABCXXXX,8,30,15,7,2024,9,30,15,7,2024,Ha noi,Sai Gon,5,2,20,1543DDFA,hieuheh:0,quockhanh:0
+1,lamdao,29C1-9909,15,7,1,1,2020,15,7,1,1,2023,ha noi,sai gon,4,1,200,1sdsdsd11111111,dbn:0,dbn:0
+1,lamdao,29C1-9919,15,7,1,1,2020,15,7,1,1,2023,saigon,hanoi,4,1,200,1sdsdsd11111111,dbn:0,dbn:0
+1,lamdao,29C1-9929,15,7,1,1,2020,15,7,1,1,2023,HANOI,sai gon,4,1,200,1sdsdsd11111111,dbn:0,dbn:0

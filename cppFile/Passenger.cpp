@@ -66,9 +66,14 @@ vector<Trip*> Passenger::getTripByStatus(int status) {
 //    return carpools;
 //}
 
-//void Passenger::viewCarpool(int statusValue) const {
-//    int index = 0;
-//    for (const auto& currentCarpool : carpools) {
-//
-//    }
-//}
+void Passenger::viewCarpool(UserExperience& ux, int statusValue) const {
+    int index = 1;
+    for (const auto& currentCarpool : totalCarPoolBooking) {
+        if (currentCarpool->getStatus() == statusValue) {
+            cout << endl;
+            cout << index << ": " << currentCarpool->getReferenceID() << ": " << endl;
+            currentCarpool->showInformation(ux);
+            index++;
+        }
+    }
+}

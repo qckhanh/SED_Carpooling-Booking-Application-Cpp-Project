@@ -56,6 +56,9 @@ public:
     void cancelRequest();
     void HistoryAndFeedback();
     
-    
 
+
+    void searchAndBook();
+    void searchByDeparture(string departureLocation, int isGuest);
+    string stringFormatSearch(string s);
 };
