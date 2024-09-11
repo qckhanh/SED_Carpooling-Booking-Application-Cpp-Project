@@ -3,7 +3,10 @@
 #include <iomanip>
 
 // Constructor
-Trip::Trip() : availableSeat(0) {}
+Trip::Trip() : availableSeat(0) {
+    currDriver = nullptr;
+    currVehicle = nullptr;
+}
 
 // Destructor
 Trip::~Trip() {}
@@ -14,6 +17,14 @@ void Trip::setStatus(const int status) {
 }
 void Trip::setDriver(const std::string& driver_username) {
     this->driver_username = driver_username;
+}
+
+void Trip::setDriverP(Driver* driver) {
+    this->currDriver = driver;
+}
+
+void Trip::setVehicleP(Vehicle* vehicle) {
+    this->currVehicle = vehicle;
 }
 
 void Trip::setVehicle(const std::string& vehicle_plate) {
@@ -115,6 +126,14 @@ float Trip::getMinRate() const {
     return minRate;
 }
 
+Driver* Trip::getDriverP() {
+    return currDriver;
+}
+
+Vehicle* Trip::getVehicleP() {
+    return currVehicle;
+}
+
 // New Getter for Specific Passenger Status
 int Trip::getPassengerStatus(const std::string& passenger_username) const {
     for (const auto& passenger : passengers) {
@@ -179,15 +198,18 @@ void Trip::showInformation(UserExperience& ux) {
     std::cout << std::left;
     std::cout << std::setw(18) << "Driver" << ": " << driver_username << std::endl;
     //driver rate
-    std::cout << std::setw(18) << "Vehicle" << ": " << vehicle_plate << std::endl;
-    // std::cout << std::setw(18) << "Start" << ": " << start.toString() << std::endl;
-    // std::cout << std::setw(18) << "End"   << ": " << end.toString() << std::endl;
+    std::cout << std::setw(18) << "Driver Rate" << ": " << currDriver->getRateScore() << endl;
+    //xe gi mau gi
+    
+    std::cout << std::setw(18) << "Start" << ": " << start.getHour() << ":" << start.getMinute() << ", " << start.getDay() << "/" << start.getMonth() << "/" << start.getYear() << std::endl;
+    std::cout << std::setw(18) << "End"   << ": " << end.getHour() << ":" << end.getMinute() << ", " << end.getDay() << "/" << end.getMonth() << "/" << end.getYear() << std::endl;
     std::cout << std::setw(18) << "Start Location" << ": " << startLocation << std::endl;
     std::cout << std::setw(18) << "End Location" << ": " << endLocation << std::endl;
     std::cout << std::setw(18) << "Available Seats" << ": " << availableSeat << std::endl;
     std::cout << std::setw(18) << "Min Rate" << ": " << minRate << std::endl;
-    std::cout << std::setw(18) << "Cost" << ": " << cost << std::endl;
+    std::cout << std::setw(18) << "Cost" << ": " << cost << std::endl;  
     std::cout << std::setw(18) << "Reference ID" << ": " << referenceID << std::endl;
+    currVehicle->showInformation(ux);
 
     // Display the list of passengers
     std::cout << std::setw(18) << "Passengers" << ": [";
@@ -196,5 +218,3 @@ void Trip::showInformation(UserExperience& ux) {
     }
     std::cout << "]" << std::endl;
 }
-
-
