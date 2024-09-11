@@ -568,7 +568,9 @@ vector<Trip*> Application::getAvailableCarpools(double myRate, float myCredit) {
         float trip_minRate = tmpTrip->getMinRate();
         float trip_requireCost = tmpTrip->getCost();
         if ((myRate >= trip_minRate || myRate == -1) && myCredit >= trip_requireCost) {
-            tmp.push_back(tmpTrip);
+            if (tmpTrip->getStatus() == 1) {
+                tmp.push_back(tmpTrip);
+            }
         }
     }
     return tmp;
@@ -1009,7 +1011,6 @@ void Application::cancelRequest() {
     
 }
 
-
 void Application::searchAndBook() {
     int opt = -1;
     while (opt != 0) {
@@ -1024,47 +1025,48 @@ void Application::searchAndBook() {
         cout << "Enter option" << endl;
         cin >> opt;
 
-        if (opt == 1) {
-            string dept;
-            getline(cin >> ws, dept);
-            searchByDeparture(dept, 0);
-        }
-        else if (opt == 2) {
-            string dest;
-            getline(cin >> ws, dest);
-            searchByDestination(dest, 0);
-        }
-        else if (opt == 3) {
-            int dd = -1, mm = -1;
-            cin >> dd >> mm;
-            searchByStartDate(dd, mm, 0);
-        }
-
-        else if (opt == 4) {
-            int dd = -1;
-            int mm = -1;
-            cin >> dd, mm;
-            searchByEndDate(dd, mm, 0);
-        }
-
-        else if (opt == 0) {
-            return;
-        }
+    if (opt == 1) {
+        string dept;
+        cout << "Enter depature location: " << endl;
+        getline(cin >> ws, dept);
+        searchByDeparture(dept, 0);
     }
-
-    
+    else if (opt == 2) {
+        cout << "Enter destination location: " << endl;
+        string dest;
+        getline(cin >> ws, dest);
+        searchByDestination(dest, 0);
+    }
+    /*else if (opt == 3) {
+        int dd, mm;
+        cin >> dd >> mm;
+        searchByStartDate(dd, mm, 0);
+    }*/
 
 }
 
 
 void Application::searchByDeparture(string departureLocation, int isGuest) {
     if (!isGuest) {
-        vector<Trip*> t = getAvailableCarpools(passenger->getRateScore(), passenger->getCreditPoint());
-        for (auto& it : t) {
+        int index = 1;
+        vector<Trip*> tmpTrip;
+        for (auto& it : getAvailableCarpools(passenger->getRateScore(), passenger->getCreditPoint())) {
             if (stringFormatSearch(it->getStartLocation()) == stringFormatSearch(departureLocation)) {
+                cout << index << ": Reference ID: " << it->getReferenceID() << " :" << endl;
                 it->showInformation(ux);
+                tmpTrip.push_back(it);
+                index++;
             }
         }
+
+        int opt;
+        cout << "Enter the trip's index";
+        cin >> opt;
+    
+        if (opt <= 0) return;
+        if (!ux.confirmMessage("Do you want to book carpool: Reference ID:  " + tmpTrip[opt - 1]->getReferenceID() + "?")) return;
+        passenger->bookACarPool(tmpTrip[opt - 1]);
+
         pauseDisplay;
     }
     //later use for guest
@@ -1081,12 +1083,25 @@ void Application::searchByDeparture(string departureLocation, int isGuest) {
 
 void Application::searchByDestination(string destinationLocation, int isGuest) {
     if (!isGuest) {
-        vector<Trip*> t = getAvailableCarpools(passenger->getRateScore(), passenger->getCreditPoint());
-        for (auto& it : t) {
+        int index = 1;
+        vector<Trip*> tmpTrip;
+        for (auto& it : getAvailableCarpools(passenger->getRateScore(), passenger->getCreditPoint())) {
             if (stringFormatSearch(it->getEndLocation()) == stringFormatSearch(destinationLocation)) {
+                cout << index << ": Reference ID: " << it->getReferenceID() << " :" << endl;
                 it->showInformation(ux);
+                tmpTrip.push_back(it);
+                index++;
             }
         }
+
+        int opt;
+        cout << "Enter the trip's index";
+        cin >> opt;
+
+        if (opt <= 0) return;
+        if (!ux.confirmMessage("Do you want to book carpool: Reference ID:  " + tmpTrip[opt - 1]->getReferenceID() + "?")) return;
+        passenger->bookACarPool(tmpTrip[opt - 1]);
+
         pauseDisplay;
     }
 }

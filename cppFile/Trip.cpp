@@ -148,6 +148,8 @@ int Trip::getPassengerStatus(const std::string& passenger_username) const {
 // Methods
 void Trip::addPassengerToTrip(const std::string& passenger_username, int status) {
     passengers.push_back(std::make_pair(passenger_username, status));
+    availableSeat--;
+    cout << " - 1" << endl;
 }
 
 void Trip::changeStatusPassenger(int index, int value) {
