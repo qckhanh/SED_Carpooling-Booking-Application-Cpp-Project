@@ -52,6 +52,7 @@ public:
     // Getters
     int getStatus() const;
     std::string getDriver() const;
+    double getDriverRating(Driver *driver);
     std::string getVehicle() const;
     Date getStart() const;
     Date getEnd() const;

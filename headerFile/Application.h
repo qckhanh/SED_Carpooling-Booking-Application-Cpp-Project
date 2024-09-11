@@ -60,5 +60,8 @@ public:
 
     void searchAndBook();
     void searchByDeparture(string departureLocation, int isGuest);
+    void searchByDestination(string destinationLocation, int isGuest);
+    void searchByStartDate(int dd, int mm, int isGuest);
+    void searchByEndDate(int dd, int mm, int isGuest);
     string stringFormatSearch(string s);
 };
