@@ -364,17 +364,7 @@ void Application::menu_Passenger() {
         cin >> opt;
         
         if (opt == 1) {
-            clearDisplay;
-            vector<Trip*> trips = getAvailableCarpools(passenger->getRateScore(), passenger->getCreditPoint());
-            for (auto& tmp : trips) tmp->showInformation(ux);
-
-            int index;
-            cout << "Enter your trip you want to choose: ";
-            cin >> index;
-
-            if (index <= 0) continue;
-            passenger->bookACarPool(trips[index - 1]);
-            pauseDisplay;
+            searchAndBook();
         }
         else if (opt == 2) RequestManagement();
         else if (opt == 3) editProfile(passenger);
@@ -1024,7 +1014,7 @@ void Application::searchAndBook() {
     clearDisplay;
     ux.printHeader("Search and Book");
     ux.printOption(1, "Search by dept location");
-    ux.printOption(2, "Search by dest loocation");
+    ux.printOption(2, "Search by dest location");
     ux.printOption(3, "Search by start date");
     ux.printOption(4, "Search by end date");
     ux.printOption(5, "Exit");
@@ -1034,10 +1024,20 @@ void Application::searchAndBook() {
     cin >> opt;
 
     if (opt == 1) {
+        string dept;
+        getline(cin >> ws, dept);
+        searchByDeparture(dept, 0);
+    }
+    else if (opt == 2) {
         string dest;
         getline(cin >> ws, dest);
-        searchByDeparture(dest, 0);
+        searchByDestination(dest, 0);
     }
+    /*else if (opt == 3) {
+        int dd, mm;
+        cin >> dd >> mm;
+        searchByStartDate(dd, mm, 0);
+    }*/
 
 }
 
@@ -1049,18 +1049,57 @@ void Application::searchByDeparture(string departureLocation, int isGuest) {
             if (stringFormatSearch(it->getStartLocation()) == stringFormatSearch(departureLocation)) {
                 it->showInformation(ux);
             }
-            pauseDisplay;
         }
+        pauseDisplay;
     }
-    else {
-        vector<Trip*> t = getAvailableCarpools(3.0, -1);
+    //later use for guest
+    //else {
+    //    vector<Trip*> t = getAvailableCarpools(3.0, -1);
+    //    for (auto& it : t) {
+    //        if (stringFormatSearch(it->getStartLocation()) == stringFormatSearch(departureLocation)) {
+    //            it->showInformation(ux);
+    //        }
+    //        pauseDisplay;
+    //    }
+    //}
+}
+
+void Application::searchByDestination(string destinationLocation, int isGuest) {
+    if (!isGuest) {
+        vector<Trip*> t = getAvailableCarpools(passenger->getRateScore(), passenger->getCreditPoint());
         for (auto& it : t) {
-            if (stringFormatSearch(it->getStartLocation()) == stringFormatSearch(departureLocation)) {
+            if (stringFormatSearch(it->getEndLocation()) == stringFormatSearch(destinationLocation)) {
                 it->showInformation(ux);
             }
-            pauseDisplay;
         }
+        pauseDisplay;
     }
+}
+
+void Application::searchByStartDate(int dd, int mm, int isGuest) {
+    if (!isGuest) {
+        vector<Trip*> t = getAvailableCarpools(passenger->getRateScore(), passenger->getCreditPoint());
+        for (auto& it : t) {
+            if (it->getStart().getDay() == dd && it->getStart().getMonth() == mm) {
+                it->showInformation(ux);
+            }
+        }
+        pauseDisplay;
+    }
+    
+}
+
+void Application::searchByEndDate(int dd, int mm, int isGuest) {
+    if (!isGuest) {
+        vector<Trip*> t = getAvailableCarpools(passenger->getRateScore(), passenger->getCreditPoint());
+        for (auto& it : t) {
+            if (it->getEnd().getDay() == dd && it->getEnd().getMonth() == mm) {
+                it->showInformation(ux);
+            }
+        }
+        pauseDisplay;
+    }
+
 }
 
 string Application::stringFormatSearch(string s) {

@@ -3,61 +3,19 @@
   "WorkspaceRootPath": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\SED_tmp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\trips.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Application.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Application.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\passenger.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\trips.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Passenger.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\vehicles.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\userLoginData.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\admins.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Passenger.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Trip.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Date.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Trip.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\User.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\User.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Database.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Database.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\UserExperience.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\feedbacks.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\drivers.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Driver.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,251 +24,84 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 1472,
-          "SelectedChildIndex": 9,
+          "DockedWidth": 904,
+          "SelectedChildIndex": 4,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Application.cpp",
-              "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Application.cpp",
-              "RelativeDocumentMoniker": "..\\cppFile\\Application.cpp",
-              "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Application.cpp",
-              "RelativeToolTip": "..\\cppFile\\Application.cpp",
-              "ViewState": "AgIAAMkDAAAAAAAAAAAAAOADAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-10T16:44:36.015Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "passenger.txt",
-              "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\passenger.txt",
-              "RelativeDocumentMoniker": "..\\Data\\passenger.txt",
-              "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\passenger.txt",
-              "RelativeToolTip": "..\\Data\\passenger.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-09-10T18:51:13.617Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "User.h",
-              "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\User.h",
-              "RelativeDocumentMoniker": "..\\headerFile\\User.h",
-              "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\User.h",
-              "RelativeToolTip": "..\\headerFile\\User.h",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAADIAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-10T18:23:56.983Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "User.cpp",
-              "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\User.cpp",
-              "RelativeDocumentMoniker": "..\\cppFile\\User.cpp",
-              "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\User.cpp",
-              "RelativeToolTip": "..\\cppFile\\User.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-10T18:23:49.163Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "UserExperience.cpp",
-              "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\UserExperience.cpp",
-              "RelativeDocumentMoniker": "..\\cppFile\\UserExperience.cpp",
-              "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\UserExperience.cpp",
-              "RelativeToolTip": "..\\cppFile\\UserExperience.cpp",
-              "ViewState": "AgIAAI0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-10T17:30:43.839Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "feedbacks.txt",
-              "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\feedbacks.txt",
-              "RelativeDocumentMoniker": "..\\Data\\feedbacks.txt",
-              "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\feedbacks.txt",
-              "RelativeToolTip": "..\\Data\\feedbacks.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-09-10T17:16:49.593Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "drivers.txt",
-              "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\drivers.txt",
-              "RelativeDocumentMoniker": "..\\Data\\drivers.txt",
-              "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\drivers.txt",
-              "RelativeToolTip": "..\\Data\\drivers.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-09-10T17:16:48.681Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "admins.txt",
-              "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\admins.txt",
-              "RelativeDocumentMoniker": "..\\Data\\admins.txt",
-              "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\admins.txt",
-              "RelativeToolTip": "..\\Data\\admins.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-09-10T17:16:47.873Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "trips.txt",
-              "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\trips.txt",
-              "RelativeDocumentMoniker": "..\\Data\\trips.txt",
-              "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\trips.txt",
-              "RelativeToolTip": "..\\Data\\trips.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-09-10T17:16:23.165Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "userLoginData.txt",
-              "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\userLoginData.txt",
-              "RelativeDocumentMoniker": "..\\Data\\userLoginData.txt",
-              "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\userLoginData.txt",
-              "RelativeToolTip": "..\\Data\\userLoginData.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-09-10T17:16:22.065Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "vehicles.txt",
-              "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\vehicles.txt",
-              "RelativeDocumentMoniker": "..\\Data\\vehicles.txt",
-              "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\vehicles.txt",
-              "RelativeToolTip": "..\\Data\\vehicles.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-09-10T17:16:20.279Z"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Passenger.cpp",
-              "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Passenger.cpp",
-              "RelativeDocumentMoniker": "..\\cppFile\\Passenger.cpp",
-              "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Passenger.cpp",
-              "RelativeToolTip": "..\\cppFile\\Passenger.cpp",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAWwB4AAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-10T16:56:14.672Z"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 616,
-          "SelectedChildIndex": 5,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "Driver.h",
-              "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Driver.h",
-              "RelativeDocumentMoniker": "..\\headerFile\\Driver.h",
-              "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Driver.h",
-              "RelativeToolTip": "..\\headerFile\\Driver.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-10T16:57:17.457Z",
-              "IsPinned": true
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
               "Title": "Trip.h",
               "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Trip.h",
               "RelativeDocumentMoniker": "..\\headerFile\\Trip.h",
               "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Trip.h",
               "RelativeToolTip": "..\\headerFile\\Trip.h",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAAEcAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAADEAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-10T18:13:43.856Z"
+              "WhenOpened": "2024-09-11T07:35:37.078Z",
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Trip.cpp",
-              "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Trip.cpp",
-              "RelativeDocumentMoniker": "..\\cppFile\\Trip.cpp",
-              "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Trip.cpp",
-              "RelativeToolTip": "..\\cppFile\\Trip.cpp",
-              "ViewState": "AgIAAJUAAAAAAAAAAAAWwKkAAAARAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "Date.cpp",
+              "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Date.cpp",
+              "RelativeDocumentMoniker": "..\\cppFile\\Date.cpp",
+              "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Date.cpp",
+              "RelativeToolTip": "..\\cppFile\\Date.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-10T17:42:53.035Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Database.cpp",
-              "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Database.cpp",
-              "RelativeDocumentMoniker": "..\\cppFile\\Database.cpp",
-              "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Database.cpp",
-              "RelativeToolTip": "..\\cppFile\\Database.cpp",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAAABcAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-10T18:09:46.863Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Passenger.h",
-              "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Passenger.h",
-              "RelativeDocumentMoniker": "..\\headerFile\\Passenger.h",
-              "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Passenger.h",
-              "RelativeToolTip": "..\\headerFile\\Passenger.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-10T16:56:38.938Z"
+              "WhenOpened": "2024-09-11T10:46:18.261Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "trips.txt",
+              "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\trips.txt",
+              "RelativeDocumentMoniker": "..\\Data\\trips.txt",
+              "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\trips.txt",
+              "RelativeToolTip": "..\\Data\\trips.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-09-11T10:40:35.021Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Application.h",
               "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Application.h",
               "RelativeDocumentMoniker": "..\\headerFile\\Application.h",
               "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Application.h",
               "RelativeToolTip": "..\\headerFile\\Application.h",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAADcAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAD8AAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-10T16:40:52.839Z",
+              "WhenOpened": "2024-09-11T07:35:46.356Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Database.h",
-              "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Database.h",
-              "RelativeDocumentMoniker": "..\\headerFile\\Database.h",
-              "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Database.h",
-              "RelativeToolTip": "..\\headerFile\\Database.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-10T18:11:02.408Z"
+              "DocumentIndex": 0,
+              "Title": "Application.cpp",
+              "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Application.cpp",
+              "RelativeDocumentMoniker": "..\\cppFile\\Application.cpp",
+              "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Application.cpp",
+              "RelativeToolTip": "..\\cppFile\\Application.cpp",
+              "ViewState": "AgIAAPoDAAAAAAAAAAAAAA4EAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-11T07:34:38.317Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 724,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             }
           ]
         }
