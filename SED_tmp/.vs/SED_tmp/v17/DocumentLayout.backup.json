@@ -9,10 +9,13 @@
       "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Application.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\trips.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Date.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Date.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Trip.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\trips.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3C8AB91A-6163-4F1A-A5D1-2A4D2091E326}|SED_tmp.vcxproj|C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Trip.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
@@ -25,11 +28,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 904,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Trip.h",
               "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Trip.h",
               "RelativeDocumentMoniker": "..\\headerFile\\Trip.h",
@@ -38,12 +41,23 @@
               "ViewState": "AgIAACoAAAAAAAAAAAAAADEAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-09-11T07:35:37.078Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Trip.cpp",
+              "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Trip.cpp",
+              "RelativeDocumentMoniker": "..\\cppFile\\Trip.cpp",
+              "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Trip.cpp",
+              "RelativeToolTip": "..\\cppFile\\Trip.cpp",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAnwJ8AAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-11T10:41:45.242Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Date.cpp",
               "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Date.cpp",
               "RelativeDocumentMoniker": "..\\cppFile\\Date.cpp",
@@ -51,12 +65,11 @@
               "RelativeToolTip": "..\\cppFile\\Date.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-11T10:46:18.261Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-11T10:46:18.261Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "trips.txt",
               "DocumentMoniker": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\Data\\trips.txt",
               "RelativeDocumentMoniker": "..\\Data\\trips.txt",
@@ -64,8 +77,7 @@
               "RelativeToolTip": "..\\Data\\trips.txt",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-09-11T10:40:35.021Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-11T10:40:35.021Z"
             },
             {
               "$type": "Document",
@@ -75,10 +87,9 @@
               "RelativeDocumentMoniker": "..\\headerFile\\Application.h",
               "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\headerFile\\Application.h",
               "RelativeToolTip": "..\\headerFile\\Application.h",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAAD8AAAA4AAAAAAAAAA==",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAADYAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-11T07:35:46.356Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-11T07:35:46.356Z"
             },
             {
               "$type": "Document",
@@ -88,7 +99,7 @@
               "RelativeDocumentMoniker": "..\\cppFile\\Application.cpp",
               "ToolTip": "C:\\Users\\lamdao\\Documents\\GitHub\\SED_Carpooling_GroupProject\\cppFile\\Application.cpp",
               "RelativeToolTip": "..\\cppFile\\Application.cpp",
-              "ViewState": "AgIAAPoDAAAAAAAAAAAAAA4EAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAAQEAAAAAAAAAAAYwCgEAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-09-11T07:34:38.317Z",
               "EditorCaption": ""
