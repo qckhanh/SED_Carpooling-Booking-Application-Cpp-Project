@@ -52,6 +52,7 @@ public:
     // Getters
     int getStatus() const;
     std::string getDriver() const;
+    double getDriverRating(Driver *driver);
     std::string getVehicle() const;
     Date getStart() const;
     Date getEnd() const;
@@ -67,9 +68,11 @@ public:
 
     // Methods
     void addPassengerToTrip(const std::string& passenger_username, int status);
+    void removePassenger(const std::string& passenger_username, int status);
     void changeStatusPassenger(int index, int value);
     std::string toString();
-    void showInformation(UserExperience& ux);
+    void showInformation(UserExperience& ux); //isguest
+    
     
 
 };

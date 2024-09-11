@@ -140,7 +140,6 @@ void Application::createNewAccount() {
         expireDate = Date(-1, -1, -1, -1, month, year);
 
         if (!ux.confirmMessage("Do you want to create account? ")) continue;
-
         if (currentUser) {
             currentUser->setFullName(fullName);
             currentUser->setUsername(userName);
@@ -348,57 +347,54 @@ void Application::menu_Driver() {
     }
 }
 void Application::menu_Passenger() {
-
-    while (1) {
+    int opt = -1;
+    while (opt != 0) {
+        clearDisplay;
         welcomeScreen(passenger);
+        ux.printOption(1, "Search and Book");
+        ux.printOption(2, "Request Management");
+        ux.printOption(3, "Edit my profile");
+        ux.printOption(4, "Buy credit");
+        ux.printOption(5, "View my feedback");
+        ux.printOption(0, "Exit");
 
-        cout << "Welcome " << passenger->getFullName() << "Score: " << passenger->getRateScore() << endl;
-        cout << "1. Book a carpool" << endl;
-        cout << "2. Manage my request" << endl;
-        cout << "3. Edit my profile" << endl;
-        cout << "4. Buy credit" << endl;
-        cout << "5. View my feedback" << endl;
-        cout << "0.Exit app" << endl;
 
-        int option;
         cout << "Enter your option: ";
-        cin >> option;
-        if (option == 0) {
+        cin >> opt;
+        
+        if (opt == 1) {
+            searchAndBook();
+        }
+        else if (opt == 2) RequestManagement();
+        else if (opt == 3) editProfile(passenger);
+        else if (opt == 4) buyCredit(passenger, 0);
+        else if (opt == 5) viewMyFeedback(passenger);
+        else if (opt == 0) {
             db.saveDataToFile();
             exit(0);
         }
-        if (option == 1) {
-            viewAvailableCarpools(passenger->getRateScore(), passenger->getCreditPoint());
-            int index;
-            cout << "Enter your trip you want to choose";
-            //passenger->
-            cin >> index;
-
-            passenger->bookACarPool(db.getTripByIndex(index, 1));
-            cout << "BOOKED" << endl;
-            pauseDisplay;
-        }
-
-        if (option == 4) {
-            buyCredit(passenger, 0);
-            pauseDisplay;
-        }
-
-
-        if (option == 5) {
-            clearDisplay;
-            viewMyFeedback(passenger);
-            pauseDisplay;
-        }
+        else cout << "Invalid option" << endl;
     }
 }
 void Application::addCarpool() {
+    clearDisplay;
+    ux.printHeader("CREATE NEW CARPOOL");
     clearDisplay;
     ux.printHeader("CREATE NEW CARPOOL");
     string hh, mm, dd, mmmm, yyyy;
     string hh2, mm2, dd2, mmmm2, yyyy2, startLocation, endLocation, referenceID;
     float minRate, cost;
 
+    cout << "Enter the start hour: ";
+    cin >> hh;
+    cout << "Enter the start minute: ";
+    cin >> mm;
+    cout << "Enter the start day: ";
+    cin >> dd;
+    cout << "Enter the start month: ";
+    cin >> mmmm;
+    cout << "Enter the start year: ";
+    cin >> yyyy;
     cout << "Enter the start hour: ";
     cin >> hh;
     cout << "Enter the start minute: ";
@@ -420,11 +416,23 @@ void Application::addCarpool() {
     cin >> mmmm2;
     cout << "Enter the end year: ";
     cin >> yyyy2;
+    cout << "Enter the end hour: ";
+    cin >> hh2;
+    cout << "Enter the end minute: ";
+    cin >> mm2;
+    cout << "Enter the end day: ";
+    cin >> dd2;
+    cout << "Enter the end month: ";
+    cin >> mmmm2;
+    cout << "Enter the end year: ";
+    cin >> yyyy2;
 
     cout << "Enter start location: ";
     getline(cin >> ws, startLocation);
+    getline(cin >> ws, startLocation);
 
     cout << "Enter end location: ";
+    getline(cin >> ws, endLocation);
     getline(cin >> ws, endLocation);
 
     cout << "Enter reference ID: ";
@@ -437,14 +445,19 @@ void Application::addCarpool() {
     cin >> cost;
 
     driver->viewVehicle(ux);
+    driver->viewVehicle(ux);
     int carID;
+    cout << "Select the vehicle: ";
     cout << "Select the vehicle: ";
     cin >> carID;
 
     if (!ux.confirmMessage("Do you want to add a new carpool? ")) return;
+    if (!ux.confirmMessage("Do you want to add a new carpool? ")) return;
     Trip* tmpTrip = new Trip();
     tmpTrip->setStatus(1);
     tmpTrip->setDriver(driver->getUsername());
+    tmpTrip->setVehicle(driver->getDriverVehicles()[carID + 1]->getPlateNumber());
+    tmpTrip->setAvailableSeat(driver->getDriverVehicles()[carID + 1]->getTotalSeat());
     tmpTrip->setVehicle(driver->getDriverVehicles()[carID + 1]->getPlateNumber());
     tmpTrip->setAvailableSeat(driver->getDriverVehicles()[carID + 1]->getTotalSeat());
     tmpTrip->setStart(Date(stoi(hh), stoi(mm), -1, stoi(dd), stoi(mmmm), stoi(yyyy)));
@@ -459,8 +472,14 @@ void Application::addCarpool() {
     db.addTrip(tmpTrip);      // add to database
 
     cout << "New Carpool added!" << endl;
+
+    cout << "New Carpool added!" << endl;
 }
 void Application::cancelACarpool() {
+    clearDisplay;
+    ux.printHeader("CANCEL A CARPOOL");
+    driver->viewCarpool(ux, 1);
+    cout << "Enter the index to delete('0' to exit) : ";
     clearDisplay;
     ux.printHeader("CANCEL A CARPOOL");
     driver->viewCarpool(ux, 1);
@@ -480,13 +499,33 @@ void Application::cancelACarpool() {
     currentTrip->setStatus(2);
     cout << "Carpool deleted! " << endl;
 
+    if (index == 0) return;
+
+    Trip* currentTrip = driver->getCarpoolFromIndex(index, 1);
+    for (const auto& tmp : currentTrip->getPassengers()) {
+        if (tmp.second == 1) {
+            cout << "Sorry, can not cancel this carpool!" << endl;
+            return;
+        }
+    }
+    if (!ux.confirmMessage("Do you want to cancel carpool with Reference ID:" + currentTrip->getReferenceID() + "?")) return;
+    currentTrip->setStatus(2);
+    cout << "Carpool deleted! " << endl;
+
 }
 void Application::Carpool_History() {
     clearDisplay;
     ux.printHeader("CARPOOL HISTORY");
     driver->viewCarpool(ux, 2);
+    clearDisplay;
+    ux.printHeader("CARPOOL HISTORY");
+    driver->viewCarpool(ux, 2);
 }
 void Application::FinishCarpool() {
+    clearDisplay;
+    ux.printHeader("FINSIH CARPOOL");
+    driver->viewCarpool(ux, 1);
+  
     clearDisplay;
     ux.printHeader("FINSIH CARPOOL");
     driver->viewCarpool(ux, 1);
@@ -507,12 +546,30 @@ void Application::FinishCarpool() {
             return;
         }
     }
+    int tripIndex;
+    cin >> tripIndex;
+    Trip* currenTrip = db.getTripByIndex(tripIndex, 1);
+    if (!ux.confirmMessage("Do you to finish carpool with Reference ID: " + currenTrip->getReferenceID() + "?")) return;
+
+    if (currenTrip->getPassengers().size() < 1) {
+        cout << "Cannot finish this trip!" << endl;
+        return;
+    }
+    for (auto& tmp : currenTrip->getPassengers()) {
+        if (tmp.second != 1) {
+            cout << "Cannot finish this trip!" << endl;
+            return;
+        }
+    }
     cout << "Passenger: " << endl;
+    for (auto& tmp : currenTrip->getPassengers()) {
     for (auto& tmp : currenTrip->getPassengers()) {
         cout << tmp.first << endl;
         doFeedbackUser(tmp.first, driver->getUsername());
     }
     
+    float amount = currenTrip->getCost() * currenTrip->getPassengers().size();
+    cout << "Receive + " << amount << " to your account!" << endl;
     float amount = currenTrip->getCost() * currenTrip->getPassengers().size();
     cout << "Receive + " << amount << " to your account!" << endl;
     driver->receiveCredit(amount);
@@ -538,11 +595,30 @@ void Application::viewMyFeedback(User* user) {
         std::cout << std::setw(10) << "Rating" << ": " << tmp.score << "/5" << std::endl;
         std::cout << std::setw(10) << "Comment" << ": " << tmp.comment << std::endl;
         std::cout << "---------------------------------------------" << std::endl;
+    clearDisplay;
+    // Print the header using UserExperience's method
+    ux.printHeader("CUSTOMER'S REVIEW");
+    // Display user's basic information
+    std::cout << std::left;
+    std::cout << "Your Name   : " << user->getFullName() << std::endl;
+    std::cout << "Your Rating : " << user->getRateScore() << "/5" << std::endl;
+    std::cout << "Comments    :" << std::endl;
+
+    // Print each feedback comment
+    std::cout << "---------------------------------------------" << std::endl;
+    for (const auto& tmp : user->getFeedback()->getComments()) {
+        std::cout << std::setw(10) << "User" << ": " << tmp.username << std::endl;
+        std::cout << std::setw(10) << "Rating" << ": " << tmp.score << "/5" << std::endl;
+        std::cout << std::setw(10) << "Comment" << ": " << tmp.comment << std::endl;
+        std::cout << "---------------------------------------------" << std::endl;
     }
     pauseDisplay;
 }
 void Application::doFeedbackUser(string username, string owner) {
     int rate;
+    std::string comment;
+    cin.ignore(); 
+    cout << "Your comment on " << username << ": " << endl;
     std::string comment;
     cin.ignore(); 
     cout << "Your comment on " << username << ": " << endl;
@@ -561,9 +637,24 @@ void Application::doFeedbackUser(string username, string owner) {
         }
     }
 
+    while (true) {
+        cout << "Please rate " << username << " (1 to 5): ";
+        cin >> rate;
+
+        if (cin.fail() || rate < 1 || rate > 5) {
+            cin.clear(); // Clear the error state
+            cin.ignore(); // Discard invalid input
+            cout << "Invalid input! Please enter a valid score between 1 and 5." << endl;
+        }
+        else {
+            break; // Exit loop if input is valid
+        }
+    }
+
 
     for (auto& tmpUser : db.getPassengers()) {
         if (tmpUser->getUsername() == username) {
+            if (!ux.confirmMessage("Send? ")) return;
             if (!ux.confirmMessage("Send? ")) return;
             tmpUser->getFeedback()->addFeedback(owner, comment, rate);
             return;
@@ -572,21 +663,25 @@ void Application::doFeedbackUser(string username, string owner) {
     for (auto& tmpUser : db.getDrivers()) {
         if (tmpUser->getUsername() == username) {
             if (!ux.confirmMessage("Send? ")) return;
+            if (!ux.confirmMessage("Send? ")) return;
             tmpUser->getFeedback()->addFeedback(owner, comment, rate);
             return;
         }
     }
 }
-void Application::viewAvailableCarpools(double myRate, float myCredit) {
-    for (const auto& tmpTrip : db.getTrips()) {
+vector<Trip*> Application::getAvailableCarpools(double myRate, float myCredit) {
+    vector<Trip*> tmp;
+    for (auto& tmpTrip : db.getTrips()) {
         float trip_minRate = tmpTrip->getMinRate();
         float trip_requireCost = tmpTrip->getCost();
-        if (myRate >= trip_minRate && myCredit >= trip_requireCost) {
-            cout << tmpTrip->toString() << endl;
+        if ((myRate >= trip_minRate || myRate == -1) && myCredit >= trip_requireCost) {
+            tmp.push_back(tmpTrip);
         }
     }
+    return tmp;
 }
 void Application::welcomeScreen(User* user) {
+    clearDisplay;
     clearDisplay;
     ux.printHeader("RENTAL SYSTEM");
     cout << "Hello, " << user->getFullName() << "\t\t" << "Credit: " << user->getCreditPoint() << "/ Rate: " << user->getRateScore() << endl << endl;
@@ -647,7 +742,9 @@ void Application::buyCredit(User* user, bool isFirstTime) {
     
 }
 void Application::addVehicle() {
+void Application::addVehicle() {
     clearDisplay;
+    ux.printHeader("FILL IN THE FORM");
     ux.printHeader("FILL IN THE FORM");
     string model, plateNumber, seats, color;
     cout << "Enter the vehicel's brand: ";
@@ -661,6 +758,7 @@ void Application::addVehicle() {
 
     for (const auto& tmp : db.getVehicles()) {
         if (tmp->getPlateNumber() == plateNumber && tmp->getStatus()) {
+        if (tmp->getPlateNumber() == plateNumber && tmp->getStatus()) {
             cout << "Sorry! This vehicles has already added! ";
             return;
         }
@@ -672,7 +770,14 @@ void Application::addVehicle() {
     tmpVehicle->setPlateNumber(plateNumber);
     tmpVehicle->setTotalSeat(stoi(seats));
     tmpVehicle->setStatus(1);
+    tmpVehicle->setStatus(1);
     cout << "Preview: " << endl;
+    tmpVehicle->showInformation(ux);
+    if (!ux.confirmMessage("Do you want to add vehicle? ")) return;
+    driver->addVehicle(tmpVehicle);
+    db.addVehicle(tmpVehicle);
+    cout << "Add vehicle successfully! " << endl;
+    
     tmpVehicle->showInformation(ux);
     if (!ux.confirmMessage("Do you want to add vehicle? ")) return;
     driver->addVehicle(tmpVehicle);
@@ -683,7 +788,16 @@ void Application::addVehicle() {
 void Application::deleteVehicle() {
     clearDisplay;
     int index = 1;
+void Application::deleteVehicle() {
+    clearDisplay;
+    int index = 1;
     for (const auto& tmp : driver->getDriverVehicles()) {
+        if (tmp->getStatus() == 1) {
+            cout << endl;
+            ux.printOption(index, tmp->getModel());
+            tmp->showInformation(ux);
+            index++;
+        }
         if (tmp->getStatus() == 1) {
             cout << endl;
             ux.printOption(index, tmp->getModel());
@@ -696,7 +810,21 @@ void Application::deleteVehicle() {
     cin >> vehicleIndex;
 
     index = 1;
+
+    index = 1;
     for (auto& tmp : driver->getDriverVehicles()) {
+        if (tmp->getStatus() == 1) {
+            if (index == vehicleIndex) {
+                string s = "Do you want to remove vehicle with plate " + tmp->getPlateNumber() + "?";
+                if (!ux.confirmMessage(s)) return;
+                tmp->setStatus(0);
+                cout << "Vehicle removed! " << endl;
+                return;
+            }
+            index++;
+        }
+    }
+ 
         if (tmp->getStatus() == 1) {
             if (index == vehicleIndex) {
                 string s = "Do you want to remove vehicle with plate " + tmp->getPlateNumber() + "?";
@@ -715,6 +843,7 @@ void Application::editProfile(User* user) {
     while (opt != 0) {
         clearDisplay;
         ux.printHeader("PROFILE MANAGEMENT");
+        user->showInformation(ux);
         driver->showInformation(ux);
         ux.printOption(1, "Edit Full Name");
         ux.printOption(2, "Edit Password");
@@ -803,8 +932,8 @@ void Application::editProfile(User* user) {
 
             bool isConfirm = ux.confirmMessage("Do you want to save changes?");
             if (isConfirm) {
-                driver->setIdType(newIDType);
-                driver->setIdNumber(newIDNumber);
+                user->setIdType(newIDType);
+                user->setIdNumber(newIDNumber);
             }
             cout << "Action done!" << endl;
         }
@@ -814,7 +943,7 @@ void Application::editProfile(User* user) {
             cin >> newIDNumber;
 
             bool isConfirm = ux.confirmMessage("Do you want to save changes?");
-            if (isConfirm) driver->setIdNumber(newIDNumber);
+            if (isConfirm) user->setIdNumber(newIDNumber);
             cout << "Action done!" << endl;
         }
         else if (opt == 9) {
@@ -897,15 +1026,29 @@ void Application::CustommerRequestManagement() {
             clearDisplay;
             ux.printHeader("ALL REQUEST");
             driver->viewCarpool(ux, 1);
+            clearDisplay;
+            ux.printHeader("ALL REQUEST");
+            driver->viewCarpool(ux, 1);
         }
         else if (opt == 2) {
             clearDisplay;
             ux.printHeader("CUSTOMER REQUEST");
 
             driver->viewCarpool(ux, 1);
+            clearDisplay;
+            ux.printHeader("CUSTOMER REQUEST");
+
+            driver->viewCarpool(ux, 1);
             int tripID, passID, value;
             cout << "Enter the trip ID ( '0' to exit) ";
+            cout << "Enter the trip ID ( '0' to exit) ";
             cin >> tripID;
+            if (tripID == 0) return;
+            Trip* currentTrip = db.getTripByIndex(tripID, 1);
+            if (currentTrip->getPassengers().size() < 1) {
+                cout << "Sorry! This carpool have no request!" << endl;
+                return;
+            }
             if (tripID == 0) return;
             Trip* currentTrip = db.getTripByIndex(tripID, 1);
             if (currentTrip->getPassengers().size() < 1) {
@@ -916,6 +1059,16 @@ void Application::CustommerRequestManagement() {
             cin >> passID;
             cout << "Enter the status value(0: Pending, 1: Accept, 2: Denied): ";
             cin >> value;
+
+            
+            cout << "Preview: " << endl;
+            cout << "Trip Refernce ID:" << currentTrip->getReferenceID() << endl;
+            cout << "New status of passenger " << passID << ": " << value << endl;
+            if (!ux.confirmMessage("Do you want to save changes? ")) return;
+        
+            driver->changeStatusOfPassengerInTrip(currentTrip, passID - 1, value);
+
+            cout << "Passenger request updated! " << endl;
 
             
             cout << "Preview: " << endl;
@@ -948,5 +1101,178 @@ void Application::VehiclesManagement() {
         pauseDisplay;
     }
 
+}
+void Application::RequestManagement() {
+    int opt = -1;
+    while (opt != 0) {
+        clearDisplay;
+        ux.printHeader("REQUEST MANAGEMENT");
+        ux.printOption(1, "Cancel my request");
+        ux.printOption(2, "History and feedback");
+        ux.printOption(0, "Back to menu");
+
+        cout << "Enter your option";
+        cin >> opt;
+
+        if (opt == 1) cancelRequest();
+        else if (opt == 2) continue;
+        else if (opt == 0) return;
+        else {
+            cout << "Invalid option" << endl;
+            return;
+        }
+        
+
+    }
+}
+void Application::cancelRequest() {
+    int opt = -1;
+    while (opt != 0) {
+        clearDisplay;
+        ux.printHeader("CANCEL REQUEST");
+        ux.printOption(1, "Cancel pending request");
+        ux.printOption(2, "Cancel denied requests");
+        ux.printOption(0, "Exit");
+
+        cout <<  "Enter your option: ";
+        cin >> opt;
+        
+        if (opt == 0) return;
+        else if (opt == 1) {
+            vector<Trip*> tmpTrips = passenger->getTripByStatus(0);
+            for (auto& it : tmpTrips) it->showInformation(ux);
+           
+            int opt2;
+            cout << "Enter the trip's index: ('0' to exit)" << endl;
+            cin >> opt2;
+
+            if (opt2 <= 0) continue;
+            if (!ux.confirmMessage("Do you want to cancel this request " + tmpTrips[opt2 - 1]->getReferenceID() + "?")) continue;
+            passenger->cancelRequest(tmpTrips[opt2 - 1], 0);
+            cout << "Request canceled ! " << endl;
+            
+
+        }
+        else if (opt == 2) {
+            vector<Trip*> tmpTrips = passenger->getTripByStatus(2);
+            for (auto& it : tmpTrips) it->showInformation(ux);
+
+            int opt2;
+            cout << "Enter the trip's index: ('0' to exit)" << endl;
+            cin >> opt2;
+
+            if (opt2 <= 0) continue;
+            if (!ux.confirmMessage("Do you want to cancel this request " + tmpTrips[opt2 - 1]->getReferenceID() + "?")) continue;
+            passenger->cancelRequest(tmpTrips[opt2 - 1], 2);
+            cout << "Request canceled ! " << endl;
+
+        }
+        pauseDisplay;
+        
+        
+        
+    }
+    
+}
+
+
+void Application::searchAndBook() {
+    clearDisplay;
+    ux.printHeader("Search and Book");
+    ux.printOption(1, "Search by dept location");
+    ux.printOption(2, "Search by dest location");
+    ux.printOption(3, "Search by start date");
+    ux.printOption(4, "Search by end date");
+    ux.printOption(5, "Exit");
+
+    int opt;
+    cout << "Enter option" << endl;
+    cin >> opt;
+
+    if (opt == 1) {
+        string dept;
+        getline(cin >> ws, dept);
+        searchByDeparture(dept, 0);
+    }
+    else if (opt == 2) {
+        string dest;
+        getline(cin >> ws, dest);
+        searchByDestination(dest, 0);
+    }
+    /*else if (opt == 3) {
+        int dd, mm;
+        cin >> dd >> mm;
+        searchByStartDate(dd, mm, 0);
+    }*/
+
+}
+
+
+void Application::searchByDeparture(string departureLocation, int isGuest) {
+    if (!isGuest) {
+        vector<Trip*> t = getAvailableCarpools(passenger->getRateScore(), passenger->getCreditPoint());
+        for (auto& it : t) {
+            if (stringFormatSearch(it->getStartLocation()) == stringFormatSearch(departureLocation)) {
+                it->showInformation(ux);
+            }
+        }
+        pauseDisplay;
+    }
+    //later use for guest
+    //else {
+    //    vector<Trip*> t = getAvailableCarpools(3.0, -1);
+    //    for (auto& it : t) {
+    //        if (stringFormatSearch(it->getStartLocation()) == stringFormatSearch(departureLocation)) {
+    //            it->showInformation(ux);
+    //        }
+    //        pauseDisplay;
+    //    }
+    //}
+}
+
+void Application::searchByDestination(string destinationLocation, int isGuest) {
+    if (!isGuest) {
+        vector<Trip*> t = getAvailableCarpools(passenger->getRateScore(), passenger->getCreditPoint());
+        for (auto& it : t) {
+            if (stringFormatSearch(it->getEndLocation()) == stringFormatSearch(destinationLocation)) {
+                it->showInformation(ux);
+            }
+        }
+        pauseDisplay;
+    }
+}
+
+void Application::searchByStartDate(int dd, int mm, int isGuest) {
+    if (!isGuest) {
+        vector<Trip*> t = getAvailableCarpools(passenger->getRateScore(), passenger->getCreditPoint());
+        for (auto& it : t) {
+            if (it->getStart().getDay() == dd && it->getStart().getMonth() == mm) {
+                it->showInformation(ux);
+            }
+        }
+        pauseDisplay;
+    }
+    
+}
+
+void Application::searchByEndDate(int dd, int mm, int isGuest) {
+    if (!isGuest) {
+        vector<Trip*> t = getAvailableCarpools(passenger->getRateScore(), passenger->getCreditPoint());
+        for (auto& it : t) {
+            if (it->getEnd().getDay() == dd && it->getEnd().getMonth() == mm) {
+                it->showInformation(ux);
+            }
+        }
+        pauseDisplay;
+    }
+
+}
+
+string Application::stringFormatSearch(string s) {
+    s.erase(remove(s.begin(), s.end(), ' '), s.end());
+    for (auto& it : s) {
+        it = tolower(it);
+    }
+    return s;
 }
 

@@ -20,11 +20,13 @@ public:
     const std::vector<Trip*>& getBooking() const;
 
     // Setter methods
-    void addToTotalCarPoolBooking(Trip* trip);
+    bool addToTotalCarPoolBooking(Trip* trip);
 
     // Member functions
     void bookACarPool(Trip* trip);
     void cancelBooking(int index);
-    /*std::vector<Trip*>& getCarpool();
-    void viewCarpool(int statusValue) const;*/
+    void cancelRequest(Trip* trip, int status);
+    vector<Trip*> getTripByStatus(int status);
+    //std::vector<Trip*>& getCarpool();
+    void viewCarpool(UserExperience& ux, int statusValue) const;
 };
