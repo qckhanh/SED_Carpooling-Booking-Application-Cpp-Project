@@ -520,6 +520,7 @@ void Database::loadTrips() {
                     std::string passenger_username = passengerData.substr(0, colonPos);
                     int status = std::stoi(passengerData.substr(colonPos + 1));
                     passengers.push_back(std::make_pair(passenger_username, status));
+                    if (status == 0 || status == 1) trip->setTotalCredit(trip->getTotalCredit() + trip->getCost());
                 }
             }
             trip->setPassengers(passengers);

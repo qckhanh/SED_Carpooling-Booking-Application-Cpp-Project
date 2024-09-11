@@ -363,9 +363,7 @@ void Application::menu_Passenger() {
         cout << "Enter your option: ";
         cin >> opt;
         
-        if (opt == 1) {
-            searchAndBook();
-        }
+        if (opt == 1) searchAndBook();
         else if (opt == 2) RequestManagement();
         else if (opt == 3) editProfile(passenger);
         else if (opt == 4) buyCredit(passenger, 0);
@@ -430,8 +428,8 @@ void Application::addCarpool() {
     Trip* tmpTrip = new Trip();
     tmpTrip->setStatus(1);
     tmpTrip->setDriver(driver->getUsername());
-    tmpTrip->setVehicle(driver->getDriverVehicles()[carID + 1]->getPlateNumber());
-    tmpTrip->setAvailableSeat(driver->getDriverVehicles()[carID + 1]->getTotalSeat());
+    tmpTrip->setVehicle(driver->getDriverVehicles()[carID  - 1]->getPlateNumber());
+    tmpTrip->setAvailableSeat(driver->getDriverVehicles()[carID - 1]->getTotalSeat());
     tmpTrip->setStart(Date(stoi(hh), stoi(mm), -1, stoi(dd), stoi(mmmm), stoi(yyyy)));
     tmpTrip->setEnd(Date(stoi(hh2), stoi(mm2), -1, stoi(dd2), stoi(mmmm2), stoi(yyyy2)));
     tmpTrip->setStartLocation(startLocation);
@@ -475,11 +473,12 @@ void Application::FinishCarpool() {
     clearDisplay;
     ux.printHeader("FINSIH CARPOOL");
     driver->viewCarpool(ux, 1);
+    vector<Trip*> trips = driver->getCarpoolWithStatus(1);
   
     cout << "Enter the index to finish: ";
     int tripIndex;
     cin >> tripIndex;
-    Trip* currenTrip = db.getTripByIndex(tripIndex, 1);
+    Trip* currenTrip = trips[tripIndex - 1];
     if (!ux.confirmMessage("Do you to finish carpool with Reference ID: " + currenTrip->getReferenceID() + "?")) return;
 
     if (currenTrip->getPassengers().size() < 1) {
@@ -487,7 +486,7 @@ void Application::FinishCarpool() {
         return;
     }
     for (auto& tmp : currenTrip->getPassengers()) {
-        if (tmp.second != 1) {
+        if (tmp.second == 0) {
             cout << "Cannot finish this trip!" << endl;
             return;
         }
@@ -495,10 +494,10 @@ void Application::FinishCarpool() {
     cout << "Passenger: " << endl;
     for (auto& tmp : currenTrip->getPassengers()) {
         cout << tmp.first << endl;
-        doFeedbackUser(tmp.first, driver->getUsername());
+        if(tmp.second == 1) doFeedbackUser(tmp.first, driver->getUsername());
     }
     
-    float amount = currenTrip->getCost() * currenTrip->getPassengers().size();
+    float amount = currenTrip->getTotalCredit();
     cout << "Receive + " << amount << " to your account!" << endl;
     driver->receiveCredit(amount);
     driver->changeStatusCarpool(tripIndex, 2);
@@ -891,14 +890,24 @@ void Application::CustommerRequestManagement() {
             clearDisplay;
             ux.printHeader("CUSTOMER REQUEST");
 
-            driver->viewCarpool(ux, 1);
+            /*driver->viewCarpool(ux, 1);*/
+            vector<Trip*> trips = driver->getCarpoolWithStatus(1);
+            int index = 1;
+            for (auto& tmp : trips) {
+                cout << index << ": " << tmp->getReferenceID() << ": " << endl;
+                tmp->showInformation(ux);
+                index++;
+            }
+            
             int tripID, passID, value;
             cout << "Enter the trip ID ( '0' to exit) ";
             cin >> tripID;
             if (tripID == 0) return;
-            Trip* currentTrip = db.getTripByIndex(tripID, 1);
+
+            Trip* currentTrip = trips[tripID - 1];
             if (currentTrip->getPassengers().size() < 1) {
                 cout << "Sorry! This carpool have no request!" << endl;
+                pauseDisplay;
                 return;
             }
             cout << "Enter the passenger id: ";
@@ -909,7 +918,7 @@ void Application::CustommerRequestManagement() {
             
             cout << "Preview: " << endl;
             cout << "Trip Refernce ID:" << currentTrip->getReferenceID() << endl;
-            cout << "New status of passenger " << passID << ": " << value << endl;
+            cout << "New status of passenger " << currentTrip->getPassengers()[passID - 1].first << currentTrip->getPassengers()[passID - 1].second << " --> " << value << endl;
             if (!ux.confirmMessage("Do you want to save changes? ")) return;
         
             driver->changeStatusOfPassengerInTrip(currentTrip, passID - 1, value);
@@ -1025,23 +1034,24 @@ void Application::searchAndBook() {
         cout << "Enter option" << endl;
         cin >> opt;
 
-    if (opt == 1) {
-        string dept;
-        cout << "Enter depature location: " << endl;
-        getline(cin >> ws, dept);
-        searchByDeparture(dept, 0);
+        if (opt == 1) {
+            string dept;
+            cout << "Enter depature location: " << endl;
+            getline(cin >> ws, dept);
+            searchByDeparture(dept, 0);
+        }
+        else if (opt == 2) {
+            cout << "Enter destination location: " << endl;
+            string dest;
+            getline(cin >> ws, dest);
+            searchByDestination(dest, 0);
+        }
+        /*else if (opt == 3) {
+            int dd, mm;
+            cin >> dd >> mm;
+            searchByStartDate(dd, mm, 0);
+        }*/
     }
-    else if (opt == 2) {
-        cout << "Enter destination location: " << endl;
-        string dest;
-        getline(cin >> ws, dest);
-        searchByDestination(dest, 0);
-    }
-    /*else if (opt == 3) {
-        int dd, mm;
-        cin >> dd >> mm;
-        searchByStartDate(dd, mm, 0);
-    }*/
 
 }
 
@@ -1051,7 +1061,10 @@ void Application::searchByDeparture(string departureLocation, int isGuest) {
         int index = 1;
         vector<Trip*> tmpTrip;
         for (auto& it : getAvailableCarpools(passenger->getRateScore(), passenger->getCreditPoint())) {
-            if (stringFormatSearch(it->getStartLocation()) == stringFormatSearch(departureLocation)) {
+            string dept = stringFormatSearch(it->getStartLocation());
+            string substr = stringFormatSearch(departureLocation);
+            bool isFound = (dept.find(substr) != string::npos);
+            if (isFound) {
                 cout << index << ": Reference ID: " << it->getReferenceID() << " :" << endl;
                 it->showInformation(ux);
                 tmpTrip.push_back(it);

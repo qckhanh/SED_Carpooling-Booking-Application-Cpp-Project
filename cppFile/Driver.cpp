@@ -66,19 +66,19 @@ void Driver::changeStatusOfPassengerInTrip(Trip* trip, int passengerIndex, int v
 void Driver::viewVehicle(UserExperience& ux) const {
     int index = 1;
     for (const auto& vehicle : driverVehicles) {
-        cout << "Index: " << index << endl;
+        cout << "Index: " << index << "Plate: " << vehicle->getPlateNumber()<< endl;
         vehicle->showInformation(ux);
+        index++;
     }
 }
 
-std::vector<Trip*> Driver::getCarpoolWithStatus(int statusValue) {
-    vector<Trip*> ans = {};
+vector<Trip*> Driver::getCarpoolWithStatus(int statusValue) {
+    vector<Trip*> ans;
     for (auto& currentCarpool : carpools) {
         if (currentCarpool->getStatus() == statusValue) {
             ans.push_back(currentCarpool);
         }
     }
-    cout << ans.size() << endl;
     return ans;
 }
 void Driver::viewCarpool(UserExperience& ux, int statusValue) {

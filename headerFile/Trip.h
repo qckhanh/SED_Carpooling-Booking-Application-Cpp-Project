@@ -27,6 +27,7 @@ private:
     std::string referenceID;
     Driver* currDriver;
     Vehicle* currVehicle;
+    float totalCredit;
 
 public:
     // Constructor
@@ -50,8 +51,11 @@ public:
     void setCost(const float cost);
     void setDriverP(Driver* driver);
     void setVehicleP(Vehicle* vehicle);
-    // New Setter for Specific Passenger Status
     void setPassengerStatus(const std::string& passenger_username, int status);
+    
+
+    // Setter for totalCredit
+    void setTotalCredit(float credit);
 
     // Getters
     int getStatus() const;
@@ -71,6 +75,7 @@ public:
     int getPassengerStatus(const std::string& passenger_username) const;
     Driver* getDriverP();
     Vehicle* getVehicleP();
+    float getTotalCredit();
 
     // Methods
     void addPassengerToTrip(const std::string& passenger_username, int status);

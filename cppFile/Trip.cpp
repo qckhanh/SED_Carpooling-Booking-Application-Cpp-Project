@@ -66,6 +66,9 @@ void Trip::setCost(const float cost) {
 void Trip::setMinRate(const float minRate) {
     this->minRate = minRate;
 }
+void Trip::setTotalCredit(float credit) {
+    totalCredit = credit;
+}
 
 // New Setter for Specific Passenger Status
 void Trip::setPassengerStatus(const std::string& passenger_username, int status) {
@@ -89,7 +92,9 @@ std::string Trip::getDriver() const {
 std::string Trip::getVehicle() const {
     return vehicle_plate;
 }
-
+float Trip::getTotalCredit() {
+    return totalCredit;
+}
 Date Trip::getStart() const {
     return start;
 }
@@ -149,12 +154,16 @@ int Trip::getPassengerStatus(const std::string& passenger_username) const {
 void Trip::addPassengerToTrip(const std::string& passenger_username, int status) {
     passengers.push_back(std::make_pair(passenger_username, status));
     availableSeat--;
-    cout << " - 1" << endl;
+    this->totalCredit += cost;
+    //cout << "Total: xxxxxxxxxxx" << totalCredit << endl;
 }
 
 void Trip::changeStatusPassenger(int index, int value) {
     if (index >= 0 && index < passengers.size()) {
         passengers[index].second = value;
+        if (value == 2) {
+            totalCredit -= cost;
+        }
     }
     else {
         std::cerr << "Invalid index: " << index << std::endl;
@@ -197,10 +206,7 @@ void Trip::showInformation(UserExperience& ux) {
 
     std::cout << std::left;
     std::cout << std::setw(18) << "Driver" << ": " << driver_username << std::endl;
-    //driver rate
-    std::cout << std::setw(18) << "Driver Rate" << ": " << currDriver->getRateScore() << endl;
-    //xe gi mau gi
-    
+    std::cout << std::setw(18) << "Driver's Rate" << ": " << currDriver->getRateScore() <<"/5" << std::endl;
     std::cout << std::setw(18) << "Start" << ": " << start.getHour() << ":" << start.getMinute() << ", " << start.getDay() << "/" << start.getMonth() << "/" << start.getYear() << std::endl;
     std::cout << std::setw(18) << "End"   << ": " << end.getHour() << ":" << end.getMinute() << ", " << end.getDay() << "/" << end.getMonth() << "/" << end.getYear() << std::endl;
     std::cout << std::setw(18) << "Start Location" << ": " << startLocation << std::endl;

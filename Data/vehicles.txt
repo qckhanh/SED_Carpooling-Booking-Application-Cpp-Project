@@ -6,3 +6,4 @@ quockhanh,Nissan Altima,Silver,GHI7890,5,1
 lamdao,Camry,Black,88A-02836,4,0
 lamdao,BMW,Green,29C1-9999,4,0
 lamdao,Lexus,Black,88A-123456,4,1
+lamdao,BMW,Red,88A-11358,6,1

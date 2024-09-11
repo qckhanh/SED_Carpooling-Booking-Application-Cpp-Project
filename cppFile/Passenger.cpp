@@ -43,6 +43,7 @@ void Passenger::bookACarPool(Trip* trip) {
     }
     addToTotalCarPoolBooking(trip);
     trip->addPassengerToTrip(this->username, 0);
+    this->creditPoint -= trip->getCost();
     cout << "Carpool booked! " << endl;
 }
 
