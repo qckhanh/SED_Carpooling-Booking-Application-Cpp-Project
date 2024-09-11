@@ -1011,33 +1011,48 @@ void Application::cancelRequest() {
 
 
 void Application::searchAndBook() {
-    clearDisplay;
-    ux.printHeader("Search and Book");
-    ux.printOption(1, "Search by dept location");
-    ux.printOption(2, "Search by dest location");
-    ux.printOption(3, "Search by start date");
-    ux.printOption(4, "Search by end date");
-    ux.printOption(5, "Exit");
+    int opt = -1;
+    while (opt != 0) {
+        clearDisplay;
+        ux.printHeader("Search and Book");
+        ux.printOption(1, "Search by dept location");
+        ux.printOption(2, "Search by dest location");
+        ux.printOption(3, "Search by start date");
+        ux.printOption(4, "Search by end date");
+        ux.printOption(0, "Exit");
 
-    int opt;
-    cout << "Enter option" << endl;
-    cin >> opt;
+        cout << "Enter option" << endl;
+        cin >> opt;
 
-    if (opt == 1) {
-        string dept;
-        getline(cin >> ws, dept);
-        searchByDeparture(dept, 0);
+        if (opt == 1) {
+            string dept;
+            getline(cin >> ws, dept);
+            searchByDeparture(dept, 0);
+        }
+        else if (opt == 2) {
+            string dest;
+            getline(cin >> ws, dest);
+            searchByDestination(dest, 0);
+        }
+        else if (opt == 3) {
+            int dd = -1, mm = -1;
+            cin >> dd >> mm;
+            searchByStartDate(dd, mm, 0);
+        }
+
+        else if (opt == 4) {
+            int dd = -1;
+            int mm = -1;
+            cin >> dd, mm;
+            searchByEndDate(dd, mm, 0);
+        }
+
+        else if (opt == 0) {
+            return;
+        }
     }
-    else if (opt == 2) {
-        string dest;
-        getline(cin >> ws, dest);
-        searchByDestination(dest, 0);
-    }
-    /*else if (opt == 3) {
-        int dd, mm;
-        cin >> dd >> mm;
-        searchByStartDate(dd, mm, 0);
-    }*/
+
+    
 
 }
 

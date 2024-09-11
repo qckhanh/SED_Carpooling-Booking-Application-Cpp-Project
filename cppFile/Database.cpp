@@ -540,6 +540,13 @@ void Database::loadTrips() {
             for (auto& tmpDriver : this->drivers) {
                 if (tmpDriver->getUsername() == trip->getDriver()) {
                     tmpDriver->setRunningCarpool(trip);
+                    trip->setDriverP(tmpDriver);
+                }
+            }
+
+            for (auto& tmpVehicle : this->vehicles) {
+                if (tmpVehicle->getPlateNumber() == trip->getVehicle()) {
+                    trip->setVehicleP(tmpVehicle);
                 }
             }
         }
