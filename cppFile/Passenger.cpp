@@ -23,21 +23,27 @@ const std::vector<Trip*>& Passenger::getBooking() const {
 }
 
 // Setter methods
-bool Passenger::addToTotalCarPoolBooking(Trip* trip) {
-    if (find(totalCarPoolBooking.begin(), totalCarPoolBooking.end(), trip) == totalCarPoolBooking.end()) {
-        totalCarPoolBooking.push_back(trip);
-        return 1;
-    }
-    else cout << "Can not book! " << endl;
-    return 0;
+void Passenger::addToTotalCarPoolBooking(Trip* trip) {
+    totalCarPoolBooking.push_back(trip);
 }
+bool Passenger::isCanBook(Trip* trip) {
+    if (find(totalCarPoolBooking.begin(), totalCarPoolBooking.end(), trip) != totalCarPoolBooking.end()) return 0;
+    if (trip->getAvailableSeat() < 1) return 0;
+    if (creditPoint < trip->getCost() || (this->getRateScore() < trip->getMinRate() && this->getRateScore() != -1)) return 0;
+    return 1;
+}
+
 
 // Member functions
 void Passenger::bookACarPool(Trip* trip) {
-    if (addToTotalCarPoolBooking(trip)) {
-        trip->addPassengerToTrip(username, 0);
-        cout << "Booked! " << endl;
+  
+    if (!isCanBook(trip)) {
+        cout << "Sorry! You cant book this carpool! " << endl;
+        return;
     }
+    addToTotalCarPoolBooking(trip);
+    trip->addPassengerToTrip(this->username, 0);
+    cout << "Carpool booked! " << endl;
 }
 
 void Passenger::cancelBooking(int index) {
