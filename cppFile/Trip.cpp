@@ -153,9 +153,7 @@ int Trip::getPassengerStatus(const std::string& passenger_username) const {
 // Methods
 void Trip::addPassengerToTrip(const std::string& passenger_username, int status) {
     passengers.push_back(std::make_pair(passenger_username, status));
-    availableSeat--;
     this->totalCredit += cost;
-    //cout << "Total: xxxxxxxxxxx" << totalCredit << endl;
 }
 
 void Trip::changeStatusPassenger(int index, int value) {
@@ -215,12 +213,18 @@ void Trip::showInformation(UserExperience& ux) {
     std::cout << std::setw(18) << "Min Rate" << ": " << minRate << std::endl;
     std::cout << std::setw(18) << "Cost" << ": " << cost << std::endl;  
     std::cout << std::setw(18) << "Reference ID" << ": " << referenceID << std::endl;
-    currVehicle->showInformation(ux);
-
     // Display the list of passengers
     std::cout << std::setw(18) << "Passengers" << ": [";
     for (const auto& passenger : passengers) {
-        std::cout << "(" << passenger.first << ", " << passenger.second << "), ";
+        string status;
+        if (passenger.second == 0) status = "Pending";
+        else if (passenger.second == 1) status = "Actived";
+        else if (passenger.second == 2) status = "Denied";
+        else if (passenger.second == 3) status = "Rated";
+        else status = "Invalid";
+        std::cout << "(" << passenger.first << ", " << status << "), ";
     }
     std::cout << "]" << std::endl;
+    currVehicle->showInformation(ux);
+
 }
