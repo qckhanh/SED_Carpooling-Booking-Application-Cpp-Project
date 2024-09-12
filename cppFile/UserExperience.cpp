@@ -6,10 +6,8 @@
 #include <iomanip>
 #include <limits>
 #include <regex>
-
 #include <iostream>
 #include <string>
-
 #ifdef _WIN32
 #include <conio.h>
 #else
@@ -189,6 +187,145 @@ bool UserExperience::isValidCreditCard(const std::string& cardNumber, const std:
     //    https ://trailhead.salesforce.com/trailblazer-community/feed/0D54S00000A7qWOSAZ
 }
 
+bool UserExperience::isValidPassword(const std::string& password) {
+    // Password must be at least 8 characters long and contain at least one uppercase letter,
+    // one lowercase letter, one number, and one special character
+    std::regex pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
+    return std::regex_match(password, pattern);
+}
+
+bool UserExperience::isValidPhoneNumber(const std::string& phoneNumber) {
+    // Assuming Vietnamese phone numbers: 10 digits starting with 0
+    std::regex pattern("^0\\d{9}$");
+    return std::regex_match(phoneNumber, pattern);
+}
+
+bool UserExperience::isValidDate(const std::string& date) {
+    // Assuming date format: DD/MM/YYYY
+    std::regex pattern("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4}$");
+    return std::regex_match(date, pattern);
+}
+
+bool UserExperience::isValidTime(const std::string& time) {
+    // Assuming 24-hour time format: HH:MM
+    std::regex pattern("^([01]\\d|2[0-3]):([0-5]\\d)$");
+    return std::regex_match(time, pattern);
+}
+
+bool UserExperience::isValidPlateNumber(const std::string& plateNumber) {
+    // Assuming a simple format for Vietnamese license plates: 2 numbers, 1 letter, 5 numbers
+    std::regex pattern("^\\d{2}[A-Z]\\d{5}$");
+    return std::regex_match(plateNumber, pattern);
+}
+
+bool UserExperience::hasSufficientCredit(int userCredit, int requiredCredit) {
+    return userCredit >= requiredCredit;
+}
+
+bool UserExperience::isValidRatingScore(int score) {
+    return score >= 1 && score <= 5;
+}
+
+bool UserExperience::isValidLocation(const std::string& location) {
+    std::vector<std::string> validLocations = { "Hanoi", "Saigon" };  // Add more as needed
+    return std::find(validLocations.begin(), validLocations.end(), location) != validLocations.end();
+}
+
+bool UserExperience::areSeatAvailable(int availableSeat, int requestedSeat) {
+    return availableSeat >= requestedSeat;
+}
+
+//Ensures integer input is within a specified range.
+int getValidIntInput(const std::string& prompt, int min, int max) {
+    int input;
+    while (true) {
+        std::cout << prompt;
+        if (std::cin >> input && input >= min && input <= max) {
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            return input;
+        }
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Invalid input. Please enter a number between " << min << " and " << max << "." << std::endl;
+    }
+}
+
+//Ensures double input is within a specified range.
+double UserExperience::getValidDoubleInput(const std::string& prompt, double min, double max) {
+    double input;
+    while (true) {
+        std::cout << prompt;
+        if (std::cin >> input && input >= min && input <= max) {
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            return input;
+        }
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Invalid input. Please enter a number between " << min << " and " << max << "." << std::endl;
+    }
+}
+
+bool UserExperience::isValidUsername(const std::string& username) {
+    // Username should be 3-20 characters long and contain only letters, numbers, and underscores
+    std::regex pattern("^[a-zA-Z0-9_]{3,20}$");
+    return std::regex_match(username, pattern);
+}
+
+bool UserExperience::isCommonPassword(const std::string& password) {
+    const std::vector<std::string> commonPasswords = {
+            "password", "123456", "qwerty", "admin", "letmein", "welcome"
+    };
+
+    return std::find(commonPasswords.begin(), commonPasswords.end(), password) != commonPasswords.end();
+}
+
+bool UserExperience::isStrongPassword(const std::string& password) {
+    // Check for minimum length
+    if (password.length() < 8) return false;
+
+    // Check for at least one uppercase letter, one lowercase letter, one digit, and one special character
+    bool hasUpper = false, hasLower = false, hasDigit = false, hasSpecial = false;
+    for (char c : password) {
+        if (isupper(c)) hasUpper = true;
+        else if (islower(c)) hasLower = true;
+        else if (isdigit(c)) hasDigit = true;
+        else if (ispunct(c)) hasSpecial = true;
+    }
+
+    return hasUpper && hasLower && hasDigit && hasSpecial;
+}
+
+bool UserExperience::isValidName(const std::string& name) {
+    // Check if name contains only letters and spaces
+    return std::regex_match(name, std::regex("^[a-zA-Z ]+$"));
+}
+
+bool UserExperience::isValidAge(int age) {
+    return age >= 18 && age <= 100;  // Adjust age range as needed
+}
+
+bool UserExperience::isValidSeatNumber(int seats) {
+    return seats > 0 && seats <= 8;  // Adjust max seats as needed
+}
+
+bool UserExperience::isValidVehicleModel(const std::string& model) {
+    // Check if model contains only letters, numbers, and spaces
+    return std::regex_match(model, std::regex("^[a-zA-Z0-9 ]+$"));
+}
+
+bool UserExperience::isValidColor(const std::string& color) {
+    std::vector<std::string> validColors = { "Red", "Blue", "Green", "White", "Black", "Silver" };  // Add more as needed
+    return std::find(validColors.begin(), validColors.end(), color) != validColors.end();
+}
+
+bool UserExperience::isValidDuration(int minutes) {
+    return minutes > 0 && minutes <= 1440;  // 24 hours max
+}
+
+bool UserExperience::isValidRating(int rating) {
+    return rating >= 1 && rating <= 5;
+}
+
 string UserExperience::getPasswordInput() {
     std::string password;
 #ifdef _WIN32
@@ -217,5 +354,4 @@ string UserExperience::getPasswordInput() {
 #endif
     return password;
 }
-
 
