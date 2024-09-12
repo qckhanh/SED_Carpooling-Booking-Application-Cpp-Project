@@ -879,47 +879,47 @@ void Application::searchByDestination(string destinationLocation, int isGuest) {
 }
 void Application::searchByStartDate(int dd, int mm, int isGuest) {
     if (!isGuest) {
-        vector<Trip*> t;
+        vector<Trip*> tmpTrips;
         int index = 1;
         for (auto& it : getAvailableCarpools(passenger->getRateScore(), passenger->getCreditPoint())) {
-            if (it->getStart().getDay() == dd && it->getStart().getMonth() == mm) {
-                cout << index << ": Reference ID: " << it->getReferenceID() << " :" << endl;
-                it->showInformation(ux);
-                t.push_back(it);
-                index++;
-            }
+            if (it->getStart().getDay() == dd && it->getStart().getMonth() == mm) tmpTrips.push_back(it);
         }
+        if (tmpTrips.size() < 1) {
+            cout << "Sorry! We could not find a match!" << endl;
+            pauseDisplay;
+            return;
+        }
+        viewCarpool(tmpTrips);
         int opt;
         cout << "Enter the trip's index";
         cin >> opt;
-
         if (opt <= 0) return;
-        if (!ux.confirmMessage("Do you want to book carpool: Reference ID:  " + t[opt - 1]->getReferenceID() + "?")) return;
-        passenger->bookACarPool(t[opt - 1]);
+        if (!ux.confirmMessage("Do you want to book carpool: Reference ID:  " + tmpTrips[opt - 1]->getReferenceID() + "?")) return;
+        passenger->bookACarPool(tmpTrips[opt - 1]);
         pauseDisplay;
     }
 
 }
 void Application::searchByEndDate(int dd, int mm, int isGuest) {
     if (!isGuest) {
-        vector<Trip*> t;
+        vector<Trip*> tmpTrips;
         int index = 1;
         for (auto& it : getAvailableCarpools(passenger->getRateScore(), passenger->getCreditPoint())) {
-            if (it->getEnd().getDay() == dd && it->getEnd().getMonth() == mm) {
-                cout << index << ": Reference ID: " << it->getReferenceID() << " :" << endl;
-                it->showInformation(ux);
-                t.push_back(it);
-                index++;
-            }
+            if (it->getEnd().getDay() == dd && it->getEnd().getMonth() == mm) tmpTrips.push_back(it);
         }
-
+        if (tmpTrips.size() < 1) {
+            cout << "Sorry! We could not find a match!" << endl;
+            pauseDisplay;
+            return;
+        }
+        viewCarpool(tmpTrips);
         int opt;
         cout << "Enter the trip's index";
         cin >> opt;
 
         if (opt <= 0) return;
-        if (!ux.confirmMessage("Do you want to book carpool: Reference ID:  " + t[opt - 1]->getReferenceID() + "?")) return;
-        passenger->bookACarPool(t[opt - 1]);
+        if (!ux.confirmMessage("Do you want to book carpool: Reference ID:  " + tmpTrips[opt - 1]->getReferenceID() + "?")) return;
+        passenger->bookACarPool(tmpTrips[opt - 1]);
         pauseDisplay;
     }
 
