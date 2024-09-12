@@ -7,6 +7,16 @@
 #include <limits>
 #include <regex>
 
+#include <iostream>
+#include <string>
+
+#ifdef _WIN32
+#include <conio.h>
+#else
+#include <termios.h>
+#include <unistd.h>
+#endif
+
 using namespace std;
 
 UserExperience::UserExperience(const char symbol) : decoratorSymbol(symbol) {
@@ -177,6 +187,35 @@ bool UserExperience::isValidCreditCard(const std::string& cardNumber, const std:
 
     //Salesforce Trailblazer Community - Need to validate a proper credit card number
     //    https ://trailhead.salesforce.com/trailblazer-community/feed/0D54S00000A7qWOSAZ
+}
+
+string UserExperience::getPasswordInput() {
+    std::string password;
+#ifdef _WIN32
+    char ch;
+    while ((ch = _getch()) != '\r') {
+        if (ch == '\b') {
+            if (!password.empty()) {
+                std::cout << "\b \b";
+                password.pop_back();
+            }
+        }
+        else {
+            password += ch;
+            std::cout << '*';
+        }
+    }
+    std::cout << std::endl;
+#else
+    termios oldt;
+    tcgetattr(STDIN_FILENO, &oldt);
+    termios newt = oldt;
+    newt.c_lflag &= ~ECHO;
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+    std::getline(std::cin, password);
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+#endif
+    return password;
 }
 
 

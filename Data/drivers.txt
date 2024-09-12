@@ -1,3 +1,1 @@
-Khong Quoc Khanh,lamdao,1,1,1,2005,03111211122,Hanoi,12@abc,CCCD ,1111,Lam Dao,11111,123,100681,12,6,1,22494
-Khong Quoc Khanh,quockhanh,123456789,11,2,2005,0948865333,Vinh Phuc,khanhquoc1125@gmail.com,CCCD,0213641897,Khong Quoc Khanh,200516899999,236,15000,12,9,2028,100
-Luong Chi Bach,lbibi,123,18,5,2005,09xxxxxxxxx,caugiay,abc@bach,CCCD,1111,LCB,2005123456789,125,990,12,25,2028,120
+Khong Quoc Khanh,quockhanh,11022005,11,2,2005,0948865333,Hanoi,khanhquoc1125@gmail.com,CCCD,010120230203,Khong Quoc Khanh,123456789,159,990,-1,12,2029,15

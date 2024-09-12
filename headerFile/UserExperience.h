@@ -32,4 +32,5 @@ public:
     bool isValidPassportNumber(const std::string& passportNumber);
     bool isValidIdentityNumber(const std::string& idNumber);
     bool isValidCreditCard(const std::string& cardNumber, const std::string& cvv, const std::string& expiryDate);
+    string getPasswordInput();
 };
