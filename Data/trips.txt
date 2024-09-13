@@ -1,1 +1,2 @@
-1,quockhanh,88A-02836,6,0,13,9,2024,9,0,13,9,2024,RMIT Hanoi,RMIT Sai gon South,3,1,5,1,lamdao:2
+2,quockhanh,88A-02836,6,0,13,9,2024,9,0,13,9,2024,RMIT Hanoi,RMIT Sai gon South,3,1,5,1,lamdao:2
+1,quockhanh,88A-02836,0,0,0,0,0,0,0,0,0,0,hanoi,saigon,4,5,10,2,lamdao:1

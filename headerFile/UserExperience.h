@@ -1,16 +1,14 @@
 // UserExperience.h
 #pragma once
-
-#include "../headerFile/UserExperience.h"
 #include <iostream>
 #include <string>
 #include <iomanip>
 #include <limits>
 #include <regex>
-
-#include <iostream>
-#include <string>
-
+#include <vector>
+#include <functional>
+#include "BankAccount.h"
+#include <ctime>
 #ifdef _WIN32
 #include <conio.h>
 #else
@@ -26,27 +24,46 @@ using namespace std;
 
 class UserExperience {
 private:
-    char decoratorSymbol;          // Either '=' or '-'
+    char decoratorSymbol;           // Either '=' or '-'
     std::vector<std::string> errorMessages; // List of common error messages
 
-    void displayLine(int length);  // Helper function to print a line of decoratorSymbol
+    void displayLine(int length);   // Helper function to print a line of decoratorSymbol
+    template <typename T>
+    typename std::enable_if<std::is_same<T, std::string>::value, T>::type
+        readInput() {
+        T input;
+        std::getline(std::cin >> std::ws, input);
+        return input;
+    }
 
+    // Read input for other types
+    template <typename T>
+    typename std::enable_if<!std::is_same<T, std::string>::value, T>::type
+        readInput() {
+        T input;
+        std::cin >> input;
+        return input;
+    }
 public:
-    UserExperience(const char symbol = '=');
+    // Constructor
+    UserExperience();
+
+    // Setters
     void setDecoratorSymbol(const char symbol) { this->decoratorSymbol = symbol; }
-    //decoration
+    // Decoration
     bool confirmMessage(const std::string& message);
     void printHeader(const std::string& title);
     void printOption(int option, const std::string& description);
 
-    //error handling
+    // Error handling
     void handleError(const std::string& errorMessage);
     int validateInput(int min, int max);
+
+    // Input validation methods
     bool isValidEmail(const std::string& email);
     bool isValidPassportNumber(const std::string& passportNumber);
     bool isValidIdentityNumber(const std::string& idNumber);
-    bool isValidCreditCard(const std::string& cardNumber, const std::string& cvv, const std::string& expiryDate);
-
+    bool isValidCardNumber(string cardNumber);
     bool isValidPassword(const std::string& password);
     bool isValidPhoneNumber(const std::string& phoneNumber);
     bool isValidDate(const std::string& date);
@@ -56,8 +73,15 @@ public:
     bool isValidRatingScore(int score);
     bool isValidLocation(const std::string& location);
     bool areSeatAvailable(int availableSeat, int requestedSeat);
-    int getValidIntInput(const std::string& prompt, int min, int max);
-    double getValidDoubleInput(const std::string& prompt, double min, double max);
+    bool isValidOption(int x, int mn, int mx) {
+        return x >= mn && x <= mx;
+    }
+    bool isValidRange(float x) {
+        return x >= 0.0 && x <= INT_MAX * 1.0;
+    }
+    // Other input method
+
+    // Various input validation checks
     bool isValidUsername(const std::string& username);
     bool isCommonPassword(const std::string& password);
     bool isStrongPassword(const std::string& password);
@@ -68,5 +92,87 @@ public:
     bool isValidColor(const std::string& color);
     bool isValidDuration(int minutes);
     bool isValidRating(int rating);
+    bool isValidCVV(const int& cvv) {
+        return (cvv >= 100 && cvv <= 999);  // Example validation for a 3-digit CVV
+    }
+    bool isNumber(string& str) {
+        if (str.empty()) return false;
+        for (char c : str) {
+            if (!isdigit(c)) return false;
+        }
+        return true;
+    }
     string getPasswordInput();
+
+    template <typename T>
+    T getValidInput(const std::string& prompt, bool (UserExperience::* validate)(const T&)) {
+        T input;
+        while (true) {
+            std::cout << prompt;
+            try {
+                input = readInput<T>(); // Attempt to read the input
+
+                // Check if the input is valid
+                if ((this->*validate)(input)) {
+                    break;  // If valid, break the loop and return the value
+                }
+                else {
+                    std::cout << " >>> [Error] Invalid input. Please try again.\n";
+                }
+            }
+            catch (std::ios::failure& e) {
+                std::cout << " >>> [Error] Invalid input type. Please enter the correct type.\n";
+                // Clear error state and ignore invalid input
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            }
+        }
+        return input;
+    }
+
+    template <typename T, typename... Args>
+    T getValidInput(const std::string& prompt, bool (UserExperience::* validate)(T, Args...), Args... args) {
+        T input;
+        while (true) {
+            std::cout << prompt;
+            try {
+                input = readInput<T>();// Attempt to read the input
+
+                // Call validation function with extra arguments
+                if ((this->*validate)(input, args...)) {
+                    break;  // If valid, break the loop and return the value
+                }
+                else {
+                    std::cout << " >>> [Error]: Invalid input. Please try again.\n";
+                }
+            }
+            catch (std::ios::failure& e) {
+                std::cout << " >>> [Error]: Please enter numeric value\n";
+                // Clear error state and ignore invalid input
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            }
+        }
+        return input;
+    }
+
+    // Example validation functions
+    bool validateInt(const int& input) {
+        // Example validation logic for integers
+        return input >= 0;  // Example: input must be non-negative
+    }
+
+    bool validateString(const std::string& input) {
+        // Example validation logic for strings
+        return !input.empty();  // Example: input must not be empty
+    }
+
+    bool isValidDate(int day, int month, int year);
+
+    bool isLeapYear(int year);
+    bool isValidDateTrip(const Date& tripDate);
+
+
 };
+
+

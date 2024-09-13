@@ -66,6 +66,7 @@ public:
     void viewCarpool(const vector<Trip*>& trips);
     vector<Trip*> getAvailableCarpools(double myRate, float myCredit);
     string stringFormatSearch(string s);
+    vector<string> getAllUsername();
 
 
 

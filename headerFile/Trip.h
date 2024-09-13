@@ -21,7 +21,7 @@ private:
     std::string startLocation;
     std::string endLocation;
     int availableSeat;
-    float minRate;
+    int minRate;
     float cost;
     std::vector<std::pair<std::string, int>> passengers; // Stores <passenger_username, status>
     std::string referenceID;
@@ -47,7 +47,7 @@ public:
     void setAvailableSeat(int availableSeat);
     void setPassengers(const std::vector<std::pair<std::string, int>>& passengers);
     void setReferenceID(const std::string& referenceID);
-    void setMinRate(const float minRate);
+    void setMinRate(const int minRate);
     void setCost(const float cost);
     void setDriverP(Driver* driver);
     void setVehicleP(Vehicle* vehicle);
@@ -69,7 +69,7 @@ public:
     int getAvailableSeat() const;
     std::vector<std::pair<std::string, int>>& getPassengers();
     std::string getReferenceID() const;
-    float getMinRate() const;
+    int getMinRate() const;
     float getCost() const;
     // New Getter for Specific Passenger Status
     int getPassengerStatus(const std::string& passenger_username) const;

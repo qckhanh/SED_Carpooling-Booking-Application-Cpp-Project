@@ -33,4 +33,11 @@ public:
 
     //methods
     void toString();
+    static int compareValues(int a, int b);
+    bool operator>(const Date& other) const;
+    bool operator<(const Date& other) const;
+    bool operator>=(const Date& other) const;
+    bool operator<=(const Date& other) const;
+    bool operator==(const Date& other) const;
+
 };

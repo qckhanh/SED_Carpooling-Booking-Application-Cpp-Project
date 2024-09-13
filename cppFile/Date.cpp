@@ -34,4 +34,40 @@ void Date::toString() {
         << ((year == -1) ? 0 : hour);
 }
 
+bool Date::operator>(const Date& other) const {
+    if (compareValues(year, other.year) != 0) return compareValues(year, other.year) > 0;
+    if (compareValues(month, other.month) != 0) return compareValues(month, other.month) > 0;
+    if (compareValues(day, other.day) != 0) return compareValues(day, other.day) > 0;
+    if (compareValues(hour, other.hour) != 0) return compareValues(hour, other.hour) > 0;
+    if (compareValues(minute, other.minute) != 0) return compareValues(minute, other.minute) > 0;
+    return compareValues(second, other.second) > 0;
+}
+
+bool Date::operator<(const Date& other) const {
+    return other > *this;
+}
+
+bool Date::operator>=(const Date& other) const {
+    return !(*this < other);
+}
+
+bool Date::operator<=(const Date& other) const {
+    return !(*this > other);
+}
+
+bool Date::operator==(const Date& other) const {
+    return compareValues(year, other.year) == 0 &&
+        compareValues(month, other.month) == 0 &&
+        compareValues(day, other.day) == 0 &&
+        compareValues(hour, other.hour) == 0 &&
+        compareValues(minute, other.minute) == 0 &&
+        compareValues(second, other.second) == 0;
+}
+
+// Helper function implementation
+int Date::compareValues(int a, int b) {
+    if (a == DEFAULT || b == DEFAULT) return 0;
+    return (a > b) ? 1 : (a < b) ? -1 : 0;
+}
+
 

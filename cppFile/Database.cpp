@@ -507,7 +507,7 @@ void Database::loadTrips() {
             trip->setStartLocation(tokens[13]);
             trip->setEndLocation(tokens[14]);
             trip->setAvailableSeat(std::stoi(tokens[15]));
-            trip->setMinRate(std::stof(tokens[16]));
+            trip->setMinRate(std::stoi(tokens[16]));
             trip->setCost(std::stof(tokens[17]));
             trip->setReferenceID(tokens[18]);
 

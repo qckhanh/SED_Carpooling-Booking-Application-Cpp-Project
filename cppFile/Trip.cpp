@@ -63,7 +63,7 @@ void Trip::setCost(const float cost) {
     this->cost = cost;
 }
 
-void Trip::setMinRate(const float minRate) {
+void Trip::setMinRate(const int minRate) {
     this->minRate = minRate;
 }
 void Trip::setTotalCredit(float credit) {
@@ -127,7 +127,7 @@ float Trip::getCost() const {
     return cost;
 }
 
-float Trip::getMinRate() const {
+int Trip::getMinRate() const {
     return minRate;
 }
 

@@ -8,6 +8,7 @@
 #include <regex>
 #include <iostream>
 #include <string>
+#include <ctime>
 #ifdef _WIN32
 #include <conio.h>
 #else
@@ -17,10 +18,8 @@
 
 using namespace std;
 
-UserExperience::UserExperience(const char symbol) : decoratorSymbol(symbol) {
-    // Initialize common error messages
-    errorMessages.push_back("Invalid input. Please try again.");
-    errorMessages.push_back("Input is out of range. Please enter a valid option.");
+UserExperience::UserExperience() {
+    std::cin.exceptions(std::ios::failbit | std::ios::badbit);
 }
 
 void UserExperience::displayLine(int length) {
@@ -69,8 +68,7 @@ bool UserExperience::confirmMessage(const std::string& message) {
     int ans;
     while (true) {
         cout << message << endl;
-        cout << "1. Yes | 0. No ? ";
-        cin >> ans;
+        ans = getValidInput<int>("1. Yes | 0. No ? ", &UserExperience::isValidOption, 0, 1);
         if (ans == 1) {
             return true;
         }
@@ -137,54 +135,11 @@ bool UserExperience::isValidIdentityNumber(const std::string& idNumber) {
     // https://nhankiet.vn/vi/w2787/Ma-tinhthanh-pho-cua-so-can-cuoc-cong-dan-CCCD.html
 }
 
-bool UserExperience::isValidCreditCard(const std::string& cardNumber, const std::string& cvv, const std::string& expiryDate) {
-    // Regex patterns
+bool UserExperience::isValidCardNumber(string cardNumber){
+
     std::regex cardPattern("^(4[0-9]{15}|5[1-5][0-9]{14})$");
-    std::regex cvvPattern("^[0-9]{3}$");
-    std::regex expiryPattern("^(0[1-9]|1[0-2])/[0-9]{2}$");
-
-    // Check card number format
     if (!std::regex_match(cardNumber, cardPattern)) return false;
-    // Check CVV
-    if (!std::regex_match(cvv, cvvPattern)) return false;
-    // Check expiry date format and validity
-    if (!std::regex_match(expiryDate, expiryPattern)) return false;
-
-    // Parse expiry date
-    int month = std::stoi(expiryDate.substr(0, 2));
-    int year = std::stoi(expiryDate.substr(3, 2)) + 2000;
-
-    // Get current date
-    std::time_t t = std::time(nullptr);
-    std::tm now_tm;
-
-#if defined(_WIN32) || defined(_WIN64)
-    localtime_s(&now_tm, &t);
-#else
-    localtime_r(&t, &now_tm);
-#endif
-
-    int currentYear = now_tm.tm_year + 1900;
-    int currentMonth = now_tm.tm_mon + 1;
-
-    // Check if card is expired
-    if (year < currentYear || (year == currentYear && month < currentMonth)) return false;
     return true;
-
-
-
-    //References:
-    //Stack Overflow - Regex credit card number tests
-    // https ://stackoverflow.com/questions/9315647/regex-credit-card-number-tests
-
-    //Regular - Expressions.info - Finding or Verifying Credit Card Numbers
-    //    https ://www.regular-expressions.info/creditcard.html
-
-    //Stack Overflow - Get the Credit Card Type based on Number
-    //    https ://stackoverflow.com/questions/9467896/get-the-credit-card-type-based-on-number
-
-    //Salesforce Trailblazer Community - Need to validate a proper credit card number
-    //    https ://trailhead.salesforce.com/trailblazer-community/feed/0D54S00000A7qWOSAZ
 }
 
 bool UserExperience::isValidPassword(const std::string& password) {
@@ -227,7 +182,7 @@ bool UserExperience::isValidRatingScore(int score) {
 }
 
 bool UserExperience::isValidLocation(const std::string& location) {
-    std::vector<std::string> validLocations = { "Hanoi", "Saigon" };  // Add more as needed
+    std::vector<std::string> validLocations = { "hanoi", "saigon", "hochiminh"};  // Add more as needed
     return std::find(validLocations.begin(), validLocations.end(), location) != validLocations.end();
 }
 
@@ -236,38 +191,15 @@ bool UserExperience::areSeatAvailable(int availableSeat, int requestedSeat) {
 }
 
 //Ensures integer input is within a specified range.
-int getValidIntInput(const std::string& prompt, int min, int max) {
-    int input;
-    while (true) {
-        std::cout << prompt;
-        if (std::cin >> input && input >= min && input <= max) {
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            return input;
-        }
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Invalid input. Please enter a number between " << min << " and " << max << "." << std::endl;
-    }
-}
+
 
 //Ensures double input is within a specified range.
-double UserExperience::getValidDoubleInput(const std::string& prompt, double min, double max) {
-    double input;
-    while (true) {
-        std::cout << prompt;
-        if (std::cin >> input && input >= min && input <= max) {
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            return input;
-        }
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Invalid input. Please enter a number between " << min << " and " << max << "." << std::endl;
-    }
-}
+
 
 bool UserExperience::isValidUsername(const std::string& username) {
     // Username should be 3-20 characters long and contain only letters, numbers, and underscores
     std::regex pattern("^[a-zA-Z0-9_]{3,20}$");
+    
     return std::regex_match(username, pattern);
 }
 
@@ -355,3 +287,82 @@ string UserExperience::getPasswordInput() {
     return password;
 }
 
+bool UserExperience::isValidDate(int day, int month, int year) {
+    if (year < 1900 || year > 2100) {
+        return false;
+    }
+
+    // Check if month is valid
+    if (month < 1 || month > 12) {
+        return false;
+    }
+
+    // Check the number of days in each month
+    const int daysInMonth[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+    // Adjust for leap year
+    int maxDays = daysInMonth[month];
+    if (month == 2 && isLeapYear(year)) {
+        maxDays = 29;
+    }
+
+    // Check if day is valid for the given month
+    if (day < 1 || day > maxDays) {
+        return false;
+    }
+
+    return true;
+}
+
+bool UserExperience::isLeapYear(int year) {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+bool UserExperience::isValidDateTrip(const Date& tripDate) {
+    // Get current date and time
+    std::time_t t = std::time(nullptr);
+    std::tm now_tm;
+
+#if defined(_WIN32) || defined(_WIN64)
+    localtime_s(&now_tm, &t);
+#else
+    localtime_r(&t, &now_tm);
+#endif
+
+    // Array of current date/time components
+    int currentComponents[] = {
+        now_tm.tm_year + 1900, // Year
+        now_tm.tm_mon + 1,     // Month
+        now_tm.tm_mday,        // Day
+        now_tm.tm_hour,        // Hour
+        now_tm.tm_min,         // Minute
+        now_tm.tm_sec          // Second
+    };
+
+    // Array of trip date/time components
+    int tripComponents[] = {
+        tripDate.getYear(),
+        tripDate.getMonth(),
+        tripDate.getDay(),
+        tripDate.getHour(),
+        tripDate.getMinute(),
+        tripDate.getSecond()
+    };
+
+    // Iterate over the components
+    for (int i = 0; i < 6; ++i) {
+        if (tripComponents[i] == -1) {
+            continue; // Skip if component is missing
+        }
+        if (tripComponents[i] > currentComponents[i]) {
+            return true; // Trip date is in the future
+        }
+        if (tripComponents[i] < currentComponents[i]) {
+            return false; // Trip date is in the past
+        }
+        // If equal, continue to the next component
+    }
+
+    // All provided components are equal to current date/time
+    return true;
+}
