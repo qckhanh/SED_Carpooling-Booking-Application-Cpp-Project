@@ -98,6 +98,7 @@ public:
     bool isNumber(string& str);
     string getPasswordInput();
 
+
     // Example validation functions
     bool validateInt(const int& input);
 

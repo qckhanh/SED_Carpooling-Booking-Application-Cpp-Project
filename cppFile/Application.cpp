@@ -97,7 +97,12 @@ void Application::createNewAccount() {
         while (1) {
             ux.printInstruction(passwordInstruction);
             cout << "Enter your password: ";
+           
             password = ux.getPasswordInput();
+            if (!ux.isValidPassword(password)) {
+                cout << "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character, please re-enter" << endl;
+                continue;
+            }
 
             cout << "Re-enter your password: ";
             RePassword = ux.getPasswordInput();
@@ -125,7 +130,7 @@ void Application::createNewAccount() {
         ux.printInstruction(phoneInstruction);
         string phoneNumber = ux.getValidInput<string>("Enter phone number: ", &UserExperience::isValidPhoneNumber);
 
-        string address = ux.getValidInput<string>("Enter address: ", &UserExperience::isValidName);
+        string address = ux.getValidInput<string>("Enter address: ", &UserExperience::isValidLocation);
 
         ux.printInstruction(emailInstruction);
         string email = ux.getValidInput<std::string>("Enter a email: ",&UserExperience::isValidEmail);

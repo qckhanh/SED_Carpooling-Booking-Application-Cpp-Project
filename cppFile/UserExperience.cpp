@@ -300,8 +300,20 @@ bool UserExperience::isValidRatingScore(int score) {
 }
 
 bool UserExperience::isValidLocation(const std::string& location) {
-    std::vector<std::string> validLocations = { "hanoi", "saigon", "hochiminh"};  // Add more as needed
-    return std::find(validLocations.begin(), validLocations.end(), location) != validLocations.end();
+    string locationCop = location;
+    locationCop.erase(remove(locationCop.begin(), locationCop.end(), ' '), locationCop.end());
+    for (auto& it : locationCop) {
+        it = tolower(it);
+    }
+    std::vector<std::string> validLocations = { "hanoi", "saigon", "hochiminh", "danang"};  // Add more as needed
+    for (auto& it : validLocations) {
+        if (locationCop.find(it) != string::npos) {
+            return true;
+            cout << locationCop << endl;
+            cout << it << endl;
+        }
+    }
+    return false;
 }
 
 bool UserExperience::areSeatAvailable(int availableSeat, int requestedSeat) {
@@ -371,33 +383,72 @@ bool UserExperience::isValidRating(int rating) {
 }
 
 string UserExperience::getPasswordInput() {
-    std::string password;
-#ifdef _WIN32
-    char ch;
-    while ((ch = _getch()) != '\r') {
-        if (ch == '\b') {
-            if (!password.empty()) {
-                std::cout << "\b \b";
-                password.pop_back();
+    string password;
+        #ifdef _WIN32
+        char ch;
+        while ((ch = _getch()) != '\r') {
+            if (ch == '\b') {
+                if (!password.empty()) {
+                    std::cout << "\b \b";
+                    password.pop_back();
+                }
+            }
+            else {
+                password += ch;
+                std::cout << '*';
             }
         }
-        else {
-            password += ch;
-            std::cout << '*';
-        }
-    }
-    std::cout << std::endl;
-#else
-    termios oldt;
-    tcgetattr(STDIN_FILENO, &oldt);
-    termios newt = oldt;
-    newt.c_lflag &= ~ECHO;
-    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-    std::getline(std::cin, password);
-    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-#endif
-    return password;
+        std::cout << std::endl;
+        #else
+        termios oldt;
+        tcgetattr(STDIN_FILENO, &oldt);
+        termios newt = oldt;
+        newt.c_lflag &= ~ECHO;
+        tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+        std::getline(std::cin, password);
+        tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+        #endif
+
+        return password;
 }
+
+//string UserExperience::getPasswordInput(bool firstTime) {
+//    if (firstTime == 1) {
+//        while (true) {
+//            std::string password;
+//            #ifdef _WIN32
+//            char ch;
+//            while ((ch = _getch()) != '\r') {
+//                if (ch == '\b') {
+//                    if (!password.empty()) {
+//                        std::cout << "\b \b";
+//                        password.pop_back();
+//                    }
+//                }
+//                else {
+//                    password += ch;
+//                    std::cout << '*';
+//                }
+//            }
+//            std::cout << std::endl;
+//            #else
+//            termios oldt;
+//            tcgetattr(STDIN_FILENO, &oldt);
+//            termios newt = oldt;
+//            newt.c_lflag &= ~ECHO;
+//            tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+//            std::getline(std::cin, password);
+//            tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+//            #endif
+//            if (isValidPassword(password)) {
+//                return password;
+//            }
+//            else {
+//                cout << "Password must be at least 8 characters long and contain at least one uppercase letter,one lowercase letter, one number, and one special character" << endl;
+//            }
+//        }
+//    }
+//}
 
 bool UserExperience::isValidDate(int day, int month, int year) {
     if (year < 1900 || year > 2100) {
