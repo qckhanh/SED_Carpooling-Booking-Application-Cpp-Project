@@ -1,2 +1,2 @@
 Khong Quoc Khanh,quockhanh,11022005,11,2,2005,0948865333,Hanoi,khanhquoc1125@gmail.com,CCCD,010120230203,Khong Quoc Khanh,123456789,159,970,-1,12,2029,45
-Luong Chi Bach,lcb,Luongchibach1!,18,5,2005,0944444444,Nam Dinh,bachGayLord@rmit.edu.vn,Passport,A7777777,Luong Chi Bach,4111111111111111,555,780,-1,8,2025,220
+Luong Chi Bach,lcb,1,18,5,2005,0944444444,Nam Dinh,bachGayLord@rmit.edu.vn,Passport,A7777777,Luong Chi Bach,4111111111111111,555,780,-1,8,2025,220

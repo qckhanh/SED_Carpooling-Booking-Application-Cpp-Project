@@ -57,7 +57,7 @@ void Passenger::cancelRequest(Trip* trip, int status) {
 }
 
 vector<Trip*> Passenger::getTripByStatus(int status) {
-    vector<Trip*> tmp;
+    vector<Trip*> tmp = {};
     for (auto& currentTrip : totalCarPoolBooking) {
         if (currentTrip->getStatus() == status) {
             tmp.push_back(currentTrip);

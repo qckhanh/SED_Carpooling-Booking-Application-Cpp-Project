@@ -100,7 +100,7 @@ void UserExperience::printHeader(const std::string& title) {
 }
 
 void UserExperience::printOption(int option, const std::string& description) {
-    cout << "| " << setw(2) << right << option << " | " << setw(30) << left << description << " |" << endl;
+    cout << "| " << setw(2) << right << ((option == -1) ? "" : to_string(option)) << " | " << setw(30) << left << description << " |" << endl;
 }
 
 

@@ -1,6 +1,10 @@
 #pragma once
 const int DEFAULT = -1;
-
+#include<string>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+#include <iomanip>
 class Date {
 private:
     int hour;
@@ -32,7 +36,8 @@ public:
     void setYear(int year);
 
     //methods
-    void toString();
+    //void toString();
+    std::string toString() const;
     static int compareValues(int a, int b);
     bool operator>(const Date& other) const;
     bool operator<(const Date& other) const;

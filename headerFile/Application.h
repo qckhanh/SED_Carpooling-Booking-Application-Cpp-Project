@@ -44,6 +44,9 @@ public:
     bool doFeedbackUser(string username, string owner);
     void buyCredit(User* user, bool isFirstTime);
     void editProfile(User* user);
+    void ActiveDashboard(Driver* user);
+    void ActiveDashboard(Passenger* user);
+    void showActiveCarpool(vector<Trip*> trips);
   
     //Driver
     void addCarpool();
@@ -56,19 +59,20 @@ public:
     //passenger
     void cancelRequest();
     void HistoryAndFeedback();
-    void searchAndBook();
-    void searchByDeparture(string departureLocation, int isGuest);
-    void searchByDestination(string destinationLocation, int isGuest);
-    void searchByStartDate(int dd, int mm, int isGuest);
-    void searchByEndDate(int dd, int mm, int isGuest);
+    void searchAndBook(User* user);
+    void searchByDeparture(User* user, string departureLocation, int isGuest);
+    void searchByDestination(User* user, string destinationLocation, int isGuest);
+    void searchByStartDate(User* user, int dd, int mm, int isGuest);
+    void searchByEndDate(User* user, int dd, int mm, int isGuest);
 
     //preprocessor
     void viewCarpool(const vector<Trip*>& trips);
     vector<Trip*> getAvailableCarpools(double myRate, float myCredit);
     string stringFormatSearch(string s);
     vector<string> getAllUsername();
-
-
+    bool isOverlapTrip(Date& start, Date& end);
+    vector<pair<Date, Date>> getTripTime(Driver* driver);
+    bool isInsideAnother(Date& x, Date& start, Date& end);
 
 
 

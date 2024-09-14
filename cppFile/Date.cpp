@@ -3,10 +3,14 @@
 #include <iomanip>
 #include<iostream>
 #include<string>
+#include <iostream>
+#include <sstream>
+#include <iomanip>
 using namespace std;
 // Constructor implementation
 Date::Date(int hour, int minute, int second, int day, int month, int year)
-    : hour(hour), minute(minute), second(second), day(day), month(month), year(year) {}
+    : hour(hour), minute(minute), second(second), day(day), month(month), year(year) {
+}
 
 // Getter implementations
 int Date::getHour() const { return hour; }
@@ -24,15 +28,26 @@ void Date::setDay(int day) { this->day = day; }
 void Date::setMonth(int month) { this->month = month; }
 void Date::setYear(int year) { this->year = year; }
 
-//method
-void Date::toString() {
-    cout << ((hour == -1) ? 0 : hour) << ":"
-        << ((minute == -1) ? 0 : hour) << ":"
-        << ((second == -1) ? 0 : hour) << ":, "
-        << ((day == -1) ? 0 : hour) << " - "
-        << ((month == -1) ? 0 : hour) << " - "
-        << ((year == -1) ? 0 : hour);
-}
+
+//string Date::showInformation() {
+    /*std::ostringstream oss;
+
+    if (hour != -1) {
+        oss << std::setw(2) << std::setfill('0') << hour << ":";
+        oss << std::setw(2) << std::setfill('0') << (minute != -1 ? minute : 0);
+    }
+
+    if (day != -1 && month != -1 && year != -1) {
+        if (hour != -1) {
+            oss << " - ";
+        }
+        oss << std::setw(2) << std::setfill('0') << day << "/";
+        oss << std::setw(2) << std::setfill('0') << month << "/";
+        oss << year;
+    }
+
+    return oss.str();*/
+//}
 
 bool Date::operator>(const Date& other) const {
     if (compareValues(year, other.year) != 0) return compareValues(year, other.year) > 0;
@@ -68,6 +83,39 @@ bool Date::operator==(const Date& other) const {
 int Date::compareValues(int a, int b) {
     if (a == DEFAULT || b == DEFAULT) return 0;
     return (a > b) ? 1 : (a < b) ? -1 : 0;
+}
+
+std::string Date::toString() const {
+    std::ostringstream oss;
+
+    // Format time (hour:minute:second)
+    if (hour != DEFAULT || minute != DEFAULT || second != DEFAULT) {
+        if (hour != DEFAULT) {
+            oss << std::setw(2) << std::setfill('0') << hour;
+        }
+        if (minute != DEFAULT) {
+            oss << ":" << std::setw(2) << std::setfill('0') << minute;
+        }
+        if (second != DEFAULT) {
+            oss << ":" << std::setw(2) << std::setfill('0') << second;
+        }
+        oss << " - "; // Add separator between time and date if time is present
+    }
+
+    // Format date (day/month/year)
+    if (day != DEFAULT || month != DEFAULT || year != DEFAULT) {
+        if (day != DEFAULT) {
+            oss << std::setw(2) << std::setfill('0') << day;
+        }
+        if (month != DEFAULT) {
+            oss << "/" << std::setw(2) << std::setfill('0') << month;
+        }
+        if (year != DEFAULT) {
+            oss << "/" << year;
+        }
+    }
+
+    return oss.str();
 }
 
 
