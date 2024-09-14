@@ -74,6 +74,4 @@ public:
     vector<pair<Date, Date>> getTripTime(Driver* driver);
     bool isInsideAnother(Date& x, Date& start, Date& end);
 
-
-
 };

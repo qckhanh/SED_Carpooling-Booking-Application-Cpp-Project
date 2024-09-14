@@ -8,14 +8,10 @@ using namespace std;
 #include <conio.h>
 int main(){
 	
-	SetConsoleTitle(L"RENTAL APPLICATION");  // L is for wide characters
+	SetConsoleTitleW(L"RENTAL APPLICATION"); 
 	Application application;
 	
 	application.start();
-
-
-	
-	
 
 	return 0;
 }

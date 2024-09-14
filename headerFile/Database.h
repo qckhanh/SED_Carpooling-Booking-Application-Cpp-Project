@@ -27,20 +27,20 @@ public:
     Database();
 
     // Getters
-    std::vector<Passenger*>& getPassengers();  // Return reference to vector of pointers
-    std::vector<Driver*>& getDrivers();        // Return reference to vector of pointers
-    std::vector<Admin*>& getAdmins();          // Return reference to vector of pointers
-    std::vector<Vehicle*>& getVehicles();      // Return reference to vector of pointers
-    std::vector<Trip*>& getTrips();            // Return reference to vector of pointers
-    std::vector<Feedback*>& getFeedbacks();    // Return reference to vector of pointers
+    std::vector<Passenger*>& getPassengers();  // 
+    std::vector<Driver*>& getDrivers();        // 
+    std::vector<Admin*>& getAdmins();          // 
+    std::vector<Vehicle*>& getVehicles();      // 
+    std::vector<Trip*>& getTrips();            // 
+    std::vector<Feedback*>& getFeedbacks();    // 
 
     // Setters
-    void setPassengers(const std::vector<Passenger*>& newPassengers);  // Accept vector of pointers
-    void setDrivers(const std::vector<Driver*>& newDrivers);            // Accept vector of pointers
-    void setAdmins(const std::vector<Admin*>& newAdmins);               // Accept vector of pointers
-    void setVehicles(const std::vector<Vehicle*>& newVehicles);         // Accept vector of pointers
-    void setTrips(const std::vector<Trip*>& newTrips);                  // Accept vector of pointers
-    void setFeedbacks(const std::vector<Feedback*>& newFeedbacks);      // Accept vector of pointers
+    void setPassengers(const std::vector<Passenger*>& newPassengers);  // 
+    void setDrivers(const std::vector<Driver*>& newDrivers);            // 
+    void setAdmins(const std::vector<Admin*>& newAdmins);               // 
+    void setVehicles(const std::vector<Vehicle*>& newVehicles);         // 
+    void setTrips(const std::vector<Trip*>& newTrips);                  // 
+    void setFeedbacks(const std::vector<Feedback*>& newFeedbacks);      // 
 
     // CRUD operations for Passengers
     void addPassenger(Passenger* passenger);  // Use pointer

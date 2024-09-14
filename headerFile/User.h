@@ -68,33 +68,9 @@ public:
     void setFeedback(Feedback* feedback);
 
     // Member functions
-    void search();
-    void rating();
     void verifyAccount();
-    void manageInfo();
     void receiveCredit(float creditAmount);
     void useCredit(float creditAmount);
-    void showInformation(UserExperience& ux) const {
-        ux.printHeader("PROFILE INFORMATION");
-
-        std::cout << std::left;
-        std::cout << std::setw(18) << "Full Name" << ": " << fullName << std::endl;
-        std::cout << std::setw(18) << "Username" << ": " << username << std::endl;
-        std::cout << std::setw(18) << "Password" << ": " << password << std::endl;
-        std::cout << std::setw(18) << "Date of Birth" << ": " << DOB.getDay() << "/" << DOB.getMonth() << "/" << DOB.getYear() << std::endl;
-        std::cout << std::setw(18) << "Phone Number" << ": " << phoneNumber << std::endl;
-        std::cout << std::setw(18) << "Address" << ": " << address << std::endl;
-        std::cout << std::setw(18) << "Email" << ": " << email << std::endl;
-        std::cout << std::setw(18) << "ID Type" << ": " << idType << std::endl;
-        std::cout << std::setw(18) << "ID Number" << ": " << idNumber << std::endl;
-        std::cout << std::setw(18) << "Credit Points" << ": " << creditPoint << std::endl;
-        std::cout << std::setw(18) << "Verified" << ": " << (isVerified ? "Yes" : "No") << std::endl;
-
-        // Uncomment the following lines when you implement the toString methods
-        // std::cout << std::setw(18) << "Bank Account"  << ": " << bankAccount->toString() << std::endl;
-        // std::cout << std::setw(18) << "Identity Card" << ": " << card->toString() << std::endl;
-
-
-    }
+    void showInformation(UserExperience& ux) const;
 
 };

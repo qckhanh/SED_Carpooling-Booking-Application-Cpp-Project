@@ -73,12 +73,8 @@ public:
     bool isValidRatingScore(int score);
     bool isValidLocation(const std::string& location);
     bool areSeatAvailable(int availableSeat, int requestedSeat);
-    bool isValidOption(int x, int mn, int mx) {
-        return x >= mn && x <= mx;
-    }
-    bool isValidRange(float x) {
-        return x >= 0.0 && x <= INT_MAX * 1.0;
-    }
+    bool isValidOption(int x, int mn, int mx);
+    bool isValidRange(float x);
     // Other input method
 
     // Various input validation checks
@@ -92,17 +88,19 @@ public:
     bool isValidColor(const std::string& color);
     bool isValidDuration(int minutes);
     bool isValidRating(int rating);
-    bool isValidCVV(const int& cvv) {
-        return (cvv >= 100 && cvv <= 999);  // Example validation for a 3-digit CVV
-    }
-    bool isNumber(string& str) {
-        if (str.empty()) return false;
-        for (char c : str) {
-            if (!isdigit(c)) return false;
-        }
-        return true;
-    }
+    bool isValidCVV(const int& cvv);
+    bool isNumber(string& str);
     string getPasswordInput();
+
+    // Example validation functions
+    bool validateInt(const int& input);
+
+    bool validateString(const std::string& input);
+
+    bool isValidDate(int day, int month, int year);
+
+    bool isLeapYear(int year);
+    bool isValidDateTrip(const Date& tripDate);
 
     template <typename T>
     T getValidInput(const std::string& prompt, bool (UserExperience::* validate)(const T&)) {
@@ -112,17 +110,17 @@ public:
             try {
                 input = readInput<T>(); // Attempt to read the input
 
-                // Check if the input is valid
+                // Check if the input is valid using the passed validation function
                 if ((this->*validate)(input)) {
-                    break;  // If valid, break the loop and return the value
+                    break;  // If valid, exit the loop and return the value
                 }
                 else {
                     std::cout << " >>> [Error] Invalid input. Please try again.\n";
                 }
             }
-            catch (std::ios::failure& e) {
+            catch (std::ios::failure&) {
                 std::cout << " >>> [Error] Invalid input type. Please enter the correct type.\n";
-                // Clear error state and ignore invalid input
+                // Clear the error state and ignore the invalid input
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
@@ -136,42 +134,25 @@ public:
         while (true) {
             std::cout << prompt;
             try {
-                input = readInput<T>();// Attempt to read the input
+                input = readInput<T>(); // Attempt to read the input
 
-                // Call validation function with extra arguments
+                // Call the validation function with input and additional arguments
                 if ((this->*validate)(input, args...)) {
-                    break;  // If valid, break the loop and return the value
+                    break;  // If valid, exit the loop and return the input
                 }
                 else {
                     std::cout << " >>> [Error]: Invalid input. Please try again.\n";
                 }
             }
-            catch (std::ios::failure& e) {
-                std::cout << " >>> [Error]: Please enter numeric value\n";
-                // Clear error state and ignore invalid input
+            catch (std::ios::failure&) {
+                std::cout << " >>> [Error]: Please enter a valid input type\n";
+                // Clear the error state and ignore invalid input
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
         }
         return input;
     }
-
-    // Example validation functions
-    bool validateInt(const int& input) {
-        // Example validation logic for integers
-        return input >= 0;  // Example: input must be non-negative
-    }
-
-    bool validateString(const std::string& input) {
-        // Example validation logic for strings
-        return !input.empty();  // Example: input must not be empty
-    }
-
-    bool isValidDate(int day, int month, int year);
-
-    bool isLeapYear(int year);
-    bool isValidDateTrip(const Date& tripDate);
-
 
 };
 

@@ -27,7 +27,6 @@ public:
     void cancelBooking(int index);
     void cancelRequest(Trip* trip, int status);
     vector<Trip*> getTripByStatus(int status);
-    //std::vector<Trip*>& getCarpool();
     void viewCarpool(UserExperience& ux, int statusValue) const;
     bool isCanBook(Trip* trip);
 };

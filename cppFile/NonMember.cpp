@@ -8,7 +8,5 @@ NonMember::NonMember() : User(){};
 NonMember::~NonMember() {};
 
 //Function
-void NonMember::registerNewAccount() {
-    // Code go here...
-};
+
 

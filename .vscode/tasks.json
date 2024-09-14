@@ -1,0 +1,23 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "build-carpooling-project",
+        "type": "shell",
+        "command": "g++",
+        "args": [
+          "-std=c++11",
+          "-I", "headerFile",   // Include header files from headerFile folder
+          "cppFile/*.cpp",      // Compile all .cpp files in cppFile folder
+          "-o", "cppFile/main"    // Output executable in the build folder
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": ["$gcc"],
+        "detail": "Compiling all C++ files in cppFile folder"
+      }
+    ]
+  }
+  

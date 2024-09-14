@@ -26,7 +26,6 @@ void UserExperience::displayLine(int length) {
     cout << setfill(decoratorSymbol) << setw(length) << decoratorSymbol << endl;
 }
 
-
 void UserExperience::handleError(const std::string& errorMessage) {
     string response;
     while (true) {
@@ -102,8 +101,6 @@ void UserExperience::printHeader(const std::string& title) {
 void UserExperience::printOption(int option, const std::string& description) {
     cout << "| " << setw(2) << right << ((option == -1) ? "" : to_string(option)) << " | " << setw(30) << left << description << " |" << endl;
 }
-
-
 
 bool UserExperience::isValidPassportNumber(const std::string& passportNumber) {
     // Regular expression for validating a Vietnamese passport number
@@ -189,12 +186,6 @@ bool UserExperience::isValidLocation(const std::string& location) {
 bool UserExperience::areSeatAvailable(int availableSeat, int requestedSeat) {
     return availableSeat >= requestedSeat;
 }
-
-//Ensures integer input is within a specified range.
-
-
-//Ensures double input is within a specified range.
-
 
 bool UserExperience::isValidUsername(const std::string& username) {
     // Username should be 3-20 characters long and contain only letters, numbers, and underscores
@@ -366,3 +357,32 @@ bool UserExperience::isValidDateTrip(const Date& tripDate) {
     // All provided components are equal to current date/time
     return true;
 }
+
+bool UserExperience::isValidOption(int x, int mn, int mx) {
+    return x >= mn && x <= mx;
+}
+bool UserExperience::isValidRange(float x) {
+    return x >= 0.0 && x <= INT_MAX * 1.0;
+}
+
+bool UserExperience::isValidCVV(const int& cvv) {
+    return (cvv >= 100 && cvv <= 999);  // Example validation for a 3-digit CVV
+}
+bool UserExperience::isNumber(string& str) {
+    if (str.empty()) return false;
+    for (char c : str) {
+        if (!isdigit(c)) return false;
+    }
+    return true;
+}
+
+bool UserExperience::validateInt(const int& input) {
+    // Example validation logic for integers
+    return input >= 0;  // Example: input must be non-negative
+}
+
+bool UserExperience::validateString(const std::string& input) {
+    // Example validation logic for strings
+    return !input.empty();  // Example: input must not be empty
+}
+

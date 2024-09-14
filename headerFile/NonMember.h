@@ -11,6 +11,5 @@ class NonMember : public User {
     //Destructor
     ~NonMember();
 
-    void registerNewAccount();
 
 };
