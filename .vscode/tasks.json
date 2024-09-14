@@ -1,23 +1,33 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-      {
-        "label": "build-carpooling-project",
-        "type": "shell",
-        "command": "g++",
-        "args": [
-          "-std=c++11",
-          "-I", "headerFile",   // Include header files from headerFile folder
-          "cppFile/*.cpp",      // Compile all .cpp files in cppFile folder
-          "-o", "cppFile/main"    // Output executable in the build folder
-        ],
-        "group": {
-          "kind": "build",
-          "isDefault": true
-        },
-        "problemMatcher": ["$gcc"],
-        "detail": "Compiling all C++ files in cppFile folder"
-      }
-    ]
-  }
-  
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build-carpooling-project",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "-std=c++11",
+        "-I", "headerFile",   // Include header files from headerFile folder
+        "cppFile/*.cpp",      // Compile all .cpp files in cppFile folder
+        "-o", "build/main"    // Output executable in the build folder
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"],
+      "detail": "Compiling all C++ files in cppFile folder"
+    },
+    {
+      "label": "run-carpooling-project",
+      "type": "shell",
+      "command": "./build/main",  // Run the compiled executable from the build folder
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "dependsOn": "build-carpooling-project",
+      "problemMatcher": []
+    }
+  ]
+}
