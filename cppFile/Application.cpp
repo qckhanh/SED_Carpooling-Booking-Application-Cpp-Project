@@ -197,7 +197,7 @@ bool Application::logIn() {
         ux.printOption(5, "I want to create a new account");
         ux.printOption(0, "I gotta go! ");
 
-        opt = ux.getValidInput<int>("Enter your option: ", &UserExperience::isValidOption, 0, 5);
+        int opt = ux.getValidInput<int>("Enter your option: ", &UserExperience::isValidOption, 0, 5);
 
         if (opt == 0) exit(0);
         else if (opt == 1) userType = "driver";
@@ -221,7 +221,7 @@ bool Application::logIn() {
             getline(cin, username);
             cout << "Enter your password: ";
             password = ux.getPasswordInput();
-            if (!ux.confirmMessage("Sign In? ")) continue;
+            if (!ux.confirmMessage("Sign In? ")) return 0;
         }
         if (userType == "driver") {
             for (auto& tmp : db.getDrivers()) {
@@ -1218,8 +1218,7 @@ void Application::addCarpool() {
     string startLocation = ux.getValidInput<string>("Enter start location: ", &UserExperience::isValidLocation);
     string endLocation = ux.getValidInput<string>("Enter end location: ", &UserExperience::isValidLocation);
     string referenceID;
-    cout << "Enter reference ID: ";
-    cin >> referenceID;         // need fix
+    referenceID = ux.ReferenceIDGenerator(startDate);
     minRate = ux.getValidInput<int>("Enter min rate: ", &UserExperience::isValidRatingScore);
     cost = ux.getValidInput<float>("Enter the required credit amount: ", &UserExperience::isValidRange);
 
@@ -1229,10 +1228,12 @@ void Application::addCarpool() {
 
     if (!ux.confirmMessage("Do you want to add a new carpool? ")) return;
     Trip* tmpTrip = new Trip();
+    Vehicle* currentCar = driver->getDriverVehicles()[carID - 1];
+    tmpTrip->setDriverP(driver);
     tmpTrip->setStatus(1);
     tmpTrip->setDriver(driver->getUsername());
-    tmpTrip->setVehicle(driver->getDriverVehicles()[carID - 1]->getPlateNumber());
-    tmpTrip->setAvailableSeat(driver->getDriverVehicles()[carID - 1]->getTotalSeat());
+    tmpTrip->setVehicle(currentCar->getPlateNumber());
+    tmpTrip->setAvailableSeat(currentCar->getTotalSeat());
     tmpTrip->setStart(startDate);
     tmpTrip->setEnd(endDate);
     tmpTrip->setStartLocation(startLocation);
@@ -1240,7 +1241,8 @@ void Application::addCarpool() {
     tmpTrip->setReferenceID(referenceID);
     tmpTrip->setMinRate(minRate);
     tmpTrip->setCost(cost);
-
+    tmpTrip->setDriverP(driver);
+    tmpTrip->setVehicleP(currentCar);
     driver->addActiveTrip(tmpTrip);
     db.addTrip(tmpTrip);      // add to database
 
