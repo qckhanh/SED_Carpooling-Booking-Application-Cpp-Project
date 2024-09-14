@@ -101,7 +101,7 @@ public:
 
     bool isLeapYear(int year);
     bool isValidDateTrip(const Date& tripDate);
-
+    string ReferenceIDGenerator(Date d1);
     template <typename T>
     T getValidInput(const std::string& prompt, bool (UserExperience::* validate)(const T&)) {
         T input;
