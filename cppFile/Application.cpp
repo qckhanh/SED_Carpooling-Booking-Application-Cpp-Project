@@ -11,6 +11,25 @@
 #define pauseDisplay system("pause")
 #define clearDisplay system("cls")
 using namespace std;
+
+string inputInstruction = "To choose, enter only a \033[1msingle digit (0,1,2, etc.)\033[0m. Other inputs are invalid.";
+string passwordInstruction = "Password must be at least \033[1m8 characters\033[0m long and contain at least \033[1mone uppercase letter\033[0m, \033[1mone lowercase letter\033[0m, \033[1mone number\033[0m, and \033[1mone special character\033[0m.";
+string passportInstruction = "Passport number must be \033[1mone uppercase letter followed by 7 digits\033[0m.";
+string emailInstruction = "Please enter a \033[1mvalid email address\033[0m (e.g., \033[1mexample@domain.com\033[0m).";
+string idInstruction = "ID number must be \033[1m12 digits\033[0m, starting with \033[1m001\033[0m or \033[1m079\033[0m.";
+string cardInstruction = "Please enter a valid \033[1m16-digit card number\033[0m starting with \033[1m4\033[0m or \033[1m5\033[0m.";
+string phoneInstruction = "Phone number must be \033[1m10 digits\033[0m starting with \033[1m0\033[0m.";
+string plateInstruction = "License plate format: \033[1m2 numbers, 1 letter, 5 numbers\033[0m (e.g., \033[1m12A34567\033[0m).";
+string usernameInstruction = "Username should be \033[1m3-20 characters\033[0m long and contain only \033[1mletters, numbers, and underscores\033[0m.";
+string nameInstruction = "Name should contain \033[1monly letters and spaces\033[0m.";
+string seatInstruction = "Number of seats must be between \033[1m1 and 8\033[0m.";
+string modelInstruction = "Vehicle model should contain \033[1monly letters, numbers, and spaces\033[0m.";
+string colorInstruction = "Please enter a valid color (e.g., \033[1mRed, Blue, Green, White, Black, Silver\033[0m).";
+string bankAccountNameInstruction = "Bank account name should contain \033[1monly letters and spaces\033[0m.";
+string bankAccountNumberInstruction = "Bank account number must be \033[1m16 digits\033[0m starting with \033[1m4\033[0m or \033[1m5\033[0m.";
+string cvvInstruction = "CVV must be a \033[1m3-digit number\033[0m between 100 and 999.";
+
+
 //getter and setter
 Application::Application(){
     ux.setDecoratorSymbol('=');
@@ -46,7 +65,6 @@ void Application::createNewAccount() {
         ux.printOption(2, "I am Passenger");
         ux.printOption(0, "I want to leave!");
         opt = ux.getValidInput<int>("Enter your option: ", &UserExperience::isValidOption, 0, 2);
-
         string type;
         if (opt == 1) {
             type = "driver";
@@ -62,12 +80,13 @@ void Application::createNewAccount() {
             continue;
         }
         ux.printHeader("FILL IN THE FORM");
-
+        ux.printInstruction(nameInstruction);
         cin.ignore();
         string fullName = ux.getValidInput<string>("Enter you full name: ", &UserExperience::isValidName);
         std::vector<std::string> allUsernames = getAllUsername();
         string userName;
         while (1) {
+            ux.printInstruction(usernameInstruction);
             userName = ux.getValidInput<string>("Enter username: ", &UserExperience::isValidUsername);
             vector<string> usernames = getAllUsername();
             if (find(usernames.begin(), usernames.end(), userName) == usernames.end()) break;
@@ -76,6 +95,7 @@ void Application::createNewAccount() {
         
         string password, RePassword;
         while (1) {
+            ux.printInstruction(passwordInstruction);
             cout << "Enter your password: ";
             password = ux.getPasswordInput();
 
@@ -102,9 +122,12 @@ void Application::createNewAccount() {
                 cout << "Invalid birthdate! Please try again!" << endl;
             }
         }
-        
+        ux.printInstruction(phoneInstruction);
         string phoneNumber = ux.getValidInput<string>("Enter phone number: ", &UserExperience::isValidPhoneNumber);
+
         string address = ux.getValidInput<string>("Enter address: ", &UserExperience::isValidName);
+
+        ux.printInstruction(emailInstruction);
         string email = ux.getValidInput<std::string>("Enter a email: ",&UserExperience::isValidEmail);
 
         cout << "We support 2 Identity Verification type: " << endl;
@@ -114,15 +137,19 @@ void Application::createNewAccount() {
         string IDType, idNumber;
         if (opt == 1) {
             IDType = "Passport";
+            ux.printInstruction(passportInstruction);
             idNumber = ux.getValidInput<string>("Enter your Passport number: ", &UserExperience::isValidPassportNumber);
         }
         else if (opt == 2) {
             IDType = "Idenity Card";
+            ux.printInstruction(idInstruction);
             idNumber = ux.getValidInput<string>("Enter your Identity card number: ", &UserExperience::isValidIdentityNumber);
         }
 
         Date expireDate;
+        ux.printInstruction(bankAccountNameInstruction);
         string bankAccountName = ux.getValidInput<string>("Enter bank account name: ", &UserExperience::isValidName);
+        ux.printInstruction(bankAccountNumberInstruction);
         string bankAccountNumber = ux.getValidInput<string>("Enter bank account number: ", &UserExperience::isValidCardNumber);
         double accountBalance = 1000;
         while (1) {
@@ -134,6 +161,7 @@ void Application::createNewAccount() {
                 cout << "Invalid date!" << endl;
             }
         }
+        ux.printInstruction(cvvInstruction);
         int CVV = ux.getValidInput<int>("Enter CVV code: ", &UserExperience::isValidCVV);
  
         if (!ux.confirmMessage("Do you want to create account? ")) continue;
@@ -180,18 +208,24 @@ void Application::createNewAccount() {
         return;
     }
 }
+
+// DONE
 bool Application::logIn() {
     int opt = -1;
     while (opt != 0) {
         clearDisplay;
-        ux.printHeader("WELCOME");
+        ux.printHeader("CARPOOLING APPLICATION");
+        ux.printCarShape();
+        ux.printRightCenteredText("version 1.0.0");
+        ux.printHeaderNoTopBorder("WELCOME");
         ux.printOption(1, "I am Driver");
         ux.printOption(2, "I am Passenger");
         ux.printOption(3, "I am Admin");
         ux.printOption(4, "I am Guest");
         ux.printOption(5, "I want to create a new account");
         ux.printOption(0, "I gotta go! ");
-
+        cout << endl;
+        ux.printInstruction(inputInstruction);
         opt = ux.getValidInput<int>("Enter your option: ", &UserExperience::isValidOption, 0, 5);
 
         if (opt == 0) exit(0);
@@ -210,10 +244,11 @@ bool Application::logIn() {
         string username, password;
 
         if (opt != 4) {
-
+            ux.printHeader("LOGIN");
             cin.ignore();
             cout << "Enter your username: ";
             getline(cin, username);
+            ux.printInstruction(passportInstruction);
             cout << "Enter your password: ";
             password = ux.getPasswordInput();
             if (!ux.confirmMessage("Sign In? ")) continue;
@@ -300,6 +335,7 @@ void Application::welcomeScreen(User* user) {
 
 }
 
+// DONE
 //menu and sub-menu
 void Application::menu_Admin() {
     int opt = -1;
@@ -310,7 +346,7 @@ void Application::menu_Admin() {
         ux.printOption(3, "View all carpools");
         ux.printOption(4, "View all vehicles");
         ux.printOption(0, "Exit");
-        
+        ux.printInstruction(inputInstruction);
         opt = ux.getValidInput<int>("Enter your option: ", &UserExperience::isValidOption, 0, 4);
 
         clearDisplay;
@@ -352,7 +388,7 @@ void Application::menu_Guest() {
         ux.printOption(2, "Search a carpoool");
         ux.printOption(3, "Register as memeber");
         ux.printOption(0, "Exit guest mode");
-
+        ux.printInstruction(inputInstruction);
         opt = ux.getValidInput<int>("Enter your option: ", &UserExperience::isValidOption, 0, 3);
         if (opt == 0) return;
         else if (opt == 1) {
@@ -384,8 +420,7 @@ void Application::menu_Driver() {
         ux.printOption(5, "Buy credit");
         ux.printOption(6, "Vehicle Management");
         ux.printOption(0, "Exit");
-
-
+        ux.printInstruction(inputInstruction);
         int opt;
         opt = ux.getValidInput<int>("Enter your option: ", &UserExperience::isValidOption, 0, 6);
 
@@ -415,8 +450,7 @@ void Application::menu_Passenger() {
         ux.printOption(4, "Buy credit");
         ux.printOption(5, "View my feedback");
         ux.printOption(0, "Exit");
-
-
+        ux.printInstruction(inputInstruction);
         opt = ux.getValidInput<int>("Enter your option: ", &UserExperience::isValidOption, 0, 5);
         
         if (opt == 1) searchAndBook(passenger);
@@ -439,7 +473,7 @@ void Application::VehiclesManagement() {
         ux.printOption(1, "Add Vehicle");
         ux.printOption(2, "Delete Vehicle");
         ux.printOption(0, "Back to menu");
-
+        ux.printInstruction(inputInstruction);
         opt = ux.getValidInput<int>("Enter your option: ", &UserExperience::isValidOption, 0, 2);
         if (opt == 1) addVehicle();
         if (opt == 2) deleteVehicle();
@@ -456,7 +490,7 @@ void Application::RequestManagement() {
         ux.printOption(1, "Cancel my request");
         ux.printOption(2, "History and feedback");
         ux.printOption(0, "Back to menu");
-
+        ux.printInstruction(inputInstruction);
         opt = ux.getValidInput<int>("Enter your option: ", &UserExperience::isValidOption, 0, 2);
 
         if (opt == 1) cancelRequest();
@@ -477,7 +511,7 @@ void Application::CustommerRequestManagement() {
         ux.printOption(1, "View Requests");
         ux.printOption(2, "Change status's customer request");
         ux.printOption(0, "Back to menu");
-
+        ux.printInstruction(inputInstruction);
         opt = ux.getValidInput<int>("Enter your option: ", &UserExperience::isValidOption, 0, 2);
         if (opt == 0) return;
         else if (opt == 2) {
@@ -508,7 +542,7 @@ void Application::TripManagement() {
         ux.printOption(3, "Finish a carppol");
         ux.printOption(4, "View History");
         ux.printOption(0, "Back to menu");
-
+        ux.printInstruction(inputInstruction);
         opt = ux.getValidInput<int>("Enter your option: ", &UserExperience::isValidOption, 0, 4);
 
         if (opt == 1) addCarpool();
@@ -1338,10 +1372,13 @@ void Application::FinishCarpool() {
 void Application::addVehicle() {
     clearDisplay;
     ux.printHeader("FILL IN THE FORM");
-
+    ux.printInstruction(modelInstruction);
     string model = ux.getValidInput<string>("Enter the vehicel's brand: ", &UserExperience::isValidVehicleModel);
+    ux.printInstruction(colorInstruction);
     string color = ux.getValidInput<string>("Enter the vehicle's color: ", &UserExperience::isValidColor);
+    ux.printInstruction(plateInstruction);
     string plateNumber = ux.getValidInput<string>("Enter the vehicle's plate: ", &UserExperience::isValidPlateNumber);
+    ux.printInstruction(seatInstruction);
     int seats = ux.getValidInput<int>("Enter the vehicle' seat number: ", &UserExperience::isValidSeatNumber);
 
     for (const auto& tmp : db.getVehicles()) {
