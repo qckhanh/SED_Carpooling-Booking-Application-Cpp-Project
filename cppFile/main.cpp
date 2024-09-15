@@ -4,8 +4,6 @@
 #include "../headerFile/Application.h"
 #include <windows.h>  // For SetConsoleTitle
 
-
-
 using namespace std;
 #include <conio.h>
 

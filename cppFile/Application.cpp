@@ -206,17 +206,18 @@ bool Application::logIn() {
             << "  \n"
             << "                EEET2482/EEET2653\n"
             << "                GROUP ASSIGNMENT\n"
-            << " \n"
-            << "             CARPOOLING APPLICATION\n"
+            << " \n";
+            ux.printRightCenteredText("Version: 1.0");
+            cout << "\n             CARPOOLING APPLICATION\n"
             << " \n"
             << "  Instructor: Dr Ling Huo Chong, Dr Jeff Nijsse\n"
-            << "  Group: Group No.\n"
+            << "  Group: 11\n"
             << "  s4021494, Khong Quoc Khanh\n"
             << "  s3425449, Duong Bao Ngoc\n"
             << "  s4019052, Dao Duc Lam\n"
             << "  s4029308, Luong Chi Bach\n"
-            << " \n"
-            << " \n\n";
+            << " \n";
+        ux.printCarShape();
         ux.printHeader("WELCOME TO THE CARLPOOL BOOKING APPLICATION");
         ux.printOption(1, "I am Driver");
         ux.printOption(2, "I am Passenger");

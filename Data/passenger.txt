@@ -1,5 +1,5 @@
-MeoMeoMeoZZzzzZZzzzZZZzzzzZ,lamdao,1,1,1,2025,09123456789,Hanoi,lamdao@example.com,CCCD,1234567890,Dao Duc Lam,123456789,111,190,-1,1,1,785
-Duong Bao Ngoc,dbn,1,18,5,1992,0999999999,Sai Gon,namky@gmail.com,Idenity Card,079205007825,Duong Bao Ngoc,5111111111111111,563,990,-1,12,2028,10
-Luong Chi Bach,luongchibach123,bachlamkhanh123@,18,5,2005,0989981805,hanoi,abc123@gmail.com,Idenity Card,001234567891,LUONG CHI BACH,4123456789123456,126,990,-1,12,2028,10
-Luong Chi Bach,chibach_123,luongchibach123@,18,5,2005,0989981805,hanoi,chibach123@gmail.com,Passport,M1234567,LUONG CHI BACH,4123456789123456,125,990,-1,12,2026,10
-guestpassenger,guest123,guestpassenger123@,18,5,2005,0989981805,hanoi,guest123@gmail.com,Passport,M1234567,LUONG CHI BACH,4123456789123456,123,990,-1,12,2025,0
+MeoMeoMeoZZzzzZZzzzZZZzzzzZ,lamdao,1,1,1,2025,09123456789,Hanoi,lamdao@example.com,CCCD,1234567890,Dao Duc Lam,123456789,111,190,-1,1,1,785,0
+Duong Bao Ngoc,dbn,1,18,5,1992,0999999999,Sai Gon,namky@gmail.com,Idenity Card,079205007825,Duong Bao Ngoc,5111111111111111,563,990,-1,12,2028,10,0
+Luong Chi Bach,luongchibach123,bachlamkhanh123@,18,5,2005,0989981805,hanoi,abc123@gmail.com,Idenity Card,001234567891,LUONG CHI BACH,4123456789123456,126,990,-1,12,2028,10,0
+Luong Chi Bach,chibach_123,luongchibach123@,18,5,2005,0989981805,hanoi,chibach123@gmail.com,Passport,M1234567,LUONG CHI BACH,4123456789123456,125,990,-1,12,2026,10,0
+guestpassenger,guest123,guestpassenger123@,18,5,2005,0989981805,hanoi,guest123@gmail.com,Passport,M1234567,LUONG CHI BACH,4123456789123456,123,990,-1,12,2025,0,0
