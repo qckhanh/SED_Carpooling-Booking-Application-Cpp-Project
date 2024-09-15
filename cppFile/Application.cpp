@@ -11,7 +11,8 @@
 #define pauseDisplay system("pause")
 #define clearDisplay system("cls")
 using namespace std;
-
+#define HANOI_CODE "001"
+#define HCM_CODE "079"
 //getter and setter
 Application::Application(){
     ux.setDecoratorSymbol('=');
@@ -58,7 +59,7 @@ void Application::createNewAccount() {
         }
         else if (opt == 0) return;
         else {
-            cout << "Sorry! Invalid option! " << endl;
+            cout << " >>> [System]: Sorry! Invalid option! " << endl;
             continue;
         }
         ux.printHeader("FILL IN THE FORM");
@@ -70,16 +71,15 @@ void Application::createNewAccount() {
             userName = ux.getValidInput<string>("Enter username: ", &UserExperience::isValidUsername);
             vector<string> usernames = getAllUsername();
             if (find(usernames.begin(), usernames.end(), userName) == usernames.end()) break;
-            else cout << userName << " already existed! Try another username! " << endl;
+            else cout << " >>> [System]: " << userName << " already existed! Try another username! " << endl;
         }
-        
+        cout << " >>> [System] Password must be at least 8 characters long and contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character!" << endl;
         string password, RePassword;
         while (1) {
             cout << "Enter your password: ";
            
             password = ux.getPasswordInput();
             if (!ux.isValidPassword(password)) {
-                cout << "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character, please re-enter" << endl;
                 continue;
             }
 
@@ -88,7 +88,7 @@ void Application::createNewAccount() {
 
             if (password == RePassword) break;
             else {
-                cout << "Password doesnt match! Please re-eneter your password!" << endl;
+                cout << " >>> [System] Password doesnt match! Please re-eneter your password!" << endl;
             }
         }
         Date DOB;
@@ -103,16 +103,21 @@ void Application::createNewAccount() {
                 break;
             }
             else {
-                cout << "Invalid birthdate! Please try again!" << endl;
+                cout << " >>> [System] Invalid birthdate! Please try again!" << endl;
             }
         }
         string phoneNumber = ux.getValidInput<string>("Enter phone number: ", &UserExperience::isValidPhoneNumber);
-
-        string address = ux.getValidInput<string>("Enter address: ", &UserExperience::isValidLocation);
-
+        string address;
+        while (1) {
+            cout << "Enter address: ";
+            getline(cin >> ws, address);
+            cout << ">>> [System]: This application currently support user in Hanoi city and Ho Chi Minh City ( Sai gon)!" << endl;
+            pauseDisplay;
+            return;
+        }
         string email = ux.getValidInput<std::string>("Enter a email: ",&UserExperience::isValidEmail);
 
-        cout << "We support 2 Identity Verification type: " << endl;
+        cout << " >>> [System] We support 2 Identity Verification type: " << endl;
         ux.printOption(1, "Passport");
         ux.printOption(2, "Identity Card");
         int opt = ux.getValidInput<int>("Enter your ID type: ", &UserExperience::isValidOption, 1, 2);
@@ -124,6 +129,12 @@ void Application::createNewAccount() {
         else if (opt == 2) {
             IDType = "Idenity Card";
             idNumber = ux.getValidInput<string>("Enter your Identity card number: ", &UserExperience::isValidIdentityNumber);
+            if (idNumber.find(HANOI_CODE) != 0 && idNumber.find(HCM_CODE) != 0) {
+                cout << " >>> [System]: This application currently only support user's in Hanoi and Ho Chi Minh City" << endl;
+                pauseDisplay;
+                return;
+
+            }
         }
 
         Date expireDate;
@@ -136,7 +147,7 @@ void Application::createNewAccount() {
             expireDate = Date(-1, -1, -1, -1, month, year);
             if (ux.isValidDateTrip(expireDate)) break;
             else {
-                cout << "Invalid date!" << endl;
+                cout << " >>> [System]: Invalid date!" << endl;
             }
         }
         int CVV = ux.getValidInput<int>("Enter CVV code: ", &UserExperience::isValidCVV);
@@ -169,7 +180,7 @@ void Application::createNewAccount() {
                 if (passenger) {
                     db.addPassenger(passenger);
                     db.savePassengers();
-                    cout << "Signed Up Passenger!" << endl;
+                    cout << " >>> [System]: Signed Up Passenger!" << endl;
 
                 }
             }
@@ -178,7 +189,7 @@ void Application::createNewAccount() {
                 if (driver) {
                     db.addDriver(driver);
                     db.saveDrivers();
-                    cout << "Signed Up Driver!" << endl;
+                    cout << " >>> [System]: Signed Up Driver!" << endl;
                 }
             }
         }
@@ -191,22 +202,38 @@ bool Application::logIn() {
     int opt = -1;
     while (opt != 0) {
         clearDisplay;
-        ux.printHeader("CARPOOLING APPLICATION");
-        ux.printCarShape();
-        ux.printRightCenteredText("Developed by Group 11");
-        ux.printRightCenteredText("RMIT UNIVERSITY VIETNAM");
-        ux.printRightCenteredText("version 1.0.0");
-        ux.printHeaderNoTopBorder("WELCOME");
+        std::cout << " \n"
+            << "  \n"
+            << "                EEET2482/EEET2653\n"
+            << "                GROUP ASSIGNMENT\n"
+            << " \n"
+            << "             CARPOOLING APPLICATION\n"
+            << " \n"
+            << "  Instructor: Dr Ling Huo Chong, Dr Jeff Nijsse\n"
+            << "  Group: Group No.\n"
+            << "  s4021494, Khong Quoc Khanh\n"
+            << "  s3425449, Duong Bao Ngoc\n"
+            << "  s4019052, Dao Duc Lam\n"
+            << "  s4029308, Luong Chi Bach\n"
+            << " \n"
+            << " \n\n";
+        ux.printHeader("WELCOME TO THE CARLPOOL BOOKING APPLICATION");
         ux.printOption(1, "I am Driver");
         ux.printOption(2, "I am Passenger");
         ux.printOption(3, "I am Admin");
         ux.printOption(4, "I am Guest");
         ux.printOption(5, "I want to create a new account");
         ux.printOption(6, "How to use this app?");
-        ux.printOption(0, "I gotta go! ");
-        cout << endl;
-        opt = ux.getValidInput<int>("Enter your option: ", &UserExperience::isValidOption, 0, 6);
+        ux.printOption(7, "Recover Account");
+        ux.printOption(0, "Leave! ");
+        string tmp;
+        tmp = ux.getValidInput<string>("Enter your option: ", &UserExperience::isValidOption, 0, 7);
+        opt = stoi(tmp);
 
+
+       
+        
+        cin.clear();
         if (opt == 0) exit(0);
         else if (opt == 1) userType = "driver";
         else if (opt == 2) userType = "passenger";
@@ -216,6 +243,7 @@ bool Application::logIn() {
             createNewAccount();
             continue;
         }
+        else if (opt == 7) recoverAccount();
         else if (opt == 6){
             // Call How to use Function
             HowToUse();
@@ -227,11 +255,14 @@ bool Application::logIn() {
         }
         string username, password;
 
-        if (opt != 4) {
-            ux.printHeader("LOGIN");
-            cin.ignore();
+        if (opt <= 3) {
+
+         
+         /*   string s;
+            cin >> s;*/
+
             cout << "Enter your username: ";
-            getline(cin, username);
+            getline(cin>>ws, username);
             cout << "Enter your password: ";
             password = ux.getPasswordInput();
             if (!ux.confirmMessage("Sign In? ")) return 0;
@@ -243,7 +274,7 @@ bool Application::logIn() {
                     return true;
                 }
             }
-            cout << "Incorrect username or password!" << endl;
+            cout << " >>> [System]: Incorrect username or password!" << endl;
             Sleep(3);
         }
         else if (userType == "passenger") {
@@ -253,7 +284,7 @@ bool Application::logIn() {
                     return true;
                 }
             }
-            cout << "Incorrect username or password!" << endl;
+            cout << " >>> [System]: Incorrect username or password!" << endl;
             Sleep(3);
 
         }
@@ -264,7 +295,7 @@ bool Application::logIn() {
                     return true;
                 }
             }
-            cout << "Incorrect username or password!" << endl;
+            cout << " >>> [System]: Incorrect username or password!" << endl;
             Sleep(3);
 
         }
@@ -306,7 +337,7 @@ void Application::start() {
             if (userType == "guest") menu_Guest();
         }
         else {
-            cout << "Good bye! " << endl;
+            cout << " >>> [System]: Good bye! " << endl;
         }
     }
     
@@ -362,10 +393,12 @@ void Application::menu_Guest() {
     int opt = -1;
     while (opt != 0) {
         clearDisplay;
-        welcomeScreen(currentUser);
+        ux.printHeader("ACTIVE DASHBOARD");
         vector<Trip*> trips = getAvailableCarpools(3, currentUser->getCreditPoint());
         showActiveCarpool(trips);
         cout << endl << endl;
+        welcomeScreen(currentUser);
+
         ux.printOption(1, "See detailed carpool");
         ux.printOption(2, "Search a carpoool");
         ux.printOption(3, "Register as memeber");
@@ -392,8 +425,9 @@ void Application::menu_Guest() {
 void Application::menu_Driver() {
     while (true) {
         clearDisplay;
-        welcomeScreen(driver);
+        ux.printHeader("ACTIVE DASHBOARD");
         ActiveDashboard(driver);
+        welcomeScreen(driver);
         ux.printOption(1, "Trip Management");
         ux.printOption(2, "Request Management");
         ux.printOption(3, "My profile");
@@ -417,6 +451,7 @@ void Application::menu_Driver() {
 
     }
 }
+
 void Application::menu_Passenger() {
     int opt = -1;
     while (opt != 0) {
@@ -424,12 +459,14 @@ void Application::menu_Passenger() {
         ux.printHeader("ACTIVE DASHBOARD");
         ActiveDashboard(passenger);
         welcomeScreen(passenger);
-        ux.printOption(1, "Search and Book");
+        ux.printOption(1, "Search & Book");
         ux.printOption(2, "Request Management");
         ux.printOption(3, "Edit my profile");
         ux.printOption(4, "Buy credit");
-        ux.printOption(5, "View my feedback");
-        ux.printOption(0, "Exit");
+        ux.printOption(5, "My feedback");
+        ux.printOption(0, "Sign out");
+
+
         opt = ux.getValidInput<int>("Enter your option: ", &UserExperience::isValidOption, 0, 5);
         
         if (opt == 1) searchAndBook(passenger);
@@ -497,7 +534,7 @@ void Application::CustommerRequestManagement() {
             clearDisplay;
             ux.printHeader("ALL REQUEST");
             if (driver->getCarpoolWithStatus(1).size() < 1) {
-                cout << "Sorry, nothing to show here! " << endl;
+                cout << " >>> [System]: Sorry, nothing to show here! " << endl;
                 pauseDisplay;
                 continue;
             }
@@ -676,7 +713,8 @@ void Application::viewCarpool(const vector<Trip*>& trips) {
     for (const auto& current : trips) {
         cout << index << ": " << "Reference ID: " << current->getReferenceID() << ": " << endl;
         current->showInformation(ux);
-        cout << endl;
+        cout << "____________________..._____________________" << endl;
+        cout << endl << endl;
         index++;
     }
 }
@@ -745,7 +783,7 @@ void Application::viewMyFeedback(User* user) {
     std::cout << "Your Rating : " << user->getRateScore() << "/5" << std::endl;
     std::cout << "Comments    :" << std::endl;
     if (user->getFeedback()->getComments().size() < 1) {
-        cout << "Nothing to show here! " << endl;
+        cout << " >>> [System]: Nothing to show here! " << endl;
         return;
     }
     // Print each feedback comment
@@ -792,7 +830,7 @@ void Application::editProfile(User* user) {
         cout << "Enter your password: ";
         password = ux.getPasswordInput();
         if (password != user->getPassword()) {
-            cout << "Incorrect password! Try again!" << endl;
+            cout << " >>> [System]: Incorrect password! Try again!" << endl;
             if (ux.confirmMessage("Exit?")) return;
             continue;
         }
@@ -823,14 +861,14 @@ void Application::editProfile(User* user) {
 
             bool isConfirm = ux.confirmMessage("Do you want to save changes?");
             if (isConfirm) user->setFullName(newName);
-            cout << "Action done!" << endl;
+            cout << " >>> [System]: Action done!" << endl;
         }
         else if (opt == 2) {
             string newPassword = ux.getValidInput<string>("Enter your new password: ", &UserExperience::isValidPassword);
 
             bool isConfirm = ux.confirmMessage("Do you want to save changes?");
             if (isConfirm) user->setPassword(newPassword);
-            cout << "Action done!" << endl;
+            cout << " >>> [System]: Action done!" << endl;
         }
         else if (opt == 3) {
             int dd, mm, yyyy;
@@ -844,29 +882,28 @@ void Application::editProfile(User* user) {
 
             bool isConfirm = ux.confirmMessage("Do you want to save changes?");
             if (isConfirm) user->setDOB(newDOB);
-            cout << "Action done!" << endl;
+            cout << " >>> [System]: Action done!" << endl;
         }
         else if (opt == 4) {
             string newPhoneNumber = ux.getValidInput<string>("Enter your new phone number: ", &UserExperience::isValidPhoneNumber);
 
             bool isConfirm = ux.confirmMessage("Do you want to save changes?");
             if (isConfirm) user->setPhoneNumber(newPhoneNumber);
-            cout << "Action done!" << endl;
+            cout << " >>> [System]: Action done!" << endl;
         }
         else if (opt == 5) {
             string newAddress = ux.getValidInput<string>("Enter your new address: ", &UserExperience::isValidLocation);         // need more config
-
-
             bool isConfirm = ux.confirmMessage("Do you want to save changes?");
             if (isConfirm) user->setAddress(newAddress);
-            cout << "Action done!" << endl;
+            cout << " >>> [System]: Action done!" << endl;
+            user->setIsVerified(0);
         }
         else if (opt == 6) {
             string newEmail = ux.getValidInput<string>("Enter your new phone email: ", &UserExperience::isValidEmail);
          
             bool isConfirm = ux.confirmMessage("Do you want to save changes?");
             if (isConfirm) user->setEmail(newEmail);
-            cout << "Action done!" << endl;
+            cout << " >>> [System]: Action done!" << endl;
         }
         else if (opt == 7) {
             string newIDType;
@@ -894,7 +931,7 @@ void Application::editProfile(User* user) {
                 user->setIdType(newIDType);
                 user->setIdNumber(number);
             }
-            cout << "Action done!" << endl;
+            cout << " >>> [System]: Action done!" << endl;
         }
         else if (opt == 8) {
             string newIDNumber;
@@ -908,7 +945,7 @@ void Application::editProfile(User* user) {
             
             bool isConfirm = ux.confirmMessage("Do you want to save changes?");
             if (isConfirm) user->setIdNumber(newIDNumber);
-            cout << "Action done!" << endl;
+            cout << " >>> [System]: Action done!" << endl;
         }
         else if (opt == 9) {
             // Assuming you have a function to edit bank account info
@@ -938,15 +975,42 @@ void Application::editProfile(User* user) {
                 user->setBankAccount(newAccount);
 
             }
-            cout << "Action done!" << endl;
+            cout << " >>> [System]: Action done!" << endl;
         }
         else if (opt == 10) {
+            if (user->getIsVerified()) {
+                cout << " >>> [System]: You already verified your account!" << endl;
+                pauseDisplay;
+                return;
+            }
+            std::srand(static_cast<unsigned int>(std::time(0)));
+            string path = "../MessageBox/" + user->getEmail() + ".txt";
+            fstream email(path, ios::out);
+            cout << " >>> [System]: Open your email at : Carpool/UserEmailReceiver/ " << endl;
+            int generateCode = 100000 + std::rand() % (999999 - 100000 + 1);
+            cout << " >>> [System]: We have sent 6-digit verification code to email : " << user->getEmail() << endl;
+            cout << " >>> [System]: Please check your email! " << endl;
+            email << "Your verification code is [ " << generateCode << " ] , please DO NOT share this code to anyone! " << endl;
+
+            string codeFromUser;
+            cin.ignore();
+            cout << "Enter the verfication code ( 6 digits): ";
+            getline(cin, codeFromUser);
+            if (codeFromUser != to_string(generateCode)) {
+                cout << " >>> [System]: Incorrect code! We cannot verify your account! ";
+                pauseDisplay;
+                continue;
+            }
+            
             bool isConfirm = ux.confirmMessage("Do you want to verify your account?");
-            if (isConfirm) user->verifyAccount();
-            cout << "Account verified!" << endl;
+            if (!isConfirm) continue;
+            user->setIsVerified(1);
+            cout << " >>> [System]: Account verified!" << endl;
+            email.close();
+
         }
         else {
-            cout << "Invalid option selected!" << endl;
+            cout << " >>> [System]: Invalid option selected!" << endl;
         }
         pauseDisplay;
     }
@@ -984,7 +1048,7 @@ void Application::buyCredit(User* user, bool isFirstTime) {
             buyAmount = ux.getValidInput<float>("Enter the credit amount:", &UserExperience::isValidRange);
 
             if (user->getBankAccount()->getAccountBalance() < buyAmount) {
-                cout << "Your balance is insufficient! " << endl;
+                cout << " >>> [System]: Your balance is insufficient! " << endl;
                 pauseDisplay;
                 continue;
             }
@@ -996,10 +1060,10 @@ void Application::buyCredit(User* user, bool isFirstTime) {
             if (ux.confirmMessage(s)) {
                 user->receiveCredit(buyAmount);
                 user->getBankAccount()->setAccountBalance(user->getBankAccount()->getAccountBalance() - buyAmount);
-                cout << "Transaction done! " << endl;
+                cout << " >>> [System]: Transaction done! " << endl;
             }
             else {
-                cout << "Cancel transaction! " << endl;
+                cout << " >>> [System]: Cancel transaction! " << endl;
             }
 
         }
@@ -1036,7 +1100,6 @@ void Application::ActiveDashboard(Passenger* passenger) {
 
 
 }
-
 void Application::showActiveCarpool(vector<Trip*> trips) {
     int id = 1;
     for (const auto& tmp : trips) {
@@ -1053,6 +1116,93 @@ void Application::showActiveCarpool(vector<Trip*> trips) {
         id++;
     }
 }
+void Application::recoverAccount() {
+    clearDisplay;
+    ux.printHeader("RECOVER ACCOUNT");
+    string infor;
+    cout << "Enter your phonne number, or email: ";
+    getline(cin >> ws, infor);
+    string username;
+    cout << "Enter your username: ";
+    getline(cin >> ws, username);
+
+    bool isFound = false;
+    Driver* tmpDriver = nullptr;
+    Passenger* tmpPassenger = nullptr;
+    for (auto& user : db.getPassengers()) {
+        if (user->getUsername() == username) {
+            if (user->getPhoneNumber() == infor || user->getEmail() == infor) {
+                isFound = true;
+                tmpPassenger = user;
+                break;
+            }
+        }
+    }
+    for (auto& user : db.getDrivers()) {
+        if (user->getUsername() == username) {
+            if (user->getPhoneNumber() == infor || user->getEmail() == infor) {
+                isFound = true;
+                tmpDriver = user;
+                break;
+            }
+        }
+    }
+
+    if(!isFound){
+        cout << " >>> [System] Sorry! We could not find a match!" << endl;
+        return;
+    }
+
+    std::srand(static_cast<unsigned int>(std::time(0)));
+    string path = "../MessageBox/" + infor + ".txt";
+    fstream email(path, ios::out);
+    cout << " >>> [System]: Open your email/phone number at : Carpool/MessageBox/ " << endl;
+    int generateCode = 100000 + std::rand() % (999999 - 100000 + 1);
+    cout << " >>> [System]: We have sent 6-digit code to recover your password to ";
+    for (int i = 0; i < (int)infor.size(); i++) {
+        if (i <= 2) cout << infor[i];
+        else if (i >= infor.size() - 2) cout << infor[i];
+        else cout << "*";
+    }
+    email << "Your recover code is [ " << generateCode << " ]. Use this code to recover your password! Please DO NOT share this code to anyone!" << endl;
+
+    string codeFromUser;
+    cout << "\nEnter the recover code ( 6 digits): ";
+    getline(cin, codeFromUser);
+    if (codeFromUser != to_string(generateCode)) {
+        cout << " >>> [System]: Incorrect code! We recover your account! ";
+        return;
+    }
+    string password, RePassword;
+    while (1) {
+        cout << "Enter your new password: ";
+
+        password = ux.getPasswordInput();
+        if (!ux.isValidPassword(password)) {
+            continue;
+        }
+
+        cout << "Re-enter your new password: ";
+        RePassword = ux.getPasswordInput();
+
+        if (password == RePassword) break;
+        else {
+            cout << " >>> [System] Password doesnt match! Please re-eneter your password!" << endl;
+        }
+    }
+    if (!ux.confirmMessage("Save?")) return;
+    if (tmpDriver) {
+        tmpDriver->setPassword(password);
+    }
+    else if (tmpPassenger) {
+        tmpPassenger->setPassword(password);
+    }
+    cout << "New password saved! " << endl;
+
+    
+    
+}
+
 //passsenger
 void Application::searchAndBook(User* user) {
     int opt = -1;
@@ -1104,14 +1254,14 @@ void Application::searchByDeparture(User* user, string departureLocation, int is
             if (isFound) tmpTrip.push_back(it);
         }
         if (tmpTrip.size() < 1) {
-            cout << "Sorry! We could not find a match!" << endl;
+            cout << " >>> [System]: Sorry! We could not find a match!" << endl;
             pauseDisplay;
             return;
         }
         viewCarpool(tmpTrip);
 
         if (userType == "guest") {
-            cout << "To book carpool, please REGIESTER AS MEMBER! UNLIMNITED ACCESS! " << endl;
+            cout << " >>> [System]: To book carpool, please REGIESTER AS MEMBER! UNLIMNITED ACCESS! " << endl;
             if (!ux.confirmMessage("REGIESTER? ")) return;
             createNewAccount();
             return;
@@ -1138,13 +1288,13 @@ void Application::searchByDestination(User* user, string destinationLocation, in
             if (isFound) tmpTrip.push_back(it);
         }
         if (tmpTrip.size() < 1) {
-            cout << "Sorry! We could not find a match!" << endl;
+            cout << " >>> [System]: Sorry! We could not find a match!" << endl;
             pauseDisplay;
             return;
         }
         viewCarpool(tmpTrip);
         if (userType == "guest") {
-            cout << "To book carpool, please REGIESTER AS MEMBER! UNLIMNITED ACCESS! " << endl;
+            cout << " >>> [System]: To book carpool, please REGIESTER AS MEMBER! UNLIMNITED ACCESS! " << endl;
             if (!ux.confirmMessage("REGIESTER? ")) return;
             createNewAccount();
             return;
@@ -1169,13 +1319,13 @@ void Application::searchByStartDate(User* user, int dd, int mm, int isGuest) {
             if (it->getStart().getDay() == dd && it->getStart().getMonth() == mm) tmpTrips.push_back(it);
         }
         if (tmpTrips.size() < 1) {
-            cout << "Sorry! We could not find a match!" << endl;
+            cout << " >>> [System]: Sorry! We could not find a match!" << endl;
             pauseDisplay;
             return;
         }
         viewCarpool(tmpTrips);
         if (userType == "guest") {
-            cout << "To book carpool, please REGIESTER AS MEMBER! UNLIMNITED ACCESS! " << endl;
+            cout << " >>> [System]: To book carpool, please REGIESTER AS MEMBER! UNLIMNITED ACCESS! " << endl;
             if (!ux.confirmMessage("REGIESTER? ")) return;
             createNewAccount();
             return;
@@ -1198,13 +1348,13 @@ void Application::searchByEndDate(User* user, int dd, int mm, int isGuest) {
             if (it->getEnd().getDay() == dd && it->getEnd().getMonth() == mm) tmpTrips.push_back(it);
         }
         if (tmpTrips.size() < 1) {
-            cout << "Sorry! We could not find a match!" << endl;
+            cout << " >>> [System]: Sorry! We could not find a match!" << endl;
             pauseDisplay;
             return;
         }
         viewCarpool(tmpTrips);
         if (userType == "guest") {
-            cout << "To book carpool, please REGIESTER AS MEMBER! UNLIMNITED ACCESS! " << endl;
+            cout << " >>> [System]: To book carpool, please REGIESTER AS MEMBER! UNLIMNITED ACCESS! " << endl;
             if (!ux.confirmMessage("REGIESTER? ")) return;
             createNewAccount();
         }
@@ -1230,7 +1380,7 @@ void Application::HistoryAndFeedback() {
         }
     }
     if (unratedTrips.size() < 1) {
-        cout << "Sorry! Nothing to show here!" << endl;
+        cout << " >>> [System]: Sorry! Nothing to show here!" << endl;
         pauseDisplay;
         return;
     }
@@ -1242,7 +1392,7 @@ void Application::HistoryAndFeedback() {
     if (!ux.confirmMessage("Do you want to feedback this trip: Reference ID: " + currentTrip->getReferenceID() + "?")) return;
     if (!doFeedbackUser(currentTrip->getDriver(), passenger->getUsername())) return;
     currentTrip->setPassengerStatus(passenger->getUsername(), 3);
-    cout << "Thank you using our services! " << endl;
+    cout << " >>> [System]: Thank you using our services! " << endl;
     pauseDisplay;
 
 }
@@ -1262,7 +1412,7 @@ void Application::cancelRequest() {
         else if (opt == 1) {
             vector<Trip*> tmpTrips = passenger->getTripByStatus(0);
             if (tmpTrips.size() < 1) {
-                cout << "Nothing to show here! " << endl;
+                cout << " >>> [System]: Nothing to show here! " << endl;
                 pauseDisplay;
                 continue;
             }
@@ -1273,7 +1423,7 @@ void Application::cancelRequest() {
             if (opt2 <= 0) continue;
             if (!ux.confirmMessage("Do you want to cancel this request " + tmpTrips[opt2 - 1]->getReferenceID() + "?")) continue;
             passenger->cancelRequest(tmpTrips[opt2 - 1], 0);
-            cout << "Request canceled ! " << endl;
+            cout << " >>> [System]: Request canceled ! " << endl;
         }
         else if (opt == 2) {
             vector<Trip*> tmpTrips;
@@ -1286,7 +1436,7 @@ void Application::cancelRequest() {
                 }
             }
             if (tmpTrips.size() < 1) {
-                cout << "Nothing to show here! " << endl;
+                cout << " >>> [System]: Nothing to show here! " << endl;
                 pauseDisplay;
                 continue;
             }
@@ -1297,7 +1447,7 @@ void Application::cancelRequest() {
             if (opt2 <= 0) continue;
             if (!ux.confirmMessage("Do you want to cancel this request " + tmpTrips[opt2 - 1]->getReferenceID() + "?")) continue;
             passenger->cancelRequest(tmpTrips[opt2 - 1], 2);
-            cout << "Request canceled ! " << endl;
+            cout << " >>> [System]: Request canceled ! " << endl;
 
         }
         pauseDisplay;
@@ -1334,22 +1484,22 @@ void Application::addCarpool() {
         startDate = Date(hh, mm, -1, dd, mmmm, yyyy);
         endDate = Date(hh2, mm2, -1, dd2, mmmm2, yyyy2);
         if (!ux.isValidDateTrip(startDate)) {
-            cout << "Invalid date type!" << endl;
+            cout << " >>> [System]: Invalid date type!" << endl;
             pauseDisplay;
             continue;
         }
         if (!ux.isValidDateTrip(endDate)) {
-            cout << "Invalid date type!" << endl;
+            cout << " >>> [System]: Invalid date type!" << endl;
             pauseDisplay;
             continue;
         }
         if (endDate <= startDate) {
-            cout << "start Time < endTime" << endl;
+            cout << " >>> [System]: start Time < endTime" << endl;
             pauseDisplay;
             continue;
         }
         if (isOverlapTrip(startDate, endDate)) {
-            cout << "Overlapping with other(s)!" << endl;
+            cout << " >>> [System]: Overlapping with other(s)!" << endl;
             pauseDisplay;
             continue;
         }
@@ -1388,7 +1538,7 @@ void Application::addCarpool() {
     driver->addActiveTrip(tmpTrip);
     db.addTrip(tmpTrip);      // add to database
 
-    cout << "New Carpool added!" << endl;
+    cout << " >>> [System]: New Carpool added!" << endl;
 }
 void Application::cancelACarpool() {
     clearDisplay;
@@ -1408,7 +1558,7 @@ void Application::cancelACarpool() {
         }
     }
     if ((int)trips.size() < 1) {
-        cout << "Sorry! Nothing to show here! " << endl;
+        cout << " >>> [System]: Sorry! Nothing to show here! " << endl;
         return;
     }
     viewCarpool(trips);
@@ -1418,20 +1568,20 @@ void Application::cancelACarpool() {
     Trip* currentTrip = trips[index - 1];
     for (const auto& tmp : currentTrip->getPassengers()) {
         if (tmp.second == 1 || tmp.second == 0) {
-            cout << "Sorry, can not cancel this carpool!" << endl;
+            cout << " >>> [System]: Sorry, can not cancel this carpool!" << endl;
             return;
         }
     }
     if (!ux.confirmMessage("Do you want to cancel carpool with Reference ID:" + currentTrip->getReferenceID() + "?")) return;
     currentTrip->setStatus(2);
-    cout << "Carpool deleted! " << endl;
+    cout << " >>> [System]: Carpool deleted! " << endl;
 
 }
 void Application::Carpool_History() {
     clearDisplay;
     ux.printHeader("CARPOOL HISTORY");
     if ((int)driver->getCarpoolWithStatus(2).size() < 1) {
-        cout << "Sorry! Nothing to show here! " << endl;
+        cout << " >>> [System]: Sorry! Nothing to show here! " << endl;
         return;
     }
     viewCarpool(driver->getCarpoolWithStatus(2));     // need fix
@@ -1449,7 +1599,7 @@ void Application::FinishCarpool() {
         }
     }
     if ((int)trips.size() < 1) {
-        cout << "Sorry! Nothing to show here! " << endl;
+        cout << " >>> [System]: Sorry! Nothing to show here! " << endl;
         return;
     }
     viewCarpool(trips);
@@ -1461,12 +1611,12 @@ void Application::FinishCarpool() {
     if (!ux.confirmMessage("Do you to finish carpool with Reference ID: " + currenTrip->getReferenceID() + "?")) return;
 
     if (currenTrip->getPassengers().size() < 1) {
-        cout << "Cannot finish this trip!" << endl;
+        cout << " >>> [System]: Cannot finish this trip!" << endl;
         return;
     }
     for (auto& tmp : currenTrip->getPassengers()) {
         if (tmp.second == 0) {
-            cout << "Cannot finish this trip!" << endl;
+            cout << " >>> [System]: Cannot finish this trip!" << endl;
             return;
         }
     }
@@ -1477,10 +1627,10 @@ void Application::FinishCarpool() {
     }
 
     float amount = currenTrip->getTotalCredit();
-    cout << "Receive + " << amount << " to your account!" << endl;
+    cout << " >>> [System]: Receive + " << amount << " to your account!" << endl;
     driver->receiveCredit(amount);
     driver->changeStatusCarpool(tripIndex, 2);
-    cout << "Changes saved! " << endl;
+    cout << " >>> [System]: Changes saved! " << endl;
 
 
 }
@@ -1494,7 +1644,7 @@ void Application::addVehicle() {
 
     for (const auto& tmp : db.getVehicles()) {
         if (tmp->getPlateNumber() == plateNumber && tmp->getStatus() == 1) {
-            cout << "Sorry! This vehicles has already added! ";
+            cout << " >>> [System]: Sorry! This vehicles has already added! ";
             return;
         }
     }
@@ -1512,7 +1662,7 @@ void Application::addVehicle() {
     if (!ux.confirmMessage("Do you want to add vehicle? ")) return;
     driver->addVehicle(tmpVehicle);
     db.addVehicle(tmpVehicle);
-    cout << "Add vehicle successfully!" << endl;
+    cout << " >>> [System]: Add vehicle successfully!" << endl;
 
 }
 void Application::deleteVehicle() {
@@ -1535,7 +1685,7 @@ void Application::deleteVehicle() {
     Vehicle* currentVehicle = vehicles[vehicleIndex - 1];
     if (!ux.confirmMessage("Do you want to remove vehicle with Plate number: " + currentVehicle->getPlateNumber() + "?")) return;
     currentVehicle->setStatus(0);
-    cout << "Vehicle removed! " << endl;
+    cout << " >>> [System]: Vehicle removed! " << endl;
     pauseDisplay;
 
 }
@@ -1553,7 +1703,7 @@ void Application::changeStatusCustomerRequest() {
         }
     }
     if (trips.size() <= 0) {
-        cout << "Sorry! Nothing to show here!" << endl;
+        cout << " >>> [System]: Sorry! Nothing to show here!" << endl;
         pauseDisplay;
         return;
     }
@@ -1571,7 +1721,7 @@ void Application::changeStatusCustomerRequest() {
     int value = ux.getValidInput<int>("Enter new status: ", &UserExperience::isValidOption, 1, 2);
 
     if (currentTrip->getPassengers().size() < 1 || currentTrip->getPassengers()[passID - 1].second == 1) {
-        cout << "Sorry! Can not change status of customer" << endl;
+        cout << " >>> [System]: Sorry! Can not change status of customer" << endl;
         pauseDisplay;
         return;
     }
@@ -1592,7 +1742,7 @@ void Application::changeStatusCustomerRequest() {
         }
     }
     
-    cout << "Passenger request updated! " << endl;
+    cout << " >>> [System]: Passenger request updated! " << endl;
     pauseDisplay;
 
 }

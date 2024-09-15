@@ -48,6 +48,7 @@ public:
     void ActiveDashboard(Driver* user);
     void ActiveDashboard(Passenger* user);
     void showActiveCarpool(vector<Trip*> trips);
+    void recoverAccount();
   
     //Driver
     void addCarpool();
