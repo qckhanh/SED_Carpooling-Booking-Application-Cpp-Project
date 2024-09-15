@@ -148,58 +148,6 @@ void UserExperience::printOption(int option, const std::string& description) {
     cout << "| " << setw(2) << right << ((option == -1) ? "" : to_string(option)) << " | " << setw(30) << left << description << " |" << endl;
 }
 
-void UserExperience::printInstruction(const std::string& text) {
-    const int lineWidth = 55;
-    cout << endl;
-    cout << "\033[4m INSTRUCTION: \033[0m"; // Underlined "INSTRUCTION:"
-    cout << endl;
-    
-    cout << "\033[3m"; // Start italic text
-
-    std::istringstream iss(text);
-    std::string word;
-    int currentLineLength = 0;
-
-    while (iss >> word) {
-        if (currentLineLength + word.length() + 1 > lineWidth) {
-            std::cout << endl; // Move to the next line
-            currentLineLength = 0;
-        } else if (currentLineLength > 0) {
-            std::cout << " ";  // Add space between words
-            currentLineLength++;
-        }
-
-        std::cout << word;  // Print the word
-        currentLineLength += word.length();  // Update the current line length
-    }
-
-    cout << "\033[0m"; // Reset formatting back to normal
-    cout << endl;
-    cout << endl;
-}
-
-void UserExperience::printError(const std::string& text){
-    const int lineWidth = 45; 
-    int currentLineLength = 0;
-    cout << endl;
-    cout << "\033[4m ERROR: \033[0m";
-    cout << endl;
-    for (char c : text) {
-        if (currentLineLength == lineWidth) {
-            std::cout << endl;
-            currentLineLength = 0;
-        }
-        
-        std::cout << c;
-        currentLineLength++;
-    }
-
-
-    if (currentLineLength > 0) {
-        std::cout << std::endl;
-    }
-}
-
 void UserExperience::printCarShape(){
     const int totalWidth = 45; 
     const std::string car[] = {
@@ -489,6 +437,7 @@ bool UserExperience::isValidRange(float x) {
 bool UserExperience::isValidCVV(const int& cvv) {
     return (cvv >= 100 && cvv <= 999);  // Example validation for a 3-digit CVV
 }
+
 bool UserExperience::isNumber(string& str) {
     if (str.empty()) return false;
     for (char c : str) {

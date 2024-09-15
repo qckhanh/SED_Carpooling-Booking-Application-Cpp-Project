@@ -57,8 +57,6 @@ public:
     void printRightCenteredText(const std::string& text);
     void printCenteredText(const std::string& text);
     void printOption(int option, const std::string& description);
-    void printError(const std::string& text);
-    void printInstruction(const std::string& text);
     void printCarShape();
 
     // Error handling
