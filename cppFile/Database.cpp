@@ -272,6 +272,7 @@ void Database::loadDriver() {
             bankAccount->setAccountBalance(stod(tokens[14]));
             Date expireDate(-1, -1, -1, stoi(tokens[15]), stoi(tokens[16]), stoi(tokens[17]));
             tmpDriver->setCreditPoint(stof(tokens[18]));
+            tmpDriver->setIsVerified(stoi(tokens[19]));
 
             bankAccount->setExpireDate(expireDate);
             tmpDriver->setBankAccount(bankAccount);
@@ -395,6 +396,7 @@ void Database::loadPassenger() {
             tmpPassenger->setCreditPoint(stof(tokens[18]));
             bankAccount->setExpireDate(expireDate);
             tmpPassenger->setBankAccount(bankAccount);
+            tmpPassenger->setIsVerified(stoi(tokens[19]));
 
             // Add the passenger to the list of passengers
             passengers.push_back(tmpPassenger);
@@ -567,7 +569,7 @@ void Database::saveDrivers() {
     }
 
     for (auto& driver : drivers) {
-            saveDriver << driver->getFullName() << ","
+        saveDriver << driver->getFullName() << ","
             << driver->getUsername() << ","
             << driver->getPassword() << ","
             << driver->getDOB().getDay() << ","
@@ -585,8 +587,8 @@ void Database::saveDrivers() {
             << driver->getBankAccount()->getExpireDate().getDay() << ","
             << driver->getBankAccount()->getExpireDate().getMonth() << ","
             << driver->getBankAccount()->getExpireDate().getYear() << ","
-            << driver->getCreditPoint()
-
+            << driver->getCreditPoint() << ","
+            << driver->getIsVerified()
             << std::endl;
     }
     saveDriver.close();
@@ -638,7 +640,8 @@ void Database::savePassengers() {
             << passenger->getBankAccount()->getExpireDate().getDay() << ","
             << passenger->getBankAccount()->getExpireDate().getMonth() << ","
             << passenger->getBankAccount()->getExpireDate().getYear() << ","
-            << passenger->getCreditPoint()
+            << passenger->getCreditPoint()<<","
+            << passenger->getIsVerified()
             << std::endl;
 
     }

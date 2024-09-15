@@ -116,9 +116,11 @@ bool UserExperience::isValidEmail(const std::string& email) {
 }
 
 bool UserExperience::isValidIdentityNumber(const std::string& idNumber) {
-    std::regex pattern("^(001|079)[0-3]([0-9]{2})[0-9]{6}$");
-    return std::regex_match(idNumber, pattern);
 
+    std::regex pattern("^(001|079)[0-3]([0-9]{2})[0-9]{6}$");
+    return regex_match(idNumber, pattern);
+    
+    
     // Regex pattern explanation:
     // ^                   : Start of the string
     // (001|079)           : Province code for Hanoi (001) or Ho Chi Minh City (079)
@@ -411,6 +413,13 @@ bool UserExperience::isValidDateTrip(const Date& tripDate) {
 
 bool UserExperience::isValidOption(int x, int mn, int mx) {
     return x >= mn && x <= mx;
+}
+bool UserExperience::isValidOption(string s, int mn, int mx) {
+    for (char c : s) {
+        if (!isdigit(c)) return false;
+    }
+    int x = stoi(s);
+    return (x >= mn && x <= mx) && (floor(x) == x);
 }
 bool UserExperience::isValidRange(float x) {
     return x >= 0.0 && x <= INT_MAX * 1.0;

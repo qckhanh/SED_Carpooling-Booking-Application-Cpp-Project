@@ -203,7 +203,7 @@ void Trip::showInformation(UserExperience& ux) {
     ux.printHeader("TRIP INFORMATION");
 
     std::cout << std::left;
-    std::cout << std::setw(18) << "Driver" << ": " << driver_username << std::endl;
+    std::cout << std::setw(18) << "Driver" << ": " << currDriver->getFullName() << (currDriver->getIsVerified() ? " [Verified] " : "") << endl;
     std::cout << std::setw(18) << "Driver's Rate" << ": " << currDriver->getRateScore() <<"/5" << std::endl;
     std::cout << std::setw(18) << "Start" << ": " << start.getHour() << ":" << start.getMinute() << ", " << start.getDay() << "/" << start.getMonth() << "/" << start.getYear() << std::endl;
     std::cout << std::setw(18) << "End"   << ": " << end.getHour() << ":" << end.getMinute() << ", " << end.getDay() << "/" << end.getMonth() << "/" << end.getYear() << std::endl;

@@ -21,6 +21,13 @@ using namespace std;
 #define VISA_NUMBER_START "4614"
 #define MASTERCARD_NUMBER_START "5565"
 #define IDENTITY_NUMBER_START "0012"
+#define BOLD "\033[1m"
+#define RESET "\033[0m"
+
+#define RED "\033[0;31m"
+#define GREEN "\033[0;32m"
+#define YELLOW "\033[0;33m"
+#define BLUE "\033[0;34m"
 
 class UserExperience {
 private:
@@ -74,6 +81,7 @@ public:
     bool isValidLocation(const std::string& location);
     bool areSeatAvailable(int availableSeat, int requestedSeat);
     bool isValidOption(int x, int mn, int mx);
+    bool isValidOption(string s, int mn, int mx);
     bool isValidRange(float x);
     // Other input method
 
@@ -116,11 +124,11 @@ public:
                     break;  // If valid, exit the loop and return the value
                 }
                 else {
-                    std::cout << " >>> [Error] Invalid input. Please try again.\n";
+                    std::cout << " >>> [System]: Invalid option. See \"6. How to Use\" for instructions & policies and try again! \n";
                 }
             }
             catch (std::ios::failure&) {
-                std::cout << " >>> [Error] Invalid input type. Please enter the correct type.\n";
+                std::cout << " >>> [System]:  Please enter a numeric value\n";
                 // Clear the error state and ignore the invalid input
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -142,11 +150,11 @@ public:
                     break;  // If valid, exit the loop and return the input
                 }
                 else {
-                    std::cout << " >>> [Error]: Invalid input. Please try again.\n";
+                    std::cout << " >>> [System]: Invalid option. See \"6. How to Use\" for instructions & policies and try again! \n";
                 }
             }
             catch (std::ios::failure&) {
-                std::cout << " >>> [Error]: Please enter a valid input type\n";
+                std::cout << " >>> [System]:  Please enter a numeric value\n";
                 // Clear the error state and ignore invalid input
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
