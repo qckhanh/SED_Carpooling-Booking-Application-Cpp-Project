@@ -271,8 +271,8 @@ bool UserExperience::areSeatAvailable(int availableSeat, int requestedSeat) {
 bool UserExperience::isValidUsername(const std::string& username) {
     // Username should be 3-20 characters long and contain only letters, numbers, and underscores
     std::regex pattern("^[a-zA-Z0-9_]{3,20}$");
-    
-    return std::regex_match(username, pattern);
+
+    return regex_match(username, pattern);
 }
 
 bool UserExperience::isCommonPassword(const std::string& password) {
@@ -505,5 +505,21 @@ bool UserExperience::validateInt(const int& input) {
 bool UserExperience::validateString(const std::string& input) {
     // Example validation logic for strings
     return !input.empty();  // Example: input must not be empty
+}
+
+string UserExperience::ReferenceIDGenerator(Date d1) {
+    long long total = 0LL;
+    //long long key = (long long)(rand() % (57 - 20 + 1)) + 20;
+    long long key = 55;
+    
+    total += d1.getHour() * pow(key, 1);
+    total += d1.getMinute() * pow(key, 2);
+    total += d1.getDay() * pow(key, 3);
+    total += d1.getMonth() *pow(key, 4);
+    total += d1.getYear() *pow(key, 5);
+    cout << total << endl;
+    string s = to_string(total).substr(0, 5);
+    return s;
+    
 }
 
