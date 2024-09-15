@@ -38,6 +38,7 @@ public:
     void CustommerRequestManagement();
     void TripManagement();
     void RequestManagement();
+    void HowToUse();
 
     //Common
     void viewMyFeedback(User* user);
@@ -74,5 +75,4 @@ public:
     bool isOverlapTrip(Date& start, Date& end);
     vector<pair<Date, Date>> getTripTime(Driver* driver);
     bool isInsideAnother(Date& x, Date& start, Date& end);
-
 };

@@ -60,7 +60,11 @@ public:
     // Decoration
     bool confirmMessage(const std::string& message);
     void printHeader(const std::string& title);
+    void printHeaderNoTopBorder(const std::string& title);
+    void printRightCenteredText(const std::string& text);
+    void printCenteredText(const std::string& text);
     void printOption(int option, const std::string& description);
+    void printCarShape();
 
     // Error handling
     void handleError(const std::string& errorMessage);
