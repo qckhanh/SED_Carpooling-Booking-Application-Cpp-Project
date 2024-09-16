@@ -246,7 +246,7 @@ void Database::loadDriver() {
         std::vector<std::string> tokens;
 
         // Split the line by commas and store in vector
-        while (std::getline(ss, item, ',')) {
+        while (std::getline(ss, item, '~')) {
             tokens.push_back(item);
         }
 
@@ -298,7 +298,7 @@ void Database::loadAdmins() {
         std::vector<std::string> tokens;
 
         // Split the line by commas and store in vector
-        while (std::getline(ss, item, ',')) {
+        while (std::getline(ss, item, '~')) {
             tokens.push_back(item);
         }
 
@@ -330,7 +330,7 @@ void Database::loadVehicles() {
         std::vector<std::string> tokens;
 
         // Split the line by commas and store in vector
-        while (std::getline(ss, item, ',')) {
+        while (std::getline(ss, item, '~')) {
             tokens.push_back(item);
         }
 
@@ -368,7 +368,7 @@ void Database::loadPassenger() {
         std::vector<std::string> tokens;
 
         // Split the line by commas and store in vector
-        while (std::getline(ss, item, ',')) {
+        while (std::getline(ss, item, '~')) {
             tokens.push_back(item);
         }
 
@@ -484,7 +484,7 @@ void Database::loadTrips() {
         std::vector<std::string> tokens;
 
         // Split the line by commas and store it in a vector
-        while (std::getline(ss, token, ',')) {
+        while (std::getline(ss, token, '~')) {
             tokens.push_back(token);
         }
 
@@ -569,25 +569,25 @@ void Database::saveDrivers() {
     }
 
     for (auto& driver : drivers) {
-        saveDriver << driver->getFullName() << ","
-            << driver->getUsername() << ","
-            << driver->getPassword() << ","
-            << driver->getDOB().getDay() << ","
-            << driver->getDOB().getMonth() << ","
-            << driver->getDOB().getYear() << ","
-            << driver->getPhoneNumber() << ","
-            << driver->getAddress() << ","
-            << driver->getEmail() << ","
-            << driver->getIdType() << ","
-            << driver->getIdNumber() << ","
-            << driver->getBankAccount()->getBankAccountName() << ","
-            << driver->getBankAccount()->getBankAccountNumber() << ","
-            << driver->getBankAccount()->getCVV() << ","
-            << driver->getBankAccount()->getAccountBalance() << ","
-            << driver->getBankAccount()->getExpireDate().getDay() << ","
-            << driver->getBankAccount()->getExpireDate().getMonth() << ","
-            << driver->getBankAccount()->getExpireDate().getYear() << ","
-            << driver->getCreditPoint() << ","
+        saveDriver << driver->getFullName() << "~"
+            << driver->getUsername() << "~"
+            << driver->getPassword() << "~"
+            << driver->getDOB().getDay() << "~"
+            << driver->getDOB().getMonth() << "~"
+            << driver->getDOB().getYear() << "~"
+            << driver->getPhoneNumber() << "~"
+            << driver->getAddress() << "~"
+            << driver->getEmail() << "~"
+            << driver->getIdType() << "~"
+            << driver->getIdNumber() << "~"
+            << driver->getBankAccount()->getBankAccountName() << "~"
+            << driver->getBankAccount()->getBankAccountNumber() << "~"
+            << driver->getBankAccount()->getCVV() << "~"
+            << driver->getBankAccount()->getAccountBalance() << "~"
+            << driver->getBankAccount()->getExpireDate().getDay() << "~"
+            << driver->getBankAccount()->getExpireDate().getMonth() << "~"
+            << driver->getBankAccount()->getExpireDate().getYear() << "~"
+            << driver->getCreditPoint() << "~"
             << driver->getIsVerified()
             << std::endl;
     }
@@ -603,11 +603,11 @@ void Database::saveVehicles() {
     }
 
     for (const auto& vehicle : vehicles) {
-        saveVehicle << vehicle->getOwner_username() << ","
-            << vehicle->getModel() << ","
-            << vehicle->getColor() << ","
-            << vehicle->getPlateNumber() << ","
-            << vehicle->getTotalSeat() << ","
+        saveVehicle << vehicle->getOwner_username() << "~"
+            << vehicle->getModel() << "~"
+            << vehicle->getColor() << "~"
+            << vehicle->getPlateNumber() << "~"
+            << vehicle->getTotalSeat() << "~"
             << vehicle->getStatus()
             << std::endl;
     }
@@ -622,25 +622,25 @@ void Database::savePassengers() {
     }
 
     for (auto& passenger : passengers) {
-        savePassenger << passenger->getFullName() << ","
-            << passenger->getUsername() << ","
-            << passenger->getPassword() << ","
-            << passenger->getDOB().getDay() << ","
-            << passenger->getDOB().getMonth() << ","
-            << passenger->getDOB().getYear() << ","
-            << passenger->getPhoneNumber() << ","
-            << passenger->getAddress() << ","
-            << passenger->getEmail() << ","
-            << passenger->getIdType() << ","
-            << passenger->getIdNumber() << ","
-            << passenger->getBankAccount()->getBankAccountName() << ","
-            << passenger->getBankAccount()->getBankAccountNumber() << ","
-            << passenger->getBankAccount()->getCVV() << ","
-            << passenger->getBankAccount()->getAccountBalance() << ","
-            << passenger->getBankAccount()->getExpireDate().getDay() << ","
-            << passenger->getBankAccount()->getExpireDate().getMonth() << ","
-            << passenger->getBankAccount()->getExpireDate().getYear() << ","
-            << passenger->getCreditPoint()<<","
+        savePassenger << passenger->getFullName() << "~"
+            << passenger->getUsername() << "~"
+            << passenger->getPassword() << "~"
+            << passenger->getDOB().getDay() << "~"
+            << passenger->getDOB().getMonth() << "~"
+            << passenger->getDOB().getYear() << "~"
+            << passenger->getPhoneNumber() << "~"
+            << passenger->getAddress() << "~"
+            << passenger->getEmail() << "~"
+            << passenger->getIdType() << "~"
+            << passenger->getIdNumber() << "~"
+            << passenger->getBankAccount()->getBankAccountName() << "~"
+            << passenger->getBankAccount()->getBankAccountNumber() << "~"
+            << passenger->getBankAccount()->getCVV() << "~"
+            << passenger->getBankAccount()->getAccountBalance() << "~"
+            << passenger->getBankAccount()->getExpireDate().getDay() << "~"
+            << passenger->getBankAccount()->getExpireDate().getMonth() << "~"
+            << passenger->getBankAccount()->getExpireDate().getYear() << "~"
+            << passenger->getCreditPoint()<<"~"
             << passenger->getIsVerified()
             << std::endl;
 
@@ -656,32 +656,32 @@ void Database::saveTrips() {
     }
 
     for (const auto& trip : trips) {
-   saveTrip << trip->getStatus() <<","
-            << trip->getDriver() << ","
-            << trip->getVehicle() << ","
-            << trip->getStart().getHour() << ","
-            << trip->getStart().getMinute() << ","
-            << trip->getStart().getDay() << ","
-            << trip->getStart().getMonth() << ","
-            << trip->getStart().getYear() << ","
-            << trip->getEnd().getHour() << ","
-            << trip->getEnd().getMinute() << ","
-            << trip->getEnd().getDay() << ","
-            << trip->getEnd().getMonth() << ","
-            << trip->getEnd().getYear() << ","
-            << trip->getStartLocation() << ","
-            << trip->getEndLocation() << ","
-            << trip->getAvailableSeat() << ","
-            << trip->getMinRate() << ","
-            << trip->getCost() << ","
+   saveTrip << trip->getStatus() <<"~"
+            << trip->getDriver() << "~"
+            << trip->getVehicle() << "~"
+            << trip->getStart().getHour() << "~"
+            << trip->getStart().getMinute() << "~"
+            << trip->getStart().getDay() << "~"
+            << trip->getStart().getMonth() << "~"
+            << trip->getStart().getYear() << "~"
+            << trip->getEnd().getHour() << "~"
+            << trip->getEnd().getMinute() << "~"
+            << trip->getEnd().getDay() << "~"
+            << trip->getEnd().getMonth() << "~"
+            << trip->getEnd().getYear() << "~"
+            << trip->getStartLocation() << "~"
+            << trip->getEndLocation() << "~"
+            << trip->getAvailableSeat() << "~"
+            << trip->getMinRate() << "~"
+            << trip->getCost() << "~"
             << trip->getReferenceID();
 
         // Save passengers and their status (if any)
         const auto& passengers = trip->getPassengers();
         if (!passengers.empty()) {
-            saveTrip << ",";
+            saveTrip << "~";
             for (const auto& passenger : passengers) {
-                saveTrip << passenger.first << ":" << passenger.second << ",";
+                saveTrip << passenger.first << ":" << passenger.second << "~";
             }
             saveTrip.seekp(-1, std::ios_base::end); // Remove the last comma
         }

@@ -66,7 +66,7 @@ void Driver::changeStatusOfPassengerInTrip(Trip* trip, int passengerIndex, int v
 void Driver::viewVehicle(UserExperience& ux) const {
     int index = 1;
     for (const auto& vehicle : driverVehicles) {
-        cout << "Index: " << index << "Plate: " << vehicle->getPlateNumber()<< endl;
+        cout << "Index: " << index << "| Plate: " << vehicle->getPlateNumber()<< endl;
         vehicle->showInformation(ux);
         index++;
     }

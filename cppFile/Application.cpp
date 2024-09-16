@@ -1386,7 +1386,7 @@ void Application::HistoryAndFeedback() {
         return;
     }
     viewCarpool(unratedTrips);
-    int index = ux.getValidInput<int>("Enter the trip's index: ( '0' to exit )", &UserExperience::isValidOption, 0, (int)unratedTrips.size());
+    int index = ux.getValidInput<int>("Enter the trip's index: ( '0' to exit ): ", &UserExperience::isValidOption, 0, (int)unratedTrips.size());
     if (index <= 0) return;
     
     Trip* currentTrip = unratedTrips[index - 1];
@@ -1715,7 +1715,6 @@ void Application::changeStatusCustomerRequest() {
 
     Trip* currentTrip = trips[tripID - 1];
 
-    cout << "Enter the passenger id: ";
     int passID = ux.getValidInput<int>("Enter the passenger's index: ( '0' to exit ): ", &UserExperience::isValidOption, 0, (int)currentTrip->getPassengers().size());
     ux.printOption(1, "Accept Request");
     ux.printOption(2, "Deny Request");
