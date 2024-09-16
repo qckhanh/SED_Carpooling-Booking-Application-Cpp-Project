@@ -526,7 +526,6 @@ string UserExperience::ReferenceIDGenerator(Date d1) {
     total += d1.getDay() * pow(key, 3);
     total += d1.getMonth() *pow(key, 4);
     total += d1.getYear() *pow(key, 5);
-    cout << total << endl;
     string s = to_string(total).substr(0, 5);
     return s;
     

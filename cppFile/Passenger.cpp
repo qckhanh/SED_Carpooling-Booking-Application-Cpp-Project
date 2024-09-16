@@ -38,13 +38,14 @@ bool Passenger::isCanBook(Trip* trip) {
 void Passenger::bookACarPool(Trip* trip) {
   
     if (!isCanBook(trip)) {
-        cout << "Sorry! You cant book this carpool! " << endl;
+        cout << " >>> [System]: Sorry! You cant book this carpool! " << endl;
         return;
     }
     addToTotalCarPoolBooking(trip);
     trip->addPassengerToTrip(this->username, 0);
     this->creditPoint -= trip->getCost();
-    cout << "Carpool booked! " << endl;
+    cout << " >>> [System]: - " <<trip->getCost() << " credits\n [ Credits will be refund if request get denied ] " << endl;
+    cout << " >>> [System]: Carpool booked! " << endl;
 }
 
 void Passenger::cancelBooking(int index) {

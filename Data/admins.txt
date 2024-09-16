@@ -1,1 +1,1 @@
-god,GOD,1
+admin~ADMIN~admin
