@@ -7,23 +7,18 @@ Database::Database() {}
 std::vector<Passenger*>& Database::getPassengers() {
     return passengers;
 }
-
 std::vector<Driver*>& Database::getDrivers() {
     return drivers;
 }
-
 std::vector<Admin*>& Database::getAdmins() {
     return admins;
 }
-
 std::vector<Vehicle*>& Database::getVehicles() {
     return vehicles;
 }
-
 std::vector<Trip*>& Database::getTrips() {
     return trips;
 }
-
 std::vector<Feedback*>& Database::getFeedbacks() {
     return feedbacks;
 }
@@ -32,206 +27,40 @@ std::vector<Feedback*>& Database::getFeedbacks() {
 void Database::setPassengers(const std::vector<Passenger*>& newPassengers) {
     passengers = newPassengers;
 }
-
 void Database::setDrivers(const std::vector<Driver*>& newDrivers) {
     drivers = newDrivers;
 }
-
 void Database::setAdmins(const std::vector<Admin*>& newAdmins) {
     admins = newAdmins;
 }
-
 void Database::setVehicles(const std::vector<Vehicle*>& newVehicles) {
     vehicles = newVehicles;
 }
-
 void Database::setTrips(const std::vector<Trip*>& newTrips) {
     trips = newTrips;
 }
-
 void Database::setFeedbacks(const std::vector<Feedback*>& newFeedbacks) {
     feedbacks = newFeedbacks;
 }
-
-// CRUD operations for Passengers
+//methods to add and load data
 void Database::addPassenger(Passenger* passenger) {
     passengers.push_back(passenger);
 }
-
-Passenger* Database::getPassengerByIndex(int index) {
-    if (index >= 0 && index < passengers.size()) {
-        return passengers[index];
-    }
-    return nullptr;
-}
-
-bool Database::updatePassenger(int index, Passenger* updatedPassenger) {
-    if (index >= 0 && index < passengers.size()) {
-        passengers[index] = updatedPassenger;
-        return true;
-    }
-    return false;
-}
-
-bool Database::deletePassenger(int index) {
-    if (index >= 0 && index < passengers.size()) {
-        passengers.erase(passengers.begin() + index);
-        return true;
-    }
-    return false;
-}
-
-// CRUD operations for Drivers
 void Database::addDriver(Driver* driver) {
     drivers.push_back(driver);
 }
-
-Driver* Database::getDriverByIndex(int index) {
-    if (index >= 0 && index < drivers.size()) {
-        return drivers[index];
-    }
-    return nullptr;
-}
-
-bool Database::updateDriver(int index, Driver* updatedDriver) {
-    if (index >= 0 && index < drivers.size()) {
-        drivers[index] = updatedDriver;
-        return true;
-    }
-    return false;
-}
-
-bool Database::deleteDriver(int index) {
-    if (index >= 0 && index < drivers.size()) {
-        drivers.erase(drivers.begin() + index);
-        return true;
-    }
-    return false;
-}
-
-// CRUD operations for Admins
 void Database::addAdmin(Admin* admin) {
     admins.push_back(admin);
 }
-
-Admin* Database::getAdminByIndex(int index) {
-    if (index >= 0 && index < admins.size()) {
-        return admins[index];
-    }
-    return nullptr;
-}
-
-bool Database::updateAdmin(int index, Admin* updatedAdmin) {
-    if (index >= 0 && index < admins.size()) {
-        admins[index] = updatedAdmin;
-        return true;
-    }
-    return false;
-}
-
-bool Database::deleteAdmin(int index) {
-    if (index >= 0 && index < admins.size()) {
-        admins.erase(admins.begin() + index);
-        return true;
-    }
-    return false;
-}
-
-// CRUD operations for Vehicles
 void Database::addVehicle(Vehicle* vehicle) {
     vehicles.push_back(vehicle);
 }
-
-Vehicle* Database::getVehicleByIndex(int index) {
-    if (index >= 0 && index < vehicles.size()) {
-        return vehicles[index];
-    }
-    return nullptr;
-}
-
-bool Database::updateVehicle(int index, Vehicle* updatedVehicle) {
-    if (index >= 0 && index < vehicles.size()) {
-        vehicles[index] = updatedVehicle;
-        return true;
-    }
-    return false;
-}
-
-bool Database::deleteVehicle(int index) {
-    if (index >= 0 && index < vehicles.size()) {
-        vehicles.erase(vehicles.begin() + index);
-        return true;
-    }
-    return false;
-}
-
-// CRUD operations for Trips
 void Database::addTrip(Trip* trip) {
     trips.push_back(trip);
 }
-
-Trip* Database::getTripByIndex(int index, int statusValue) {
-    if (index >= 0 && index < trips.size()) {
-        int indexFind = 1;
-        for (auto& tmp : trips) {
-            if (tmp->getStatus() == statusValue) {
-                if (indexFind == index) {
-                    return tmp;
-                }
-                indexFind++;
-            }
-        }
-        return nullptr;
-    }
-    return nullptr;
-}
-
-bool Database::updateTrip(int index, Trip* updatedTrip) {
-    if (index >= 0 && index < trips.size()) {
-        trips[index] = updatedTrip;
-        return true;
-    }
-    return false;
-}
-
-bool Database::deleteTrip(Trip* trip) {
-    for (int i = 0; i < (int)trips.size(); i++) {
-        if (trip == trips[i]) {
-            trips.erase(trips.begin() + i);  // Erase only the element at index i
-            return true;
-        }
-    }
-    return false;
-}
-
-// CRUD operations for Feedbacks
 void Database::addFeedback(Feedback* feedback) {
     feedbacks.push_back(feedback);
 }
-
-Feedback* Database::getFeedbackByIndex(int index) {
-    if (index >= 0 && index < feedbacks.size()) {
-        return feedbacks[index];
-    }
-    return nullptr;
-}
-
-bool Database::updateFeedback(int index, Feedback* updatedFeedback) {
-    if (index >= 0 && index < feedbacks.size()) {
-        feedbacks[index] = updatedFeedback;
-        return true;
-    }
-    return false;
-}
-
-bool Database::deleteFeedback(int index) {
-    if (index >= 0 && index < feedbacks.size()) {
-        feedbacks.erase(feedbacks.begin() + index);
-        return true;
-    }
-    return false;
-}
-
 void Database::loadDriver() {
     fstream loadDriver("../Data/drivers.txt", ios::in);
     if (!loadDriver.is_open()) {
@@ -354,7 +183,6 @@ void Database::loadVehicles() {
     }
     loadVehicle.close();
 }
-
 void Database::loadPassenger() {
     fstream loadPassenger("../Data/passenger.txt", ios::in);
     string line;
@@ -409,7 +237,6 @@ void Database::loadPassenger() {
     }
     loadPassenger.close();
 }
-
 void Database::loadFeedback() {
     fstream loadPassenger("../Data/feedbacks.txt", ios::in);
     string line;
@@ -469,7 +296,6 @@ void Database::loadFeedback() {
     }
     loadPassenger.close();
 }
-
 void Database::loadTrips() {
     std::ifstream file("../Data/trips.txt");
     if (!file.is_open()) {
@@ -542,7 +368,7 @@ void Database::loadTrips() {
             // Update driver's running carpool
             for (auto& tmpDriver : this->drivers) {
                 if (tmpDriver->getUsername() == trip->getDriver()) {
-                    tmpDriver->setRunningCarpool(trip);
+                    tmpDriver->addRunningCarpool(trip);
                     trip->setDriverP(tmpDriver);
                 }
             }
@@ -559,8 +385,6 @@ void Database::loadTrips() {
     }
     file.close();
 }
-
-
 void Database::saveDrivers() {
     std::ofstream saveDriver("../Data/drivers.txt", std::ios::out);
     if (!saveDriver.is_open()) {
@@ -594,7 +418,6 @@ void Database::saveDrivers() {
     saveDriver.close();
 
 }
-
 void Database::saveVehicles() {
     std::ofstream saveVehicle("../Data/vehicles.txt", std::ios::out);
     if (!saveVehicle.is_open()) {
@@ -613,7 +436,6 @@ void Database::saveVehicles() {
     }
     saveVehicle.close();
 }
-
 void Database::savePassengers() {
     std::ofstream savePassenger("../Data/passenger.txt", std::ios::out);
     if (!savePassenger.is_open()) {
@@ -647,7 +469,6 @@ void Database::savePassengers() {
     }
     savePassenger.close();
 }
-
 void Database::saveTrips() {
     std::ofstream saveTrip("../Data/trips.txt", std::ios::out);
     if (!saveTrip.is_open()) {
@@ -690,7 +511,6 @@ void Database::saveTrips() {
     }
     saveTrip.close();
 }
-
 void Database::saveDataToFile() {
     saveDrivers();
     savePassengers();
@@ -698,7 +518,6 @@ void Database::saveDataToFile() {
     saveTrips();
     saveFeedback();
 }
-
 void Database::saveFeedback() {
     std::ofstream saveFeedbacks("../Data/feedbacks.txt", std::ios::out);
 

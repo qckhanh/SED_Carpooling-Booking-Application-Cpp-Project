@@ -52,15 +52,11 @@ public:
     void setDriverP(Driver* driver);
     void setVehicleP(Vehicle* vehicle);
     void setPassengerStatus(const std::string& passenger_username, int status);
-    
-
-    // Setter for totalCredit
     void setTotalCredit(float credit);
 
     // Getters
     int getStatus() const;
     std::string getDriver() const;
-    double getDriverRating(Driver *driver);
     std::string getVehicle() const;
     Date getStart() const;
     Date getEnd() const;
@@ -71,8 +67,6 @@ public:
     std::string getReferenceID() const;
     int getMinRate() const;
     float getCost() const;
-    // New Getter for Specific Passenger Status
-    int getPassengerStatus(const std::string& passenger_username) const;
     Driver* getDriverP();
     Vehicle* getVehicleP();
     float getTotalCredit();
@@ -81,8 +75,7 @@ public:
     void addPassengerToTrip(const std::string& passenger_username, int status);
     void removePassenger(const std::string& passenger_username, int status);
     void changeStatusPassenger(int index, int value);
-    std::string toString();
-    void showInformation(UserExperience& ux); //isguest
+    void showInformation(UserExperience& ux); 
     
     
 

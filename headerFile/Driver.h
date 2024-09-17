@@ -15,27 +15,18 @@ private:
     std::vector<Trip*> carpools;
 
 public:
-    // Constructor
+    // Constructor and Destructor
     Driver();
-
-    // Destructor
     ~Driver();
 
     // Getter methods
     const std::vector<Vehicle*>& getDriverVehicles() const;
     std::vector<Trip*>& getCarpool();
-    Vehicle* getVehicleFromIndex(int index);
-    Trip* getCarpoolFromIndex(int index, int statusValue);
     // Setter methods
     void addVehicle(Vehicle* vehicle);
-    void addActiveTrip(Trip* trip);
-    void setRunningCarpool(Trip* trip);
-
-    // Member functions
+    void addRunningCarpool(Trip* trip);
     void changeStatusOfPassengerInTrip(Trip* trip, int passengerIndex, int value);
-   vector<Trip*> getCarpoolWithStatus(int statusValue);
+    vector<Trip*> getCarpoolWithStatus(int statusValue);
     void viewVehicle(UserExperience& ux) const;
     void changeStatusCarpool(int index, int value);
-    void updateCarpool();
-    void viewCarpool(UserExperience& ux, int statusValue);
 };

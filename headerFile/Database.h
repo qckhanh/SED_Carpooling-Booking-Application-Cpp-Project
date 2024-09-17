@@ -27,58 +27,28 @@ public:
     Database();
 
     // Getters
-    std::vector<Passenger*>& getPassengers();  // 
-    std::vector<Driver*>& getDrivers();        // 
-    std::vector<Admin*>& getAdmins();          // 
-    std::vector<Vehicle*>& getVehicles();      // 
-    std::vector<Trip*>& getTrips();            // 
-    std::vector<Feedback*>& getFeedbacks();    // 
+    std::vector<Passenger*>& getPassengers();   
+    std::vector<Driver*>& getDrivers();         
+    std::vector<Admin*>& getAdmins();           
+    std::vector<Vehicle*>& getVehicles();       
+    std::vector<Trip*>& getTrips();             
+    std::vector<Feedback*>& getFeedbacks();     
 
     // Setters
-    void setPassengers(const std::vector<Passenger*>& newPassengers);  // 
-    void setDrivers(const std::vector<Driver*>& newDrivers);            // 
-    void setAdmins(const std::vector<Admin*>& newAdmins);               // 
-    void setVehicles(const std::vector<Vehicle*>& newVehicles);         // 
-    void setTrips(const std::vector<Trip*>& newTrips);                  // 
-    void setFeedbacks(const std::vector<Feedback*>& newFeedbacks);      // 
+    void setPassengers(const std::vector<Passenger*>& newPassengers);   
+    void setDrivers(const std::vector<Driver*>& newDrivers);             
+    void setAdmins(const std::vector<Admin*>& newAdmins);                
+    void setVehicles(const std::vector<Vehicle*>& newVehicles);          
+    void setTrips(const std::vector<Trip*>& newTrips);                   
+    void setFeedbacks(const std::vector<Feedback*>& newFeedbacks);       
 
-    // CRUD operations for Passengers
-    void addPassenger(Passenger* passenger);  // Use pointer
-    Passenger* getPassengerByIndex(int index);
-    bool updatePassenger(int index, Passenger* updatedPassenger);  // Use pointer
-    bool deletePassenger(int index);
-
-    // CRUD operations for Drivers
-    void addDriver(Driver* driver);  // Use pointer
-    Driver* getDriverByIndex(int index);
-    bool updateDriver(int index, Driver* updatedDriver);  // Use pointer
-    bool deleteDriver(int index);
-
-    // CRUD operations for Admins
-    void addAdmin(Admin* admin);  // Use pointer
-    Admin* getAdminByIndex(int index);
-    bool updateAdmin(int index, Admin* updatedAdmin);  // Use pointer
-    bool deleteAdmin(int index);
-
-    // CRUD operations for Vehicles
-    void addVehicle(Vehicle* vehicle);  // Use pointer
-    Vehicle* getVehicleByIndex(int index);
-    bool updateVehicle(int index, Vehicle* updatedVehicle);  // Use pointer
-    bool deleteVehicle(int index);
-
-    // CRUD operations for Trips
-    void addTrip(Trip* trip);  // Use pointer
-    Trip* getTripByIndex(int index, int statusValue);
-    bool updateTrip(int index, Trip* updatedTrip);  // Use pointer
-    bool deleteTrip(Trip* trip);
-
-    // CRUD operations for Feedbacks
-    void addFeedback(Feedback* feedback);  // Use pointer
-    Feedback* getFeedbackByIndex(int index);
-    bool updateFeedback(int index, Feedback* updatedFeedback);  // Use pointer
-    bool deleteFeedback(int index);
-
-    // methods to load data from files
+    //methods to add and load data
+    void addPassenger(Passenger* passenger);  
+    void addDriver(Driver* driver);  
+    void addAdmin(Admin* admin);  
+    void addVehicle(Vehicle* vehicle);  
+    void addTrip(Trip* trip);  
+    void addFeedback(Feedback* feedback);  
     void loadDriver();
     void loadVehicles();
     void loadTrips();
@@ -92,7 +62,4 @@ public:
     void saveTrips();
     void saveFeedback();
     void saveDataToFile();
-    
-
-    
 };

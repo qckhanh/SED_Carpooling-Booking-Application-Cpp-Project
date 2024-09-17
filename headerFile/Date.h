@@ -36,9 +36,9 @@ public:
     void setYear(int year);
 
     //methods
-    //void toString();
     std::string toString() const;
     static int compareValues(int a, int b);
+    //overrding operator
     bool operator>(const Date& other) const;
     bool operator<(const Date& other) const;
     bool operator>=(const Date& other) const;

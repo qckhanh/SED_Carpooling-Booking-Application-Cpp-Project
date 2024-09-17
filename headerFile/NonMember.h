@@ -11,5 +11,4 @@ class NonMember : public User {
     //Destructor
     ~NonMember();
 
-
 };

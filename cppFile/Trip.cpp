@@ -130,32 +130,17 @@ float Trip::getCost() const {
 int Trip::getMinRate() const {
     return minRate;
 }
-
 Driver* Trip::getDriverP() {
     return currDriver;
 }
-
 Vehicle* Trip::getVehicleP() {
     return currVehicle;
 }
-
-// New Getter for Specific Passenger Status
-int Trip::getPassengerStatus(const std::string& passenger_username) const {
-    for (const auto& passenger : passengers) {
-        if (passenger.first == passenger_username) {
-            return passenger.second;
-        }
-    }
-    std::cerr << "Passenger not found: " << passenger_username << std::endl;
-    return -1; // Return a special value indicating that the passenger was not found
-}
-
 // Methods
 void Trip::addPassengerToTrip(const std::string& passenger_username, int status) {
     passengers.push_back(std::make_pair(passenger_username, status));
     this->totalCredit += cost;
 }
-
 void Trip::changeStatusPassenger(int index, int value) {
     if (index >= 0 && index < passengers.size()) {
         passengers[index].second = value;
@@ -177,28 +162,6 @@ void Trip::removePassenger(const std::string& passenger_username, int status) {
         }
     }
 }
-std::string Trip::toString() {
-    std::stringstream ss;
-    ss << "Trip [Driver: " << driver_username
-        << ", Vehicle: " << vehicle_plate
-        //<< ", Start: " << start.toString();
-        //<< ", End: " << end.toString()
-        << ", Start Location: " << startLocation
-        << ", End Location: " << endLocation
-        << ", Available Seats: " << availableSeat
-        << ", Min Rate: " << minRate
-        << ", Cost: " << cost
-        << ", Reference ID: " << referenceID
-        << ", Passengers: [";
-
-    for (const auto& passenger : passengers) {
-        ss << "(" << passenger.first << ", " << passenger.second << "), ";
-    }
-
-    ss << "]]";
-    return ss.str();
-}
-
 void Trip::showInformation(UserExperience& ux) {
     ux.printHeader("TRIP INFORMATION");
 

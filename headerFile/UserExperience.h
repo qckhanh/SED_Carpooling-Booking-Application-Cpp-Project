@@ -17,17 +17,6 @@
 #endif
 
 using namespace std;
-#define MAX_CARNUMBER_LENGTH 16
-#define VISA_NUMBER_START "4614"
-#define MASTERCARD_NUMBER_START "5565"
-#define IDENTITY_NUMBER_START "0012"
-#define BOLD "\033[1m"
-#define RESET "\033[0m"
-
-#define RED "\033[0;31m"
-#define GREEN "\033[0;32m"
-#define YELLOW "\033[0;33m"
-#define BLUE "\033[0;34m"
 
 class UserExperience {
 private:
@@ -66,10 +55,6 @@ public:
     void printOption(int option, const std::string& description);
     void printCarShape();
 
-    // Error handling
-    void handleError(const std::string& errorMessage);
-    int validateInput(int min, int max);
-
     // Input validation methods
     bool isValidEmail(const std::string& email);
     bool isValidPassportNumber(const std::string& passportNumber);
@@ -107,11 +92,8 @@ public:
 
     // Example validation functions
     bool validateInt(const int& input);
-
     bool validateString(const std::string& input);
-
     bool isValidDate(int day, int month, int year);
-
     bool isLeapYear(int year);
     bool isValidDateTrip(const Date& tripDate);
     string ReferenceIDGenerator(Date d1);

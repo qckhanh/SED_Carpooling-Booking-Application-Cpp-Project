@@ -22,7 +22,6 @@ protected:
     float creditPoint;
     bool isVerified;
     BankAccount* bankAccount; 
-    IdentityCard* card;
     Feedback* feedbacks;
 
 
@@ -46,7 +45,6 @@ public:
     float getCreditPoint() const;
     bool getIsVerified() const;
     BankAccount* getBankAccount();
-    IdentityCard* getCard();
     double getRateScore();
     Feedback* getFeedback();
 
@@ -64,11 +62,9 @@ public:
     void setCreditPoint(float creditPoint);
     void setIsVerified(bool isVerified);
     void setBankAccount(BankAccount* bankAccount);
-    void setCard(IdentityCard* card);
     void setFeedback(Feedback* feedback);
 
     // Member functions
-    void verifyAccount();
     void receiveCredit(float creditAmount);
     void useCredit(float creditAmount);
     void showInformation(UserExperience& ux) const;

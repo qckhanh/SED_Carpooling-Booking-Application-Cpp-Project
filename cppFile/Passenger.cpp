@@ -26,13 +26,6 @@ const std::vector<Trip*>& Passenger::getBooking() const {
 void Passenger::addToTotalCarPoolBooking(Trip* trip) {
     totalCarPoolBooking.push_back(trip);
 }
-bool Passenger::isCanBook(Trip* trip) {
-    if (find(totalCarPoolBooking.begin(), totalCarPoolBooking.end(), trip) != totalCarPoolBooking.end()) return 0;
-    if (trip->getAvailableSeat() < 1) return 0;
-    if (creditPoint < trip->getCost() || (this->getRateScore() < trip->getMinRate() && this->getRateScore() != -1)) return 0;
-    return 1;
-}
-
 
 // Member functions
 void Passenger::bookACarPool(Trip* trip) {
@@ -47,16 +40,9 @@ void Passenger::bookACarPool(Trip* trip) {
     cout << " >>> [System]: - " <<trip->getCost() << " credits\n [ Credits will be refund if request get denied ] " << endl;
     cout << " >>> [System]: Carpool booked! " << endl;
 }
-
-void Passenger::cancelBooking(int index) {
-    delete totalCarPoolBooking[index]; // Free memory
-    totalCarPoolBooking.erase(totalCarPoolBooking.begin() + index);
-}
-
 void Passenger::cancelRequest(Trip* trip, int status) {
     trip->removePassenger(this->username, status);
 }
-
 vector<Trip*> Passenger::getTripByStatus(int status) {
     vector<Trip*> tmp = {};
     for (auto& currentTrip : totalCarPoolBooking) {
@@ -68,18 +54,11 @@ vector<Trip*> Passenger::getTripByStatus(int status) {
     }
     return tmp;
 }
-//std::vector<Trip*>& Passenger::getCarpool() {
-//    return carpools;
-//}
-
-void Passenger::viewCarpool(UserExperience& ux, int statusValue) const {
-    int index = 1;
-    for (const auto& currentCarpool : totalCarPoolBooking) {
-        if (currentCarpool->getStatus() == statusValue) {
-            cout << endl;
-            cout << index << ": " << currentCarpool->getReferenceID() << ": " << endl;
-            currentCarpool->showInformation(ux);
-            index++;
-        }
-    }
+bool Passenger::isCanBook(Trip* trip) {
+    if (find(totalCarPoolBooking.begin(), totalCarPoolBooking.end(), trip) != totalCarPoolBooking.end()) return 0;
+    if (trip->getAvailableSeat() < 1) return 0;
+    if (creditPoint < trip->getCost() || (this->getRateScore() < trip->getMinRate() && this->getRateScore() != -1)) return 0;
+    return 1;
 }
+
+

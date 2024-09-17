@@ -1,4 +1,0 @@
-Hieu Oc Cho,hieuhehe,1102,11,2,3,03111211122,Hanoi,12@abc,CCCD ,1111,Lam Dao,11111,123,123000,12,6,1,200
-Khong Quoc Khanh,quockhanh,11022005,11,2,2005,0948865333,Vinh Phuc,khanhquoc1125@gmail.com,CCCD,0213641897,Khong Quoc Khanh,200516899999,236,15000,12,9,2028,50
-Duong Bao Ngoc,dbn,123,18,5,1990,09xxxxxxx,Hanoi,abc@example,CCCD,123xxxxxxxxx,DBN,123xxxxxxxxx,159,980,16,9,2030,20
-Khong Minh Hieu,minhhieu,1111,11,2,2025,0914554651,Hanoi,sdddfd,sdsdadasd,1111,Hieu,11,123,990,15,20,30,10

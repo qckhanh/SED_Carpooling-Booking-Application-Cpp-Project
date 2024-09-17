@@ -36,19 +36,16 @@ bool Date::operator>(const Date& other) const {
     if (compareValues(minute, other.minute) != 0) return compareValues(minute, other.minute) > 0;
     return compareValues(second, other.second) > 0;
 }
-
+//overrding operator
 bool Date::operator<(const Date& other) const {
     return other > *this;
 }
-
 bool Date::operator>=(const Date& other) const {
     return !(*this < other);
 }
-
 bool Date::operator<=(const Date& other) const {
     return !(*this > other);
 }
-
 bool Date::operator==(const Date& other) const {
     return compareValues(year, other.year) == 0 &&
         compareValues(month, other.month) == 0 &&
@@ -63,7 +60,6 @@ int Date::compareValues(int a, int b) {
     if (a == DEFAULT || b == DEFAULT) return 0;
     return (a > b) ? 1 : (a < b) ? -1 : 0;
 }
-
 std::string Date::toString() const {
     std::ostringstream oss;
 

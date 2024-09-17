@@ -12,7 +12,4 @@ class Admin : public User {
     //Destructor
     ~Admin();
 
-    void viewUser();
-    void viewCarpool();
-
 };

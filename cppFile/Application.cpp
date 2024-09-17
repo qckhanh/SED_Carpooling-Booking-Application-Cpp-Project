@@ -1569,7 +1569,7 @@ void Application::addCarpool() {
     tmpTrip->setCost(cost);
     tmpTrip->setDriverP(driver);
     tmpTrip->setVehicleP(currentCar);
-    driver->addActiveTrip(tmpTrip);
+    driver->addRunningCarpool(tmpTrip);
     db.addTrip(tmpTrip);      // add to database
 
     cout << " >>> [System]: New Carpool added!" << endl;

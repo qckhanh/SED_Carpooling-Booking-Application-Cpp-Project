@@ -24,9 +24,7 @@ public:
 
     // Member functions
     void bookACarPool(Trip* trip);
-    void cancelBooking(int index);
     void cancelRequest(Trip* trip, int status);
     vector<Trip*> getTripByStatus(int status);
-    void viewCarpool(UserExperience& ux, int statusValue) const;
     bool isCanBook(Trip* trip);
 };

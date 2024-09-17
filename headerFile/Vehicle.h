@@ -34,6 +34,7 @@ public:
     std::string getColor() const;
     std::string getPlateNumber() const;
     int getTotalSeat() const;
-    void showInformation(UserExperience& ux) const;
     int getStatus() const;
+
+    void showInformation(UserExperience& ux) const;
 };
