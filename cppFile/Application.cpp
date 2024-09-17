@@ -258,7 +258,7 @@ bool Application::logIn() {
          /*   string s;
             cin >> s;*/
 
-            cout << "Enter your username: ";
+            cout << "Enter your username, phone number or email: ";
             getline(cin>>ws, username);
             cout << "Enter your password: ";
             password = ux.getPasswordInput();
@@ -266,9 +266,11 @@ bool Application::logIn() {
         }
         if (userType == "driver") {
             for (auto& tmp : db.getDrivers()) {
-                if (tmp->getUsername() == username && tmp->getPassword() == password) {
-                    currentUser = tmp;
-                    return true;
+                if (username == tmp->getUsername() || username == tmp->getEmail() || username == tmp->getPhoneNumber()) {
+                    if (tmp->getPassword() == password) {
+                        currentUser = tmp;
+                        return true;
+                    }
                 }
             }
             cout << " >>> [System]: Incorrect username or password!" << endl;
@@ -276,9 +278,11 @@ bool Application::logIn() {
         }
         else if (userType == "passenger") {
             for (auto& tmp : db.getPassengers()) {
-                if (tmp->getUsername() == username && tmp->getPassword() == password) {
-                    currentUser = tmp;
-                    return true;
+                if (username == tmp->getUsername() || username == tmp->getEmail() || username == tmp->getPhoneNumber()){
+                    if (tmp->getPassword() == password) {
+                        currentUser = tmp;
+                        return true;
+                    }
                 }
             }
             cout << " >>> [System]: Incorrect username or password!" << endl;
@@ -287,9 +291,11 @@ bool Application::logIn() {
         }
         else if (userType == "admin") {
             for (auto& tmp : db.getAdmins()) {
-                if (tmp->getUsername() == username && tmp->getPassword() == password) {
-                    currentUser = tmp;
-                    return true;
+                if (username == tmp->getUsername() || username == tmp->getEmail() || username == tmp->getPhoneNumber()) {
+                    if (tmp->getPassword() == password) {
+                        currentUser = tmp;
+                        return true;
+                    }
                 }
             }
             cout << " >>> [System]: Incorrect username or password!" << endl;
@@ -796,10 +802,21 @@ void Application::viewMyFeedback(User* user) {
 }
 bool Application::doFeedbackUser(string receiver, string myUsername) {
     std::string comment;
-    cin.ignore();
-    cout << "Your comment on " << receiver << ": " << endl;
-    getline(cin, comment);
-    string message = "Please rate " + receiver + " (1 to 5) : ";
+    while (1) {
+        
+        cin.ignore();
+        cout << "Your comment on user [ " << receiver << " ] : " << endl;
+        getline(cin, comment);
+        if (comment.find("*") != -1 || comment.find("~") != -1) {
+            cout << " >>> [System]: Your comment contains of unsupported characters. Pleas try again" << endl;
+            pauseDisplay;
+            continue;
+        }
+        break;
+    }
+
+    
+    string message = "Please rate [ " + receiver + " ]  (1 to 5) : ";
     int rate = ux.getValidInput<int>(message, &UserExperience::isValidRating);
     
 
@@ -982,14 +999,17 @@ void Application::editProfile(User* user) {
                 return;
             }
             std::srand(static_cast<unsigned int>(std::time(0)));
-            string path = "../MessageBox/" + user->getEmail() + ".txt";
-            fstream email(path, ios::out);
-            cout << " >>> [System]: Open your email at : Carpool/UserEmailReceiver/ " << endl;
-            int generateCode = 100000 + std::rand() % (999999 - 100000 + 1);
-            cout << " >>> [System]: We have sent 6-digit verification code to email : " << user->getEmail() << endl;
-            cout << " >>> [System]: Please check your email! " << endl;
-            email << "Your verification code is [ " << generateCode << " ] , please DO NOT share this code to anyone! " << endl;
+            string pathEmail = "../MessageBox/" + user->getEmail() + ".txt";
+            string pathPhone = "../MessageBox/" + user->getPhoneNumber() + ".txt";
 
+            fstream email(pathEmail, ios::out);
+            fstream phone(pathPhone, ios::out);
+            cout << " >>> [System]: Open your email or phone number's message at : Carpool/MessageBox/ " << endl;
+            int generateCode = 100000 + std::rand() % (999999 - 100000 + 1);
+            cout << " >>> [System]: We have sent 6-digit verification code to your email and phone number" << endl;
+            cout << " >>> [System]: Please check your email or phone number! " << endl;
+            email << "Your verification code is [ " << generateCode << " ] , please DO NOT share this code to anyone! " << endl;
+            phone << "Your verification code is [ " << generateCode << " ] , please DO NOT share this code to anyone! " << endl;
             string codeFromUser;
             cin.ignore();
             cout << "Enter the verfication code ( 6 digits): ";
@@ -1005,6 +1025,7 @@ void Application::editProfile(User* user) {
             user->setIsVerified(1);
             cout << " >>> [System]: Account verified!" << endl;
             email.close();
+            phone.close();
 
         }
         else {
@@ -1604,12 +1625,15 @@ void Application::FinishCarpool() {
     ux.printHeader("FINSIH CARPOOL");
     vector<Trip*> trips;
     for (auto& tmp : driver->getCarpoolWithStatus(1)) {
+        bool havePending = false;
+        if (tmp->getPassengers().size() == 0) continue;
         for (auto& tmpPass : tmp->getPassengers()) {
-            if (tmpPass.second == 1) {
-                trips.push_back(tmp);
+            if (tmpPass.second == 0) {
+                havePending = true;
                 break;
             }
         }
+        if (!havePending) trips.push_back(tmp);
     }
     if ((int)trips.size() < 1) {
         cout << " >>> [System]: Sorry! Nothing to show here! " << endl;
@@ -1623,16 +1647,6 @@ void Application::FinishCarpool() {
     Trip* currenTrip = trips[tripIndex - 1];
     if (!ux.confirmMessage("Do you to finish carpool with Reference ID: " + currenTrip->getReferenceID() + "?")) return;
 
-    if (currenTrip->getPassengers().size() < 1) {
-        cout << " >>> [System]: Cannot finish this trip!" << endl;
-        return;
-    }
-    for (auto& tmp : currenTrip->getPassengers()) {
-        if (tmp.second == 0) {
-            cout << " >>> [System]: Cannot finish this trip!" << endl;
-            return;
-        }
-    }
     cout << "Passenger: " << endl;
     for (auto& tmp : currenTrip->getPassengers()) {
         cout << tmp.first << endl;

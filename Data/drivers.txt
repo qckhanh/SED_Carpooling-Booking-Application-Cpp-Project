@@ -2,4 +2,4 @@ Khong Quoc Khanh~quockhanh~11022005~11~2~2005~0948865333~Hanoi~khanhquoc1125@gma
 Luong Chi Bach~lcb~1~18~5~2005~0944444444~Nam Dinh~luongbachEmail@rmit.edu.vn~Passport~A7777777~Luong Chi Bach~4111111111111111~555~780~-1~8~2025~392~1
 Luong Chi Bach~luongchibach~lamkhanhbach123@~18~5~2005~0989981805~hanoi~abc123@gmail.com~Passport~M1234567~LUONG CHI BACH~4123456789123456~125~990~-1~5~2025~10~1
 Luong Chi Bach~chibach123~luongchibach123@~18~5~2005~0989981805~Dong Da, Ha Noi~abc123@gmail.com~Passport~M1234567~LUONG CHI BACH~4123456789123456~125~990~-1~5~2025~10~1
-Nguyen Van A~khanhquoc~Khongkhanh2005!~11~2~2005~0948865333~Dong Da, Ha Noi~s4021494@rmit.edu.vn~Passport~A7777777~Khong Quoc Khanh~4111111111111111~123~990~-1~12~2029~10~0
+Nguyen Van A~khanhquoc~Newpassword123!~11~2~2005~0948865333~Dong Da, Ha Noi~s4021494@rmit.edu.vn~Passport~A7777777~Khong Quoc Khanh~4111111111111111~123~990~-1~12~2029~10~0
