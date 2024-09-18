@@ -191,3 +191,32 @@ void Trip::showInformation(UserExperience& ux) {
     currVehicle->showInformation(ux);
 
 }
+
+void Trip::showInformation(UserExperience& ux, bool isGuest) {
+    ux.printHeader("TRIP INFORMATION");
+
+    std::cout << std::left;
+    std::cout << std::setw(18) << "Driver" << ": " << currDriver->getFullName() << (currDriver->getIsVerified() ? " [Verified] " : "") << endl;
+    std::cout << std::setw(18) << "Start" << ": " << start.getHour() << ":" << start.getMinute() << ", " << start.getDay() << "/" << start.getMonth() << "/" << start.getYear() << std::endl;
+    std::cout << std::setw(18) << "End" << ": " << end.getHour() << ":" << end.getMinute() << ", " << end.getDay() << "/" << end.getMonth() << "/" << end.getYear() << std::endl;
+    std::cout << std::setw(18) << "Start Location" << ": " << startLocation << std::endl;
+    std::cout << std::setw(18) << "End Location" << ": " << endLocation << std::endl;
+    std::cout << std::setw(18) << "Available Seats" << ": " << availableSeat << std::endl;
+    std::cout << std::setw(18) << "Minimum Rate" << ": " << minRate << std::endl;
+    std::cout << std::setw(18) << "Cost" << ": " << cost << std::endl;
+    std::cout << std::setw(18) << "Reference ID" << ": " << referenceID << std::endl;
+    // Display the list of passengers
+    std::cout << std::setw(18) << "Passengers" << ": [";
+    for (const auto& passenger : passengers) {
+        string status;
+        if (passenger.second == 0) status = "Pending";
+        else if (passenger.second == 1) status = "Actived";
+        else if (passenger.second == 2) status = "Denied";
+        else if (passenger.second == 3) status = "Rated";
+        else status = "Invalid";
+        std::cout << "(" << passenger.first << ", " << status << "), ";
+    }
+    std::cout << "]" << std::endl;
+    currVehicle->showInformation(ux);
+
+}

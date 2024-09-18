@@ -713,7 +713,8 @@ void Application::viewCarpool(const vector<Trip*>& trips) {
     int index = 1;
     for (const auto& current : trips) {
         cout << index << ": " << "Reference ID: " << current->getReferenceID() << ": " << endl;
-        current->showInformation(ux);
+        if(guest == nullptr) current->showInformation(ux, 1);
+        else current->showInformation(ux);
         cout << "____________________..._____________________" << endl;
         cout << endl << endl;
         index++;

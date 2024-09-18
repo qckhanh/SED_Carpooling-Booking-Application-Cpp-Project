@@ -75,7 +75,8 @@ public:
     void addPassengerToTrip(const std::string& passenger_username, int status);
     void removePassenger(const std::string& passenger_username, int status);
     void changeStatusPassenger(int index, int value);
-    void showInformation(UserExperience& ux); 
+    void showInformation(UserExperience& ux);
+    void showInformation(UserExperience& ux, bool isGuest);
     
     
 
