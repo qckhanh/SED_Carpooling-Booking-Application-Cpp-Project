@@ -64,13 +64,9 @@ public:
     bool isValidCardNumber(string cardNumber);
     bool isValidPassword(const std::string& password);
     bool isValidPhoneNumber(const std::string& phoneNumber);
-    bool isValidDate(const std::string& date);
-    bool isValidTime(const std::string& time);
     bool isValidPlateNumber(const std::string& plateNumber);
-    bool hasSufficientCredit(int userCredit, int requiredCredit);
     bool isValidRatingScore(int score);
     bool isValidLocation(const std::string& location);
-    bool areSeatAvailable(int availableSeat, int requestedSeat);
     bool isValidOption(int x, int mn, int mx);
     bool isValidOption(string s, int mn, int mx);
     bool isValidRange(float x);
@@ -78,23 +74,15 @@ public:
 
     // Various input validation checks
     bool isValidUsername(const std::string& username);
-    bool isCommonPassword(const std::string& password);
-    bool isStrongPassword(const std::string& password);
     bool isValidName(const std::string& name);
-    bool isValidAge(int age);
     bool isValidSeatNumber(int seats);
     bool isValidVehicleModel(const std::string& model);
     bool isValidColor(const std::string& color);
-    bool isValidDuration(int minutes);
     bool isValidRating(int rating);
     bool isValidCVV(const int& cvv);
-    bool isNumber(string& str);
     string getPasswordInput();
 
-
     // Example validation functions
-    bool validateInt(const int& input);
-    bool validateString(const std::string& input);
     bool isValidDate(int day, int month, int year);
     bool isLeapYear(int year);
     bool isValidDateTrip(const Date& tripDate);

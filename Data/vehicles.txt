@@ -1,3 +1,5 @@
-quockhanh~BMW~Black~88A12345~4~1
-quockhanh~Toyota~Red~19C12345~6~1
-quockhanh~Vinfast~white~18A12345~4~1
+quockhanh~BMW~Black~88A12345~4~0
+quockhanh~Toyota~Red~19C12345~6~0
+quockhanh~Vinfast~white~18A12345~4~0
+quockhanh~Vinfast~Black~99A12345~6~0
+quockhanh~Toyota~Blue~56A12345~5~0

@@ -785,6 +785,7 @@ void Application::viewMyFeedback(User* user) {
     std::cout << "Comments    :" << std::endl;
     if (user->getFeedback()->getComments().size() < 1) {
         cout << " >>> [System]: Nothing to show here! " << endl;
+        pauseDisplay;
         return;
     }
     // Print each feedback comment
@@ -1202,6 +1203,7 @@ void Application::recoverAccount() {
 
         password = ux.getPasswordInput();
         if (!ux.isValidPassword(password)) {
+            cout << " >>> [System]: Invalid password! " << endl;
             continue;
         }
 
@@ -1277,7 +1279,7 @@ void Application::searchByDeparture(User* user, string departureLocation, int is
             if (isFound) tmpTrip.push_back(it);
         }
         if (tmpTrip.size() < 1) {
-            cout << " >>> [System]: Sorry! We could not find a match!" << endl;
+            cout << " >>> [System]: Sorry! We could not find a match based on your condition!" << endl;
             pauseDisplay;
             return;
         }
@@ -1311,7 +1313,7 @@ void Application::searchByDestination(User* user, string destinationLocation, in
             if (isFound) tmpTrip.push_back(it);
         }
         if (tmpTrip.size() < 1) {
-            cout << " >>> [System]: Sorry! We could not find a match!" << endl;
+            cout << " >>> [System]: Sorry! We could not find a match based on your condition!" << endl;
             pauseDisplay;
             return;
         }
@@ -1342,7 +1344,7 @@ void Application::searchByStartDate(User* user, int dd, int mm, int isGuest) {
             if (it->getStart().getDay() == dd && it->getStart().getMonth() == mm) tmpTrips.push_back(it);
         }
         if (tmpTrips.size() < 1) {
-            cout << " >>> [System]: Sorry! We could not find a match!" << endl;
+            cout << " >>> [System]: Sorry! We could not find a match based on your condition!" << endl;
             pauseDisplay;
             return;
         }
@@ -1371,7 +1373,7 @@ void Application::searchByEndDate(User* user, int dd, int mm, int isGuest) {
             if (it->getEnd().getDay() == dd && it->getEnd().getMonth() == mm) tmpTrips.push_back(it);
         }
         if (tmpTrips.size() < 1) {
-            cout << " >>> [System]: Sorry! We could not find a match!" << endl;
+            cout << " >>> [System]: Sorry! We could not find a match based on your condition!" << endl;
             pauseDisplay;
             return;
         }
@@ -1617,6 +1619,7 @@ void Application::Carpool_History() {
     ux.printHeader("CARPOOL HISTORY");
     if ((int)driver->getCarpoolWithStatus(2).size() < 1) {
         cout << " >>> [System]: Sorry! Nothing to show here! " << endl;
+        pauseDisplay;
         return;
     }
     viewCarpool(driver->getCarpoolWithStatus(2));     // need fix
@@ -1657,7 +1660,8 @@ void Application::FinishCarpool() {
     float amount = currenTrip->getTotalCredit();
     cout << " >>> [System]: Receive + " << amount << " to your account!" << endl;
     driver->receiveCredit(amount);
-    driver->changeStatusCarpool(tripIndex, 2);
+    //driver->changeStatusCarpool(tripIndex, 2);
+    currenTrip->setStatus(2);
     cout << " >>> [System]: Changes saved! " << endl;
 
 
@@ -1696,6 +1700,7 @@ void Application::addVehicle() {
 void Application::deleteVehicle() {
     clearDisplay;
     int index = 1;
+    ux.printHeader("REMOVE A VEHICLE");
     vector<Vehicle*> vehicles;
     for (auto& tmp : driver->getDriverVehicles()) {
         if (tmp->getStatus() == 1) {
@@ -1706,7 +1711,11 @@ void Application::deleteVehicle() {
             index++;
         }
     }
-
+    if((int)vehicles.size() < 1){
+        cout << " >>> [System]: Nothing to show here!" << endl;
+        pauseDisplay;
+        return;
+    }
     int vehicleIndex = ux.getValidInput<int>("Enter the vehicle' index: ( '0' to exit) : ", &UserExperience::isValidOption, 0, (int)vehicles.size());
     if (vehicleIndex == 0) return;
 
@@ -1714,7 +1723,6 @@ void Application::deleteVehicle() {
     if (!ux.confirmMessage("Do you want to remove vehicle with Plate number: " + currentVehicle->getPlateNumber() + "?")) return;
     currentVehicle->setStatus(0);
     cout << " >>> [System]: Vehicle removed! " << endl;
-    pauseDisplay;
 
 }
 void Application::changeStatusCustomerRequest() {
@@ -1770,6 +1778,5 @@ void Application::changeStatusCustomerRequest() {
     }
     
     cout << " >>> [System]: Passenger request updated! " << endl;
-    pauseDisplay;
 
 }
