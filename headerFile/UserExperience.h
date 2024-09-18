@@ -29,6 +29,7 @@ private:
         readInput() {
         T input;
         std::getline(std::cin >> std::ws, input);
+        cin.clear();
         return input;
     }
 
@@ -38,6 +39,7 @@ private:
         readInput() {
         T input;
         std::cin >> input;
+        cin.clear();
         return input;
     }
 public:
@@ -104,7 +106,6 @@ public:
             std::cout << prompt;
             try {
                 input = readInput<T>(); // Attempt to read the input
-
                 // Check if the input is valid using the passed validation function
                 if ((this->*validate)(input)) {
                     break;  // If valid, exit the loop and return the value

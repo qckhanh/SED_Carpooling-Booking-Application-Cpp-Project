@@ -234,9 +234,6 @@ bool Application::logIn() {
         tmp = ux.getValidInput<string>("Enter your option: ", &UserExperience::isValidOption, 0, 7);
         opt = stoi(tmp);
 
-
-       
-        
         cin.clear();
         if (opt == 0) exit(0);
         else if (opt == 1) userType = "driver";
@@ -432,22 +429,22 @@ void Application::menu_Driver() {
         ux.printHeader("ACTIVE DASHBOARD");
         ActiveDashboard(driver);
         welcomeScreen(driver);
-        ux.printOption(1, "Trip Management");
+        ux.printOption(1, "Carpool Management");
         ux.printOption(2, "Request Management");
-        ux.printOption(3, "My profile");
-        ux.printOption(4, "My Feedback");
-        ux.printOption(5, "Buy credit");
-        ux.printOption(6, "Vehicle Management");
+        ux.printOption(3, "Vehicle Management");
+        ux.printOption(4, "My profile");
+        ux.printOption(5, "My Feedback");
+        ux.printOption(6, "Buy credit");
         ux.printOption(0, "Exit");
         int opt;
         opt = ux.getValidInput<int>("Enter your option: ", &UserExperience::isValidOption, 0, 6);
 
         if (opt == 1) TripManagement();
         if (opt == 2) CustommerRequestManagement();
-        if (opt == 3) editProfile(driver);
-        if (opt == 4) viewMyFeedback(driver);
-        if (opt == 5) buyCredit(driver, 0);
-        if (opt == 6) VehiclesManagement();
+        if (opt == 3) VehiclesManagement() ;
+        if (opt == 4) editProfile(driver);
+        if (opt == 5) viewMyFeedback(driver);
+        if (opt == 6) buyCredit(driver, 0);
         if (opt == 0) {
             db.saveDataToFile();
             return;
@@ -505,7 +502,7 @@ void Application::RequestManagement() {
     int opt = -1;
     while (opt != 0) {
         clearDisplay;
-        ux.printHeader("REQUEST MANAGEMENT");
+        ux.printHeader("REQUESTS MANAGEMENT");
         ux.printOption(1, "Cancel my request");
         ux.printOption(2, "History and feedback");
         ux.printOption(0, "Back to menu");
@@ -553,7 +550,7 @@ void Application::TripManagement() {
     int opt = -1;
     while (opt != 0) {
         clearDisplay;
-        ux.printHeader("TRIP MANAGEMENT");
+        ux.printHeader("CARPOOL MANAGEMENT");
         ux.printOption(1, "Add a Carpool");
         ux.printOption(2, "Cancel a Carpool");
         ux.printOption(3, "Finish a Carpool");
@@ -573,7 +570,7 @@ void Application::TripManagement() {
 
 void Application::HowToUse() {
     clearDisplay;
-    ux.printHeaderNoTopBorder("OUR INSTRUCTION AND GUIDELINES");
+    ux.printHeader("OUR INSTRUCTION AND GUIDELINES");
 
     // Display Choices:
     ux.printOption(1, "Input Instruction");
@@ -599,7 +596,7 @@ void Application::HowToUse() {
     int choice = ux.getValidInput<int>("Enter your option: ", &UserExperience::isValidOption, 0 , 16);
 
     // Initializes messages to guide the user
-    string inputInstruction = "Enter your choice only a \033[1msingle digit (0, 1 etc.)\033[0m. Other inputs are invalid.";
+    string inputInstruction = "Enter your choice only a \033[1m integer value (0, 1 etc.)\033[0m. Other inputs are invalid.";
     string passwordInstruction = "Password must be at least \033[1m8 characters\033[0m long and contain at least \033[1mone uppercase letter\033[0m, \033[1mone lowercase letter\033[0m, \033[1mone number\033[0m, and \033[1mone special character\033[0m.";
     string passportInstruction = "Passport number must be \033[1mone uppercase letter followed by 7 digits\033[0m.";
     string emailInstruction = " An \033[1mvalid email address\033[0m must have the following format (e.g., \033[1mexample@domain.com\033[0m).";
@@ -1503,6 +1500,10 @@ void Application::addCarpool() {
         clearDisplay;
         ux.printHeader("CREATE NEW CARPOOL");
         ux.printOption(1, "Depature Time Detail");
+        if (driver->getDriverVehicles().size() < 1) {
+            cout << " >>> System: You have 0 vehicle. Can not create a carpool! " << endl;
+            return;
+        }
         int hh = ux.getValidInput<int>("Enter the hour: ", &UserExperience::isValidOption, 0, 24);
         int mm = ux.getValidInput<int>("Enter the minute: ", &UserExperience::isValidOption, 0, 60);
         int dd = ux.getValidInput<int>("Enter the day: ", &UserExperience::isValidOption, 1, 31);

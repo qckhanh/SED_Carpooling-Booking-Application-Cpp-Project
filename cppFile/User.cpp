@@ -5,6 +5,7 @@
 // Constructor
 User::User() : creditPoint(0.0f), isVerified(false) {
     feedbacks = new Feedback();
+    isVerified = false;
 }
 
 // Destructor
