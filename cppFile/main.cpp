@@ -1,10 +1,6 @@
 #include<iostream>
-#include "../headerFile/User.h"
-#include "../headerFile/Passenger.h"
-#include "../headerFile/Application.h"
-#include <windows.h>  // For SetConsoleTitle
-
-using namespace std;
+#include "headerFile/Application.h"
+#include <windows.h>  
 #include <conio.h>
 
 int main(){
@@ -13,9 +9,6 @@ int main(){
 	Application application;
 	
 	application.start();
-		return 0;
 	
-
-
 	return 0;
 }
