@@ -70,7 +70,7 @@ void Application::createNewAccount() {
         while (1) {
             userName = ux.getValidInput<string>("Enter username: ", &UserExperience::isValidUsername);
             vector<string> usernames = getAllUsername();
-            if (find(usernames.begin(), usernames.end(), userName) == usernames.end()) break;
+            if (find(usernames.begin(), usernames.end(), userName) == usernames.end() && userName != "guest") break;
             else cout << " >>> [System]: " << userName << " already existed! Try another username! " << endl;
         }
         string password, RePassword;
@@ -303,6 +303,7 @@ bool Application::logIn() {
             currentUser = new User();
             currentUser->setFullName("Guest");
             currentUser->setCreditPoint(100000);
+            currentUser->setUsername("guest");
             return true;
         }
         pauseDisplay;
@@ -713,7 +714,7 @@ void Application::viewCarpool(const vector<Trip*>& trips) {
     int index = 1;
     for (const auto& current : trips) {
         cout << index << ": " << "Reference ID: " << current->getReferenceID() << ": " << endl;
-        if(currentUser->getCreditPoint() == 100000) current->showInformation(ux, 1);
+        if(currentUser->getUsername() == "guest") current->showInformation(ux, 1);
         else current->showInformation(ux);
         cout << "____________________..._____________________" << endl;
         cout << endl << endl;
