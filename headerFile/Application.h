@@ -72,6 +72,8 @@ public:
     vector<Trip*> getAvailableCarpools(double myRate, float myCredit);
     string stringFormatSearch(string s);
     vector<string> getAllUsername();
+    vector<string>getAllEmails();
+    vector<string>getAllPhoneNumbers();
     bool isOverlapTrip(Date& start, Date& end);
     vector<pair<Date, Date>> getTripTime(Driver* driver);
     bool isInsideAnother(Date& x, Date& start, Date& end);

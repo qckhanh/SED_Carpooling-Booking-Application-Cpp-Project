@@ -10,7 +10,17 @@
 #include "Driver.h"
 #include "Vehicle.h"
 #include "Trip.h"
-
+#ifdef _WIN32
+#include <direct.h>  // For Windows
+#include <io.h>      // For access()
+#define ACCESS _access
+#define CreateFolder(path) _mkdir(path)
+#else
+#include <sys/stat.h>  // For mkdir() and stat
+#include <unistd.h>    // For access()
+#define ACCESS access
+#define CreateFolder(path) mkdir(path, 0777)
+#endif
 using namespace std;
 
 class Database {
@@ -62,4 +72,8 @@ public:
     void saveTrips();
     void saveFeedback();
     void saveDataToFile();
+
+    //helper
+    bool folderExists(const std::string& path);
+    void folderMaker(string folderName);
 };

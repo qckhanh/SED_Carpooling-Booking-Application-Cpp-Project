@@ -106,7 +106,13 @@ void Application::createNewAccount() {
                 cout << " >>> [System] Invalid birthdate! Please try again!" << endl;
             }
         }
-        string phoneNumber = ux.getValidInput<string>("Enter phone number: ", &UserExperience::isValidPhoneNumber);
+        string phoneNumber;
+        while (1) {
+            phoneNumber = ux.getValidInput<string>("Enter phone number: ", &UserExperience::isValidPhoneNumber);
+            vector<string> phones = getAllPhoneNumbers();
+            if (find(phones.begin(), phones.end(), phoneNumber) == phones.end()) break;
+            else cout << " >>> [System]: " << phoneNumber << " already existed! Try another phone number! " << endl;
+        }
         string address;
         while (1) {
             cout << "Enter address: ";
@@ -119,8 +125,14 @@ void Application::createNewAccount() {
             }
             break;
         }
-        string email = ux.getValidInput<std::string>("Enter your email: ",&UserExperience::isValidEmail);
-
+        string email;
+        while (1) {
+            email = ux.getValidInput<std::string>("Enter your email: ", &UserExperience::isValidEmail);
+            vector<string> emails = getAllEmails();
+            if (find(emails.begin(), emails.end(), email) == emails.end()) break;
+            else cout << " >>> [System]: " << email << " already existed! Try another email! " << endl;
+        }
+        
         cout << " >>> [System] We support 2 Identity Verification type: " << endl;
         ux.printOption(1, "Passport");
         ux.printOption(2, "Identity Card");
@@ -775,6 +787,32 @@ vector<string> Application::getAllUsername() {
     }
     return usernames;
 }
+vector<string> Application::getAllEmails() {
+    vector<string> emails;
+    for (auto& tmp : db.getPassengers()) {
+        emails.push_back(tmp->getEmail());
+    }
+    for (auto& tmp : db.getDrivers()) {
+        emails.push_back(tmp->getEmail());
+    }
+    for (auto& tmp : db.getAdmins()) {
+        emails.push_back(tmp->getEmail());
+    }
+    return emails;
+}
+vector<string> Application::getAllPhoneNumbers() {
+    vector<string> phones;
+    for (auto& tmp : db.getPassengers()) {
+        phones.push_back(tmp->getPhoneNumber());
+    }
+    for (auto& tmp : db.getDrivers()) {
+        phones.push_back(tmp->getPhoneNumber());
+    }
+    for (auto& tmp : db.getAdmins()) {
+        phones.push_back(tmp->getPhoneNumber());
+    }
+    return phones;
+}
 //common
 void Application::viewMyFeedback(User* user) {
     clearDisplay;
@@ -1004,7 +1042,7 @@ void Application::editProfile(User* user) {
 
             fstream email(pathEmail, ios::out);
             fstream phone(pathPhone, ios::out);
-            cout << " >>> [System]: Open your email or phone number's message at : Carpool/MessageBox/ " << endl;
+            cout << " >>> [System]: Open your email or phone number's message at : ../MessageBox/ " << endl;
             int generateCode = 100000 + std::rand() % (999999 - 100000 + 1);
             cout << " >>> [System]: We have sent 6-digit verification code to your email and phone number" << endl;
             cout << " >>> [System]: Please check your email or phone number! " << endl;
@@ -1182,7 +1220,7 @@ void Application::recoverAccount() {
     std::srand(static_cast<unsigned int>(std::time(0)));
     string path = "../MessageBox/" + infor + ".txt";
     fstream email(path, ios::out);
-    cout << " >>> [System]: Open your email/phone number at : Carpool/MessageBox/ " << endl;
+    cout << " >>> [System]: Open your email/phone number folder : ../MessageBox " << endl;
     int generateCode = 100000 + std::rand() % (999999 - 100000 + 1);
     cout << " >>> [System]: We have sent 6-digit code to recover your password to ";
     for (int i = 0; i < (int)infor.size(); i++) {
@@ -1224,6 +1262,7 @@ void Application::recoverAccount() {
     else if (tmpPassenger) {
         tmpPassenger->setPassword(password);
     }
+    db.saveDataToFile();
     cout << "New password saved! " << endl;
 
     

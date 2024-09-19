@@ -1,7 +1,10 @@
 #include "../headerFile/Database.h"
 
 // Constructor
-Database::Database() {}
+Database::Database() {
+    folderMaker("../Data");
+    folderMaker("../MessageBox");
+}
 
 // Getters
 std::vector<Passenger*>& Database::getPassengers() {
@@ -542,4 +545,25 @@ void Database::saveFeedback() {
     }
     
     saveFeedbacks.close();
+}
+
+//
+bool Database::folderExists(const std::string& path) {
+    return ACCESS(path.c_str(), 0) == 0;
+}
+void Database::folderMaker(string folderName) {
+    
+    // Check if folder already exists
+    if (folderExists(folderName)) {
+        std::cout << "Folder already exists. Stopping creation.\n";
+        return;
+    }
+
+    if (CreateFolder(folderName.c_str()) == 0) {
+        std::cout << "Folder created successfully!\n";
+    }
+    else {
+        std::cerr << "Error: Unable to create folder.\n";
+        return;
+    }
 }
