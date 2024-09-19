@@ -27,6 +27,8 @@ public:
     void addRunningCarpool(Trip* trip);
     void changeStatusOfPassengerInTrip(Trip* trip, int passengerIndex, int value);
     vector<Trip*> getCarpoolWithStatus(int statusValue);
+
+    //methods
     void viewVehicle(UserExperience& ux) const;
     void changeStatusCarpool(int index, int value);
 };

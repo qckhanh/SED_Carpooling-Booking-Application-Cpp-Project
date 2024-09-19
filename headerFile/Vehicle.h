@@ -35,6 +35,6 @@ public:
     std::string getPlateNumber() const;
     int getTotalSeat() const;
     int getStatus() const;
-
+    //methods
     void showInformation(UserExperience& ux) const;
 };

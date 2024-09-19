@@ -21,7 +21,7 @@ using namespace std;
 class UserExperience {
 private:
     char decoratorSymbol;           // Either '=' or '-'
-    std::vector<std::string> errorMessages; // List of common error messages
+    std::vector<std::string> errorMessages; 
 
     void displayLine(int length);   // Helper function to print a line of decoratorSymbol
     template <typename T>
@@ -70,9 +70,6 @@ public:
     bool isValidOption(int x, int mn, int mx);
     bool isValidOption(string s, int mn, int mx);
     bool isValidRange(float x);
-    // Other input method
-
-    // Various input validation checks
     bool isValidUsername(const std::string& username);
     bool isValidName(const std::string& name);
     bool isValidSeatNumber(int seats);
@@ -80,13 +77,14 @@ public:
     bool isValidColor(const std::string& color);
     bool isValidRating(int rating);
     bool isValidCVV(const int& cvv);
-    string getPasswordInput();
-
-    // Example validation functions
     bool isValidDate(int day, int month, int year);
     bool isLeapYear(int year);
     bool isValidDateTrip(const Date& tripDate);
+    //helper functions
+    string getPasswordInput();
     string ReferenceIDGenerator(Date d1);
+
+    //input
     template <typename T>
     T getValidInput(const std::string& prompt, bool (UserExperience::* validate)(const T&)) {
         T input;
