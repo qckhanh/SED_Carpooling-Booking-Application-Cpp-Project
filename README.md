@@ -6,6 +6,8 @@ Khanh Khong Quoc - s4021494
 Lam Dao Duc - s4019052
 Luong Chi Bach - s4029308
 Duong Bao Ngoc - s3425449
+[Make sure that you install G++ into your PC/laptop. 
+If you havent install, please check this link: [Visual Studio Code and G++ - Installation Guide.pdf](https://github.com/user-attachments/files/17509927/Visual.Studio.Code.and.G%2B%2B.-.Installation.Guide.1.pdf)]
 
 #To compile this project
 1. Visual Studio
