@@ -10,6 +10,14 @@ Duong Bao Ngoc - s3425449
 [Make sure that you installed G++ into your PC/laptop. 
 If you havent install, please check this link: [Visual Studio Code and G++ - Installation Guide.pdf](https://github.com/user-attachments/files/17509927/Visual.Studio.Code.and.G%2B%2B.-.Installation.Guide.1.pdf)]
 
+#To open this C++ executable file: 
+1/ Download the "Group_11_Program.exe"
+Note: Windows will consider it as virus/threaten ( obviously not :))))))) ). 
+2/ Click "More infor"
+3/ Open anyway
+4/ Enjoy your meal
+
+
 #To compile this project
 1. Visual Studio
     - Open folder "CarpoolApplication"
